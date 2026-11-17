@@ -25,5 +25,5 @@ if (process.env.GATE_BASELINE === "1") {
   process.exit(build);
 }
 
-const smoke = run("node", ["scripts/smoke-routes.mjs"]);
+const smoke = run("node", ["scripts/smoke-routes.ts"]);
 process.exit(smoke);

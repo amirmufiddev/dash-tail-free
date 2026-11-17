@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test:routes": "node --test scripts/routes.test.mjs",
-    "smoke": "node scripts/smoke-routes.mjs",
+    "smoke": "node scripts/smoke-routes.ts",
     "gates": "node scripts/run-gates.mjs"
   },
   "dependencies": {
@@ -132,7 +132,7 @@
     "@playwright/test": "1.65.1",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20.10.0",
-    "@types/react": "18.2.38",
+    "@types/react": "^18.3.31",
     "typescript": "^5.9.3"
   },
   "allowScripts": {
