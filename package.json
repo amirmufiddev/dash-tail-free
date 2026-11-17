@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:routes": "node --test scripts/routes.test.mjs",
+    "smoke": "node scripts/smoke-routes.mjs",
+    "gates": "node scripts/run-gates.mjs"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^40.1.0",
@@ -126,6 +129,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.2.0",
+    "@playwright/test": "1.65.1",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20.10.0",
     "@types/react": "18.2.38"
