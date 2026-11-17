@@ -268,6 +268,9 @@ Pengecualian ini sudah disetujui. Mereka bukan kegagalan peer.
 | `@fullcalendar/interaction` | 6.1.22 | Sama dengan daygrid |
 | `@fullcalendar/list` | 6.1.22 | Sama dengan daygrid |
 | `reactflow` | 11.11.4 | Tag `latest` nama paket ini |
+| `typescript` | 5.9.3 | Tahap 0: `typescript@7.0.2` gagal `tsc --noEmit` dengan `tsconfig` gate sempit; 7.0.2 dicoba lagi di Tahap 3 |
+
+Tahap 0 mencatat `buildOk` di baseline. `package.json` boleh memuat `allowScripts` yang menyetujui skrip native `bcrypt` agar `next build` tidak gagal di route auth.
 
 `reactflow` diganti `@xyflow/react` 13.0.2 hanya bila 11.11.4 gagal terpasang pada React 19.3.1. Penggantian itu dicatat di tabel ini bersama teks errornya, dan import `reactflow` di halaman diagram ikut pindah.
 
