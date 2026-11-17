@@ -132,6 +132,10 @@
     "@playwright/test": "1.65.1",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20.10.0",
-    "@types/react": "18.2.38"
+    "@types/react": "18.2.38",
+    "typescript": "^5.9.3"
+  },
+  "allowScripts": {
+    "bcrypt@5.1.1": true
   }
 }

@@ -1,0 +1,1188 @@
+{
+  "buildOk": true,
+  "routes": [
+    {
+      "file": "app/(dashboard)/(apps)/calendar/page.jsx",
+      "url": "/calendar",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/chat/page.jsx",
+      "url": "/chat",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/email/page.jsx",
+      "url": "/email",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/kanban/page.jsx",
+      "url": "/kanban",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/projects/[id]/activity/page.jsx",
+      "url": "/projects/1/activity",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/projects/[id]/discussion/page.jsx",
+      "url": "/projects/1/discussion",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/projects/[id]/documents/page.jsx",
+      "url": "/projects/1/documents",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/projects/[id]/files/page.jsx",
+      "url": "/projects/1/files",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/projects/[id]/overview/page.jsx",
+      "url": "/projects/1/overview",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/projects/[id]/settings/page.jsx",
+      "url": "/projects/1/settings",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/projects/[id]/task/page.jsx",
+      "url": "/projects/1/task",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/projects/[id]/team/page.jsx",
+      "url": "/projects/1/team",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/projects/page.jsx",
+      "url": "/projects",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/task/page.jsx",
+      "url": "/task",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(apps)/todo/page.jsx",
+      "url": "/todo",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-area/page.jsx",
+      "url": "/charts-appex-area",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-bar/page.jsx",
+      "url": "/charts-appex-bar",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-boxplot/page.jsx",
+      "url": "/charts-appex-boxplot",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-bubble/page.jsx",
+      "url": "/charts-appex-bubble",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-candlestick/page.jsx",
+      "url": "/charts-appex-candlestick",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-column/page.jsx",
+      "url": "/charts-appex-column",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-combo/page.jsx",
+      "url": "/charts-appex-combo",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-funnel/page.jsx",
+      "url": "/charts-appex-funnel",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-heatmap/page.jsx",
+      "url": "/charts-appex-heatmap",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-line/page.jsx",
+      "url": "/charts-appex-line",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-pie/page.jsx",
+      "url": "/charts-appex-pie",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-polararea/page.jsx",
+      "url": "/charts-appex-polararea",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-radar/page.jsx",
+      "url": "/charts-appex-radar",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-radialbars/page.jsx",
+      "url": "/charts-appex-radialbars",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-range/page.jsx",
+      "url": "/charts-appex-range",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-scatter/page.jsx",
+      "url": "/charts-appex-scatter",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-timeline/page.jsx",
+      "url": "/charts-appex-timeline",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(appex-charts)/charts-appex-treemap/page.jsx",
+      "url": "/charts-appex-treemap",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(chart-js)/charts-chartjs-animations/page.jsx",
+      "url": "/charts-chartjs-animations",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(chart-js)/charts-chartjs-area/page.jsx",
+      "url": "/charts-chartjs-area",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(chart-js)/charts-chartjs-bar/page.jsx",
+      "url": "/charts-chartjs-bar",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(chart-js)/charts-chartjs-legend/page.jsx",
+      "url": "/charts-chartjs-legend",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(chart-js)/charts-chartjs-line/page.jsx",
+      "url": "/charts-chartjs-line",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(chart-js)/charts-chartjs-other/page.jsx",
+      "url": "/charts-chartjs-other",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(chart-js)/charts-chartjs-scaleoptions/page.jsx",
+      "url": "/charts-chartjs-scaleoptions",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(chart-js)/charts-chartjs-scales/page.jsx",
+      "url": "/charts-chartjs-scales",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(chart-js)/charts-chartjs-scriptable/page.jsx",
+      "url": "/charts-chartjs-scriptable",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(chart-js)/charts-chartjs-subtitle/page.jsx",
+      "url": "/charts-chartjs-subtitle",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(chart-js)/charts-chartjs-title/page.jsx",
+      "url": "/charts-chartjs-title",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(chart-js)/charts-chartjs-tooltip/page.jsx",
+      "url": "/charts-chartjs-tooltip",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(re-chart)/charts-rechart-area/page.jsx",
+      "url": "/charts-rechart-area",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(re-chart)/charts-rechart-bar/page.jsx",
+      "url": "/charts-rechart-bar",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(re-chart)/charts-rechart-composed/page.jsx",
+      "url": "/charts-rechart-composed",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(re-chart)/charts-rechart-line/page.jsx",
+      "url": "/charts-rechart-line",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(re-chart)/charts-rechart-pie/page.jsx",
+      "url": "/charts-rechart-pie",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(re-chart)/charts-rechart-radar/page.jsx",
+      "url": "/charts-rechart-radar",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(re-chart)/charts-rechart-radialbar/page.jsx",
+      "url": "/charts-rechart-radialbar",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(re-chart)/charts-rechart-scatter/page.jsx",
+      "url": "/charts-rechart-scatter",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(re-chart)/charts-rechart-treemap/page.jsx",
+      "url": "/charts-rechart-treemap",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(unovis-charts)/charts-unovis-area/page.jsx",
+      "url": "/charts-unovis-area",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(unovis-charts)/charts-unovis-bar/page.jsx",
+      "url": "/charts-unovis-bar",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(unovis-charts)/charts-unovis-line/page.jsx",
+      "url": "/charts-unovis-line",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(chart)/(unovis-charts)/charts-unovis-scatter/page.jsx",
+      "url": "/charts-unovis-scatter",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/accordion/page.jsx",
+      "url": "/accordion",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/affix/page.jsx",
+      "url": "/affix",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/alert/page.jsx",
+      "url": "/alert",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/avatar/page.jsx",
+      "url": "/avatar",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/badge/page.jsx",
+      "url": "/badge",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/breadcrumb/page.jsx",
+      "url": "/breadcrumb",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/button/page.jsx",
+      "url": "/button",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/calendar-page/page.jsx",
+      "url": "/calendar-page",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/card/page.jsx",
+      "url": "/card",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/carousel/page.jsx",
+      "url": "/carousel",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/color/page.jsx",
+      "url": "/color",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/combobox/page.jsx",
+      "url": "/combobox",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/command/page.jsx",
+      "url": "/command",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/dialog/page.jsx",
+      "url": "/dialog",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/dropdown/page.jsx",
+      "url": "/dropdown",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/kbd/page.jsx",
+      "url": "/kbd",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/pagination/page.jsx",
+      "url": "/pagination",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/popover/page.jsx",
+      "url": "/popover",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/progress/page.jsx",
+      "url": "/progress",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/sheet/page.jsx",
+      "url": "/sheet",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/skeleton/page.jsx",
+      "url": "/skeleton",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/steps/page.jsx",
+      "url": "/steps",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/tabs/page.jsx",
+      "url": "/tabs",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/timeline/page.jsx",
+      "url": "/timeline",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/toast/page.jsx",
+      "url": "/toast",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/toast/react-hot-toast/page.jsx",
+      "url": "/toast/react-hot-toast",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/toast/react-toast/page.jsx",
+      "url": "/toast/react-toast",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/toast/sonner-toast/page.jsx",
+      "url": "/toast/sonner-toast",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/tooltip/page.jsx",
+      "url": "/tooltip",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/tour/page.jsx",
+      "url": "/tour",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/tree/page.jsx",
+      "url": "/tree",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/typography/page.jsx",
+      "url": "/typography",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(components)/watermark/page.jsx",
+      "url": "/watermark",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(diagram)/diagram-tree/page.jsx",
+      "url": "/diagram-tree",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/autocomplete/page.jsx",
+      "url": "/autocomplete",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/checkbox/page.jsx",
+      "url": "/checkbox",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/file-uploader/page.jsx",
+      "url": "/file-uploader",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/form-layout/page.jsx",
+      "url": "/form-layout",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/form-select/page.jsx",
+      "url": "/form-select",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/form-wizard/page.jsx",
+      "url": "/form-wizard",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/input-mask/page.jsx",
+      "url": "/input-mask",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/input/page.jsx",
+      "url": "/input",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/input2/page.jsx",
+      "url": "/input2",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/radio/page.jsx",
+      "url": "/radio",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/rating/page.jsx",
+      "url": "/rating",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/react-select/page.jsx",
+      "url": "/react-select",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/slider/page.jsx",
+      "url": "/slider",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/switch/page.jsx",
+      "url": "/switch",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/textarea/page.jsx",
+      "url": "/textarea",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/validation-controller/page.jsx",
+      "url": "/validation-controller",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(forms)/validation-useform/page.jsx",
+      "url": "/validation-useform",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(home)/dashboard/page.jsx",
+      "url": "/dashboard",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(home)/ecommerce/page.jsx",
+      "url": "/ecommerce",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(home)/project/page.jsx",
+      "url": "/project",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(icons)/icons-custom/page.jsx",
+      "url": "/icons-custom",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(icons)/icons-iconify/page.jsx",
+      "url": "/icons-iconify",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(icons)/icons-lucide/page.jsx",
+      "url": "/icons-lucide",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(invoice)/create-invoice/page.jsx",
+      "url": "/create-invoice",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(invoice)/invoice-details/page.jsx",
+      "url": "/invoice-details",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(invoice)/invoice-list/page.jsx",
+      "url": "/invoice-list",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(map)/map-react-leaflet/page.jsx",
+      "url": "/map-react-leaflet",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(map)/map-unovis-advance/page.jsx",
+      "url": "/map-unovis-advance",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(map)/map-unovis-flow/page.jsx",
+      "url": "/map-unovis-flow",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(map)/map-unovis-leaflet/page.jsx",
+      "url": "/map-unovis-leaflet",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(map)/maps-google/page.jsx",
+      "url": "/maps-google",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(map)/maps-vector/page.jsx",
+      "url": "/maps-vector",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(tables)/data-table/page.jsx",
+      "url": "/data-table",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(tables)/simple-table/page.jsx",
+      "url": "/simple-table",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/(tables)/tailwindui-table/page.jsx",
+      "url": "/tailwindui-table",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/blank/page.jsx",
+      "url": "/blank",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/diagram/reactflow/organization-tree/page.jsx",
+      "url": "/diagram/reactflow/organization-tree",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/(dashboard)/diagram/reactflow/overview/page.jsx",
+      "url": "/diagram/reactflow/overview",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(forgot)/forgot/page.jsx",
+      "url": "/auth/forgot",
+      "status": 200,
+      "pathname": "/auth/forgot",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(forgot)/forgot2/page.jsx",
+      "url": "/auth/forgot2",
+      "status": 200,
+      "pathname": "/auth/forgot2",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(forgot)/forgot3/page.jsx",
+      "url": "/auth/forgot3",
+      "status": 200,
+      "pathname": "/auth/forgot3",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(forgot)/forgot4/page.jsx",
+      "url": "/auth/forgot4",
+      "status": 200,
+      "pathname": "/auth/forgot4",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(forgot)/forgot5/page.jsx",
+      "url": "/auth/forgot5",
+      "status": 200,
+      "pathname": "/auth/forgot5",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(lock)/lock/page.jsx",
+      "url": "/auth/lock",
+      "status": 200,
+      "pathname": "/auth/lock",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(lock)/lock2/page.jsx",
+      "url": "/auth/lock2",
+      "status": 200,
+      "pathname": "/auth/lock2",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(lock)/lock3/page.jsx",
+      "url": "/auth/lock3",
+      "status": 200,
+      "pathname": "/auth/lock3",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(lock)/lock4/page.jsx",
+      "url": "/auth/lock4",
+      "status": 200,
+      "pathname": "/auth/lock4",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(lock)/lock5/page.jsx",
+      "url": "/auth/lock5",
+      "status": 200,
+      "pathname": "/auth/lock5",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(login)/login2/page.jsx",
+      "url": "/auth/login2",
+      "status": 200,
+      "pathname": "/auth/login2",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(login)/login3/page.jsx",
+      "url": "/auth/login3",
+      "status": 200,
+      "pathname": "/auth/login3",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(login)/login4/page.jsx",
+      "url": "/auth/login4",
+      "status": 200,
+      "pathname": "/auth/login4",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(login)/login5/page.jsx",
+      "url": "/auth/login5",
+      "status": 200,
+      "pathname": "/auth/login5",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(password)/create-password/page.jsx",
+      "url": "/auth/create-password",
+      "status": 200,
+      "pathname": "/auth/create-password",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(password)/create-password2/page.jsx",
+      "url": "/auth/create-password2",
+      "status": 200,
+      "pathname": "/auth/create-password2",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(password)/create-password3/page.jsx",
+      "url": "/auth/create-password3",
+      "status": 200,
+      "pathname": "/auth/create-password3",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(password)/create-password4/page.jsx",
+      "url": "/auth/create-password4",
+      "status": 200,
+      "pathname": "/auth/create-password4",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(password)/create-password5/page.jsx",
+      "url": "/auth/create-password5",
+      "status": 200,
+      "pathname": "/auth/create-password5",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(register)/register/page.jsx",
+      "url": "/auth/register",
+      "status": 200,
+      "pathname": "/auth/register",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(register)/register2/page.jsx",
+      "url": "/auth/register2",
+      "status": 200,
+      "pathname": "/auth/register2",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(register)/register3/page.jsx",
+      "url": "/auth/register3",
+      "status": 200,
+      "pathname": "/auth/register3",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(register)/register4/page.jsx",
+      "url": "/auth/register4",
+      "status": 200,
+      "pathname": "/auth/register4",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(register)/register5/page.jsx",
+      "url": "/auth/register5",
+      "status": 200,
+      "pathname": "/auth/register5",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(verify)/verify/page.jsx",
+      "url": "/auth/verify",
+      "status": 200,
+      "pathname": "/auth/verify",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(verify)/verify2/page.jsx",
+      "url": "/auth/verify2",
+      "status": 200,
+      "pathname": "/auth/verify2",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(verify)/verify3/page.jsx",
+      "url": "/auth/verify3",
+      "status": 200,
+      "pathname": "/auth/verify3",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(verify)/verify4/page.jsx",
+      "url": "/auth/verify4",
+      "status": 200,
+      "pathname": "/auth/verify4",
+      "pageerror": null
+    },
+    {
+      "file": "app/auth/(verify)/verify5/page.jsx",
+      "url": "/auth/verify5",
+      "status": 200,
+      "pathname": "/auth/verify5",
+      "pageerror": null
+    },
+    {
+      "file": "app/error-page/401/page.jsx",
+      "url": "/error-page/401",
+      "status": 200,
+      "pathname": "/error-page/401",
+      "pageerror": null
+    },
+    {
+      "file": "app/error-page/403/page.jsx",
+      "url": "/error-page/403",
+      "status": 200,
+      "pathname": "/error-page/403",
+      "pageerror": null
+    },
+    {
+      "file": "app/error-page/404/page.jsx",
+      "url": "/error-page/404",
+      "status": 200,
+      "pathname": "/error-page/404",
+      "pageerror": null
+    },
+    {
+      "file": "app/error-page/419/page.jsx",
+      "url": "/error-page/419",
+      "status": 200,
+      "pathname": "/error-page/419",
+      "pageerror": null
+    },
+    {
+      "file": "app/error-page/429/page.jsx",
+      "url": "/error-page/429",
+      "status": 200,
+      "pathname": "/error-page/429",
+      "pageerror": null
+    },
+    {
+      "file": "app/error-page/500/page.jsx",
+      "url": "/error-page/500",
+      "status": 200,
+      "pathname": "/error-page/500",
+      "pageerror": null
+    },
+    {
+      "file": "app/error-page/503/page.jsx",
+      "url": "/error-page/503",
+      "status": 200,
+      "pathname": "/error-page/503",
+      "pageerror": null
+    },
+    {
+      "file": "app/page.jsx",
+      "url": "/",
+      "status": 200,
+      "pathname": "/",
+      "pageerror": null
+    },
+    {
+      "file": "app/utility/comming-soon/page.jsx",
+      "url": "/utility/comming-soon",
+      "status": 200,
+      "pathname": "/utility/comming-soon",
+      "pageerror": null
+    },
+    {
+      "file": "app/utility/maintinance/page.jsx",
+      "url": "/utility/maintinance",
+      "status": 200,
+      "pathname": "/utility/maintinance",
+      "pageerror": null
+    }
+  ]
+}
