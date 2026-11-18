@@ -263,6 +263,8 @@ export const ChatPage = () => {
                                               <Image
                                                 src={pinnedMessage.avatar}
                                                 alt=""
+                                                width={40}
+                                                height={40}
                                                 className="w-full h-full rounded-full object-cover"
                                               />
                                             ) : null}

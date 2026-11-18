@@ -140,6 +140,8 @@ const Messages = ({
                         : (profile?.avatar?.src ?? "")
                     }
                     alt=""
+                    width={32}
+                    height={32}
                     className="block w-full h-full object-cover rounded-full"
                   />
                 </div>
@@ -153,6 +155,8 @@ const Messages = ({
                 <Image
                   src={avatar ?? ""}
                   alt=""
+                  width={32}
+                  height={32}
                   className="block w-full h-full object-cover rounded-full"
                 />
               </div>
