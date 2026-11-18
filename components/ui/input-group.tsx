@@ -1,8 +1,10 @@
-// @ts-nocheck
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { inputVariants } from "@/components/ui/input";
-const InputGroup = React.forwardRef(({ className, merged, ...props }, ref) => (
+const InputGroup = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & { merged?: boolean }
+>(({ className, merged, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
@@ -17,7 +19,10 @@ const InputGroup = React.forwardRef(({ className, merged, ...props }, ref) => (
 ));
 InputGroup.displayName = "InputGroup";
 
-const InputGroupButton = React.forwardRef(({ className, ...props }, ref) => (
+const InputGroupButton = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
@@ -29,8 +34,12 @@ const InputGroupButton = React.forwardRef(({ className, ...props }, ref) => (
 ));
 InputGroupButton.displayName = "InputGroupButton";
 
-const InputGroupText = React.forwardRef(
-  ({ className, color, ...props }, ref) => (
+const InputGroupText = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & {
+    color?: "info" | "primary" | "success" | "destructive" | "warning";
+  }
+>(({ className, color, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(

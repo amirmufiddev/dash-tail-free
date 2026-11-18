@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import Card from "@/components/ui/card-snippet";
@@ -99,7 +98,7 @@ const ProgressPage = () => {
           In Progress component <code className="text-primary">isStripe</code>{" "}
           props shows striped in linier progress.
         </p>
-        <div className="space-y-5 w-full md:w-3/5" code={strippedProgressbar}>
+        <div className="space-y-5 w-full md:w-3/5">
           <StrippedProgressbar />
         </div>
       </Card>

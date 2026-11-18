@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import Card from "@/components/ui/card-snippet";
 import BasicTable from "./basic-table";

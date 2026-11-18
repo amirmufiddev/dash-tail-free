@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Breadcrumbs, BreadcrumbItem } from "@/components/ui/breadcrumbs";
 import {
   DropdownMenu,
@@ -16,7 +15,7 @@ const CustomizeCollapsingBreadcrumb = () => {
         maxItems={3}
         itemsBeforeCollapse={1}
         itemsAfterCollapse={2}
-        renderEllipsis={
+        renderEllipsis={() => (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <span className=" cursor-pointer bg-muted px-2 rounded-full inline-flex items-center">
@@ -34,7 +33,7 @@ const CustomizeCollapsingBreadcrumb = () => {
               <BreadcrumbItem>Component</BreadcrumbItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        }
+        )}
       >
         <BreadcrumbItem>Home</BreadcrumbItem>
         <BreadcrumbItem>Dashboard</BreadcrumbItem>

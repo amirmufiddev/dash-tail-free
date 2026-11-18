@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import GeoJSONMap from "./geo-json";
 import BasicMap from "./basic-map";

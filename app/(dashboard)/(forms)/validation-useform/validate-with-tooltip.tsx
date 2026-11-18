@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -59,7 +58,7 @@ const ValidateWithTooltip = () => {
         {errors.username && (
           <div className="mt-1">
             <span className="text-xs bg-destructive text-primary-foreground px-2 py-1 rounded-sm">
-              {errors.username.message}
+              {String(errors.username.message ?? "")}
             </span>
           </div>
         )}
@@ -85,7 +84,7 @@ const ValidateWithTooltip = () => {
         {errors.password && (
           <div className="mt-1">
             <span className="text-xs bg-destructive text-primary-foreground px-2 py-1 rounded-sm">
-              {errors.password.message}
+              {String(errors.password.message ?? "")}
             </span>
           </div>
         )}

@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -17,7 +17,7 @@ const AreaChart = ({ series, color }) => {
     destructive: "#EF4444"
   };
 
-  let themeColor = themeColors[color] || primaryColor;
+  let themeColor = themeColors[color] || themeColors.primary;
   const options = {
     chart: {
       toolbar: {
@@ -79,7 +79,7 @@ const AreaChart = ({ series, color }) => {
         show: false,
       },
     },
-  }
+  } as unknown as ApexOptions
   return (
     <>
       <Chart

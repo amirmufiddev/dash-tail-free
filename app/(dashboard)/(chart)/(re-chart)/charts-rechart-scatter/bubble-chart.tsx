@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
@@ -115,7 +114,7 @@ const BubbleChart = ({ height = 300 }) => {
 
   return (
     <>
-      <div style={{ width: "100%" }} height={height}>
+      <div style={{ width: "100%", height }}>
         <ResponsiveContainer width="100%" height={60}>
           <ScatterChart
             margin={{

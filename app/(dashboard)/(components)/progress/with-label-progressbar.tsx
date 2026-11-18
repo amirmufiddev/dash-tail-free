@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Label } from "@/components/ui/label";
 import { CircularProgress, Progress } from "@/components/ui/progress";

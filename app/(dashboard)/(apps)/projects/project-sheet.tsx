@@ -1,10 +1,9 @@
-// @ts-nocheck
 "use client";
 import React, { useState, useEffect, useTransition } from "react";
 import { toast } from "react-hot-toast";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useForm, Controller } from "react-hook-form";
-import Select, { components } from "react-select";
+import Select, { components, type GroupBase, type OptionProps } from "react-select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Label } from "@/components/ui/label";
@@ -64,8 +63,12 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
-const OptionComponent = ({ data, ...props }) => {
-  //const Icon = data.icon;
+type AssignOption = { value: string; label: string; image: string };
+
+const OptionComponent = (
+  props: OptionProps<AssignOption, true, GroupBase<AssignOption>>
+) => {
+  const { data } = props;
 
   return (
     <components.Option {...props}>
@@ -283,7 +286,7 @@ const ProjectsSheet = ({ open, project, onClose, selectedId }) => {
                     render={({ field }) => (
                       <Select
                         {...field}
-                        onChange={(data) => setAssign(data)}
+                        onChange={(data) => setAssign([...data])}
                         options={assignOption}
                         className="react-select"
                         classNamePrefix="select"

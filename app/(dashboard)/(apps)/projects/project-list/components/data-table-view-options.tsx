@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";

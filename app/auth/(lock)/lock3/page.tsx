@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import Image from "next/image";
 import LockForm from "./lock-form";

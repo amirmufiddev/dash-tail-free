@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import {
@@ -31,7 +30,7 @@ const VariousTooltip = () => {
         <Tooltip>
           <TooltipTrigger asChild>
             <Avatar>
-              <AvatarImage src={avatar6} />
+              <AvatarImage src={avatar6.src} />
               <AvatarFallback>SN</AvatarFallback>
             </Avatar>
           </TooltipTrigger>

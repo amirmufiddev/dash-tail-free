@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { getCategories, getEvents } from "@/config/calendar.config";
 import CalendarView from "./calender-view";
 

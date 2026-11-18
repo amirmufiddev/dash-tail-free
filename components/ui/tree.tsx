@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronRight, Check, Minus } from "lucide-react";
@@ -158,14 +157,14 @@ const TreeNode = ({
 
 const Tree = ({
   data = [],
-  onSelect,
+  onSelect = undefined,
   defaultExpandedKeys = [],
   defaultSelectedKeys = [],
   defaultCheckedKeys = [],
-  onCheck,
+  onCheck = undefined,
   checkable = false,
   endContent = <ChevronRight />,
-  className,
+  className = undefined,
   showLine = false,
 }) => {
   const [treeData, setTreeData] = useState(data);

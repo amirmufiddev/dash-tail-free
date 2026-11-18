@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -73,21 +73,6 @@ const ScatterImage = ({ height = 300 }) => {
       enabled: false,
     },
 
-    legend: {
-      labels: {
-        useSeriesColors: true,
-      },
-      markers: {
-        customHTML: [
-          function () {
-            return "";
-          },
-          function () {
-            return "";
-          },
-        ],
-      },
-    },
     colors: [
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].primary})`,
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].info})`,
@@ -158,13 +143,7 @@ const ScatterImage = ({ height = 300 }) => {
     markers: {
       size: 20,
     },
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
-    },
-  };
+  } as unknown as ApexOptions;
   return (
     <>
       <Chart

@@ -1,10 +1,9 @@
-// @ts-nocheck
 "use client";
 import { Card, CardContent } from "@/components/ui/card";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Icon } from "@iconify/react";
 import { Button } from "@/components/ui/button";
-const Blank = ({ mblChatHandler }) => {
+const Blank = ({ mblChatHandler }: { mblChatHandler?: () => void }) => {
   const isLg = useMediaQuery("(max-width: 1024px)");
   return (
     <Card className="flex-1">

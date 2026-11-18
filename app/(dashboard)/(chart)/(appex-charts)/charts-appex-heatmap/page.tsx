@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import BasicHeatMap from "./basic-heatmap";
 import MultipleColorsHeatMap from "./mulitple-colors-heatmap";

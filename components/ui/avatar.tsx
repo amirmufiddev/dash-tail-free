@@ -1,10 +1,12 @@
-// @ts-nocheck
 import * as React from "react";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
 import { cn } from "@/lib/utils";
 
-const Avatar = React.forwardRef(({ className, ...props }, ref) => (
+const Avatar = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
   <AvatarPrimitive.Root
     ref={ref}
     className={cn(
@@ -16,7 +18,14 @@ const Avatar = React.forwardRef(({ className, ...props }, ref) => (
 ));
 Avatar.displayName = AvatarPrimitive.Root.displayName;
 
-const AvatarGroup = React.forwardRef(
+type AvatarGroupProps = React.HTMLAttributes<HTMLDivElement> & {
+  max?: number;
+  total?: number;
+  custom?: boolean;
+  countClass?: string;
+};
+
+const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
   ({ className, children, max, total, custom, countClass, ...props }, ref) => {
     const avatars = React.Children.toArray(children);
 
@@ -58,7 +67,10 @@ const AvatarGroup = React.forwardRef(
 );
 AvatarGroup.displayName = "AvatarGroup";
 
-const AvatarImage = React.forwardRef(({ className, ...props }, ref) => (
+const AvatarImage = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
+>(({ className, ...props }, ref) => (
   <AvatarPrimitive.Image
     ref={ref}
     className={cn("aspect-square h-full w-full", className)}
@@ -67,7 +79,10 @@ const AvatarImage = React.forwardRef(({ className, ...props }, ref) => (
 ));
 AvatarImage.displayName = AvatarPrimitive.Image.displayName;
 
-const AvatarFallback = React.forwardRef(({ className, ...props }, ref) => (
+const AvatarFallback = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Fallback>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
+>(({ className, ...props }, ref) => (
   <AvatarPrimitive.Fallback
     ref={ref}
     className={cn(

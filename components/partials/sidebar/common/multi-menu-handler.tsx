@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
@@ -11,6 +10,12 @@ const MultiMenuHandler = ({
   activeMultiMenu,
   toggleMultiMenu,
   className,
+}: {
+  subItem: { title?: string };
+  subIndex: number;
+  activeMultiMenu: number | null;
+  toggleMultiMenu: (index: number) => void;
+  className?: string;
 }) => {
   const locationName = usePathname();
   return (

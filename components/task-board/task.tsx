@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import {
@@ -63,7 +62,7 @@ const tagsColorMap = {
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-const Task = ({ task, onUpdateTask, boards }) => {
+const Task = ({ task, onUpdateTask = undefined, boards }) => {
   const [open, setOpen] = React.useState(false);
   const {
     id,

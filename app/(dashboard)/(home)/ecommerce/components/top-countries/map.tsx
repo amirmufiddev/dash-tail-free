@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import GoogleMapReact from 'google-map-react';
 

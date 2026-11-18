@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const AvatarsTonal = () => {

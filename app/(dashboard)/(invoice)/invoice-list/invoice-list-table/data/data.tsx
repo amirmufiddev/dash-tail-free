@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 
 import { CheckCircle2, XCircle, } from 'lucide-react';

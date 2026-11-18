@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -30,7 +29,11 @@ export function DataTableToolbar({ table }) {
             <SelectContent className="w-20 min-w-[80px]" >
               {Array.from({ length: 9 }, (_, index) => {
                 const number = index + 10;
-                return <SelectItem key={number} value={number}>{number}</SelectItem>;
+                return (
+                  <SelectItem key={number} value={String(number)}>
+                    {number}
+                  </SelectItem>
+                );
               })}
             </SelectContent>
           </Select>

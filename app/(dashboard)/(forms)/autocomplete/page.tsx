@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import Card from "@/components/ui/card-snippet";
 import { AutocompleteItem, Autocomplete } from "@/components/ui/autocomplete";

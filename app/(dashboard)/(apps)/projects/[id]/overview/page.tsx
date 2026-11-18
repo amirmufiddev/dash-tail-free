@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import OverdueTask from "./overdue-task";
 import ProjectBudget from "./project-budget";

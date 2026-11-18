@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -16,7 +15,7 @@ const ControlledTextarea = () => {
         <Textarea
           placeholder="what's on your mind..."
           id="controlled_desc"
-          rows="3"
+          rows={3}
           onChange={handleChange}
         />
       </div>

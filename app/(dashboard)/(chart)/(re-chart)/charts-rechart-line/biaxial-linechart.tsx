@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
@@ -65,7 +64,7 @@ const BiAxialLineChart = ({ height = 300 }) => {
   ];
   return (
     <ResponsiveContainer height={height}>
-      <LineChart width={"100%"} height={height} data={data}>
+      <LineChart height={height} data={data}>
         <CartesianGrid
           stroke={`hsl(${
             theme?.cssVars[

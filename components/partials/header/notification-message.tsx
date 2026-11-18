@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Bell } from "@/components/svg";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -92,7 +91,7 @@ const NotificationMessage = () => {
         </div>
         <DropdownMenuSeparator />
         <div className="m-4 mt-5">
-          <Button asChild type="text" className="w-full">
+          <Button asChild className="w-full">
             <Link href="/dashboard">View All</Link>
           </Button>
         </div>

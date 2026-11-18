@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const messages = [
   {
     id: 1,

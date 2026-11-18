@@ -1,7 +1,6 @@
-// @ts-nocheck
 "use client";
 import React from "react";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { formatDistanceToNow } from "date-fns/formatDistanceToNow";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";

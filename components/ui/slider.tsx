@@ -1,7 +1,6 @@
-// @ts-nocheck
 import * as React from "react";
 import * as SliderPrimitive from "@radix-ui/react-slider";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import {
   Tooltip,
@@ -49,7 +48,21 @@ const sliderVariants = cva(
   }
 );
 
-const Slider = React.forwardRef(
+type SliderMark = { value: number; label?: React.ReactNode };
+
+type SliderProps = React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> & {
+  color?: VariantProps<typeof sliderVariants>["color"];
+  size?: VariantProps<typeof sliderVariants>["size"];
+  radius?: VariantProps<typeof sliderVariants>["radius"];
+  showTooltip?: boolean;
+  showSteps?: boolean;
+  marks?: SliderMark[];
+};
+
+const Slider = React.forwardRef<
+  React.ElementRef<typeof SliderPrimitive.Root>,
+  SliderProps
+>(
   (
     {
       className,
@@ -160,7 +173,7 @@ const Slider = React.forwardRef(
                           className="block h-5 w-5  cursor-pointer rounded-full border-2 range-thumb ring-offset-background transition-colors focus-visible:outline-none   disabled:pointer-events-none disabled:opacity-50 "
                         />
                       </TooltipTrigger>
-                      <TooltipContent variant={color}>
+                      <TooltipContent color={color}>
                         {mappedValues[index]}
                       </TooltipContent>
                     </Tooltip>

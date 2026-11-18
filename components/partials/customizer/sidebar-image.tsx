@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import { useSidebar, useThemeStore } from "@/store";
 import { Check, Upload, X } from "lucide-react";

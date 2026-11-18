@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Breadcrumbs, BreadcrumbItem } from "@/components/ui/breadcrumbs";
 
 const CollapsingBreadcrumb = () => {

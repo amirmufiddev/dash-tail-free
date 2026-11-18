@@ -1,6 +1,5 @@
-// @ts-nocheck
 import * as React from "react";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 //py-[10px]
@@ -114,7 +113,13 @@ export const inputVariants = cva(
   }
 );
 
-const Input = React.forwardRef(
+export interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "color">,
+    VariantProps<typeof inputVariants> {
+  removeWrapper?: boolean;
+}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,

@@ -1,11 +1,10 @@
-// @ts-nocheck
 "use client";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Icon } from "@iconify/react";
 
 import { useState } from "react";
 import AddBlock from "../common/add-block";
-const LogoutFooter = ({ menus }) => {
+const LogoutFooter = ({ menus = undefined }) => {
   const { data: session } = useSession();
 
   return (

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState } from "react";
 import SubMenuItem from "../common/sub-menu-item";
@@ -7,7 +6,7 @@ import MultiNestedMenu from "../common/multi-nested-menu";
 import { cn, isLocationMatch } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
-const CollapsedHoverMenu = ({ item, index, menuTitle }) => {
+const CollapsedHoverMenu = ({ item, index = undefined, menuTitle }) => {
   const [activeMultiMenu, setMultiMenu] = useState(null);
 
   const toggleMultiMenu = (subIndex) => {

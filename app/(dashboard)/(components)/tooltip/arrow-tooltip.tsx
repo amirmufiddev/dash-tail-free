@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import {
@@ -17,7 +16,7 @@ const ArrowTooltip = () => {
           <TooltipTrigger asChild>
             <Button color="primary">Hover Me</Button>
           </TooltipTrigger>
-          <TooltipContent color="primary" arrowPadding="0">
+          <TooltipContent color="primary" arrowPadding={0}>
             <p>I am tooltip</p>
             <TooltipArrow className=" fill-primary " />
           </TooltipContent>

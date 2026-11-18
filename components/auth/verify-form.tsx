@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,7 +33,7 @@ const VerfiyForm = () => {
       inputRefs.current[index - 1].focus();
     } else if (event.key === "ArrowLeft" && index > 0) {
       inputRefs.current[index - 1].focus();
-    } else if (event.key === "ArrowRight" && index < numInputs - 1) {
+    } else if (event.key === "ArrowRight" && index < totalOtpField - 1) {
       inputRefs.current[index + 1].focus();
     }
   };
@@ -71,7 +70,9 @@ const VerfiyForm = () => {
               onKeyDown={(event) => handleKeyDown(index, event)}
               maxLength={1}
               className="w-10 h-10 sm:w-[60px] sm:h-16 rounded border-default-300 text-center text-2xl font-medium text-default-900"
-              ref={(ref) => (inputRefs.current[index] = ref)}
+                ref={(node) => {
+                  inputRefs.current[index] = node;
+                }}
             />
           ))}
         </div>

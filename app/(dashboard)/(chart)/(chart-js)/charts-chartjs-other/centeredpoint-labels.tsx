@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import {
@@ -15,6 +14,7 @@ import {
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
+import type { ChartData, ChartOptions } from "chart.js";
 import { PolarArea } from "react-chartjs-2";
 import { hexToRGB, hslToHex } from "@/lib/utils";
 
@@ -61,7 +61,7 @@ const PolarAreaCenteredPointLabel = ({ height = 350 }) => {
         backgroundColor: [rgbPrimay, rgbInfo, rgbWarning, rgbSuccess],
       },
     ],
-  };
+  } as unknown as ChartData<"polarArea">;
   const options = {
     responsive: true,
     plugins: {
@@ -76,7 +76,7 @@ const PolarAreaCenteredPointLabel = ({ height = 350 }) => {
       },
     },
     maintainAspectRatio: false,
-  };
+  } as unknown as ChartOptions<"polarArea">;
 
   return (
     <div>

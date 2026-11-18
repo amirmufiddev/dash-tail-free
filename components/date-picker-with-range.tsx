@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import * as React from "react";
@@ -15,7 +14,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useTheme } from "next-themes";
-export default function DatePickerWithRange({ className }) {
+export default function DatePickerWithRange({
+  className,
+}: {
+  className?: string;
+}) {
   const [date, setDate] = React.useState(null);
   const { theme: mode } = useTheme();
 
@@ -24,7 +27,7 @@ export default function DatePickerWithRange({ className }) {
       <Popover>
         <PopoverTrigger asChild>
           <Button
-            color={mode === "dark" && "secondary"}
+            color={mode === "dark" ? "secondary" : "default"}
             className={cn(" font-normal", {
               " bg-white text-default-600": mode !== "dark",
             })}

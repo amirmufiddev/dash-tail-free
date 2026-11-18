@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -20,7 +19,19 @@ import BlockUser from "./block-user";
 import MediaSheet from "./media-sheet";
 import { AlertTriangle, FolderClosed, Image } from "lucide-react";
 
-const ContactInfo = ({ handleSetIsOpenSearch, handleShowInfo, contact }) => {
+const ContactInfo = ({
+  handleSetIsOpenSearch,
+  handleShowInfo,
+  contact,
+}: {
+  handleSetIsOpenSearch?: () => void;
+  handleShowInfo?: () => void;
+  contact?: {
+    fullName?: string;
+    avatar?: string | { src?: string };
+    about?: string;
+  };
+}) => {
   const [showDrawer, setShowDrawer] = useState(null);
   const handleDrawer = (itemKey) => {
     setShowDrawer(itemKey);
@@ -44,7 +55,14 @@ const ContactInfo = ({ handleSetIsOpenSearch, handleShowInfo, contact }) => {
           </div>
           <div className="flex flex-col items-center">
             <Avatar className="w-16 h-16 lg:h-24 lg:w-24">
-              <AvatarImage src={contact?.avatar.src} alt="" />
+              <AvatarImage
+              src={
+                typeof contact?.avatar === "string"
+                  ? contact.avatar
+                  : contact?.avatar?.src
+              }
+              alt=""
+            />
               <AvatarFallback>{contact?.fullName.slice(0, 2)}</AvatarFallback>
             </Avatar>
             <div className="mt-3 text-lg lg:text-xl font-semibold text-default-900">

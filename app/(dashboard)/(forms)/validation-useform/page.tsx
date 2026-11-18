@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Card from "@/components/ui/card-snippet";
 import SimpleForm from "./simple-form";
 import ValidateWithTooltip from "./validate-with-tooltip";

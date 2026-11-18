@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useState } from "react";
 import { Switch } from "@/components/ui/switch";

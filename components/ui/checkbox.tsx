@@ -1,8 +1,7 @@
-// @ts-nocheck
 import * as React from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { Check } from "lucide-react";
@@ -99,7 +98,20 @@ const checkboxVariants = cva(
   }
 );
 
-const Checkbox = React.forwardRef(
+export interface CheckboxProps
+  extends Omit<
+      React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
+      "color"
+    >,
+    VariantProps<typeof checkboxVariants> {
+  lineThrough?: boolean;
+  icon?: React.ReactNode;
+}
+
+const Checkbox = React.forwardRef<
+  React.ElementRef<typeof CheckboxPrimitive.Root>,
+  CheckboxProps
+>(
   (
     {
       className,
@@ -140,7 +152,7 @@ const Checkbox = React.forwardRef(
                 "text-sm": size === "sm",
                 "text-base": size === "md",
                 "text-lg": size === "lg",
-                "text-lg": size === "xl",
+                "text-xl": size === "xl",
                 "relative  select-none text-medium inline-flex items-center justify-center before:content-[''] before:absolute before:bg-foreground before:w-0 before:h-0.5 peer-data-[state=checked]:opacity-60 peer-data-[state=checked]:before:w-full ":
                   lineThrough,
               }

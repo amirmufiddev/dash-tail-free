@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import Card from "@/components/ui/card-snippet";
 import { Watermark } from "@/components/ui/watermark";

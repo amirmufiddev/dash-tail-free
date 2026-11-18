@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultBadge = `"use client";
 import { Badge } from "@/components/ui/badge";
 const DefaultBadge = () => {

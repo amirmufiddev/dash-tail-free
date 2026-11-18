@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Card, CardContent } from "@/components/ui/card";
 import card1 from "@/public/images/card/card1.jpg";

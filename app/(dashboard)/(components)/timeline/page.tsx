@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Card from "@/components/ui/card-snippet";
 import BasicTimeline from "./basic-timeline";
 import LineSpaceTimeline from "./line-space-timeline";

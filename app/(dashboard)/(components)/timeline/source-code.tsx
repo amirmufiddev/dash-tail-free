@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const basicTimeline = `"use client";
 import {
   Timeline,

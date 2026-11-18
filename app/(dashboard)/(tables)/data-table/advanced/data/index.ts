@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const data = [
   {
     id: "TASK-8782",

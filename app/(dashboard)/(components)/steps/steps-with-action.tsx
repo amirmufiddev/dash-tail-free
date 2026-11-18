@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import {
@@ -51,8 +50,8 @@ const StepsWithAction = () => {
         direction={isTablet && "vertical"}
       >
         {steps?.map((label, i) => {
-          const stepProps = {};
-          const labelProps = {};
+          const stepProps: { completed?: boolean } = {};
+          const labelProps: { optional?: React.ReactNode } = {};
           if (isStepOptional(i)) {
             labelProps.optional = (
               <StepLabel variant="caption">Optional</StepLabel>

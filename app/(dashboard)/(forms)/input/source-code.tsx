@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const basicInput = `"use client";
 import { Input } from "@/components/ui/input";
 const BasicInputText = () => {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export { default as VerticalSvg } from "./layout/vertical.svg";
 export { default as HorizontalSvg } from "./layout/horizontal.svg";
 export { default as SemiBoxSvg } from "./layout/semibox.svg";

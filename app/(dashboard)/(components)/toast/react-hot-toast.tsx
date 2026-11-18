@@ -1,8 +1,6 @@
-// @ts-nocheck
 import React from "react";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
-import { toast } from "@/components/ui/use-toast";
 
 const ReactHotToast = () => {
   const defaultToast = () => toast("Here is your toast.");

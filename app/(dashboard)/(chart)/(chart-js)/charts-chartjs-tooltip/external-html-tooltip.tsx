@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import {
@@ -16,6 +15,35 @@ import {
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
+import type { Chart, ChartData, ChartOptions, TooltipModel } from "chart.js";
+
+const externalTooltipHandler = (context: {
+  chart: Chart;
+  tooltip: TooltipModel<"line">;
+}) => {
+  const { chart, tooltip } = context;
+  const parent = chart.canvas.parentNode;
+  if (!(parent instanceof HTMLElement)) {
+    return;
+  }
+  let tooltipEl = parent.querySelector<HTMLDivElement>("div.chartjs-tooltip");
+  if (!tooltipEl) {
+    tooltipEl = document.createElement("div");
+    tooltipEl.className = "chartjs-tooltip";
+    tooltipEl.style.pointerEvents = "none";
+    tooltipEl.style.position = "absolute";
+    tooltipEl.style.transform = "translate(-50%, -100%)";
+    parent.appendChild(tooltipEl);
+  }
+  if (tooltip.opacity === 0) {
+    tooltipEl.style.opacity = "0";
+    return;
+  }
+  tooltipEl.style.opacity = "1";
+  tooltipEl.innerHTML = tooltip.body.map((body) => body.lines.join("<br>")).join("");
+  tooltipEl.style.left = `${tooltip.caretX}px`;
+  tooltipEl.style.top = `${tooltip.caretY}px`;
+};
 import { Line } from "react-chartjs-2";
 
 ChartJS.register(
@@ -55,7 +83,7 @@ const ExternalHTMLTooltip = ({ height = 350 }) => {
         fill: false,
       },
     ],
-  };
+  } as unknown as ChartData<"line">;
   const options = {
     responsive: true,
     plugins: {
@@ -113,7 +141,7 @@ const ExternalHTMLTooltip = ({ height = 350 }) => {
       },
     },
     maintainAspectRatio: false,
-  };
+  } as unknown as ChartOptions<"line">;
 
   return (
     <div>

@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import * as React from "react";
 import { Inter } from "next/font/google";
 import { useThemeStore } from "@/store";
 import { ThemeProvider } from "next-themes";
@@ -9,8 +9,8 @@ import { Toaster } from "react-hot-toast";
 import { SonnToaster } from "@/components/ui/sonner";
 import { usePathname } from "next/navigation";
 const inter = Inter({ subsets: ["latin"] });
-const Providers = ({ children }) => {
-  const { theme, radius, monoChrome } = useThemeStore();
+const Providers = ({ children }: { children: React.ReactNode }) => {
+  const { theme, radius } = useThemeStore();
   const location = usePathname();
 
   if (location === "/") {
@@ -34,9 +34,11 @@ const Providers = ({ children }) => {
   return (
     <body
       className={cn("dash-tail-app ", inter.className, "theme-" + theme)}
-      style={{
-        "--radius": `${radius}rem`,
-      }}
+      style={
+        {
+          "--radius": `${radius}rem`,
+        } as React.CSSProperties
+      }
     >
       <ThemeProvider
         attribute="class"

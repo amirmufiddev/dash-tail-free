@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import { useState } from "react"
 import Leaflet from "leaflet"
@@ -18,13 +17,13 @@ import {
     Rectangle,
 } from "react-leaflet"
 
-const polyline = [
+const polyline: [number, number][] = [
     [51.505, -0.09],
     [51.51, -0.1],
     [51.51, -0.12],
 ]
 
-const multiPolyline = [
+const multiPolyline: [number, number][][] = [
     [
         [51.5, -0.1],
         [51.5, -0.12],
@@ -37,13 +36,13 @@ const multiPolyline = [
     ],
 ]
 
-const polygon = [
+const polygon: [number, number][] = [
     [51.515, -0.09],
     [51.52, -0.1],
     [51.52, -0.12],
 ]
 
-const multiPolygon = [
+const multiPolygon: [number, number][][] = [
     [
         [51.51, -0.12],
         [51.51, -0.13],
@@ -56,7 +55,7 @@ const multiPolygon = [
     ],
 ]
 
-const rectangle = [
+const rectangle: [number, number][] = [
     [51.49, -0.08],
     [51.5, -0.06],
 ]
@@ -74,7 +73,7 @@ const VectorLayersMap = ({ height = 350 }) => {
         zoom: 13,
     })
 
-    const position = [state.lat, state.lng]
+    const position: [number, number] = [state.lat, state.lng];
     return (
         <MapContainer
             center={position}

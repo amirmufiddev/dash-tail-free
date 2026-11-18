@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -70,7 +69,7 @@ const MultipleTypes = () => {
                 "text-destructive": errors.author,
               })}
             >
-              {errors.author.message}
+              {String(errors.author.message ?? "")}
             </p>
           )}
         </div>
@@ -93,7 +92,7 @@ const MultipleTypes = () => {
             })}
           />
           {errors.phone && (
-            <p className="text-xs text-destructive">{errors.phone.message}</p>
+            <p className="text-xs text-destructive">{String(errors.phone.message ?? "")}</p>
           )}
         </div>
         <div className="flex flex-col gap-2">
@@ -114,7 +113,7 @@ const MultipleTypes = () => {
             })}
           />
           {errors.city && (
-            <p className="text-xs text-destructive">{errors.city.message}</p>
+            <p className="text-xs text-destructive">{String(errors.city.message ?? "")}</p>
           )}
         </div>
 
@@ -136,7 +135,7 @@ const MultipleTypes = () => {
             })}
           />
           {errors.web && (
-            <p className="text-xs text-destructive">{errors.web.message}</p>
+            <p className="text-xs text-destructive">{String(errors.web.message ?? "")}</p>
           )}
         </div>
         <div className="flex flex-col gap-2">
@@ -159,7 +158,7 @@ const MultipleTypes = () => {
           />
           {errors.inputMessage && (
             <p className="text-xs text-destructive">
-              {errors.inputMessage.message}
+              {String(errors.inputMessage.message ?? "")}
             </p>
           )}
         </div>

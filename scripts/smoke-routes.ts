@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { spawn } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -25,7 +24,7 @@ function waitForServer() {
     const tick = async () => {
       try {
         const response = await fetch(origin);
-        if (response.status < 500) return resolve();
+        if (response.status < 500) return resolve(undefined);
       } catch {}
       if (Date.now() - started > 120000) return reject(new Error("server tidak siap"));
       setTimeout(tick, 500);

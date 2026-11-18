@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import LeafletFlowMap from "./leaflet-flow-map";
 import ParticleColorMap from "./particle-colors";

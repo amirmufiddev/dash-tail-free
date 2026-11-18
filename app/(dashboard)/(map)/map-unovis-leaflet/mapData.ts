@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 export const mapData = [
     { id: 'ci38100832', longitude: -116.797, latitude: 33.5081667 },

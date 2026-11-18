@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import Image from "next/image";
 import bg from "@/public/images/auth/bg-2.jpg"

@@ -1,10 +1,9 @@
-// @ts-nocheck
 const steps = [
   {
     id: "intro",
-    attachTo: { element: "#logo-tour", on: "bottom" },
+    attachTo: { element: "#logo-tour", on: "bottom" as const },
     beforeShowPromise: function () {
-      return new Promise(function (resolve) {
+      return new Promise<void>(function (resolve) {
         setTimeout(function () {
           window.scrollTo(0, 0);
           resolve();
@@ -33,7 +32,7 @@ const steps = [
 
   {
     id: "intro1",
-    attachTo: { element: "#register-tour", on: "left" },
+    attachTo: { element: "#register-tour", on: "left" as const },
 
     buttons: [
       {
@@ -63,7 +62,7 @@ const steps = [
   },
   {
     id: "intro2",
-    attachTo: { element: "#login-tour", on: "bottom" },
+    attachTo: { element: "#login-tour", on: "bottom" as const },
     buttons: [
       {
         text: "Back",
@@ -92,7 +91,7 @@ const steps = [
   },
   {
     id: "intro3",
-    attachTo: { element: "#getproduct-tour", on: "bottom" },
+    attachTo: { element: "#getproduct-tour", on: "bottom" as const },
     buttons: [
       {
         text: "Back",
@@ -121,7 +120,7 @@ const steps = [
   },
   {
     id: "intro4",
-    attachTo: { element: "#thankyou-tour", on: "top" },
+    attachTo: { element: "#thankyou-tour", on: "top" as const },
     buttons: [
       {
         text: "Back",

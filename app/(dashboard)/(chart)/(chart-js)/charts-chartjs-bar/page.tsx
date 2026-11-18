@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import BasicBar from "./basic-bar";
 import FloatingBar from "./floating-bar";

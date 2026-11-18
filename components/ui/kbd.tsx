@@ -1,7 +1,6 @@
-// @ts-nocheck
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 
 const kbdVariants = cva(
   " px-3 h-8 inline-flex border leading-none [&>abbr]:leading-none  border-default-300 space-x-0.5 items-center  font-medium text-center    bg-default-100 leading-none   text-default-600 rounded-xl",
@@ -24,7 +23,13 @@ const kbdVariants = cva(
   }
 );
 
-const Kbd = React.forwardRef(
+export interface KbdProps
+  extends React.HTMLAttributes<HTMLElement>,
+    VariantProps<typeof kbdVariants> {
+  keys: string[];
+}
+
+const Kbd = React.forwardRef<HTMLElement, KbdProps>(
   (
     {
       className,

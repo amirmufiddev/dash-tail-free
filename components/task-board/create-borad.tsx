@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useTransition } from "react";
 
 import { toast } from "react-hot-toast";
@@ -75,11 +74,7 @@ const CreateBoard = ({ open, onClose, board, boardId }) => {
         <DialogHeader className="flex-row justify-between items-center py-0 ">
           <DialogTitle className="text-default-900">Create Board</DialogTitle>
           <DialogClose asChild>
-            <div
-              type="button"
-              size="icon"
-              className="w-7 h-7 bg-transparent hover:bg-transparent cursor-pointer"
-            >
+            <div className="h-7 w-7 bg-transparent hover:bg-transparent cursor-pointer">
               <X className="w-5 h-5 text-default-900" />
             </div>
           </DialogClose>

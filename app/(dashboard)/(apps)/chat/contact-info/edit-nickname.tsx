@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -47,7 +46,6 @@ const EditNickname = () => {
                 <input
                   type="text"
                   placeholder="Ada Lovelace"
-                  variant="primary"
                   id="guest"
                   className="peer opacity-0 focus:opacity-100 w-full h-10 px-4 rounded-md border border-default-300"
                 />
@@ -91,7 +89,6 @@ const EditNickname = () => {
                 <input
                   type="text"
                   placeholder="Einstain"
-                  variant="primary"
                   id="user"
                   className="peer opacity-0 focus:opacity-100 w-full h-10 px-4 rounded-md border border-default-300"
                 />

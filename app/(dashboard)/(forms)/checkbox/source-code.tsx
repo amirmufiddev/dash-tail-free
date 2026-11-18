@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultCheckbox = `"use client";
 import { Checkbox } from "@/components/ui/checkbox";
 const DefaultCheckbox = () => {

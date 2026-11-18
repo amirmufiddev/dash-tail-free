@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const basicAccordion = `import {
   Accordion,
   AccordionContent,

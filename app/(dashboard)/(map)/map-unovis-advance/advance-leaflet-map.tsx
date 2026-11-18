@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client"
+import type { StyleSpecification } from "maplibre-gl";
 import { useCallback, useMemo, useRef } from 'react'
 import { LeafletMap } from '@unovis/ts'
 import { VisLeafletMap } from '@unovis/react'
@@ -50,8 +50,8 @@ const AdvancedLeafletMap = ({ height = 350 }) => {
             <VisLeafletMap
                 ref={mapRef}
                 data={data}
-                style={mapStyleLight}
-                styleDarkTheme={mapStyleDark}
+                style={mapStyleLight as StyleSpecification}
+                styleDarkTheme={mapStyleDark as StyleSpecification}
                 pointId={useCallback(pointId, [])}
                 pointLatitude={useCallback(pointLatitude, [])}
                 pointLongitude={useCallback(pointLongitude, [])}

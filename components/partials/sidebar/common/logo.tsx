@@ -1,10 +1,14 @@
-// @ts-nocheck
 import { SiteLogo } from "@/components/svg";
 import { useSidebar } from "@/store";
 import { Link } from "lucide-react";
 import React from "react";
 
-const SidebarLogo = ({ hovered }) => {
+const SidebarLogo = ({
+  hovered,
+}: {
+  hovered?: boolean;
+  collapsed?: boolean;
+}) => {
   const { sidebarType, setCollapsed, collapsed } = useSidebar();
   return (
     <div className="px-4 py-4 ">

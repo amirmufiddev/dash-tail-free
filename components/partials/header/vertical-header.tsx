@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import { useSidebar, useThemeStore } from "@/store";
 import { cn } from "@/lib/utils";
@@ -55,7 +54,12 @@ const MenuBar = ({ collapsed, setCollapsed }) => {
   );
 };
 
-const VerticalHeader = ({ handleOpenSearch }) => {
+const VerticalHeader = ({
+  handleOpenSearch,
+}: {
+  handleOpenSearch?: () => void;
+  sidebarType?: string;
+}) => {
   const { collapsed, setCollapsed, subMenu, sidebarType } = useSidebar();
   const { layout } = useThemeStore();
   const isDesktop = useMediaQuery("(min-width: 1280px)");

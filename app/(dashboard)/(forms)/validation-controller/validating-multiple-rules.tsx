@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,36 +16,37 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 
-const FormSchema = z.object({
-  username: z.string().min(5, {
-    message: "Username must be at least 5 characters.",
-  }),
-  email: z.string().email({
-    message: "Email is not valid.",
-  }),
-  password: z
-    .string()
-    .min(6, {
-      message: "Password must be at least 6 characters.",
-    })
-    .refine((password) => /[A-Z]/.test(password), {
-      message: "Password must contain at least one uppercase letter",
-    })
-    .refine((password) => /[a-z]/.test(password), {
-      message: "Password must contain at least one lowercase letter",
-    })
-    .refine((password) => /[0-9]/.test(password), {
-      message: "Password must contain at least one number",
-    })
-    .refine((password) => /[^A-Za-z0-9]/.test(password), {
-      message: "Password must contain at least one special character",
+const FormSchema = z
+  .object({
+    username: z.string().min(5, {
+      message: "Username must be at least 5 characters.",
     }),
-  confirmPassword: z
-    .string()
-    .refine((password, confirmPassword) => password === confirmPassword, {
-      message: "Password and Confirm password didn't match.",
+    email: z.string().email({
+      message: "Email is not valid.",
     }),
-});
+    password: z
+      .string()
+      .min(6, {
+        message: "Password must be at least 6 characters.",
+      })
+      .refine((password) => /[A-Z]/.test(password), {
+        message: "Password must contain at least one uppercase letter",
+      })
+      .refine((password) => /[a-z]/.test(password), {
+        message: "Password must contain at least one lowercase letter",
+      })
+      .refine((password) => /[0-9]/.test(password), {
+        message: "Password must contain at least one number",
+      })
+      .refine((password) => /[^A-Za-z0-9]/.test(password), {
+        message: "Password must contain at least one special character",
+      }),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Password and Confirm password didn't match.",
+    path: ["confirmPassword"],
+  });
 
 const ValidatingMultipleRules = () => {
   const form = useForm({

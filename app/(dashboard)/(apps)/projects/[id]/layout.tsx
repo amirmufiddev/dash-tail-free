@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import { Card, CardFooter } from "@/components/ui/card";
 import { getProject } from "@/config/project-config";

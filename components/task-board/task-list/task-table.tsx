@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import * as React from "react";
 import { cn } from "@/lib/utils";
@@ -648,7 +647,7 @@ const TaskTable = ({ data, boards, onUpdateTask, boardID2 }) => {
                       type="text"
                       {...register("title")}
                       placeholder={
-                        errors.title ? errors.title.message : "Add a task"
+                        errors.title ? String(errors.title.message ?? "") : "Add a task"
                       }
                       className={cn(
                         "text-sm font-medium text-default-900 focus:outline-none pl-2 placeholder:text-primary",

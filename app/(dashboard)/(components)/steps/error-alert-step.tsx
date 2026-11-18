@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import {
   Stepper,
@@ -22,7 +21,7 @@ const ErrorAlertSteps = () => {
         direction={isTablet && "vertical"}
       >
         {steps.map((label, index) => {
-          const labelProps = {};
+          const labelProps: { optional?: React.ReactNode; error?: boolean } = {};
           if (isStepFailed(index)) {
             labelProps.optional = (
               <StepLabel className=" text-destructive">Alert message</StepLabel>

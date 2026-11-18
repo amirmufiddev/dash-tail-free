@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { useCallback, useState } from "react";
@@ -28,7 +27,7 @@ const FreeBrushScatter = () => {
     `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].success})`,
   ];
 
-  const categories = [...new Set(brushChartData.map((d) => d.category))].sort();
+  const categories = Array.from(new Set(brushChartData.map((d) => d.category))).sort();
   const colorScale = Scale.scaleOrdinal(palette).domain(categories);
   const formatNumber = Intl.NumberFormat("en", { notation: "compact" }).format;
 

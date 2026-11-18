@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useThemeStore, useSidebar } from "@/store";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";

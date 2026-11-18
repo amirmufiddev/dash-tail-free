@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import {
@@ -14,6 +13,7 @@ import {
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
+import type { ChartData, ChartOptions } from "chart.js";
 import { Bubble } from "react-chartjs-2";
 
 ChartJS.register(
@@ -88,7 +88,7 @@ const ScriptBubble = ({ height = 350 }) => {
         ],
       },
     ],
-  };
+  } as unknown as ChartData<"bubble">;
   const options = {
     aspectRatio: 1,
     responsive: true,
@@ -149,7 +149,7 @@ const ScriptBubble = ({ height = 350 }) => {
     },
 
     maintainAspectRatio: false,
-  };
+  } as unknown as ChartOptions<"bubble">;
 
   return (
     <div>

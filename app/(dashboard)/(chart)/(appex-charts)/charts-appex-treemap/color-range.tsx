@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -118,7 +118,7 @@ const ColorRange = ({ height = 300 }) => {
         legend: {
             show: false
         }
-    };
+    } as unknown as ApexOptions;
     return (
         <>
             <Chart

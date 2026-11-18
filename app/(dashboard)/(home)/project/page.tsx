@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import WelcomeBlock from "./components/welcome-block";

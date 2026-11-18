@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
@@ -58,7 +57,7 @@ const data = [
   },
 ];
 
-const CustomTooltip = ({ active, payload }) => {
+const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: { name?: string; value?: number | string; color?: string; fill?: string; dataKey?: string | number; payload?: Record<string, string | number> }[] }) => {
   if (active && payload) {
     return (
       <div className="bg-background z-10 text-default-900 shadow-lg  space-y-2 rounded-md  pb-2">

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultProgress = `"use client"
 import React from "react";
 import { Progress } from "@/components/ui/progress";

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import { Docs, DocsCheck, DocsArrow, Spam } from "@/components/svg";
 import { cn } from "@/lib/utils";

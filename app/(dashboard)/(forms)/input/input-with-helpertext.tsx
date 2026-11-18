@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";

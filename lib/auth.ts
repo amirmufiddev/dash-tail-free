@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Credentials from "next-auth/providers/credentials";
 import { user } from "@/app/api/user/data";
 import bcrypt from "bcrypt";
@@ -38,35 +37,42 @@ export const authOptions = {
           throw new Error("Invalid password");
         }
 
-        return foundUser;
-      },
-      callbacks: {
-        async signIn({ user }) {
-          if (!user.email?.endsWith(process.env.ALLOWED_DOMAIN)) {
-            throw new Error("You are not allowed to access this platform");
-          }
-          return true;
-        },
-
-        jwt: async ({ token, user }) => {
-          if (user) {
-            token.role = user.role;
-          }
-          return token;
-        },
-        async session({ session, token }) {
-          if (session.user) {
-            session.user.role = token.role;
-          }
-          return session;
-        },
+        return {
+          ...foundUser,
+          id: String(foundUser.id),
+          image:
+            typeof foundUser.image === "string"
+              ? foundUser.image
+              : foundUser.image?.src,
+        };
       },
     }),
   ],
   secret: process.env.AUTH_SECRET,
+  callbacks: {
+    async signIn({ user }) {
+      const domain = process.env.ALLOWED_DOMAIN ?? "";
+      if (domain && !user.email?.endsWith(domain)) {
+        throw new Error("You are not allowed to access this platform");
+      }
+      return true;
+    },
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.role = token.role;
+      }
+      return session;
+    },
+  },
 
   session: {
-    strategy: "jwt",
+    strategy: "jwt" as const,
   },
   debug: process.env.NODE_ENV !== "production",
 };

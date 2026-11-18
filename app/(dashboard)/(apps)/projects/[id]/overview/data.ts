@@ -1,4 +1,3 @@
-// @ts-nocheck
 import avatar1 from "@/public/images/avatar/avatar-7.jpg";
 import avatar2 from "@/public/images/avatar/avatar-2.jpg";
 import avatar3 from "@/public/images/avatar/avatar-3.jpg";

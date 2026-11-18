@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 "use client"
 import { Button } from "@/components/ui/button";
@@ -40,7 +39,7 @@ const CreateTask = ({ open, onClose }) => {
   const toggleOpenDate = () => setOPenDate(!openDate);
   const [date, setDate] = useState(new Date());
   const formatDate = new Date(date);
-  const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+  const options = { day: "numeric", month: "numeric", year: "numeric" } as const;
   const formattedDate = new Intl.DateTimeFormat('en-US', options).format(formatDate);
 
   useEffect(() => {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from "react";
 import { formatTime } from "@/lib/utils";
 import { Icon } from "@iconify/react";
@@ -33,9 +32,30 @@ const Messages = ({
   handleReply,
   replayData,
   handleForward,
-
   handlePinMessage,
-  pinnedMessages,
+  handlePinNote,
+  pinnedMessages = [],
+}: {
+  message: {
+    senderId?: string | number;
+    message?: string;
+    time?: string;
+    replayMetadata?: { message?: string } | boolean;
+  };
+  contact: { avatar?: string };
+  profile?: { id?: string | number; avatar?: string | { src?: string } };
+  onDelete?: (chatId: string | number, index: number) => void;
+  index?: number;
+  selectedChatId?: string | number;
+  handleReply?: (data: unknown, contact: unknown) => void;
+  replayData?: {
+    contact?: { fullName?: string };
+    message?: string;
+  };
+  handleForward?: (message: unknown) => void;
+  handlePinMessage?: (message: unknown) => void;
+  handlePinNote?: (note: unknown) => void;
+  pinnedMessages?: { index?: number }[];
 }) => {
   const { senderId, message: chatMessage, time, replayMetadata } = message;
   const { avatar } = contact;
@@ -113,7 +133,11 @@ const Messages = ({
               <div className="flex-none self-end -translate-y-5">
                 <div className="h-8 w-8 rounded-full ">
                   <Image
-                    src={profile?.avatar}
+                    src={
+                      typeof profile?.avatar === "string"
+                        ? profile.avatar
+                        : profile?.avatar?.src
+                    }
                     alt={avatar}
                     className="block w-full h-full object-cover rounded-full"
                   />

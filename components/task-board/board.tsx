@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState, useTransition } from "react";
 import { toast } from "react-hot-toast";
@@ -40,6 +39,16 @@ const taskBoard = ({
   tasks,
   onUpdateTask,
   boards,
+}: {
+  board;
+  children;
+  onEdit?;
+  taskHandler?;
+  isTaskOpen?;
+  showButton?;
+  tasks?;
+  onUpdateTask?;
+  boards?;
 }) => {
   const [open, setOpen] = React.useState(false);
 

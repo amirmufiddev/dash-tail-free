@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ReLineBarAreaComposedChart from "./linebar-area-composedchart";
 import ReSameDataComposedChart from "./damedata-composed-chart";

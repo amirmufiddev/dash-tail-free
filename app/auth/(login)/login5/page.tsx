@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import LogInForm from "./login-form";

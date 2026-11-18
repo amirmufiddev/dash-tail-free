@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultSwitch = `"use client";
 import { Switch } from "@/components/ui/switch";
 const DefaultSwitch = () => {

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
@@ -189,7 +188,11 @@ const CustomContentTreeMap = ({ height = 300 }) => {
                 aspectRatio={4 / 3}
                 stroke="#fff"
                 fill={`hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].info})`}
-                content={<CustomizedContent colors={COLORS} />}
+                content={
+                  ((props) => (
+                    <CustomizedContent {...props} colors={COLORS} />
+                  )) as never
+                }
             />
         </ResponsiveContainer>
     );

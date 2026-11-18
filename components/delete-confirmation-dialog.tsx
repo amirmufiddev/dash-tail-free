@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useTransition } from "react";
 import {
   AlertDialog,

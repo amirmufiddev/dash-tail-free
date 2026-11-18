@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const basicTextarea = `"use client";
 import { Textarea } from "@/components/ui/textarea";
 

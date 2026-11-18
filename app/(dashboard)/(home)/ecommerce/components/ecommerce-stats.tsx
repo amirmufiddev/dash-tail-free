@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 
 import { CupBar, NoteIcon, CheckShape, Spam } from "@/components/svg";

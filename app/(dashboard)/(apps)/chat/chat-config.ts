@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { api } from "@/config/axios.config";
 
 export const getContacts = async () => {

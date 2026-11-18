@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import AdvancedLeafletMap from "./advance-leaflet-map";
 import ChoroplethWorldMap from "./choropleth-world-map";

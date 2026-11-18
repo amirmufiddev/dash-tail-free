@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import avatar5 from "@/public/images/avatar/avatar-5.jpg";
 import avatar6 from "@/public/images/avatar/avatar-6.jpg";

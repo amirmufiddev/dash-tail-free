@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const basicSheet = `"use client";
 import { Button } from "@/components/ui/button";
 import {

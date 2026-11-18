@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState } from "react";
 
@@ -15,7 +14,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { usePathname } from "next/navigation";
 import AddBlock from "../common/add-block";
 
-const PopoverSidebar = () => {
+const PopoverSidebar = ({ collapsed: _collapsedProp }: { collapsed?: boolean } = {}) => {
   const { collapsed, sidebarBg } = useSidebar();
   const { layout } = useThemeStore();
   const menus = menusConfig?.sidebarNav?.classic || [];

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useContext, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,7 +16,7 @@ const tourOptions = {
       enabled: true,
     },
     classes: "shadow-md bg-purple-dark",
-    scrollTo: { behavior: "smooth", block: "center" },
+    scrollTo: { behavior: "smooth" as const, block: "center" as const },
   },
   useModalOverlay: true,
 };

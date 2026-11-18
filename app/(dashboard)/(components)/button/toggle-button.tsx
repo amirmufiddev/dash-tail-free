@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Toggle } from "@/components/ui/toggle";
 
 const ToggleButton = () => {

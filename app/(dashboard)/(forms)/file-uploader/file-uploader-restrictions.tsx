@@ -1,4 +1,3 @@
-// @ts-nocheck
 " use client";
 import { Fragment, useState } from "react";
 import { Icon } from "@iconify/react";

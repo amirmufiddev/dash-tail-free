@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -59,7 +58,7 @@ const ValidateCheckbox = () => {
             "text-destructive": errors.checkboxes,
           })}
         >
-          {errors.checkboxes.message}
+          {String(errors.checkboxes.message ?? "")}
         </p>
       )}
       <div className="mt-2">

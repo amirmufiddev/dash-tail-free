@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import Card from "@/components/ui/card-snippet";
@@ -153,7 +152,9 @@ const info = () =>
   });
 
 const promise = () =>
-  new Promise((resolve) => setTimeout(() => resolve({ name: "Sonner" }), 2000));
+  new Promise<{ name: string }>((resolve) =>
+    setTimeout(() => resolve({ name: "Sonner" }), 2000)
+  );
 
 const ToasterPage = () => {
   return (

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { useCallback, useEffect, useState, useMemo } from "react";
@@ -16,7 +15,7 @@ import { themes } from "@/config/thems";
 
 const DataGapsLine = ({ height = 400 }) => {
   const [current, setCurrent] = useState(0);
-  const [fallbackValue, setFallbackValue] = useState();
+  const [fallbackValue, setFallbackValue] = useState<number | undefined>();
   const [items, setLegendItems] = useState([]);
 
   const { theme: config, setTheme: setConfig } = useThemeStore();

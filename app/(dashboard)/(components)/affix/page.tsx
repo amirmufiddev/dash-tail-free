@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState } from "react";
 import Card from "@/components/ui/card-snippet";
@@ -31,7 +30,7 @@ const AffixPage = () => {
             onClick. .
           </p>
           <Affix offsetTop={top}>
-            <Button type="primary" onClick={() => setTop(top + 10)}>
+            <Button color="primary" onClick={() => setTop(top + 10)}>
               Affix top
             </Button>
           </Affix>
@@ -53,7 +52,7 @@ const AffixPage = () => {
           <div style={containerStyle} ref={(el) => setContainer(el)}>
             <div style={style}>
               <Affix target={() => container} offsetTop={50}>
-                <Button type="primary">Fixed at the top of container</Button>
+                <Button color="primary">Fixed at the top of container</Button>
               </Affix>
             </div>
           </div>

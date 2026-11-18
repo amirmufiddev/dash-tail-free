@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 
 export const data = [
@@ -190,7 +189,7 @@ export const generateStyle = (
         },
     ],
     bearing: 0,
-    version: 8,
+    version: 8 as const,
     metadata: {
         'maptiler:copyright': 'This style was generated on MapTiler Cloud.',
         'openmaptiles:version': '3.x',

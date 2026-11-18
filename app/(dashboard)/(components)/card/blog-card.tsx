@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 
 import image1 from "@/public/images/all-img/blog-1.jpg"

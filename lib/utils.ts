@@ -1,5 +1,5 @@
-// @ts-nocheck
 import { clsx } from "clsx";
+import { format } from "date-fns";
 import { twMerge } from "tailwind-merge";
 import { useRouter, usePathname } from "next/navigation";
 
@@ -87,7 +87,7 @@ export function hslToHex(hsl) {
   return hslToRgb(h, s, l);
 }
 
-export const hexToRGB = (hex, alpha) => {
+export const hexToRGB = (hex, alpha = 1) => {
   var r = parseInt(hex.slice(1, 3), 16),
     g = parseInt(hex.slice(3, 5), 16),
     b = parseInt(hex.slice(5, 7), 16);
@@ -120,9 +120,14 @@ export function isObjectNotEmpty(obj) {
   return Object.keys(obj).length > 0;
 }
 
-export const formatDate = (date) => {
-  const options = { year: "numeric", month: "long", day: "numeric" };
-  return new Date(date).toLocaleDateString("en-US", options);
+export const formatDate = (
+  date: string | number | Date,
+  pattern?: string
+) => {
+  const parsed = new Date(date);
+  if (pattern) return format(parsed, pattern);
+  const options = { year: "numeric", month: "long", day: "numeric" } as const;
+  return parsed.toLocaleDateString("en-US", options);
 };
 
 // random word

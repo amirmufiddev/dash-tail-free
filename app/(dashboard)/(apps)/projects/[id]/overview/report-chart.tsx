@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -148,7 +148,7 @@ const ReportChart = ({ height = 300 }) => {
         })`,
       },
     },
-  };
+  } as unknown as ApexOptions;
   return (
     <Card>
       <CardHeader className="mb-0 border-none pt-6 pl-7 pb-0 flex-row items-center justify-between">

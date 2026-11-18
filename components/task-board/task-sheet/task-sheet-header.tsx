@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -22,7 +21,13 @@ import { Icon } from "@iconify/react";
 import { X } from "lucide-react";
 import { useRef, useState } from "react";
 
-const TaskSheetHeader = ({ toggleCollapse }) => {
+const TaskSheetHeader = ({
+  toggleCollapse,
+  collapseSheet: _collapseSheet,
+}: {
+  toggleCollapse;
+  collapseSheet?: boolean;
+}) => {
   const [isRunning, setIsRunning] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
   const intervalRef = useRef(null);

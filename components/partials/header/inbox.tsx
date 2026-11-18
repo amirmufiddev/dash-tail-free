@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Envelope } from "@/components/svg";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -69,7 +68,12 @@ const Inbox = () => {
                     </div>
                     <div className="text-xs text-default-900 truncate max-w-[100px] lg:max-w-[185px]">
                       {" "}
-                      {item?.lastMessage ? item?.lastMessage : item.about}
+                      {"lastMessage" in item &&
+                      typeof item.lastMessage === "string"
+                        ? item.lastMessage
+                        : typeof item.about === "string"
+                          ? item.about
+                          : null}
                     </div>
                   </div>
                 </div>

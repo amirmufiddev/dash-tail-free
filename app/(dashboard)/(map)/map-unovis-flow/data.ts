@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 export const points = [
     { id: 'SVN', lat: 32.00999832, lon: -81.14569855 },

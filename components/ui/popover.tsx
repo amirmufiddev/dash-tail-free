@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as React from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 
@@ -9,7 +8,10 @@ const Popover = PopoverPrimitive.Root;
 const PopoverTrigger = PopoverPrimitive.Trigger;
 const PopoverClose = PopoverPrimitive.Close;
 const PopoverArrow = PopoverPrimitive.Arrow;
-const PopoverContent = React.forwardRef(
+const PopoverContent = React.forwardRef<
+  React.ElementRef<typeof PopoverPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
+>(
   ({ className, align = "center", sideOffset = 4, ...props }, ref) => (
     <PopoverPrimitive.Portal>
       <PopoverPrimitive.Content
@@ -33,16 +35,24 @@ const CustomPopover = ({
   onClose,
   className,
   trigger,
+}: {
+  children?: React.ReactNode;
+  open?: boolean;
+  onClose?: () => void;
+  className?: string;
+  trigger?: React.ReactNode;
 }) => {
-  const popoverRef = React.useRef(null);
+  const popoverRef = React.useRef<HTMLDivElement>(null);
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = (event: MouseEvent) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
     if (
       popoverRef.current &&
-      !popoverRef.current.contains(event.target) &&
-      !event.target.closest(".custom-popover-container")
+      !popoverRef.current.contains(target) &&
+      !target.closest(".custom-popover-container")
     ) {
-      onClose();
+      onClose?.();
     }
   };
 

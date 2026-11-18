@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -78,7 +77,7 @@ const SheetTitleDesc = ({ task, taskId }) => {
         />
       </div>
       {errors.title && (
-        <div className=" text-destructive">{errors.title.message}</div>
+        <div className=" text-destructive">{String(errors.title.message ?? "")}</div>
       )}
 
       <div className="flex gap-1 relative">
@@ -91,7 +90,7 @@ const SheetTitleDesc = ({ task, taskId }) => {
         <textarea
           className="w-full h-16 border-none border border-transparent focus:border-default-200 focus:outline-none p-1 text-sm text-default-700 peer bg-card focus:bg-default-50"
           placeholder="Add Task Descriptions"
-          rows="1"
+          rows={1}
           {...register("desc")}
           onInput={handleFocus}
           onBlur={handleBlur}

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import NonStackedArea from "./non-stacked-area";
 import StackedArea from "./stacked-area";

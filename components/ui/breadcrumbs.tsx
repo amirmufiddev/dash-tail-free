@@ -1,6 +1,5 @@
-// @ts-nocheck
 import * as React from "react";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -58,7 +57,30 @@ const breadcrumbsVariants = cva(" flex flex-wrap list-none max-w-fit ", {
   },
 });
 
-const Breadcrumbs = React.forwardRef(
+export interface BreadcrumbsProps
+  extends Omit<React.OlHTMLAttributes<HTMLOListElement>, "children">,
+    Omit<VariantProps<typeof breadcrumbsVariants>, "variant"> {
+  children?: React.ReactNode;
+  maxItems?: number;
+  itemsBeforeCollapse?: number;
+  itemsAfterCollapse?: number;
+  color?: VariantProps<typeof breadcrumbItemsVariants>["color"] | (string & {});
+  size?: VariantProps<typeof breadcrumbItemsVariants>["size"];
+  underline?: VariantProps<typeof breadcrumbItemsVariants>["underline"] | (string & {});
+  variant?: VariantProps<typeof breadcrumbsVariants>["variant"] | (string & {});
+  modifier?: string;
+  onAction?: (key: string | number) => void;
+  disabled?: boolean;
+  separator?: React.ReactNode;
+  renderEllipsis?: (opts: {
+    defaultLabel: string;
+    className: string;
+  }) => React.ReactNode;
+  ellipsisClass?: string;
+  itemClasses?: string;
+}
+
+const Breadcrumbs = React.forwardRef<HTMLOListElement, BreadcrumbsProps>(
   (
     {
       className,
@@ -72,6 +94,8 @@ const Breadcrumbs = React.forwardRef(
       separator = <Icon icon="heroicons:chevron-right" />,
       variant,
       underline,
+      modifier,
+      onAction,
       renderEllipsis,
       ellipsisClass,
       itemClasses,
@@ -79,7 +103,9 @@ const Breadcrumbs = React.forwardRef(
     },
     ref
   ) => {
-    const breadcrumbItems = React.Children.toArray(children);
+    const breadcrumbItems = React.Children.toArray(
+      children
+    ) as React.ReactElement<BreadcrumbItemProps>[];
     const totalItems = breadcrumbItems.length;
 
     let visibleItems = breadcrumbItems;
@@ -102,13 +128,19 @@ const Breadcrumbs = React.forwardRef(
     return (
       <ol
         ref={ref}
-        className={cn(breadcrumbsVariants({ variant }), className)}
+        className={cn(
+          breadcrumbsVariants({
+            variant: variant as VariantProps<typeof breadcrumbsVariants>["variant"],
+          }),
+          className
+        )}
         {...props}
       >
         {visibleItems.map((child, index) => {
           const isLast = index === visibleItems.length - 1;
 
-          const isCurrent = isLast || child?.props?.isCurrent;
+          const isCurrent =
+            isLast || (child !== null && child.props.isCurrent);
           if (child === null) {
             return (
               <li
@@ -124,7 +156,10 @@ const Breadcrumbs = React.forwardRef(
                       ellipsisClass
                     )}
                   >
-                    {renderEllipsis}
+                    {renderEllipsis({
+                      defaultLabel: "…",
+                      className: ellipsisClass ?? "",
+                    })}
                     <span className="separator px-1 self-center">
                       {separator ? (
                         separator
@@ -155,7 +190,7 @@ const Breadcrumbs = React.forwardRef(
               </li>
             );
           }
-          return React.cloneElement(child, {
+          return React.cloneElement(child as React.ReactElement<BreadcrumbItemProps>, {
             ...props,
             isLast,
             isCurrent,
@@ -164,7 +199,11 @@ const Breadcrumbs = React.forwardRef(
 
             ...child.props,
             className: cn(
-              breadcrumbItemsVariants({ color, size, underline }),
+              breadcrumbItemsVariants({
+                color: color as VariantProps<typeof breadcrumbItemsVariants>["color"],
+                size,
+                underline: underline as VariantProps<typeof breadcrumbItemsVariants>["underline"],
+              }),
               child.props.className,
               itemClasses
             ),
@@ -177,7 +216,25 @@ const Breadcrumbs = React.forwardRef(
 
 Breadcrumbs.displayName = "Breadcrumbs";
 
-const BreadcrumbItem = React.forwardRef(
+export interface BreadcrumbItemProps
+  extends Omit<
+      React.HTMLAttributes<HTMLSpanElement>,
+      "color" | "children" | "onCopy"
+    >,
+    VariantProps<typeof breadcrumbItemsVariants> {
+  children?: React.ReactNode;
+  isLast?: boolean;
+  href?: string;
+  disabled?: boolean;
+  startContent?: React.ReactNode;
+  endContent?: React.ReactNode;
+  separator?: React.ReactNode;
+  isCurrent?: boolean;
+  onAction?: (children: React.ReactNode) => void;
+  modifier?: string;
+}
+
+const BreadcrumbItem = React.forwardRef<HTMLSpanElement, BreadcrumbItemProps>(
   (
     {
       className,
@@ -213,7 +270,11 @@ const BreadcrumbItem = React.forwardRef(
         <span
           ref={ref}
           className={cn(
-            breadcrumbItemsVariants({ color, size, underline }),
+            breadcrumbItemsVariants({
+              color: color as VariantProps<typeof breadcrumbItemsVariants>["color"],
+              size,
+              underline: underline as VariantProps<typeof breadcrumbItemsVariants>["underline"],
+            }),
             className,
             {
               "cursor-pointer": (!isCurrent && onAction) || !isLast,

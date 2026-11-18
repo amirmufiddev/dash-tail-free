@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const metadata = {
   title: "Unovis Scatter Chart ",
 };

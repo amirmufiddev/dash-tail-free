@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { NextResponse } from "next/server";
 import { user } from "../data";
 import avatar3 from "@/public/images/avatar/avatar-3.jpg";

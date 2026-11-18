@@ -1,4 +1,3 @@
-// @ts-nocheck
 import va from "@vercel/analytics";
 import { z } from "zod";
 

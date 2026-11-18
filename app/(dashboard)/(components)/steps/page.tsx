@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Card from "@/components/ui/card-snippet";
 import DefaultSteps from "./default-steps";
 import StepsWithLineSpace from "./steps-with-linespace";

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import {
@@ -30,7 +29,7 @@ const NestedTable = () => {
               {
                 item.nested ? <>
                   <TableRow >
-                    <TableCell colSpan="5" >
+                    <TableCell colSpan={5} >
                       <Table>
                         <TableHeader className="bg-default-100">
                           <TableRow>

@@ -1,11 +1,10 @@
-// @ts-nocheck
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
 
-const ContactList = ({ contact, selectedChatId }) => {
+const ContactList = ({ contact, selectedChatId = undefined }) => {
   const { avatar, id, fullName, status, about, chat, unreadmessage, date } =
     contact;
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
@@ -69,9 +68,7 @@ const BasicRadialBar = ({ height = 300 }) => {
 
             <RadialBarChart height={height} cx="50%" cy="50%" innerRadius="10%" outerRadius="100%" barSize={10} data={data}>
                 <RadialBar
-                    minAngle={15}
                     background
-                    clockWise
                     dataKey="uv"
                 />
                 <Legend iconSize={10} layout="vertical" verticalAlign="middle" wrapperStyle={style} />

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import { BlankVector } from "./svg";
 import { cn } from "@/lib/utils";

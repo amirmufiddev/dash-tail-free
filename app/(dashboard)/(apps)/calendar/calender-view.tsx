@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
@@ -17,7 +16,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
 const CalendarView = ({ events, categories }) => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState<string[] | null>(
+    null
+  );
   const [selectedEventDate, setSelectedEventDate] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [draggableInitialized, setDraggableInitialized] = useState(false);
@@ -90,11 +91,13 @@ const CalendarView = ({ events, categories }) => {
   };
 
   const handleCategorySelection = (category) => {
-    if (selectedCategory.includes(category)) {
-      setSelectedCategory(selectedCategory.filter((c) => c !== category));
-    } else {
-      setSelectedCategory([...selectedCategory, category]);
-    }
+    setSelectedCategory((prev) => {
+      const current = prev ?? [];
+      if (current.includes(category)) {
+        return current.filter((c) => c !== category);
+      }
+      return [...current, category];
+    });
   };
 
   const handleClassName = (arg) => {

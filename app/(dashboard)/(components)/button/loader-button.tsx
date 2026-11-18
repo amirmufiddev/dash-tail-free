@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Button } from "@/components/ui/button";
 import { Loader2, Heart } from "lucide-react";
 const LoaderButton = () => {

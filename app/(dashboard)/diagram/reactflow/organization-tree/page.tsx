@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import React, { useCallback } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge, MiniMap, Controls } from 'reactflow';

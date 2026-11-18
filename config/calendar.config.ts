@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { api } from "@/config/axios.config";
 
-export const getEvents = async (selectedCategory) => {
+export const getEvents = async (selectedCategory = undefined) => {
   try {
     const response = await api.get(`/calendars`);
     return response.data;

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Card from "@/components/ui/card-snippet";
 import BasicPopover from "./basic-popover";
 import PopoverPosition from "./popover-position";

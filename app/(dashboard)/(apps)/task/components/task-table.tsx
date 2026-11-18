@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import * as React from "react";
 
@@ -278,7 +277,7 @@ const TaskTable = ({ data, handleEditSheetOpen, handleSidebar }) => {
             <Input
               placeholder="Search Projects"
               className="pl-7 h-10"
-              value={table.getColumn("title")?.getFilterValue() || ""}
+              value={String(table.getColumn("title")?.getFilterValue() ?? "")}
               onChange={(event) =>
                 table.getColumn("title")?.setFilterValue(event.target.value)
               }

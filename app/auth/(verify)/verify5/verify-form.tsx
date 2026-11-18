@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import Image from "next/image";
 import logo from "@/public/images/logo/logo-1.png";
@@ -61,7 +60,9 @@ const VerfiyForm = () => {
               onChange={(e) => handleChange(e, index)}
               maxLength={1}
               className="w-12 h-12 sm:w-[60px] sm:h-16 rounded border-default-300 text-center text-2xl font-medium text-default-900"
-              ref={(ref) => (inputRefs.current[index] = ref)}
+                ref={(node) => {
+                  inputRefs.current[index] = node;
+                }}
             />
           ))}
         </div>

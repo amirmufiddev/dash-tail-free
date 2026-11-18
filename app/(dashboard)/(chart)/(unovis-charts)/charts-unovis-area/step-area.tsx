@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
@@ -39,7 +38,7 @@ const StepAreaChart = () => {
         <div className="legendSwitch">
           <VisBulletLegend
             items={items}
-            onLegendItemClick={(i) => setCurr(i.name)}
+            onLegendItemClick={(i) => setCurr(String(i.name))}
           />
         </div>
       </div>

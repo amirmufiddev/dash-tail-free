@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { useCallback } from "react";
@@ -63,7 +62,10 @@ const BasicGroupedBar = ({ height = 400 }) => {
         />
         <VisAxis
           type="y"
-          tickFormat={useCallback((value) => (value / 10 ** 6).toFixed(1), [])}
+          tickFormat={useCallback(
+            (value: number) => (value / 10 ** 6).toFixed(1),
+            []
+          )}
           label="Number of Votes (millions)"
           tickTextColor={`hsl(${
             theme?.cssVars[

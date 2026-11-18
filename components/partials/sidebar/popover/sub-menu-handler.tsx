@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";

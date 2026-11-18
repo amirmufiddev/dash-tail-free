@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultDropdown = `import { Icon } from "@iconify/react";
 import {
   DropdownMenu,

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import { useCallback } from 'react';
 import { VisXYContainer, VisAxis, VisArea, VisXYLabels } from '@unovis/react';

@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -52,18 +52,12 @@ const StepLineChart = ({ height = 300 }) => {
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartLabel})`
     ),
 
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
-    },
     markers: {
       hover: {
         sizeOffset: 4,
       },
     },
-  };
+  } as unknown as ApexOptions;
   return (
     <>
       <Chart

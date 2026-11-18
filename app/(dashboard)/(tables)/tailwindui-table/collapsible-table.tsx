@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import {
@@ -120,7 +119,7 @@ const CollapsibleTable = () => {
             </TableRow>
             {collapsedRows.includes(item.id) && (
               <TableRow>
-                <TableCell colSpan="7">
+                <TableCell colSpan={7}>
                   <div className="pl-12">
                     <p>City: {item.details.city}</p>
                     <p>Experience:{item.details.experience}</p>

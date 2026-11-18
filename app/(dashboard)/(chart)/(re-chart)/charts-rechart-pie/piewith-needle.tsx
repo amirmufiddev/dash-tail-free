@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
@@ -48,7 +47,7 @@ const PieWithNeedle = ({ height = 300 }) => {
     const theme = themes.find((theme) => theme.name === config);
     return (
         <ResponsiveContainer width="100%" height={height}>
-            <PieChart width={"100%"} height={height}>
+            <PieChart height={height}>
                 <Pie
                     dataKey="value"
                     startAngle={180}

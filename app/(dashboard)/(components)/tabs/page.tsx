@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Card from "@/components/ui/card-snippet";
 import BasicTabs from "./basic-tabs";
 import DisabledTabs from "./disabled-tabs";

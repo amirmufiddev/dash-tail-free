@@ -1,11 +1,10 @@
-// @ts-nocheck
 import { ScrollArea } from "@/components/ui/scroll-area";
 import CommentFooter from "./comment-footer";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Check } from "lucide-react";
-const Comments = ({ className, comments, taskId }) => {
+const Comments = ({ className, comments = undefined, taskId = undefined }) => {
   const filteredComments =
     comments?.filter((cm) => cm.subTaskId === taskId) || [];
 

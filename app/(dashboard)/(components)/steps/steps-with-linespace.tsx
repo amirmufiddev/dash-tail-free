@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import { Stepper, Step, StepLabel } from "@/components/ui/steps";

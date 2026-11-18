@@ -1,8 +1,13 @@
-// @ts-nocheck
 import React from "react";
 import { cn } from "@/lib/utils";
 
-const MenuLabel = ({ item, className }) => {
+const MenuLabel = ({
+  item,
+  className,
+}: {
+  item: { title?: string };
+  className?: string;
+}) => {
   const { title } = item;
   return (
     <div

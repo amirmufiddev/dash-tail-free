@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
@@ -94,13 +94,7 @@ const BrushLinechart = () => {
         })`
       ),
     },
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
-    },
-  };
+  } as unknown as ApexOptions;
 
   const seriesLine = [
     {
@@ -161,7 +155,7 @@ const BrushLinechart = () => {
         })`
       ),
     },
-  };
+  } as unknown as ApexOptions;
 
   return (
     <div id="wrapper">

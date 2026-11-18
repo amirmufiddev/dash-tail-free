@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import { useSidebar, useThemeStore } from "@/store";
 import { cn } from "@/lib/utils";
@@ -8,7 +7,11 @@ import MobileFooter from "./mobile-footer";
 import FooterLayout from "./footer-layout";
 import { useMounted } from "@/hooks/use-mounted";
 
-const Footer = ({ handleOpenSearch }) => {
+const Footer = ({
+  handleOpenSearch,
+}: {
+  handleOpenSearch?: () => void;
+}) => {
   const { collapsed, sidebarType } = useSidebar();
   const { layout, footerType } = useThemeStore();
   const mounted = useMounted();

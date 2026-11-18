@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultSteps = `"use client";
 import React from "react";
 import {
@@ -45,8 +44,8 @@ const ClickableStep = () => {
     <div className="mt-4">
       <Stepper className="mb-4" current={activeStep}>
         {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
+          const stepProps: { completed?: boolean } = {};
+          const labelProps: { optional?: React.ReactNode } = {};
           if (isStepOptional(index)) {
             labelProps.optional = (
               <StepLabel variant="caption">Optional</StepLabel>
@@ -431,7 +430,7 @@ const ErrorAlertSteps = () => {
     <div className="max-w-5xl">
       <Stepper current={1} status="error" content="right">
         {steps.map((label, index) => {
-          const labelProps = {};
+          const labelProps: { optional?: React.ReactNode } = {};
           if (isStepFailed(index)) {
             labelProps.optional = (
               <StepLabel className=" text-destructive">Alert message</StepLabel>
@@ -499,8 +498,8 @@ const StepsWithAction = () => {
     <div className="max-w-5xl">
       <Stepper className="my-4" current={activeStep} content="right">
         {steps?.map((label, i) => {
-          const stepProps = {};
-          const labelProps = {};
+          const stepProps: { completed?: boolean } = {};
+          const labelProps: { optional?: React.ReactNode } = {};
           if (isStepOptional(i)) {
             labelProps.optional = (
               <StepLabel variant="caption">Optional</StepLabel>

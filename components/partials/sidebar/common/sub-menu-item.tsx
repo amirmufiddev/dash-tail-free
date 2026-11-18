@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { cn, isLocationMatch } from "@/lib/utils";
 import React from "react";
@@ -26,7 +25,7 @@ function LockLink({ href, children, subItem }) {
   }
 }
 
-const SubMenuItem = ({ subItem }) => {
+const SubMenuItem = ({ subItem, subIndex: _subIndex }: { subItem; subIndex?: number }) => {
   const locationName = usePathname();
   return (
     <LockLink href={subItem.href} subItem={subItem}>

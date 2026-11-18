@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const basicDialog = `"use client";
 import { Button } from "@/components/ui/button";
 import {

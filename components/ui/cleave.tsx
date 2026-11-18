@@ -1,10 +1,14 @@
-// @ts-nocheck
 import * as React from "react";
 import Cleave from "cleave.js/react";
 import "cleave.js/dist/addons/cleave-phone.us";
 import { cn } from "@/lib/utils";
 
-const CleaveInput = React.forwardRef(({ className, type, ...props }, ref) => {
+type CleaveInputProps = React.ComponentProps<typeof Cleave> & {
+  className?: string;
+};
+
+const CleaveInput = React.forwardRef<HTMLInputElement, CleaveInputProps>(
+  ({ className, type, ...props }, ref) => {
   return (
     <div className=" flex-1 w-full">
       <div className=" relative">

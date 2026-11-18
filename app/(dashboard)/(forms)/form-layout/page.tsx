@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Card from "@/components/ui/card-snippet";
 import FormGrid from "./form-grid";
 import Gutters from "./gutters-box";

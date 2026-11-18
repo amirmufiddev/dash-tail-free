@@ -1,4 +1,3 @@
-// @ts-nocheck
 import avatar from "@/public/images/avatar/avatar-7.jpg";
 import img1 from "@/public/images/all-img/headphone-2.png";
 import { faker } from "@faker-js/faker";
@@ -199,11 +198,11 @@ function generateSubTasks(numItems) {
     const assignObjects = generateAssignments(numAssign);
 
     const currentYear = new Date().getFullYear();
-    const assignDate = faker.date.past(
-      `${currentYear}-01-01`,
-      `${currentYear}-12-31`
-    );
-    const dueDate = faker.date.future(assignDate, `${currentYear}-12-31`);
+    const assignDate = faker.date.between({
+      from: `${currentYear}-01-01`,
+      to: `${currentYear}-12-31`,
+    });
+    const dueDate = faker.date.future({ refDate: assignDate });
     // faker.number.int({ min: 1000, max: 9999 })
     const newItem = {
       id: i,

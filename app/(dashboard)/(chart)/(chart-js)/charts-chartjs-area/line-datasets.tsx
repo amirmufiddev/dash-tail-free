@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import {
@@ -15,6 +14,7 @@ import { hslToHex, hexToRGB } from "@/lib/utils";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
+import type { ChartData, ChartOptions } from "chart.js";
 import { Line } from "react-chartjs-2";
 
 ChartJS.register(
@@ -62,7 +62,6 @@ const LineDatasets = ({ height = 350 }) => {
         backgroundColor: hexToRGB(hexPrimary, 0.5),
       },
       {
-        fill: true,
         label: "D1",
         data: [10, 50, 40, 60, 70, 40, 81, 66, 45, 60],
         borderColor: hexToRGB(hexInfo, 1),
@@ -70,7 +69,6 @@ const LineDatasets = ({ height = 350 }) => {
         fill: "-1",
       },
       {
-        fill: true,
         label: "D2",
         data: [100, 90, 130, 90, 90, 90, 91, 96, 105, 100],
         borderColor: hexToRGB(hexWarning, 1),
@@ -78,7 +76,6 @@ const LineDatasets = ({ height = 350 }) => {
         fill: 1,
       },
       {
-        fill: true,
         label: "D3",
         data: [150, 180, 170, 189, 190, 140, 191, 186, 175, 190],
         borderColor: hexToRGB(hexSuccess, 1),
@@ -86,7 +83,7 @@ const LineDatasets = ({ height = 350 }) => {
         fill: "-1",
       },
     ],
-  };
+  } as unknown as ChartData<"line">;
   const options = {
     responsive: true,
     plugins: {
@@ -146,7 +143,7 @@ const LineDatasets = ({ height = 350 }) => {
     },
 
     maintainAspectRatio: false,
-  };
+  } as unknown as ChartOptions<"line">;
 
   return (
     <div>

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultTree = `"use client";
 import React from "react";
 import { Tree } from "@/components/ui/tree";

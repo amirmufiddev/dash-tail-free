@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultTooltip = `"use client";
 import React from "react";
 import {

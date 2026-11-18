@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -591,7 +591,7 @@ const VisitorsReportChart = ({ height = 300 }) => {
       bottom: 0,
       left: 0,
     },
-  };
+  } as unknown as ApexOptions;
   return (
     <>
       <Chart

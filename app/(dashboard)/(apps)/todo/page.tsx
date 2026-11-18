@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -72,36 +71,36 @@ const DataPage = () => {
     data,
     error,
     isFetching,
-    isPreviousData,
+    isPlaceholderData,
   } = useQuery({
     queryKey: ["todos", page],
     queryFn: () => getTodos(page),
-    keepPreviousData: true,
+    placeholderData: (previousData: unknown) => previousData,
   });
   // simple way
   // const todoMutation = useMutation(createTodo, {
   //   onSuccess: () => {
-  //     queryClient.invalidateQueries("todos");
+  //     queryClient.invalidateQueries({ queryKey: ["todos"] });
   //   },
   // });
   // advanced way
   const todoMutation = useMutation({
     mutationFn: createTodo,
     onSuccess: () => {
-      queryClient.invalidateQueries("todos");
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
     },
   });
 
   const deleteMutation = useMutation({
     mutationFn: deleteTodo,
     onSuccess: () => {
-      queryClient.invalidateQueries("todos");
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
     },
   });
   const updateMutation = useMutation({
     mutationFn: updateTodo,
     onSuccess: () => {
-      queryClient.invalidateQueries("todos");
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
     },
   });
 
@@ -151,11 +150,11 @@ const DataPage = () => {
           <button onClick={() => setPage(2)}>page 2</button>
           <button onClick={() => setPage(3)}>page 3</button>
         </div>
-        <div>{todoMutation.isLoading ? "add hosse" : ""}</div>
+        <div>{todoMutation.isPending ? "add hosse" : ""}</div>
         <TodoAddEditBox
           register={register}
           handleSubmit={handleSubmit}
-          isLoading={todoMutation.isLoading}
+          isLoading={todoMutation.isPending}
           onSubmit={onSubmit}
           todo={selectedTodo}
         />
@@ -184,12 +183,12 @@ const DataPage = () => {
       </button>{" "}
       <button
         onClick={() => {
-          if (!isPreviousData && data.hasMore) {
+          if (!isPlaceholderData && data.hasMore) {
             setPage((old) => old + 1);
           }
         }}
         // Disable the Next Page button until we know a next page is available
-        disabled={isPreviousData || !data?.hasMore}
+        disabled={isPlaceholderData || !data?.hasMore}
       >
         Next Page
       </button>

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useCallback } from "react";
 import { Position, Scale, Scatter } from "@unovis/ts";
@@ -11,7 +10,7 @@ import {
 } from "@unovis/react";
 import { data, palette } from "./data";
 
-const categories = [...new Set(data.map((d) => d.category))].sort();
+const categories = Array.from(new Set(data.map((d) => d.category))).sort();
 const colorScale = Scale.scaleOrdinal(palette).domain(categories);
 const formatNumber = (value) =>
   Intl.NumberFormat("en", { notation: "compact" }).format(value);

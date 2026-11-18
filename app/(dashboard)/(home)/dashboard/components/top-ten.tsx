@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import { Eye } from "lucide-react";
 import Image from "next/image";

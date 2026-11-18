@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -159,9 +159,6 @@ const MultipleColorsHeatMap = ({ height = 350 }) => {
     yaxis: getYAxisConfig(
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartLabel})`
     ),
-    grid: getGridConfig(
-      `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
-    ),
     xaxis: {
       type: "category",
       categories: [
@@ -201,7 +198,7 @@ const MultipleColorsHeatMap = ({ height = 350 }) => {
     grid: {
       show: false,
     },
-  };
+  } as unknown as ApexOptions;
 
   return (
     <>

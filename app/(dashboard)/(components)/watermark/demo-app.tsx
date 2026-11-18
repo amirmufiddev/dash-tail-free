@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useMemo, useState } from "react";
 import { Watermark } from "@/components/ui/watermark";
@@ -96,7 +95,7 @@ const DemoApp = () => {
             onValueChange={(value) =>
               setConfig({
                 ...config,
-                gutter: parseInt(value),
+                gutter: value[0],
               })
             }
           />
@@ -112,7 +111,7 @@ const DemoApp = () => {
             onValueChange={(value) =>
               setConfig({
                 ...config,
-                rotate: parseInt(value),
+                rotate: value[0],
               })
             }
           />
@@ -124,13 +123,13 @@ const DemoApp = () => {
 
           <Slider
             defaultValue={[opacity]}
-            min="0"
-            max="1"
-            step="0.1"
+            min={0}
+            max={1}
+            step={0.1}
             onValueChange={(value) =>
               setConfig({
                 ...config,
-                opacity: parseFloat(value),
+                opacity: value[0],
               })
             }
           />
@@ -142,12 +141,12 @@ const DemoApp = () => {
           </Label>
           <Slider
             defaultValue={[textSize]}
-            max="64"
-            step="4"
+            max={64}
+            step={4}
             onValueChange={(value) =>
               setConfig({
                 ...config,
-                textSize: parseInt(value),
+                textSize: value[0],
               })
             }
           />

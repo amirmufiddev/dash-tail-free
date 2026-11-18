@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import React, { useCallback } from 'react';
 import ReactFlow, {
@@ -8,6 +7,7 @@ import ReactFlow, {
   Background,
   useNodesState,
   useEdgesState,
+  type Node,
 } from 'reactflow';
 
 import { nodes as initialNodes, edges as initialEdges } from './initial-element';
@@ -28,7 +28,9 @@ const minimapStyle = {
 const onInit = (reactFlowInstance) => console.log('flow loaded:', reactFlowInstance);
 
 const OverviewFlow = () => {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState(
+    initialNodes as Node[]
+  );
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 
@@ -36,7 +38,10 @@ const OverviewFlow = () => {
   // this could also be done with a custom edge for example
   const edgesWithUpdatedTypes = edges.map((edge) => {
     if (edge.sourceHandle) {
-      const edgeType = nodes.find((node) => node.type === 'custom').data.selects[edge.sourceHandle];
+      const edgeType =
+        nodes.find((node) => node.type === "custom")?.data?.selects?.[
+          edge.sourceHandle
+        ];
       edge.type = edgeType;
     }
 

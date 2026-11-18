@@ -1,4 +1,3 @@
-// @ts-nocheck
 import ECommerceCard from "./e-commerce-card";
 import DefaultCard from "./default-card";
 import LinkCard from "./link-card";

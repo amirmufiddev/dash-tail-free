@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";

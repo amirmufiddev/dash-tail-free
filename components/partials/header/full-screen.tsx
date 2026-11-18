@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Button } from "@/components/ui/button";
 import { Expand } from "@/components/svg";
@@ -12,8 +11,19 @@ import {
 
 function FullScreenToggle() {
   const toggleFullScreen = () => {
-    const doc = window.document;
-    const docEl = doc.documentElement;
+    const doc = window.document as Document & {
+      mozCancelFullScreen?: () => void;
+      webkitExitFullscreen?: () => void;
+      msExitFullscreen?: () => void;
+      mozFullScreenElement?: Element | null;
+      webkitFullscreenElement?: Element | null;
+      msFullscreenElement?: Element | null;
+    };
+    const docEl = doc.documentElement as HTMLElement & {
+      mozRequestFullScreen?: () => void;
+      webkitRequestFullScreen?: () => void;
+      msRequestFullscreen?: () => void;
+    };
 
     const requestFullScreen =
       docEl.requestFullscreen ||

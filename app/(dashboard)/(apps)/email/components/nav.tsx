@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import Link from "next/link";
@@ -10,7 +9,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-export function Nav({ links, isCollapsed, handleSidebar }) {
+export function Nav({ links, isCollapsed, handleSidebar = undefined }) {
   return (
     <div
       data-collapsed={isCollapsed}

@@ -1,6 +1,5 @@
-// @ts-nocheck
 import * as React from "react";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const timelineItemVariants = cva("timeline-item relative pb-10 ", {
@@ -46,16 +45,15 @@ const dotVariants = cva(
       },
     },
     compoundVariants: [
-      ...[
+      ...([
         "destructive",
         "success",
         "info",
         "warning",
-        "dark",
         "secondary",
         "primary",
-      ].map((color) => ({
-        variant: "outline",
+      ] as const).map((color) => ({
+        variant: "outline" as const,
         color,
         className: `border-${color}`,
       })),
@@ -67,7 +65,21 @@ const dotVariants = cva(
   }
 );
 
-const Timeline = React.forwardRef(
+type TimelineSharedProps = {
+  position?: VariantProps<typeof timelineVariants>["position"];
+  disabled?: boolean;
+  size?: string;
+  current?: number;
+  content?: string;
+  icon?: React.ReactNode;
+  alternativeLabel?: boolean;
+  gap?: boolean;
+};
+
+export type TimelineProps = React.OlHTMLAttributes<HTMLOListElement> &
+  TimelineSharedProps;
+
+const Timeline = React.forwardRef<HTMLOListElement, TimelineProps>(
   (
     {
       className,
@@ -96,13 +108,13 @@ const Timeline = React.forwardRef(
         {...props}
       >
         {childItem.map((child, index) => {
+          if (!React.isValidElement<TimelineItemProps>(child)) return child;
           const isLast = index === childItem.length - 1;
-          const even = index % 2 === 0; // Check if index is even
-          const odd = index % 2 !== 0; // Check if index is odd
+          const even = index % 2 === 0;
+          const odd = index % 2 !== 0;
           return React.cloneElement(child, {
             ...props,
             isLast,
-            //activeStep: activeStep,
             disabled: disabled && !isLast,
             index: index,
             current: current,
@@ -113,7 +125,7 @@ const Timeline = React.forwardRef(
             odd: odd,
             alternativeLabel: alternativeLabel,
             content: content,
-          });
+          } as TimelineItemProps);
         })}
       </ol>
     );
@@ -121,7 +133,17 @@ const Timeline = React.forwardRef(
 );
 Timeline.displayName = "Timeline";
 
-const TimelineItem = React.forwardRef(
+export type TimelineItemProps = React.LiHTMLAttributes<HTMLLIElement> &
+  TimelineSharedProps & {
+    variant?: VariantProps<typeof timelineItemVariants>["variant"];
+    size?: string;
+    isLast?: boolean;
+    index?: number;
+    even?: boolean;
+    odd?: boolean;
+  };
+
+const TimelineItem = React.forwardRef<HTMLLIElement, TimelineItemProps>(
   (
     {
       className,
@@ -145,7 +167,7 @@ const TimelineItem = React.forwardRef(
     return (
       <li
         ref={ref}
-        className={cn(timelineItemVariants({ variant, size }), className, {
+        className={cn(timelineItemVariants({ variant }), className, {
           "[&_.tm-separator]:right-0 [&_.tm-separator]:left-[unset]  [&_.tm-content-wrapper]:text-right [&_.tm-content-wrapper]:pr-8":
             position === "left",
           "[&_.tm-separator]:left-0 [&_.tm-content-wrapper]:pl-8":
@@ -171,7 +193,10 @@ TimelineItem.displayName = "TimelineItem";
 
 // time line separator
 
-const TimelineSeparator = React.forwardRef(
+const TimelineSeparator = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(
   ({ className, children, ...props }, ref) => {
     return (
       <div
@@ -191,8 +216,10 @@ const TimelineSeparator = React.forwardRef(
 
 TimelineSeparator.displayName = "TimelineSeparator";
 
-const TimelineDot = React.forwardRef(
-  ({ className, children, color, variant, ...props }, ref) => {
+const TimelineDot = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof dotVariants>
+>(({ className, children, color, variant, ...props }, ref) => {
     return (
       <div
         ref={ref}
@@ -206,7 +233,10 @@ const TimelineDot = React.forwardRef(
 );
 TimelineDot.displayName = "TimelineDot";
 
-const TimelineConnector = React.forwardRef(
+const TimelineConnector = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(
   ({ className, children, ...props }, ref) => {
     return (
       <div
@@ -225,7 +255,10 @@ const TimelineConnector = React.forwardRef(
 );
 TimelineConnector.displayName = "TimelineConnector";
 
-const TimelineContent = React.forwardRef(
+const TimelineContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(
   ({ className, children, ...props }, ref) => {
     return (
       <div
@@ -244,7 +277,10 @@ const TimelineContent = React.forwardRef(
 );
 
 TimelineContent.displayName = "TimelineContent";
-const TimelineOppositeContent = React.forwardRef(
+const TimelineOppositeContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(
   ({ className, children, ...props }, ref) => {
     return (
       <div

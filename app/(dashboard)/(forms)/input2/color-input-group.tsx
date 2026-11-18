@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -75,7 +74,7 @@ const ColorInputGroup = () => {
         <InputGroupText color="success">00.</InputGroupText>
       </InputGroup>
       <InputGroup>
-        <InputGroupText variant="flat" color="warning">
+        <InputGroupText color="warning">
           With textarea
         </InputGroupText>
         <Textarea color="warning" type="text" placeholder="Comments" />

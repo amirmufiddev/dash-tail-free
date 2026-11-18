@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Switch } from "@/components/ui/switch";
 import {
   Table,

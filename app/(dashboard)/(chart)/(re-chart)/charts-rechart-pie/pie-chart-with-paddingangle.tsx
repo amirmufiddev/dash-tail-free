@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
@@ -29,7 +28,7 @@ const PieChartWithPaddingAngle = ({ height = 300 }) => {
 
     return (
         <ResponsiveContainer width="100%" height={height}>
-            <PieChart width={"100%"} height={height}>
+            <PieChart height={height}>
                 <Pie
                     data={data}
                     cx={120}

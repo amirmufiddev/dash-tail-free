@@ -1,7 +1,6 @@
-// @ts-nocheck
 import * as React from "react";
 import * as ProgressPrimitive from "@radix-ui/react-progress";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const progressVariants = cva(
@@ -55,11 +54,28 @@ const circleVariants = cva("[&_[path-color]]:text-default-200 ", {
     size: "md",
   },
 });
-const Progress = React.forwardRef(
+export interface ProgressProps
+  extends Omit<
+      React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>,
+      "color" | "value"
+    >,
+    VariantProps<typeof progressVariants> {
+  value?: number | string;
+  showValue?: boolean;
+  isStripe?: boolean;
+  isAnimate?: boolean;
+  variant?: string;
+}
+
+const Progress = React.forwardRef<
+  React.ElementRef<typeof ProgressPrimitive.Root>,
+  ProgressProps
+>(
   (
-    { className, value, color, size, showValue, isStripe, isAnimate, ...props },
+    { className, value, color, size, showValue, isStripe, isAnimate, variant, ...props },
     ref
   ) => {
+    const numericValue = Number(value) || 0;
     const stripeStyles = isStripe
       ? {
           backgroundImage: `linear-gradient(
@@ -98,13 +114,13 @@ const Progress = React.forwardRef(
           //   ...stripeStyles,
           // }}
           style={{
-            transform: `translateX(-${100 - (value || 0)}%)`,
+            transform: `translateX(-${100 - numericValue}%)`,
             ...stripeStyles,
           }}
         >
           {showValue && (
             <span className=" text-right pr-1 text-[10px]  text-primary-foreground block w-full">
-              {value}%
+              {numericValue}%
             </span>
           )}
         </ProgressPrimitive.Indicator>
@@ -114,11 +130,21 @@ const Progress = React.forwardRef(
 );
 Progress.displayName = ProgressPrimitive.Root.displayName;
 
-const CircularProgress = React.forwardRef(
+export interface CircularProgressProps
+  extends Omit<React.SVGAttributes<SVGSVGElement>, "color">,
+    VariantProps<typeof circleVariants> {
+  value?: number | string;
+  showValue?: boolean;
+  loading?: boolean;
+  customContent?: React.ReactNode;
+  isStripe?: boolean;
+}
+
+const CircularProgress = React.forwardRef<SVGSVGElement, CircularProgressProps>(
   (
     {
       className,
-      value,
+      value = 0,
       color,
       size,
       showValue,
@@ -131,7 +157,8 @@ const CircularProgress = React.forwardRef(
   ) => {
     const radius = 40;
     const circumference = 2 * Math.PI * radius;
-    const progress = circumference - (circumference * value) / 100;
+    const numericValue = Number(value) || 0;
+    const progress = circumference - (circumference * numericValue) / 100;
 
     return (
       <div className="relative">
@@ -184,7 +211,7 @@ const CircularProgress = React.forwardRef(
               alignmentBaseline="middle"
               text-color=""
             >
-              {customContent ? customContent : value + `%`}
+              {customContent ? customContent : `${numericValue}%`}
             </text>
           )}
         </svg>

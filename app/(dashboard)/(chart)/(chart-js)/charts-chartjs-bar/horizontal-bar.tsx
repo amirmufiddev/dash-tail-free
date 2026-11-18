@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import {
@@ -14,6 +13,7 @@ import { hslToHex, hexToRGB } from "@/lib/utils";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
+import type { ChartData, ChartOptions } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
@@ -85,7 +85,7 @@ const HorizontalBar = ({ height = 350 }) => {
         barThickness: 25,
       },
     ],
-  };
+  } as unknown as ChartData<"bar">;
   const options = {
     indexAxis: "y",
     responsive: true,
@@ -138,7 +138,7 @@ const HorizontalBar = ({ height = 350 }) => {
     },
 
     maintainAspectRatio: false,
-  };
+  } as unknown as ChartOptions<"bar">;
 
   return (
     <div>

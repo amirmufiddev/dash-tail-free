@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 
 import { useState } from "react"
@@ -8,7 +7,7 @@ import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
 
-const rectangle = [
+const rectangle: [number, number][] = [
     [51.49, -0.08],
     [51.5, -0.06],
 ]
@@ -20,7 +19,7 @@ const LayerGroupMap = ({ height = 350 }) => {
     const theme = themes.find((theme) => theme.name === config);
 
     const [state, setState] = useState({ lat: 51.505, lng: -0.09, zoom: 13 })
-    const position = [state.lat, state.lng];
+    const position: [number, number] = [state.lat, state.lng];
 
     return (
         <MapContainer

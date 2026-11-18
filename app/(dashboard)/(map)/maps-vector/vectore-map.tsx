@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 
 import world from "./worldmap.json";

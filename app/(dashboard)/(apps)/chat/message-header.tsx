@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -20,6 +19,11 @@ const MessageHeader = ({
   handleShowInfo,
   profile,
   mblChatHandler,
+}: {
+  showInfo?: boolean;
+  handleShowInfo?: () => void;
+  profile?: { fullName?: string; avatar?: string | { src?: string } };
+  mblChatHandler?: () => void;
 }) => {
   let active = true;
   const isLg = useMediaQuery("(max-width: 1024px)");
@@ -35,7 +39,14 @@ const MessageHeader = ({
         )}
         <div className="relative inline-block">
           <Avatar>
-            <AvatarImage src={profile?.avatar?.src} alt="" />
+            <AvatarImage
+            src={
+              typeof profile?.avatar === "string"
+                ? profile.avatar
+                : profile?.avatar?.src
+            }
+            alt=""
+          />
             <AvatarFallback>{profile?.fullName?.slice(0, 2)}</AvatarFallback>
           </Avatar>
           <Badge

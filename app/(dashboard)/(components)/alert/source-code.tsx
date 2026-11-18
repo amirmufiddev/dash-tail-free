@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const colorAlert = `import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 const ColorAlert = () => {
   return (

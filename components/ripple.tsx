@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { AnimatePresence, motion } from "framer-motion";
 
 export const clamp = (value, min, max) => {

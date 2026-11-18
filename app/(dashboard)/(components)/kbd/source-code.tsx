@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultKbd = `"use client";
 import { Kbd } from "@/components/ui/kbd";
 

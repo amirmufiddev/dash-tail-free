@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultBreadCrumb = `import { Breadcrumbs, BreadcrumbItem } from "@/components/ui/breadcrumbs";
 
 const DefaultBreadCrumb = () => {

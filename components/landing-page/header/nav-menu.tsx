@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { menus } from "./../data";
@@ -6,9 +5,9 @@ import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 export default function NavMenu() {
-  const [offset, setOffset] = React.useState();
-  const [list, setList] = React.useState();
-  const [value, setValue] = React.useState();
+  const [offset, setOffset] = React.useState<number | null>(null);
+  const [list, setList] = React.useState<HTMLUListElement | null>(null);
+  const [value, setValue] = React.useState("");
 
   const onNodeUpdate = (trigger, itemValue) => {
     if (trigger && list && value === itemValue) {
@@ -28,14 +27,14 @@ export default function NavMenu() {
         className="  relative  justify-start group z-[9999] "
       >
         <NavigationMenu.List
-          ref={setList}
+          ref={(node) => setList(node)}
           className="group flex list-none gap-8"
         >
           {menus?.map((item, index) =>
             item.child ? (
-              <NavigationMenu.Item key={`item-${index}`} value={item}>
+              <NavigationMenu.Item key={`item-${index}`} value={item.title}>
                 <NavigationMenu.Trigger
-                  ref={(node) => onNodeUpdate(node, item)}
+                  ref={(node) => onNodeUpdate(node, item.title)}
                   asChild
                   className=" flex items-center"
                 >
@@ -99,8 +98,13 @@ export default function NavMenu() {
   );
 }
 
-const ListItem = React.forwardRef(
-  ({ className, children, title, childItem, ...props }, forwardedRef) => (
+const ListItem = React.forwardRef<
+  HTMLAnchorElement,
+  React.ComponentPropsWithoutRef<typeof Link> & {
+    title?: string;
+    childItem?: { title?: string; href?: string; icon?: React.ElementType };
+  }
+>(({ className, children, title, childItem, ...props }, forwardedRef) => (
     <NavigationMenu.Link asChild>
       <Link
         className={cn(

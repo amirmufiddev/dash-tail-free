@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import TaskBreadCrumbs from "./components/bread-crumbs";
@@ -63,7 +62,7 @@ const ViewTask = ({ contacts, tasks }) => {
         <Card className="flex-1 overflow-x-auto">
           <TaskTable
             data={tasks}
-            openSheet={handleEditSheetOpen}
+            handleEditSheetOpen={handleEditSheetOpen}
             handleSidebar={() => setShowSidebar(true)}
           />
         </Card>

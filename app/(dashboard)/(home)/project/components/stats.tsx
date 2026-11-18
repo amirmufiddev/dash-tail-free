@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 
 import { Cup1 } from "@/components/svg";

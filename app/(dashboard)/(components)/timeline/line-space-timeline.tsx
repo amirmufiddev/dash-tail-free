@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   Timeline,
   TimelineItem,

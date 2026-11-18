@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use server";
 import { createEmail, deleteEmail, getMail } from "@/config/email.config";
 import { revalidatePath } from "next/cache";

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 
 import { Button } from "@/components/ui/button";
@@ -31,7 +30,7 @@ const SubTaskHeader = () => {
         <textarea
           className="w-full h-16 border-none focus:border-none focus:outline-none p-1 text-sm text-default-700 peer"
           placeholder="Add Task Descriptions"
-          rows="1"
+          rows={1}
         />
         <Button className="  text-xs h-6 py-0" type="submit">
           Save

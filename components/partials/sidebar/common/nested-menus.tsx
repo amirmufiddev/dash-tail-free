@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState } from "react";
 import {
@@ -19,6 +18,17 @@ const NestedSubMenu = ({
   activeMultiMenu,
   toggleMultiMenu,
   title,
+  collapsed: _collapsed,
+  hovered: _hovered,
+}: {
+  activeSubmenu;
+  item;
+  index;
+  activeMultiMenu;
+  toggleMultiMenu;
+  title?;
+  collapsed?: boolean;
+  hovered?: boolean;
 }) => {
   const locationName = usePathname();
   return (

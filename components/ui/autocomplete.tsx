@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
@@ -25,19 +24,26 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const Autocomplete = React.forwardRef(
+export interface AutocompleteProps extends React.HTMLAttributes<HTMLDivElement> {
+  label: string;
+  labelClass?: string;
+  children?: React.ReactNode;
+}
+
+const Autocomplete = React.forwardRef<HTMLDivElement, AutocompleteProps>(
   ({ label, className, children, labelClass, ...props }, ref) => {
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState("");
     const [selectedLabel, setSelectedLabel] = React.useState("Select item...");
 
-    const handleSelect = (newValue, newLabel) => {
+    const handleSelect = (newValue: string, newLabel: string) => {
       setValue(newValue);
       setSelectedLabel(newLabel);
       setOpen(false);
     };
 
     return (
+      <div ref={ref} className={cn("w-full", className)} {...props}>
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <Button
@@ -55,22 +61,37 @@ const Autocomplete = React.forwardRef(
             <CommandEmpty>No item found.</CommandEmpty>
             <CommandGroup>
               {React.Children.map(children, (child) =>
-                React.cloneElement(child, {
-                  onSelect: handleSelect,
-                  isSelected: child.props.value === value,
-                })
+                React.cloneElement(
+                  child as React.ReactElement<AutocompleteItemProps>,
+                  {
+                    onSelect: handleSelect,
+                    isSelected:
+                      (child as React.ReactElement<AutocompleteItemProps>).props
+                        .value === value,
+                  }
+                )
               )}
             </CommandGroup>
           </Command>
         </DropdownMenuContent>
       </DropdownMenu>
+      </div>
     );
   }
 );
 Autocomplete.displayName = "Autocomplete";
 
-const AutocompleteItem = React.forwardRef(
-  ({ children, value, onSelect, isSelected, ...props }, ref) => {
+export interface AutocompleteItemProps
+  extends Omit<React.ComponentPropsWithoutRef<typeof CommandItem>, "onSelect"> {
+  value: string;
+  onSelect?: (value: string, label: React.ReactNode) => void;
+  isSelected?: boolean;
+}
+
+const AutocompleteItem = React.forwardRef<
+  React.ElementRef<typeof CommandItem>,
+  AutocompleteItemProps
+>(({ children, value, onSelect, isSelected, ...props }, ref) => {
     const handleItemClick = () => {
       onSelect(value, children);
     };

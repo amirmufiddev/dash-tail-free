@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultSkeleton = `import { Skeleton } from "@/components/ui/skeleton";
 
 import {

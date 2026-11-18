@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Rating } from "@/components/ui/rating";
 const ReadOnlyRating = () => {
   return (

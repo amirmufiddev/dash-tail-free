@@ -1,15 +1,15 @@
-// @ts-nocheck
 import * as React from "react";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 
 const paginationVariants = cva(
   "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-0   disabled:opacity-50  disabled:cursor-not-allowed ",
   {
     variants: {
       color: {
+        default: "bg-primary text-primary-foreground hover:bg-primary",
         primary: "bg-primary text-primary-foreground hover:bg-primary",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
@@ -43,7 +43,7 @@ const paginationVariants = cva(
         full: "rounded-full",
       },
     },
-    compoundcolors: [
+    compoundVariants: [
       {
         variant: "outline",
         color: "destructive",
@@ -120,7 +120,11 @@ const paginationVariants = cva(
     },
   }
 );
-const Pagination = ({ isDisabled, className, ...props }) => (
+const Pagination = ({
+  isDisabled,
+  className,
+  ...props
+}: React.ComponentProps<"nav"> & { isDisabled?: boolean }) => (
   <nav
     role="navigation"
     aria-label="pagination"
@@ -129,7 +133,10 @@ const Pagination = ({ isDisabled, className, ...props }) => (
   />
 );
 
-const PaginationContent = React.forwardRef(({ className, ...props }, ref) => (
+const PaginationContent = React.forwardRef<
+  HTMLUListElement,
+  React.HTMLAttributes<HTMLUListElement>
+>(({ className, ...props }, ref) => (
   <ul
     ref={ref}
     className={cn("flex flex-row items-center gap-1", className)}
@@ -138,12 +145,21 @@ const PaginationContent = React.forwardRef(({ className, ...props }, ref) => (
 ));
 PaginationContent.displayName = "PaginationContent";
 
-const PaginationItem = React.forwardRef(
+const PaginationItem = React.forwardRef<
+  HTMLLIElement,
+  React.LiHTMLAttributes<HTMLLIElement> & { radius?: string }
+>(
   ({ className, radius, ...props }, ref) => (
     <li ref={ref} className={cn("", className, radius)} {...props} />
   )
 );
 PaginationItem.displayName = "PaginationItem";
+
+type PaginationLinkProps = React.ComponentProps<"a"> &
+  VariantProps<typeof paginationVariants> & {
+    isDisabled?: boolean;
+    isActive?: boolean;
+  };
 
 const PaginationLink = ({
   className,
@@ -153,13 +169,13 @@ const PaginationLink = ({
   variant,
   size = "icon",
   ...props
-}) => (
+}: PaginationLinkProps) => (
   <a
     aria-current={isActive ? "page" : undefined}
     className={cn(
       paginationVariants({
         color: isActive ? color : "secondary",
-        variant: isActive ? variant : "",
+        variant: isActive ? variant : undefined,
         size,
       }),
       className
@@ -169,7 +185,7 @@ const PaginationLink = ({
 );
 PaginationLink.displayName = "PaginationLink";
 
-const PaginationPrevious = ({ className, ...props }) => (
+const PaginationPrevious = ({ className, ...props }: PaginationLinkProps) => (
   <PaginationLink
     aria-label="Go to previous page"
     size="default"
@@ -182,7 +198,7 @@ const PaginationPrevious = ({ className, ...props }) => (
 );
 PaginationPrevious.displayName = "PaginationPrevious";
 
-const PaginationNext = ({ className, ...props }) => (
+const PaginationNext = ({ className, ...props }: PaginationLinkProps) => (
   <PaginationLink
     aria-label="Go to next page"
     size="default"
@@ -194,7 +210,10 @@ const PaginationNext = ({ className, ...props }) => (
   </PaginationLink>
 );
 
-const PaginationEllipsis = ({ className, ...props }) => (
+const PaginationEllipsis = ({
+  className,
+  ...props
+}: React.ComponentProps<"span">) => (
   <span
     aria-hidden
     className={cn("flex h-9 w-9 items-center justify-center", className)}

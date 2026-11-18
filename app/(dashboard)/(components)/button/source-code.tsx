@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultButton = `import { Button } from '@/components/ui/button'
 const DefaultButton = () => {
   return (

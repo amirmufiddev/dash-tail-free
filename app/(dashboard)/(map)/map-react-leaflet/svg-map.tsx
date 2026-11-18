@@ -1,11 +1,10 @@
-// @ts-nocheck
 "use client"
 
 import { MapContainer, TileLayer, SVGOverlay } from "react-leaflet"
 
 const SVGMap = ({ height = 350 }) => {
-    const position = [51.505, -0.09]
-    const bounds = [
+    const position: [number, number] = [51.505, -0.09];
+    const bounds: [number, number][] = [
         [51.49, -0.08],
         [51.5, -0.06],
     ]

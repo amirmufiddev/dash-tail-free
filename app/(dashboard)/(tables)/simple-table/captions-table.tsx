@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import {
   Table,
@@ -9,7 +8,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { desserts } from "./data";
 import { users, columns } from "./data";
 const CaptionsTable = () => {
   return (

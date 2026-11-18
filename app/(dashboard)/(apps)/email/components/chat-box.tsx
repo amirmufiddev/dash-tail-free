@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -117,7 +116,6 @@ const ChatBox = ({ onClose }) => {
                     <div className="opacity-0 invisible group-hover:opacity-100 group-hover:visible ">
                       <span
                         className="w-7 h-7 rounded-full bg-default-100 flex items-center justify-center"
-                        type="button"
                         id="radix-:r1a:"
                         aria-haspopup="menu"
                         aria-expanded="false"

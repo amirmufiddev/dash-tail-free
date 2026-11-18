@@ -1,9 +1,8 @@
-// @ts-nocheck
 import React, { useState } from "react";
 import { Breadcrumbs, BreadcrumbItem } from "@/components/ui/breadcrumbs";
 
 const MenuTypeBreadcrumb = () => {
-  const [currentPage, setCurrentPage] = useState("breadcrumb");
+  const [currentPage, setCurrentPage] = useState<string | number>("breadcrumb");
   return (
     <>
       <Breadcrumbs

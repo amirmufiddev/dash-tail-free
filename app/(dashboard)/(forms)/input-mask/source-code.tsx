@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const inputMask = `"use client";
 import Card from "@/components/ui/card-snippet";
 import { Label } from "@/components/ui/label";

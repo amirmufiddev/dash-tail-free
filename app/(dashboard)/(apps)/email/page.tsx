@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 
 import Mail from "./components/mail";

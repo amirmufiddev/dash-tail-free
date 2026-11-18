@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
@@ -114,7 +113,7 @@ const CustomizedLabel = ({ height = 300 }) => {
           stroke={`hsl(${
             theme?.cssVars[mode === "dark" ? "dark" : "light"].primary
           })`}
-          label={<CustomLabel />}
+          label={CustomLabel}
         />
         <Line
           type="monotone"

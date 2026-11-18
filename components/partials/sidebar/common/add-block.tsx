@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -14,6 +13,11 @@ const AddBlock = ({
   image = thumbnail,
   title = "Storage capacity",
   desc = " Out of your total storage on Premium Plan, you have used up 40%.",
+}: {
+  className?: string;
+  image?: typeof thumbnail;
+  title?: string;
+  desc?: string;
 }) => {
   const [openVideo, setOpenVideo] = useState(false);
   return (

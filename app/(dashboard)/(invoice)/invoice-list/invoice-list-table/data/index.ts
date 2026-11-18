@@ -1,4 +1,3 @@
-// @ts-nocheck
 import avatar1 from "@/public/images/avatar/avatar-1.jpg"
 export const data = [
   {
@@ -13,7 +12,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "confirmed",
+    invoiceStatus: "confirmed",
     paymentStatus: "pending"
   },
   {
@@ -28,7 +27,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "pending"
   },
   {
@@ -43,7 +42,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "confirmed",
+invoiceStatus: "confirmed",
     paymentStatus: "paid"
   },
   {
@@ -58,7 +57,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -73,7 +72,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -88,7 +87,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -103,7 +102,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -118,7 +117,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -133,7 +132,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -148,7 +147,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -163,7 +162,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -178,7 +177,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -193,7 +192,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -208,7 +207,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -223,7 +222,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -238,7 +237,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -253,7 +252,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -268,7 +267,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -283,7 +282,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -298,7 +297,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -313,7 +312,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -328,7 +327,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -343,7 +342,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -358,7 +357,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -373,7 +372,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -388,7 +387,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -403,7 +402,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -418,7 +417,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
   {
@@ -433,7 +432,7 @@ export const data = [
     },
     date: "20-02-2024 ,Tuesday, 6:53 PM",
     amount: "996.20",
-    status: "closed",
+invoiceStatus: "closed",
     paymentStatus: "paid"
   },
 

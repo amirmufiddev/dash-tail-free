@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import {
@@ -27,7 +26,7 @@ const OffsetTooltip = () => {
           <TooltipTrigger asChild>
             <Button>No Offset</Button>
           </TooltipTrigger>
-          <TooltipContent color="primary" sideOffset="0">
+          <TooltipContent color="primary" sideOffset={0}>
             <p>I am tooltip</p>
           </TooltipContent>
         </Tooltip>
@@ -37,7 +36,7 @@ const OffsetTooltip = () => {
           <TooltipTrigger asChild>
             <Button>7 Offset</Button>
           </TooltipTrigger>
-          <TooltipContent color="primary" sideOffset="7">
+          <TooltipContent color="primary" sideOffset={7}>
             <p>I am tooltip</p>
           </TooltipContent>
         </Tooltip>
@@ -47,7 +46,7 @@ const OffsetTooltip = () => {
           <TooltipTrigger asChild>
             <Button>3 Offset</Button>
           </TooltipTrigger>
-          <TooltipContent color="primary" sideOffset="3">
+          <TooltipContent color="primary" sideOffset={3}>
             <p>I am tooltip</p>
           </TooltipContent>
         </Tooltip>
@@ -57,7 +56,7 @@ const OffsetTooltip = () => {
           <TooltipTrigger asChild>
             <Button>-7 Offset</Button>
           </TooltipTrigger>
-          <TooltipContent color="primary" sideOffset="-7">
+          <TooltipContent color="primary" sideOffset={-7}>
             <p>I am tooltip</p>
           </TooltipContent>
         </Tooltip>

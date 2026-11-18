@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Card from "@/components/ui/card-snippet";
 import BasicFormWizard from "./basic-wizard";
 import ValidationWizard from "./validation-wizard";

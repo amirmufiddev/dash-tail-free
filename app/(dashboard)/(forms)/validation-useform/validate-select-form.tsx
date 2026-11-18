@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -56,7 +55,7 @@ const ValidateSelectForm = () => {
             "text-destructive": errors.subject,
           })}
         >
-          {errors.subject.message}
+          {String(errors.subject.message ?? "")}
         </p>
       )}
       <div className="mt-2">

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultrehToast = `import { toast as reToast } from "react-hot-toast";
 const Toast = () => {
   const defaultToast = () => reToast("Here is your toast.");

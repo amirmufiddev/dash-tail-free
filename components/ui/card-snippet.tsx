@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState, useEffect } from "react";
 import {
@@ -23,7 +22,15 @@ import { themes } from "@/config/thems";
 import { useTheme } from "next-themes";
 import { hslToHex, hexToRGB } from "@/lib/utils";
 import { useThemeStore } from "@/store";
-const CardSnippet = ({ title, code, children }) => {
+const CardSnippet = ({
+  title,
+  code,
+  children,
+}: {
+  title?: React.ReactNode;
+  code?: string;
+  children?: React.ReactNode;
+}) => {
   const [show, setShow] = useState(false);
   const toggle = () => {
     setShow(!show);
@@ -66,7 +73,7 @@ const CardSnippet = ({ title, code, children }) => {
                 backgroundColor: mode !== "dark" ? hexPrimary : hexPrimary2,
               }}
             >
-              {code}
+              {code ?? ""}
             </SyntaxHighlighter>
           </CollapsibleContent>
         </Collapsible>

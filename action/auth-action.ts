@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use server";
 import { registerUser } from "@/config/user.config";
 import { revalidatePath } from "next/cache";

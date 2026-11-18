@@ -1,11 +1,16 @@
-// @ts-nocheck
 "use client";
 import React, { useState } from "react";
-import Select, { components } from "react-select";
+import Select, {
+  components,
+  type GroupBase,
+  type OptionProps,
+} from "react-select";
 import makeAnimated from "react-select/animated";
 import { Icon } from "@iconify/react";
 
-const fruits = [
+type FruitOption = { value: string; label: string; icon?: string; isFixed?: boolean };
+
+const fruits: FruitOption[] = [
   { value: "chocolate", label: "Chocolate" },
   { value: "strawberry", label: "Strawberry" },
   { value: "vanilla", label: "Vanilla" },
@@ -130,8 +135,10 @@ const iconOptions = [
     ],
   },
 ];
-const OptionComponent = ({ data, ...props }) => {
-  //const Icon = data.icon;
+const OptionComponent = (
+  props: OptionProps<FruitOption, true, GroupBase<FruitOption>>
+) => {
+  const { data } = props;
 
   return (
     <components.Option {...props}>

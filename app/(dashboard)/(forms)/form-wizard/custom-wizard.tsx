@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import { Stepper, Step, StepLabel } from "@/components/ui/steps";
@@ -63,8 +62,8 @@ const CustomWizard = () => {
       </h2>
       <Stepper current={activeStep} direction={isTablet && "vertical"}>
         {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
+          const stepProps: { completed?: boolean } = {};
+          const labelProps: { optional?: React.ReactNode } = {};
           return (
             <Step key={label.label} {...stepProps}>
               <StepLabel {...labelProps}>{label.label}</StepLabel>

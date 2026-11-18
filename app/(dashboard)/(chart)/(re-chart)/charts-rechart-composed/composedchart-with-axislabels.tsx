@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import { useThemeStore } from "@/store";
@@ -61,7 +60,7 @@ const ReComposedChartWithAxisLabels = ({ height = 300 }) => {
     },
   ];
 
-  const CustomTooltip = ({ active, payload }) => {
+  const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: { name?: string; value?: number | string; color?: string; fill?: string; dataKey?: string | number; payload?: Record<string, string | number> }[] }) => {
     if (active && payload) {
       return (
         <div className="bg-slate-900 text-primary-foreground p-3 rounded-md space-x-2 rtl:space-x-reverse ">

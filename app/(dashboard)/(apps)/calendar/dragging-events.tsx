@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { cn } from "@/lib/utils";
 const ExternalDraggingevent = ({ event }) => {
   const { title, id, tag } = event;
@@ -6,7 +5,7 @@ const ExternalDraggingevent = ({ event }) => {
   return (
     <div
       title={title}
-      data={id}
+      data-event-id={id}
       className={cn(
         "fc-event  px-4 py-1.5 bg-default-100  rounded text-sm flex  items-center gap-2 shadow-sm  cursor-move",
         {

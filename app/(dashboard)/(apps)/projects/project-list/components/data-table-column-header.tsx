@@ -1,10 +1,10 @@
-// @ts-nocheck
 import {
   ChevronDown,
   ChevronUp,
   XCircle,
   Eye,
 } from "lucide-react";
+import { Column } from "@tanstack/react-table";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,7 +15,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export function DataTableColumnHeader({ column, title, className }) {
+export function DataTableColumnHeader<TData, TValue>({
+  column,
+  title,
+  className,
+}: {
+  column: Column<TData, TValue>;
+  title: string;
+  className?: string;
+}) {
   if (!column.getCanSort()) {
     return <div className={cn("uppercase font-semibold text-default-800", className)}>{title}</div>;
   }

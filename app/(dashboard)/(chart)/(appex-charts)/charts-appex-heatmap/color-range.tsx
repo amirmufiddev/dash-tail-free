@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -178,9 +178,6 @@ const ColorRange = ({ height = 300 }) => {
     yaxis: getYAxisConfig(
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartLabel})`
     ),
-    grid: getGridConfig(
-      `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
-    ),
     xaxis: {
       labels: getLabel(
         `hsl(${
@@ -201,7 +198,7 @@ const ColorRange = ({ height = 300 }) => {
         right: 20,
       },
     },
-  };
+  } as unknown as ApexOptions;
 
   return (
     <>

@@ -1,4 +1,3 @@
-// @ts-nocheck
 // import React, { useRef, useState, useEffect } from "react";
 // import PropTypes from "prop-types";
 
@@ -48,7 +47,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const Affix = ({ children, offsetTop, target }) => {
+const Affix = ({ children, offsetTop, target, onChange }) => {
   const [isFixed, setIsFixed] = useState(false);
   const ref = useRef(null);
   const containerRef = useRef(null);
@@ -61,6 +60,7 @@ const Affix = ({ children, offsetTop, target }) => {
     const shouldBeFixed = top <= offsetTop && containerTop < offsetTop;
 
     setIsFixed(shouldBeFixed);
+    onChange?.(shouldBeFixed);
   };
 
   useEffect(() => {
@@ -70,11 +70,11 @@ const Affix = ({ children, offsetTop, target }) => {
     };
   }, [offsetTop]);
 
-  const affixStyles = {
+  const affixStyles: React.CSSProperties = {
     position: isFixed ? "fixed" : "static",
     top: isFixed ? offsetTop + "px" : "auto",
     width: "100%",
-    zIndex: 1000, // adjust z-index as needed
+    zIndex: 1000,
   };
 
   return (
@@ -95,6 +95,7 @@ Affix.propTypes = {
   children: PropTypes.node.isRequired,
   offsetTop: PropTypes.number.isRequired,
   target: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 export default Affix;

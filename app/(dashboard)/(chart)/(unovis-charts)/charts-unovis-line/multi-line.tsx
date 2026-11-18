@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useCallback, useMemo } from "react";
 import { Scale } from "@unovis/ts";

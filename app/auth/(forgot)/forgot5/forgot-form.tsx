@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -69,7 +68,7 @@ const ForgotForm = () => {
             size={!isDesktop2xl ? "xl" : "lg"}
           />
           {errors.email && (
-            <div className=" text-destructive mt-2">{errors.email.message}</div>
+            <div className=" text-destructive mt-2">{String(errors.email.message ?? "")}</div>
           )}
         </div>
 

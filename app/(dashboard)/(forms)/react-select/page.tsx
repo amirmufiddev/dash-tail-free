@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import Card from "@/components/ui/card-snippet";
 import ReactSelectOption from "./react-select-options";

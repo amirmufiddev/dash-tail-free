@@ -1,9 +1,8 @@
-// @ts-nocheck
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 
 export const textareaVariants = cva(
   "flex flex-1 bg-background w-full min-h-[80px]   px-3 py-[10px] text-sm  file:border-0 file:bg-transparent file:text-sm file:font-medium  read-only:bg-background  disabled:cursor-not-allowed disabled:opacity-50  transition duration-300 ",
@@ -108,8 +107,15 @@ export const textareaVariants = cva(
   }
 );
 
-const Textarea = React.forwardRef(
-  ({ className, color, radius, variant, shadow, children, ...props }, ref) => {
+export interface TextareaProps
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "color">,
+    VariantProps<typeof textareaVariants> {
+  type?: string;
+  size?: string;
+}
+
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ className, color, radius, variant, shadow, children, type, size, ...props }, ref) => {
     return (
       <div className="flex-1 w-full">
         <textarea

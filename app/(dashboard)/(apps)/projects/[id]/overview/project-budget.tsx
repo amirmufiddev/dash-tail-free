@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import {
@@ -73,7 +72,7 @@ const ProjectBudget = ({ height = 250 }) => {
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={height}>
-          <PieChart width={"100%"} height={height}>
+          <PieChart height={height}>
             <Pie
               dataKey="value"
               startAngle={180}

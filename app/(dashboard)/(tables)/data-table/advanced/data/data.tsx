@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 
 import { ChevronDown, ChevronRight, ChevronUp, CheckCircle2, XCircle, HelpCircle, Timer } from 'lucide-react';

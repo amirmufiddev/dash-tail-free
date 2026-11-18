@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { CSSProperties, useEffect, useState } from "react";
 
 /**
@@ -50,13 +49,31 @@ function calcTextRenderedRect(text, fontSize, lineHeight, fontFamily) {
   return rect;
 }
 
-const watermarkWrapperStyle = {
+const watermarkWrapperStyle: CSSProperties = {
   position: "relative",
+};
+
+type WatermarkProps = {
+  show?: boolean;
+  text?: string;
+  image?: string;
+  textColor?: string;
+  textSize?: number;
+  fontFamily?: string;
+  opacity?: number;
+  lineHeight?: string;
+  multiline?: boolean;
+  wrapperStyle?: CSSProperties;
+  wrapperElement?: React.ElementType;
+  gutter?: number;
+  rotate?: number;
+  zIndex?: number;
+  children?: React.ReactNode;
 };
 
 const Watermark = ({
   show = true,
-  text,
+  text = "",
   image,
   textColor = "#cccccc",
   textSize = 24,
@@ -70,7 +87,7 @@ const Watermark = ({
   rotate = -45,
   zIndex = 1,
   children,
-}) => {
+}: WatermarkProps) => {
   const [backgroundImage, setBackgroundImage] = useState("");
 
   useEffect(() => {
@@ -112,14 +129,13 @@ const Watermark = ({
     }
   }, [show, text, textColor, textSize, opacity, gutter, rotate, image]);
 
-  const watermarkStyle = {
+  const watermarkStyle: CSSProperties = {
     pointerEvents: "none",
     position: "absolute",
     top: 0,
     bottom: 0,
     left: 0,
     right: 0,
-    content: "",
     backgroundRepeat: "repeat",
     zIndex,
     backgroundImage,

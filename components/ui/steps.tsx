@@ -1,6 +1,5 @@
-// @ts-nocheck
 import * as React from "react";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { Icon } from "@iconify/react";
@@ -43,7 +42,29 @@ const stepperVariants = cva("flex ", {
   },
 });
 
-const Stepper = React.forwardRef(
+type StepSharedProps = {
+  activeStep?: number;
+  direction?: "horizontal" | "vertical" | "" | false;
+  completed?: boolean;
+  disabled?: boolean;
+  variant?: VariantProps<typeof stepVariants>["variant"];
+  size?: VariantProps<typeof stepVariants>["size"];
+  current?: number;
+  content?: VariantProps<typeof stepVariants>["content"];
+  icon?: React.ReactNode;
+  alternativeLabel?: boolean;
+  gap?: boolean | string;
+  status?: string;
+  isLast?: boolean;
+  count?: number;
+  index?: number;
+  isBeforeLast?: boolean;
+};
+
+export type StepperProps = React.OlHTMLAttributes<HTMLOListElement> &
+  StepSharedProps;
+
+const Stepper = React.forwardRef<HTMLOListElement, StepperProps>(
   (
     {
       className,
@@ -67,7 +88,12 @@ const Stepper = React.forwardRef(
     return (
       <ol
         ref={ref}
-        className={cn(stepperVariants({ direction }), className, {
+        className={cn(
+          stepperVariants({
+            direction: direction === "vertical" ? "vertical" : "horizontal",
+          }),
+          className,
+          {
           "gap-2": gap,
           " text-center": alternativeLabel,
           "gap-3": content === "right",
@@ -75,6 +101,7 @@ const Stepper = React.forwardRef(
         {...props}
       >
         {childItem.map((child, index) => {
+          if (!React.isValidElement<StepProps>(child)) return child;
           const isLast = index === childItem.length - 1;
           const isBeforeLast = index === childItem.length - 2;
           const count = index + 1;
@@ -98,7 +125,7 @@ const Stepper = React.forwardRef(
               stepVariants({ variant, size, content }),
               child.props.className
             ),
-          });
+          } as StepProps);
         })}
       </ol>
     );
@@ -106,7 +133,9 @@ const Stepper = React.forwardRef(
 );
 Stepper.displayName = "Stepper";
 
-const Step = React.forwardRef(
+export type StepProps = React.LiHTMLAttributes<HTMLLIElement> & StepSharedProps;
+
+const Step = React.forwardRef<HTMLLIElement, StepProps>(
   (
     {
       className,
@@ -124,11 +153,12 @@ const Step = React.forwardRef(
       alternativeLabel,
       isBeforeLast,
       status,
+      completed,
       ...props
     },
     ref
   ) => {
-    const getStepBarBg = (current, index) => {
+    const getStepBarBg = (current: number | undefined, index: number | undefined) => {
       if (current > index) return "completed";
       if (current < index) return "disable";
       if (current === index) return "current";
@@ -137,7 +167,11 @@ const Step = React.forwardRef(
 
     const stepBarBg = getStepBarBg(current, index);
 
-    const getStepBox = (current, index, status) => {
+    const getStepBox = (
+      current: number | undefined,
+      index: number | undefined,
+      status: string | undefined
+    ) => {
       if (status === "error" && current === index) {
         return "error";
       }
@@ -223,8 +257,14 @@ const Step = React.forwardRef(
 );
 Step.displayName = "Step";
 
-const StepLabel = React.forwardRef(
-  ({ className, children, error, ...props }, ref) => {
+const StepLabel = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & {
+    error?: boolean;
+    optional?: React.ReactNode;
+    variant?: string;
+  }
+>(({ className, children, error, optional, variant, ...props }, ref) => {
     return (
       <div
         ref={ref}
@@ -232,20 +272,24 @@ const StepLabel = React.forwardRef(
           "text-sm text-default-600  font-medium mt-2",
           {
             "text-destructive": error,
+            "text-xs": variant === "caption",
           },
           className
         )}
         {...props}
       >
         {children}
+        {optional}
       </div>
     );
   }
 );
 StepLabel.displayName = "StepLabel";
 
-const StepDescription = React.forwardRef(
-  ({ className, children, error, ...props }, ref) => {
+const StepDescription = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & { error?: boolean }
+>(({ className, children, error, ...props }, ref) => {
     return (
       <div
         ref={ref}

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import Image from "next/image";
 import lightImage from "@/public/images/error/light-401.png"

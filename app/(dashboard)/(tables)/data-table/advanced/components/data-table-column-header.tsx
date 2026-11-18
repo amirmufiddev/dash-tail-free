@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   ChevronDown,
   ChevronRight,
@@ -21,7 +20,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export function DataTableColumnHeader({ column, title, className }) {
+export function DataTableColumnHeader<TData, TValue>({
+  column,
+  title,
+  className,
+}: {
+  column: Column<TData, TValue>;
+  title: string;
+  className?: string;
+}) {
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>;
   }

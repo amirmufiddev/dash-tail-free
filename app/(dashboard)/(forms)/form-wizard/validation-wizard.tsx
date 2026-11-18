@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import { Stepper, Step, StepLabel } from "@/components/ui/steps";
@@ -68,15 +67,15 @@ const ValidationWizard = () => {
         direction={isTablet && "vertical"}
       >
         {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
+          const stepProps: { completed?: boolean } = {};
+          const labelProps: { optional?: React.ReactNode } = {};
           if (isStepOptional(index)) {
             labelProps.optional = (
               <StepLabel variant="caption">Optional</StepLabel>
             );
           }
           return (
-            <Step key={label} {...stepProps}>
+            <Step key={index} {...stepProps}>
               <StepLabel {...labelProps}>
                 <div className="flex flex-col">
                   <span> {label.label}</span>

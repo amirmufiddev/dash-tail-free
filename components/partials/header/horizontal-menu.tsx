@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { menusConfig } from "@/config/menus";
@@ -11,9 +10,9 @@ import Image from "next/image";
 export default function MainMenu() {
   const menus = menusConfig.mainNav || [];
 
-  const [offset, setOffset] = React.useState();
-  const [list, setList] = React.useState();
-  const [value, setValue] = React.useState();
+  const [offset, setOffset] = React.useState<number | null>(null);
+  const [list, setList] = React.useState<HTMLUListElement | null>(null);
+  const [value, setValue] = React.useState("");
 
   const onNodeUpdate = (trigger, itemValue) => {
     if (trigger && list && value === itemValue) {
@@ -33,13 +32,13 @@ export default function MainMenu() {
         className=" flex relative  justify-start group"
       >
         <NavigationMenu.List
-          ref={setList}
+          ref={(node) => setList(node)}
           className="group flex list-none gap-5"
         >
           {menus?.map((item, index) => (
-            <NavigationMenu.Item key={`item-${index}`} value={item}>
+            <NavigationMenu.Item key={`item-${index}`} value={item.title}>
               <NavigationMenu.Trigger
-                ref={(node) => onNodeUpdate(node, item)}
+                ref={(node) => onNodeUpdate(node, item.title)}
                 asChild
                 className=" flex items-center"
               >
@@ -131,13 +130,12 @@ export default function MainMenu() {
                               "col-span-7 ": tab?.child?.length < 10,
                             })}
                           >
-                            <div className="h-full w-full  text-center">
+                            <div className="relative h-full w-full text-center">
                               <Image
                                 src={image}
                                 alt=""
-                                objectFit="cover"
-                                height={"100%"}
-                                width={"100%"}
+                                className="object-cover"
+                                fill
                               />
                             </div>
                           </div>
@@ -166,8 +164,13 @@ export default function MainMenu() {
   );
 }
 
-const ListItem = React.forwardRef(
-  ({ className, children, title, childItem, ...props }, forwardedRef) => (
+const ListItem = React.forwardRef<
+  HTMLAnchorElement,
+  React.ComponentPropsWithoutRef<typeof Link> & {
+    title?: string;
+    childItem?: { title?: string; href?: string; icon?: React.ElementType };
+  }
+>(({ className, children, title, childItem, ...props }, forwardedRef) => (
     <NavigationMenu.Link asChild>
       <Link
         className={cn(

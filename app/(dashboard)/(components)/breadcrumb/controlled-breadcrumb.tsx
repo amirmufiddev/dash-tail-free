@@ -1,9 +1,8 @@
-// @ts-nocheck
 import React, { useState } from "react";
 import { Breadcrumbs, BreadcrumbItem } from "@/components/ui/breadcrumbs";
 
 const ControlledBreadcrumb = () => {
-  const [currentPage, setCurrentPage] = useState("home");
+  const [currentPage, setCurrentPage] = useState<string | number>("home");
   return (
     <>
       <Breadcrumbs underline="active" onAction={(key) => setCurrentPage(key)}>

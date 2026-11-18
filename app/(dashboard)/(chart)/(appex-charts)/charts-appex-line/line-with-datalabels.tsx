@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -50,27 +50,12 @@ const LineChartWithDataLabels = ({ height = 300 }) => {
     grid: getGridConfig(
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
     ),
-    legend: {
-      labels: {
-        colors: `hsl(${
-          theme?.cssVars[
-            mode === "dark" || mode === "system" ? "dark" : "light"
-          ].chartLabel
-        })`,
-      },
-    },
     yaxis: getYAxisConfig(
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartLabel})`
     ),
     xaxis: getXAxisConfig(
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartLabel})`
     ),
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
-    },
     legend: {
       labels: {
         colors: `hsl(${
@@ -80,7 +65,7 @@ const LineChartWithDataLabels = ({ height = 300 }) => {
         })`,
       },
     },
-  };
+  } as unknown as ApexOptions;
   return (
     <>
       <Chart

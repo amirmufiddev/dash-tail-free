@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { VisLeafletMap } from "@unovis/react";
 import { useThemeStore } from "@/store";

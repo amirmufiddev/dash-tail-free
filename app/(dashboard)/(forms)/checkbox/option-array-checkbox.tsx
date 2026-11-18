@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { Checkbox } from "@/components/ui/checkbox";
@@ -26,7 +25,7 @@ const OptionArrayCheckbox = () => {
         {options.map((option, i) => (
           <Checkbox
             key={i}
-            value={selected.includes(option.value)}
+            checked={selected.includes(option.value)}
             onCheckedChange={() => {
               if (selected.includes(option.value)) {
                 setSelected(selected.filter((item) => item !== option.value));
@@ -34,7 +33,7 @@ const OptionArrayCheckbox = () => {
                 setSelected([...selected, option.value]);
               }
             }}
-            id={i}
+            id={String(i)}
           >
             {option.label}
           </Checkbox>

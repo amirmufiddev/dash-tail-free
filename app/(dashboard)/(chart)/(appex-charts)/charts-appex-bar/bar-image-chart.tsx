@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -38,17 +38,6 @@ const BarImageChart = ({ height = 350 }) => {
     }),
     dataLabels: {
       enabled: false,
-    },
-    stroke: {
-      show: false,
-      width: 1,
-      colors: [
-        `hsl(${
-          theme?.cssVars[
-            mode === "dark" || mode === "system" ? "dark" : "light"
-          ].chartLabel
-        })`,
-      ],
     },
     colors: [
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].primary})`,
@@ -131,7 +120,7 @@ const BarImageChart = ({ height = 350 }) => {
       position: "right",
       offsetY: 40,
     },
-  };
+  } as unknown as ApexOptions;
   return (
     <>
       <Chart

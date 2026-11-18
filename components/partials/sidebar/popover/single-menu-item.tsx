@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Icon } from "@iconify/react";
 
 import React from "react";

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -57,7 +56,7 @@ const ProjectBudget = ({ height = 200 }) => {
       <CardContent className="px-0">
         <div className="w-[300px] mx-auto">
           <ResponsiveContainer width="100%" height={height}>
-            <PieChart width={"100%"} height={height}>
+            <PieChart height={height}>
               <Pie
                 dataKey="value"
                 startAngle={180}

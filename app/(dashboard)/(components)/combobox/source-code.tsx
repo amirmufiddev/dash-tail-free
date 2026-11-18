@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const basicComboBox = `"use client";
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";

@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -130,7 +130,7 @@ const ColumnNegativeValues = ({ height = 300 }) => {
     yaxis: getYAxisConfig(
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartLabel})`
     ),
-  };
+  } as unknown as ApexOptions;
 
   return (
     <>

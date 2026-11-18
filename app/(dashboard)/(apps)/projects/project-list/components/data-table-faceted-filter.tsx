@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as React from "react";
 import { Column } from "@tanstack/react-table";
 import { Check } from "lucide-react";

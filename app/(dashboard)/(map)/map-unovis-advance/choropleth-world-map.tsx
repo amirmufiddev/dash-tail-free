@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import { useCallback, useMemo, useState } from 'react'
 import { Orientation, Scale, TopoJSONMap } from '@unovis/ts'

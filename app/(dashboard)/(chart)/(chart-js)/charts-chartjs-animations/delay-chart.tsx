@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import {
   Chart as ChartJS,
@@ -15,6 +14,7 @@ import { hslToHex, hexToRGB } from "@/lib/utils";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
+import type { ChartData, ChartOptions } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
 
@@ -79,17 +79,12 @@ const DelayChart = ({ height = 350 }) => {
         borderSkipped: "bottom",
       },
     ],
-  };
+  } as unknown as ChartData<"bar">;
 
   let delayed;
   const options = {
     responsive: true,
     plugins: {
-      legend: {
-        labels: {
-          color: mode === "dark" ? "#cbd5e1" : "#475569",
-        },
-      },
       legend: {
         labels: {
           color: `hsl(${theme?.cssVars[
@@ -158,7 +153,7 @@ const DelayChart = ({ height = 350 }) => {
     },
 
     maintainAspectRatio: false,
-  };
+  } as unknown as ChartOptions<"bar">;
 
   return (
     <div>

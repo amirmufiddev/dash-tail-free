@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultSlider = `"use client";
 import { Slider } from "@/components/ui/slider";
 const DefaultSlider = () => {

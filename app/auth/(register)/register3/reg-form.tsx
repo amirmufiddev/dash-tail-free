@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -100,7 +99,7 @@ const RegForm = () => {
           </Label>
         </div>
         {errors.name && (
-          <div className=" text-destructive mt-2">{errors.name.message}</div>
+          <div className=" text-destructive mt-2">{String(errors.name.message ?? "")}</div>
         )}
         <div className="relative mt-4">
           <Input
@@ -125,7 +124,7 @@ const RegForm = () => {
           </Label>
         </div>
         {errors.email && (
-          <div className=" text-destructive mt-2">{errors.email.message}</div>
+          <div className=" text-destructive mt-2">{String(errors.email.message ?? "")}</div>
         )}
         <div className="relative mt-4">
           <Input
@@ -164,7 +163,7 @@ const RegForm = () => {
         </div>
         {errors.password && (
           <div className=" text-destructive mt-2">
-            {errors.password.message}
+            {String(errors.password.message ?? "")}
           </div>
         )}
 

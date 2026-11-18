@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import {
@@ -14,6 +13,8 @@ import { hslToHex, hexToRGB } from "@/lib/utils";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
+import type { ChartData, ChartOptions } from "chart.js";
+import { color as chartColor } from "chart.js/helpers";
 import { Bar } from "react-chartjs-2";
 ChartJS.register(
   CategoryScale,
@@ -29,7 +30,11 @@ const colorize = (opaque) => {
     const v = ctx.parsed.y;
     const c =
       v < -50 ? "#D60000" : v < 0 ? "#F46300" : v < 50 ? "#0358B6" : "#44DE28";
-    return opaque ? c : Utils.transparentize(c, 1 - Math.abs(v / 150));
+    return opaque
+      ? c
+      : chartColor(c)
+          .alpha(1 - Math.abs(v / 150))
+          .rgbString();
   };
 };
 
@@ -50,7 +55,7 @@ const ScriptBar = ({ height = 350 }) => {
         barThickness: 50,
       },
     ],
-  };
+  } as unknown as ChartData<"bar">;
   const options = {
     responsive: true,
     plugins: {
@@ -102,7 +107,7 @@ const ScriptBar = ({ height = 350 }) => {
     },
 
     maintainAspectRatio: false,
-  };
+  } as unknown as ChartOptions<"bar">;
 
   return (
     <div>

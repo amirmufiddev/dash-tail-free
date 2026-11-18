@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import {
   Chart as ChartJS,
@@ -14,6 +13,7 @@ import {
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
+import type { ChartData, ChartOptions } from "chart.js";
 import { Radar } from "react-chartjs-2";
 
 ChartJS.register(
@@ -75,7 +75,7 @@ const RadarChart = ({ height = 350 }) => {
         pointHoverBorderColor: hslWarning,
       },
     ],
-  };
+  } as unknown as ChartData<"radar">;
   const options = {
     responsive: true,
     plugins: {
@@ -90,7 +90,7 @@ const RadarChart = ({ height = 350 }) => {
       },
     },
     maintainAspectRatio: false,
-  };
+  } as unknown as ChartOptions<"radar">;
 
   return (
     <div>

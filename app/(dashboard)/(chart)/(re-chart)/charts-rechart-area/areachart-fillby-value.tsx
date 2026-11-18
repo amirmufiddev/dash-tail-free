@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
@@ -80,7 +79,7 @@ const ReAreaChartFillByValue = ({ height = 300 }) => {
   const off = gradientOffset();
 
   return (
-    <ResponsiveContainer width={"100%"} height={height}>
+    <ResponsiveContainer height={height}>
       <AreaChart data={data}>
         <CartesianGrid
           stroke={`hsl(${

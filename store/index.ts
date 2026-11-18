@@ -1,8 +1,34 @@
-// @ts-nocheck
 import { create } from "zustand";
 import { siteConfig } from "@/config/site";
 import { persist, createJSONStorage } from "zustand/middleware";
-export const useThemeStore = create(
+
+type ThemeState = {
+  theme: string;
+  setTheme: (theme: string) => void;
+  radius: number;
+  setRadius: (value: number) => void;
+  layout: string;
+  setLayout: (value: string) => void;
+  navbarType: string;
+  setNavbarType: (value: string) => void;
+  footerType: string;
+  setFooterType: (value: string) => void;
+};
+
+type SidebarState = {
+  collapsed: boolean;
+  setCollapsed: (value: boolean) => void;
+  sidebarType: string;
+  setSidebarType: (value: string) => void;
+  subMenu: boolean;
+  setSubmenu: (value: boolean) => void;
+  sidebarBg: string;
+  setSidebarBg: (value: string) => void;
+  mobileMenu: boolean;
+  setMobileMenu: (value: boolean) => void;
+};
+
+export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
       theme: siteConfig.theme,
@@ -38,7 +64,7 @@ export const useThemeStore = create(
   )
 );
 
-export const useSidebar = create(
+export const useSidebar = create<SidebarState>()(
   persist(
     (set) => ({
       collapsed: false,

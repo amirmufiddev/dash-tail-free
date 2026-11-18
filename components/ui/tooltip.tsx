@@ -1,7 +1,6 @@
-// @ts-nocheck
 import * as React from "react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const tooltipVariants = cva(
@@ -16,6 +15,7 @@ const tooltipVariants = cva(
         success: "border border-success bg-success text-success-foreground",
         destructive:
           "border border-destructive bg-destructive text-destructive-foreground",
+        dark: "border border-default-950 bg-default-950 text-primary-foreground",
       },
     },
     defaultVariants: {
@@ -24,14 +24,11 @@ const tooltipVariants = cva(
   }
 );
 
-const TooltipProvider = React.forwardRef(
-  ({ delayDuration = 0, ...props }, ref) => (
-    <TooltipPrimitive.Provider
-      ref={ref}
-      {...props}
-      delayDuration={delayDuration}
-    />
-  )
+const TooltipProvider = ({
+  delayDuration = 0,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Provider>) => (
+  <TooltipPrimitive.Provider {...props} delayDuration={delayDuration} />
 );
 TooltipProvider.displayName = TooltipPrimitive.Provider.displayName;
 
@@ -40,7 +37,16 @@ const Tooltip = TooltipPrimitive.Root;
 const TooltipTrigger = TooltipPrimitive.Trigger;
 const TooltipArrow = TooltipPrimitive.Arrow;
 
-const TooltipContent = React.forwardRef(
+type TooltipContentProps = React.ComponentPropsWithoutRef<
+  typeof TooltipPrimitive.Content
+> & {
+  color?: VariantProps<typeof tooltipVariants>["color"];
+};
+
+const TooltipContent = React.forwardRef<
+  React.ElementRef<typeof TooltipPrimitive.Content>,
+  TooltipContentProps
+>(
   ({ className, sideOffset = 4, color, children, ...props }, ref) => (
     <TooltipPrimitive.Content
       ref={ref}

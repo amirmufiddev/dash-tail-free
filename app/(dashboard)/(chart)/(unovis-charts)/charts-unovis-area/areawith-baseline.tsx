@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { useCallback, useMemo } from "react";
@@ -56,7 +55,7 @@ const BaselineAreaChart = ({ height = 400 }) => {
           type="y"
           label="Number of Works Acquired"
           tickValues={yTicks}
-          tickFormat={useCallback((i) => `${Math.abs(i - max / 2)}`, [])}
+          tickFormat={useCallback((i: number) => `${Math.abs(i - max / 2)}`, [max])}
           tickTextColor={`hsl(${
             theme?.cssVars[
               mode === "dark" || mode === "system" ? "dark" : "light"

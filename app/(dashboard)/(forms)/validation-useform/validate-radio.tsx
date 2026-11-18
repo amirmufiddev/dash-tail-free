@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -47,7 +46,7 @@ const ValidateRadio = () => {
           Nothing
         </RadioGroupItem>
       </RadioGroup>
-      {errors.message && <p>{errors.message.message}</p>}
+      {errors.message && <p>{String(errors.message.message ?? "")}</p>}
       <div className="mt-2">
         <Button type="submit">Submit</Button>
       </div>

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import {
   Table,
@@ -37,7 +36,7 @@ const TableFoot = () => {
       </TableBody>
       <TableFooter className="bg-default-100 border-t border-default-300">
         <TableRow>
-          <TableCell colSpan="4" className="text-sm  text-default-600  font-semibold">
+          <TableCell colSpan={4} className="text-sm  text-default-600  font-semibold">
             Total
           </TableCell>
           <TableCell className="text-sm text-default-600  font-semibold text-right">41.05</TableCell>

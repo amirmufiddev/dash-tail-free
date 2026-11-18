@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import { Stepper, Step, StepLabel } from "@/components/ui/steps";
@@ -59,10 +58,10 @@ const ModernStepForm = () => {
       <div className="col-span-12 xl:col-span-3 xl:border-r xl:border-default-200 ">
         <Stepper current={activeStep} direction="vertical">
           {steps.map((label, index) => {
-            const stepProps = {};
-            const labelProps = {};
+            const stepProps: { completed?: boolean } = {};
+            const labelProps: { optional?: React.ReactNode } = {};
             return (
-              <Step key={label} {...stepProps}>
+              <Step key={index} {...stepProps}>
                 <StepLabel {...labelProps}>
                   <div className="flex flex-col">
                     <span> {label.label}</span>

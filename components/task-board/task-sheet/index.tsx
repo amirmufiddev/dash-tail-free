@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Sheet, SheetContent, SheetHeader } from "@/components/ui/sheet";
 

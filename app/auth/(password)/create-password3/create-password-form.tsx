@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -90,7 +89,7 @@ const CreatePasswordForm = () => {
             className="absolute top-1/2 -translate-y-1/2 right-4 cursor-pointer"
             onClick={() => setNewPasswordType(!newPasswordType)}
           >
-            {newPasswordType === "password" ? (
+            {!newPasswordType ? (
               <Icon icon="heroicons:eye" className="w-5 h-5 text-default-400" />
             ) : (
               <Icon
@@ -102,7 +101,7 @@ const CreatePasswordForm = () => {
         </div>
         {errors.password && (
           <div className=" text-destructive mt-2">
-            {errors.password.message}
+            {String(errors.password.message ?? "")}
           </div>
         )}
 
@@ -143,7 +142,7 @@ const CreatePasswordForm = () => {
         </div>
         {errors.confirmPassword && (
           <div className=" text-destructive mt-2">
-            {errors.confirmPassword.message}
+            {String(errors.confirmPassword.message ?? "")}
           </div>
         )}
         <div className="mt-5 flex  items-center gap-1.5 ">

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const defaultRating = `import { Rating } from "@/components/ui/rating";
 
 const DefaultRating = () => {

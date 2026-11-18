@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { api } from "@/config/axios.config";

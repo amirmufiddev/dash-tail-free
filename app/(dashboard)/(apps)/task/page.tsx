@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { getTasks } from "@/config/project-config";
 import { getContacts } from "../chat/chat-config";
 import ViewTask from "./view-task";

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import {
   Dialog,
@@ -16,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 const ForwardMessage = ({ open, contacts, setIsOpen }) => {
   return (
-    <Dialog open={open} onClose={() => alert("s")}>
+    <Dialog open={open} onOpenChange={() => alert("s")}>
       <DialogContent size="xl" className="px-0 pb-0">
         <DialogHeader className="relative py-2">
           <DialogTitle className="text-center">Forward</DialogTitle>

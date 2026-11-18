@@ -1,11 +1,10 @@
-// @ts-nocheck
 "use client"
 import { useState } from "react"
 import Leaflet from "leaflet"
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 
 Leaflet.Icon.Default.imagePath = "../node_modules/leaflet"
-delete Leaflet.Icon.Default.prototype._getIconUrl
+delete (Leaflet.Icon.Default.prototype as { _getIconUrl?: string })._getIconUrl
 
 Leaflet.Icon.Default.mergeOptions({
     iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
@@ -18,8 +17,7 @@ const PopupMarkerMap = ({ height = 350 }) => {
         lng: -0.09,
         zoom: 13,
     })
-    const position = [state.lat, state.lng]
-
+    const position: [number, number] = [state.lat, state.lng];
     return (
         <MapContainer
             center={position}

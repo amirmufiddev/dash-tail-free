@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -174,7 +173,7 @@ const EventSheet = ({ open, onClose, categories, event, selectedDate }) => {
                       />
                       {errors && (
                         <div className=" text-destructive">
-                          {errors?.title?.message}
+                          {String(errors?.title?.message ?? "")}
                         </div>
                       )}
                     </div>

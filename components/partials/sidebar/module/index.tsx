@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import { cn, isLocationMatch } from "@/lib/utils";
 import { menusConfig } from "@/config/menus";
@@ -18,7 +17,7 @@ import MenuOverlayPortal from "./MenuOverlayPortal";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const ModuleSidebar = () => {
+const ModuleSidebar = ({ collapsed: _collapsedProp }: { collapsed?: boolean } = {}) => {
   const menus = menusConfig?.sidebarNav?.modern || [];
   const { subMenu, setSubmenu, collapsed, setCollapsed, sidebarBg } =
     useSidebar();
@@ -50,7 +49,11 @@ const ModuleSidebar = () => {
 
       if (!isDesktop) {
         // when location match need to close the sub menu
-        if (isLocationMatch(menus[index].href, locationName)) {
+        if (
+          "href" in menus[index] &&
+          menus[index].href &&
+          isLocationMatch(menus[index].href, locationName)
+        ) {
           setSubmenu(false);
         }
       }
@@ -98,7 +101,7 @@ const ModuleSidebar = () => {
   useEffect(() => {
     let isMenuMatched = false;
     menus.forEach((item, i) => {
-      if (isLocationMatch(item.href, locationName)) {
+      if ("href" in item && item.href && isLocationMatch(item.href, locationName)) {
         isMenuMatched = true;
         setSubmenu(true);
         setCollapsed(true);

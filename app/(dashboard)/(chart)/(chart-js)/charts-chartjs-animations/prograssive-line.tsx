@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import {
   Chart as ChartJS,
@@ -14,6 +13,7 @@ import { hslToHex, hexToRGB } from "@/lib/utils";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
+import type { ChartData, ChartOptions } from "chart.js";
 import { Line } from "react-chartjs-2";
 
 ChartJS.register(
@@ -118,14 +118,11 @@ const ProgressiveLine = ({ height = 350 }) => {
         radius: 0,
       },
     ],
-  };
+  } as unknown as ChartData<"line">;
 
   const options = {
     responsive: true,
     plugins: {
-      legend: {
-        legend: false,
-      },
       legend: {
         labels: {
           color: `hsl(${
@@ -195,7 +192,7 @@ const ProgressiveLine = ({ height = 350 }) => {
     },
 
     maintainAspectRatio: false,
-  };
+  } as unknown as ChartOptions<"line">;
   return (
     <div>
       <Line options={options} data={data1} height={height} />

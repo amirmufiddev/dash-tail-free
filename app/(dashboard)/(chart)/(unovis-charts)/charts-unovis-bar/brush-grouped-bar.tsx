@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
@@ -21,7 +20,7 @@ const BrushGroupedBar = () => {
   const { theme: mode } = useTheme();
   const theme = themes.find((theme) => theme.name === config);
 
-  const [domain, setDomain] = useState([1980, 1990]);
+  const [domain, setDomain] = useState<[number, number]>([1980, 1990]);
   const [duration, setDuration] = useState(undefined);
   const [items, setItems] = useState(legendItems);
 
@@ -35,7 +34,7 @@ const BrushGroupedBar = () => {
   const updateDomain = useCallback((selection, _, userDriven) => {
     if (userDriven) {
       setDuration(0);
-      setDomain(selection);
+      setDomain(selection as [number, number]);
     }
   }, []);
 

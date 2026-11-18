@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -104,7 +103,7 @@ const CreatePasswordForm = () => {
             </div>
             {errors.password && (
               <div className=" text-destructive mt-2">
-                {errors.password.message}
+                {String(errors.password.message ?? "")}
               </div>
             )}
           </div>
@@ -145,7 +144,7 @@ const CreatePasswordForm = () => {
             </div>
             {errors.confirmPassword && (
               <div className=" text-destructive mt-2">
-                {errors.confirmPassword.message}
+                {String(errors.confirmPassword.message ?? "")}
               </div>
             )}
           </div>

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState } from "react";
 import { cn, isLocationMatch } from "@/lib/utils";
@@ -12,7 +11,13 @@ import { usePathname } from "next/navigation";
 import SingleMenuItem from "./single-menu-item";
 import SubMenuHandler from "./sub-menu-handler";
 import NestedSubMenu from "../common/nested-menus";
-const MobileSidebar = ({ collapsed, className }) => {
+const MobileSidebar = ({
+  collapsed,
+  className,
+}: {
+  collapsed?: boolean;
+  className?: string;
+}) => {
   const { sidebarBg, mobileMenu, setMobileMenu } = useSidebar();
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const [activeMultiMenu, setMultiMenu] = useState(null);

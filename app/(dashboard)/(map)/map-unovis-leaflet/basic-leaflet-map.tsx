@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useCallback } from "react";
 import { VisLeafletMap } from "@unovis/react";

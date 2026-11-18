@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { data } from "./data";
 import ListItem from "./list-item";
 import DetailsCard from "./details-card";

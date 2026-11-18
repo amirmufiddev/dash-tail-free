@@ -1,8 +1,7 @@
-// @ts-nocheck
 "use client";
 import * as React from "react";
 import * as SwitchPrimitives from "@radix-ui/react-switch";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const switchVariants = cva(
@@ -17,6 +16,7 @@ const switchVariants = cva(
         success: "data-[state=checked]:bg-success ",
         destructive: "data-[state=checked]:bg-destructive ",
         dark: "data-[state=checked]:bg-foreground ",
+        default: "data-[state=checked]:bg-primary ",
       },
       size: {
         sm: "h-4 w-[30px]  [&_.content-box]:text-[7px] [&_.content-box>svg]:h-2.5  [&_.content-box>svg]:w-2.5 ",
@@ -32,7 +32,23 @@ const switchVariants = cva(
   }
 );
 
-const Switch = React.forwardRef(
+export interface SwitchProps
+  extends Omit<
+      React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>,
+      "color"
+    >,
+    VariantProps<typeof switchVariants> {
+  startContent?: React.ReactNode;
+  endContent?: React.ReactNode;
+  thumbClass?: string;
+  thumbIcon?: React.ReactNode;
+  thumbSize?: string;
+}
+
+const Switch = React.forwardRef<
+  React.ElementRef<typeof SwitchPrimitives.Root>,
+  SwitchProps
+>(
   (
     {
       className,
@@ -42,6 +58,7 @@ const Switch = React.forwardRef(
       endContent,
       thumbClass,
       thumbIcon,
+      thumbSize,
       ...props
     },
     ref

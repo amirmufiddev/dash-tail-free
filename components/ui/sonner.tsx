@@ -1,13 +1,19 @@
-// @ts-nocheck
+import * as React from "react";
 import { useTheme } from "next-themes";
 import { Toaster as Sonner } from "sonner";
 
-const SonnToaster = ({ ...props }) => {
+const SonnToaster = ({
+  ...props
+}: React.ComponentProps<typeof Sonner>) => {
   const { theme = "system" } = useTheme();
+  const sonnerTheme: React.ComponentProps<typeof Sonner>["theme"] =
+    theme === "light" || theme === "dark" || theme === "system"
+      ? theme
+      : "system";
 
   return (
     <Sonner
-      theme={theme}
+      theme={sonnerTheme}
       richColors
       className="toaster group"
       toastOptions={{

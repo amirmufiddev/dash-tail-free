@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -33,7 +32,7 @@ const members = [
     image: faker.image.avatarLegacy()
   },
 ]
-const AssignMembers = ({ icon }) => {
+const AssignMembers = ({ icon = undefined }) => {
   const [open, setOpen] = useState(false);
   const togglePopover = () => setOpen(!open);
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Check, Heart, X } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";

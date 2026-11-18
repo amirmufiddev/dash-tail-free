@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import BasicLineChart from "./line-chart";
 import LineChartWithDataLabels from "./line-with-datalabels";

@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -97,19 +97,13 @@ const DistributedTreeMap = ({ height = 300 }) => {
             '#EF6537',
             '#C0ADDB'
         ],
-        padding: {
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-        },
         plotOptions: {
             treemap: {
                 distributed: true,
                 enableShades: false
             }
         }
-    };
+    } as unknown as ApexOptions;
     return (
         <>
             <Chart

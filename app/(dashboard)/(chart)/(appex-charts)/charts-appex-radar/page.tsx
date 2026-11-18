@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import BasicRadar from "./basic-radar";
 import MultipleSeriesRadar from "./multiple-series-radar";

@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -76,7 +76,7 @@ const SynchronizedChart = ({ height = 300 }) => {
         })`
       ),
     },
-  };
+  } as unknown as ApexOptions;
   const seriesLine2 = [
     {
       data: generateDayWiseTimeSeries(new Date("11 Feb 2017").getTime(), 20, {
@@ -127,7 +127,7 @@ const SynchronizedChart = ({ height = 300 }) => {
         })`
       ),
     },
-  };
+  } as unknown as ApexOptions;
 
   const seriesArea = [
     {
@@ -156,9 +156,6 @@ const SynchronizedChart = ({ height = 300 }) => {
         size: 6,
       },
     },
-    grid: getGridConfig(
-      `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
-    ),
     colors: [`hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].info})`],
     xaxis: {
       type: "datetime",
@@ -183,7 +180,7 @@ const SynchronizedChart = ({ height = 300 }) => {
         })`
       ),
     },
-  };
+  } as unknown as ApexOptions;
 
   return (
     <>

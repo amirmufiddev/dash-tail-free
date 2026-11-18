@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const basicCommand = `"use client";
 import {
   Calculator,

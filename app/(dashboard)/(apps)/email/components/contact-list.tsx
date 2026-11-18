@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -12,9 +11,9 @@ import {
 } from "@/components/ui/tooltip";
 const ContactList = ({
   contact,
-  selectedChatId,
-  handleOpenChatBox,
-  isCollapsed,
+  selectedChatId = undefined,
+  handleOpenChatBox = undefined,
+  isCollapsed = undefined,
 }) => {
   const { avatar, id, fullName, status, about, chat, unreadmessage, date } =
     contact;

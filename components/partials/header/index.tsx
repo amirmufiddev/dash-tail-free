@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import { cn } from "@/lib/utils";
@@ -17,7 +16,15 @@ import MobileMenuHandler from "./mobile-menu-handler";
 import ClassicHeader from "./layout/classic-header";
 import FullScreen from "./full-screen";
 
-const NavTools = ({ isDesktop, isMobile, sidebarType }) => {
+const NavTools = ({
+  isDesktop,
+  isMobile,
+  sidebarType,
+}: {
+  isDesktop?: boolean;
+  isMobile?: boolean;
+  sidebarType?: string;
+}) => {
   return (
     <div className="nav-tools flex items-center  gap-2">
       {isDesktop && <Language />}
@@ -34,7 +41,11 @@ const NavTools = ({ isDesktop, isMobile, sidebarType }) => {
     </div>
   );
 };
-const Header = ({ handleOpenSearch }) => {
+const Header = ({
+  handleOpenSearch,
+}: {
+  handleOpenSearch?: () => void;
+}) => {
   const { collapsed, sidebarType, setCollapsed, subMenu, setSidebarType } =
     useSidebar();
   const { layout, navbarType, setLayout } = useThemeStore();

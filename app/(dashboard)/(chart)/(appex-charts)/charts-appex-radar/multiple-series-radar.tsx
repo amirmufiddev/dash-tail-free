@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -63,20 +63,6 @@ const MultipleSeriesRadar = ({ height = 350 }) => {
         },
       },
     },
-    fill: {
-      type: "gradient",
-      colors: [
-        `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].primary})`,
-        `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].info})`,
-        `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].success})`,
-      ],
-      gradient: {
-        shadeIntensity: 1,
-        opacityFrom: 0.2,
-        opacityTo: 0.1,
-        stops: [50, 100, 0],
-      },
-    },
     tooltip: {
       theme: mode === "dark" ? "dark" : "light",
     },
@@ -118,7 +104,7 @@ const MultipleSeriesRadar = ({ height = 350 }) => {
         })`,
       },
     },
-  };
+  } as unknown as ApexOptions;
   return (
     <>
       <Chart

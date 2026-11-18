@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -60,7 +59,7 @@ const SimpleForm = () => {
               "text-destructive": errors.email,
             })}
           >
-            {errors.email.message}
+            {String(errors.email.message ?? "")}
           </p>
         )}
       </div>
@@ -82,7 +81,7 @@ const SimpleForm = () => {
           })}
         />
         {errors.password && (
-          <p className="text-xs text-destructive">{errors.password.message}</p>
+          <p className="text-xs text-destructive">{String(errors.password.message ?? "")}</p>
         )}
       </div>
       <div className="mt-2">

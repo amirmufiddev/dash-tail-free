@@ -1,6 +1,5 @@
-// @ts-nocheck
 import * as React from "react";
-import { cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 
@@ -23,8 +22,8 @@ const alertVariants = cva(
       },
     },
     compoundVariants: [
-      ...["destructive", "success", "info", "warning", "dark"].map((color) => ({
-        variant: "outline",
+      ...(["destructive", "success", "info", "warning", "dark"] as const).map((color) => ({
+        variant: "outline" as const,
         color,
         className: `text-${color} bg-transparent`,
       })),
@@ -39,25 +38,13 @@ const alertVariants = cva(
         color: "default",
         className: "text-primary bg-transparent",
       },
-      ...["info", "warning", "destructive", "success", "secondary"].map(
+      ...(["info", "warning", "destructive", "success", "secondary"] as const).map(
         (color) => ({
-          variant: "soft",
+          variant: "soft" as const,
           color,
           className: `text-${color}`,
         })
       ),
-      ...["info", "warning", "destructive", "success", "secondary"].map(
-        (color) => ({
-          variant: "ghost",
-          color,
-          className: `text-${color}`,
-        })
-      ),
-      {
-        variant: "ghost",
-        color: "default",
-        className: "text-primary",
-      },
       {
         variant: "soft",
         color: "default",
@@ -75,7 +62,14 @@ const alertVariants = cva(
   }
 );
 
-const Alert = React.forwardRef(
+export interface AlertProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "color">,
+    VariantProps<typeof alertVariants> {
+  dismissible?: boolean;
+  onDismiss?: () => void;
+}
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
   (
     { className, color, variant, dismissible, onDismiss, children, ...props },
     ref
@@ -95,7 +89,6 @@ const Alert = React.forwardRef(
         role="alert"
         className={cn(alertVariants({ color, variant }), className)}
         {...props}
-        {...props}
       >
         {children}
         {dismissible && (
@@ -109,7 +102,10 @@ const Alert = React.forwardRef(
 );
 Alert.displayName = "Alert";
 
-const AlertTitle = React.forwardRef(({ className, ...props }, ref) => (
+const AlertTitle = React.forwardRef<
+  HTMLHeadingElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
   <h5
     ref={ref}
     className={cn(
@@ -121,7 +117,10 @@ const AlertTitle = React.forwardRef(({ className, ...props }, ref) => (
 ));
 AlertTitle.displayName = "AlertTitle";
 
-const AlertDescription = React.forwardRef(({ className, ...props }, ref) => (
+const AlertDescription = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
   <div
     ref={ref}
     className={cn("text-sm [&_p]:leading-relaxed grow", className)}

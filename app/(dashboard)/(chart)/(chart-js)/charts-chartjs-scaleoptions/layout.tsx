@@ -1,4 +1,3 @@
-// @ts-nocheck
 export const metadata = {
   title: "Chart-js Scale Option Chart ",
 };

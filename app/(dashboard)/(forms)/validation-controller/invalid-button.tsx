@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -67,7 +66,7 @@ const InvalidButton = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={form.formState.errors.username}>
+        <Button type="submit" disabled={!!form.formState.errors.username}>
           Submit
         </Button>
       </form>

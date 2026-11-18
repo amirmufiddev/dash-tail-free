@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Card from "@/components/ui/card-snippet";
 import BasicCombobox from "./basic-combobox"
 import { basicComboBox } from "./source-code"

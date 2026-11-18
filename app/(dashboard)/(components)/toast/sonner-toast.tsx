@@ -1,11 +1,12 @@
-// @ts-nocheck
 "use client";
 import React from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 
 const promise = () =>
-  new Promise((resolve) => setTimeout(() => resolve({ name: "Sonner" }), 2000));
+  new Promise<{ name: string }>((resolve) =>
+    setTimeout(() => resolve({ name: "Sonner" }), 2000)
+  );
 const SoonerToastDemo = () => {
   return (
     <>

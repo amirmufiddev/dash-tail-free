@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import BasicBubble from "./basic-bubble";
 import Bubble3D from "./bubble-3d";

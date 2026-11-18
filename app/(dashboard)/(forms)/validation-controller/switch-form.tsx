@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,6 +25,7 @@ const SwitchForm = () => {
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
+      marketing_emails: false,
       security_emails: true,
     },
   });

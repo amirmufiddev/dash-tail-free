@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 import DashboardDropdown from "@/components/dashboard-dropdown";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 
 import { SiteLogo } from "@/components/svg";
@@ -109,7 +108,7 @@ const InvoicePreview = () => {
                     <TableRow>
                       {
                         columns.map(column => (
-                          <TableHead key={`invoice-table-${column.key}`} className="text-default-600 last:text-right">
+                          <TableHead key={`invoice-table-${column.id}`} className="text-default-600 last:text-right">
                             {column.label}
                           </TableHead>
                         ))

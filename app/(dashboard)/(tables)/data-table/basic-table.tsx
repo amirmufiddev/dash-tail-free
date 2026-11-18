@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import * as React from "react";
 
@@ -190,7 +189,7 @@ export function BasicDataTable() {
       <div className="flex items-center flex-wrap gap-2  px-4">
         <Input
           placeholder="Filter emails..."
-          value={table.getColumn("email")?.getFilterValue() || ""}
+          value={String(table.getColumn("email")?.getFilterValue() ?? "")}
           onChange={(event) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
           }

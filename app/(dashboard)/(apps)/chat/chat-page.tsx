@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useCallback, useEffect, useRef } from "react";
 import {
@@ -63,7 +62,7 @@ export const ChatPage = () => {
   } = useQuery({
     queryKey: ["contacts"],
     queryFn: () => getContacts(),
-    keepPreviousData: true,
+    placeholderData: (previousData: unknown) => previousData,
   });
   const {
     isLoading: messageLoading,
@@ -74,7 +73,7 @@ export const ChatPage = () => {
   } = useQuery({
     queryKey: ["message", selectedChatId],
     queryFn: () => getMessagesCallback(selectedChatId),
-    keepPreviousData: true,
+    placeholderData: (previousData: unknown) => previousData,
   });
   const {
     isLoading: profileLoading,
@@ -85,19 +84,19 @@ export const ChatPage = () => {
   } = useQuery({
     queryKey: ["profile"],
     queryFn: () => getProfile(),
-    keepPreviousData: true,
+    placeholderData: (previousData: unknown) => previousData,
   });
   const messageMutation = useMutation({
     mutationFn: sendMessage,
     onSuccess: () => {
-      queryClient.invalidateQueries("messages");
+      queryClient.invalidateQueries({ queryKey: ["messages"] });
     },
   });
 
   const deleteMutation = useMutation({
     mutationFn: deleteMessage,
     onSuccess: () => {
-      queryClient.invalidateQueries("messages");
+      queryClient.invalidateQueries({ queryKey: ["messages"] });
     },
   });
 

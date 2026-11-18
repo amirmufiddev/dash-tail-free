@@ -1,4 +1,3 @@
-// @ts-nocheck
 import avatar1 from "@/public/images/avatar/avatar-1.jpg";
 import avatar2 from "@/public/images/avatar/avatar-2.jpg";
 import avatar3 from "@/public/images/avatar/avatar-3.jpg";
@@ -149,11 +148,11 @@ export function generateAssignments(numAssign) {
 // export const projects = generateFakeData(6);
 
 const currentYear = new Date().getFullYear();
-const assignDate = faker.date.past(
-  `${currentYear}-01-01`,
-  `${currentYear}-12-31`
-);
-const dueDate = faker.date.future(assignDate, `${currentYear}-12-31`);
+const assignDate = faker.date.between({
+  from: `${currentYear}-01-01`,
+  to: `${currentYear}-12-31`,
+});
+const dueDate = faker.date.future({ refDate: assignDate });
 export const projects = [
   {
     id: 1,

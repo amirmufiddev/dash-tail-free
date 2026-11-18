@@ -1,9 +1,10 @@
-// @ts-nocheck
-export const getYAxisConfig = (colors) => ({
+import type { ApexOptions } from "apexcharts";
+
+export const getYAxisConfig = (colors: string): ApexOptions["yaxis"] => ({
   labels: getLabel(colors),
 });
 
-export const getXAxisConfig = (colors) => ({
+export const getXAxisConfig = (colors: string): ApexOptions["xaxis"] => ({
   categories: [
     "Jan",
     "Feb",
@@ -28,14 +29,14 @@ export const getXAxisConfig = (colors) => ({
 
 });
 
-export const getLabel = (colors) => ({
+export const getLabel = (colors: string) => ({
   style: {
     colors: colors,
     fontFamily: "Inter",
   },
 });
 
-export const getGridConfig = (colors) => ({
+export const getGridConfig = (colors: string): ApexOptions["grid"] => ({
   show: true,
   borderColor: colors,
   strokeDashArray: 10,

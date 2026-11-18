@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import LockForm from "./lock-form";

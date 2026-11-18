@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+import type { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { useThemeStore } from "@/store";
@@ -113,7 +113,7 @@ const BasicHeatMap = ({ height = 350 }) => {
     tooltip: {
       enabled: true,
       fillSeriesColor: `hsl(${
-        theme?.cssVars[mode === "dark" ? "dark" : "light"].default
+        theme?.cssVars[mode === "dark" ? "dark" : "light"].chartLabel
       })`,
     },
     colors: ["#008FFB"],
@@ -146,7 +146,7 @@ const BasicHeatMap = ({ height = 350 }) => {
     legend: {
       show: false,
     },
-  };
+  } as unknown as ApexOptions;
 
   return (
     <Chart

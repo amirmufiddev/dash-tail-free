@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 import { useState } from 'react';
 import { BarChart, Bar, Cell, ResponsiveContainer } from 'recharts';

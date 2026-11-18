@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
@@ -92,7 +91,7 @@ const data = [
 
 const monthTickFormatter = (tick) => {
   const date = new Date(tick);
-  return date.getMonth() + 1;
+  return String(date.getMonth() + 1);
 };
 const renderQuarterTick = (tickProps) => {
   const { x, y, payload } = tickProps;

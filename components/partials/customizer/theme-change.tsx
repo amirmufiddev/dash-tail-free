@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useThemeStore } from "@/store";
 import { cn } from "@/lib/utils";
 import React from "react";

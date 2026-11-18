@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 export const palette = [
     '#04c0c7',
