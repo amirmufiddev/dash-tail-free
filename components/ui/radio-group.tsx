@@ -93,30 +93,9 @@ const RadioGroupItem = React.forwardRef<
     },
     ref
   ) => {
-    return (
-      <>
-        {children ? (
-          <div className="flex items-center  space-x-2">
-            <RadioGroupPrimitive.Item
-              ref={ref}
-              className={cn(
-                radioVariants({ color, size, radius, variant }),
-                className
-              )}
-              {...props}
-            >
-              <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-                {icon}
-              </RadioGroupPrimitive.Indicator>
-            </RadioGroupPrimitive.Item>
-            <Label
-              htmlFor={props.id}
-              className="font-normal text-default-600 cursor-pointer"
-            >
-              {children}
-            </Label>
-          </div>
-        ) : (
+    if (children) {
+      return (
+        <div className="flex items-center space-x-2">
           <RadioGroupPrimitive.Item
             ref={ref}
             className={cn(
@@ -129,8 +108,29 @@ const RadioGroupItem = React.forwardRef<
               {icon}
             </RadioGroupPrimitive.Indicator>
           </RadioGroupPrimitive.Item>
+          <Label
+            htmlFor={props.id}
+            className="font-normal text-default-600 cursor-pointer"
+          >
+            {children}
+          </Label>
+        </div>
+      );
+    }
+
+    return (
+      <RadioGroupPrimitive.Item
+        ref={ref}
+        className={cn(
+          radioVariants({ color, size, radius, variant }),
+          className
         )}
-      </>
+        {...props}
+      >
+        <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
+          {icon}
+        </RadioGroupPrimitive.Indicator>
+      </RadioGroupPrimitive.Item>
     );
   }
 );

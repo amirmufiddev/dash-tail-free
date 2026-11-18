@@ -106,7 +106,6 @@ const Stepper = React.forwardRef<HTMLOListElement, StepperProps>(
           const isBeforeLast = index === childItem.length - 2;
           const count = index + 1;
           return React.cloneElement(child, {
-            ...props,
             isLast,
             activeStep: activeStep,
             disabled: disabled && !isLast,
@@ -154,6 +153,8 @@ const Step = React.forwardRef<HTMLLIElement, StepProps>(
       isBeforeLast,
       status,
       completed,
+      activeStep: _activeStep,
+      disabled: _disabled,
       ...props
     },
     ref

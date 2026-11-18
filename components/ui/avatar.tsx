@@ -39,9 +39,17 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         )}
         {...props}
       >
-        {avatars.slice(0, visibleCount).map((avatar, index) => (
-          <React.Fragment key={index}>{avatar}</React.Fragment>
-        ))}
+        {avatars.slice(0, visibleCount).map((avatar, index) =>
+          React.isValidElement(avatar)
+            ? React.cloneElement(avatar, {
+                key: avatar.key ?? `avatar-group-${index}`,
+              })
+            : (
+                <span key={`avatar-group-${index}`} className="contents">
+                  {avatar}
+                </span>
+              )
+        )}
         {avatars.length > visibleCount && (
           <>
             {custom ? (

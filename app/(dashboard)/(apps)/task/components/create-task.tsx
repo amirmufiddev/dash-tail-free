@@ -111,7 +111,9 @@ const CreateTask = ({ open, onClose }: { open: boolean; onClose: ((arg0: unknown
                 <Input
                   placeholder="Select Date"
                   onFocus={toggleOpenDate}
-                  value={formattedDate} />
+                  value={formattedDate}
+                  readOnly
+                />
 
                 <CalendarDays
                   className="w-4 h-4 text-default-400 absolute top-1/2 right-2 -translate-y-1/2"
@@ -134,7 +136,7 @@ const CreateTask = ({ open, onClose }: { open: boolean; onClose: ((arg0: unknown
             </div>
           </div>
           <SheetFooter className="pb-10">
-            <SheetClose>
+            <SheetClose asChild>
               <Button type="button" color="warning">Cancel</Button>
             </SheetClose>
             <Button>Create Task</Button>
