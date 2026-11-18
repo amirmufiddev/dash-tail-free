@@ -14,22 +14,26 @@ import {
 } from "recharts";
 import { data } from "./data";
 import CustomTooltip from "./custom-tooltip";
+import type { LabelProps } from "recharts";
 
-const renderCustomizedLabel = (props: { x: number; y: number; width: number; height: unknown; value: string }) => {
-  const { x, y, width, height, value } = props;
+const renderCustomizedLabel = ({ x, y, width, value }: LabelProps) => {
+  const originX = typeof x === "number" ? x : Number(x ?? 0);
+  const originY = typeof y === "number" ? y : Number(y ?? 0);
+  const barWidth = typeof width === "number" ? width : Number(width ?? 0);
+  const label = typeof value === "string" ? value : String(value ?? "");
   const radius = 10;
 
   return (
     <g>
-      <circle cx={x + width / 2} cy={y - radius} r={radius} fill="#8884d8" />
+      <circle cx={originX + barWidth / 2} cy={originY - radius} r={radius} fill="#8884d8" />
       <text
-        x={x + width / 2}
-        y={y - radius}
+        x={originX + barWidth / 2}
+        y={originY - radius}
         fill="#fff"
         textAnchor="middle"
         dominantBaseline="middle"
       >
-        {value.split(" ")[1]}
+        {label.split(" ")[1]}
       </text>
     </g>
   );

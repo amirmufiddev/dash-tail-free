@@ -19,20 +19,28 @@ import htmli from "@/public/images/files/html.png";
 import zipi from "@/public/images/files/zip.png";
 import figmai from "@/public/images/files/figma.png";
 import aii from "@/public/images/files/ai.png";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 
-const ListFileCard = ({ files }: { files: ({ id: string | number; email: string | number; ext?: string | React.ReactNode; background?: unknown; heading?: React.ReactNode; size?: React.ReactNode; date?: React.ReactNode })[] }) => {
-  const [selectedRows, setSelectedRows] = useState<unknown[]>([]);
+type ProjectFile = {
+  ext: string;
+  heading: string;
+  date: string;
+  size: string;
+  background?: StaticImageData | string;
+};
+
+const ListFileCard = ({ files }: { files: ProjectFile[] }) => {
+  const [selectedRows, setSelectedRows] = useState<string[]>([]);
 
   const handleSelectAll = (event: unknown) => {
     if (selectedRows?.length === files?.length) {
       setSelectedRows([]);
     } else {
-      setSelectedRows(files.map((row) => row.id));
+      setSelectedRows(files.map((row) => row.heading));
     }
   };
 
-  const handleRowSelect = (id: never[]) => {
+  const handleRowSelect = (id: string) => {
     const updatedSelectedRows = [...selectedRows];
     if (selectedRows.includes(id)) {
       updatedSelectedRows.splice(selectedRows.indexOf(id), 1);
@@ -44,14 +52,14 @@ const ListFileCard = ({ files }: { files: ({ id: string | number; email: string 
   const selectEvenRows = () => {
     const evenRowIds = files
       .filter((_, index) => index % 2 !== 0)
-      .map((row) => row.id);
+      .map((row) => row.heading);
     setSelectedRows(evenRowIds);
   };
 
   const selectOddRows = () => {
     const oddRowIds = files
       .filter((_, index) => index % 2 === 0)
-      .map((row) => row.id);
+      .map((row) => row.heading);
     setSelectedRows(oddRowIds);
   };
   return (
@@ -81,14 +89,14 @@ const ListFileCard = ({ files }: { files: ({ id: string | number; email: string 
         <TableBody>
           {files.map((item) => (
             <TableRow
-              key={item.email}
+              key={item.heading}
                 className="hover:bg-muted whitespace-nowrap"
-                data-state={selectedRows.includes(item.id) && "selected"}
+                data-state={selectedRows.includes(item.heading) && "selected"}
               >
                 <TableCell>
                   <Checkbox
-                    checked={selectedRows.includes(item.id)}
-                    onCheckedChange={() => handleRowSelect(item.id)}
+                    checked={selectedRows.includes(item.heading)}
+                    onCheckedChange={() => handleRowSelect(item.heading)}
                   />
                 </TableCell>
                 <TableCell className="font-medium  text-card-foreground/80">
@@ -98,12 +106,17 @@ const ListFileCard = ({ files }: { files: ({ id: string | number; email: string 
                       alt=""
                         className="h-full w-full object-cover"
                         src={
-                          (item?.ext === "pdf" && pdfi) ||
-                          (item?.ext === "html" && htmli) ||
-                          (item?.ext === "ai" && aii) ||
-                          (item?.ext === "fig" && figmai) ||
-                          (item?.ext === "zip" && zipi) ||
-                          item?.background
+                          item.ext === "pdf"
+                            ? pdfi
+                            : item.ext === "html"
+                              ? htmli
+                              : item.ext === "ai"
+                                ? aii
+                                : item.ext === "fig"
+                                  ? figmai
+                                  : item.ext === "zip"
+                                    ? zipi
+                                    : item.background ?? pdfi
                         }
                       />
                     </div>

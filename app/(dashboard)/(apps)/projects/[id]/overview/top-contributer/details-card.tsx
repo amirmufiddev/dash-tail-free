@@ -6,7 +6,18 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 import { Crown } from "@/components/svg";
-const DetailsCard = ({ item, index }: { item: { name: React.ReactNode; score: React.ReactNode | string | number; image: { src: string }; count: React.ReactNode }; index: number }) => {
+const DetailsCard = ({
+  item,
+  index,
+}: {
+  item: {
+    name: string;
+    score: string | number;
+    image: { src: string };
+    count: string | number;
+  };
+  index: number;
+}) => {
   const { name, score, image, count } = item;
 
   let color = "success";
@@ -46,7 +57,7 @@ const DetailsCard = ({ item, index }: { item: { name: React.ReactNode; score: Re
             <div className="text-base font-medium text-default-800 mb-1">{name}</div>
             <Badge
               className="rounded-full h-8 "
-              color={index === 1 ? "" : color}
+              color={index === 1 ? "default" : color}
             >
               {count} <span className="text-xs font-medium ml-1.5">Contributed</span>
             </Badge>

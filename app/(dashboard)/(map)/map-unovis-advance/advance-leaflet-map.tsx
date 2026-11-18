@@ -1,13 +1,21 @@
 "use client"
 import type { StyleSpecification } from "maplibre-gl";
 import { useCallback, useMemo, useRef } from 'react'
-import { LeafletMap } from '@unovis/ts'
-import { VisLeafletMap } from '@unovis/react'
+import { LeafletMap, type LeafletMapClusterDatum } from '@unovis/ts'
+import { VisLeafletMap, type VisLeafletMapRef } from '@unovis/react'
 import { data, totalEvents, mapStyleLight, mapStyleDark } from './data'
 
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
+
+type SiteDatum = {
+    latitude: number;
+    longitude: number;
+    name: string;
+    normal: number;
+    blocked: number;
+};
 
 const AdvancedLeafletMap = ({ height = 350 }) => {
 
@@ -15,14 +23,17 @@ const AdvancedLeafletMap = ({ height = 350 }) => {
     const { theme: mode } = useTheme();
     const theme = themes.find((theme) => theme.name === config);
 
-    const mapRef = useRef(null);
+    const mapRef = useRef<VisLeafletMapRef<SiteDatum>>(null);
     const pointId = (d: { name: string }) => d.name;
     const pointLatitude = (d: { latitude: number }) => d.latitude;
     const pointLongitude = (d: { longitude: number }) => d.longitude;
     const pointBottomLabel = (d: { name: string }) => d.name;
-    const pointRadius = (d: { normal: number; blocked: unknown }) => 10 + 4 * Math.sqrt((d.normal + (d.blocked || 0)) / totalEvents);
-    const pointLabel = (d: { blocked: number; normal: number }) => `${((d.blocked + d.normal) / 1000).toFixed(1)}K`;
-    const clusterBottomLabel = (d: { point_count: string }) => `${d.point_count} sites`;
+    const pointRadius = (d: { normal?: number; blocked?: number }) =>
+        10 + 4 * Math.sqrt(((d.normal ?? 0) + (d.blocked ?? 0)) / totalEvents);
+    const pointLabel = (d: { blocked?: number; normal?: number }) =>
+        `${(((d.blocked ?? 0) + (d.normal ?? 0)) / 1000).toFixed(1)}K`;
+    const clusterBottomLabel = (d: LeafletMapClusterDatum<SiteDatum>) =>
+        `${d.point_count} sites`;
 
     const colorMap = {
         normal: { color: `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].primary})` },
@@ -31,12 +42,13 @@ const AdvancedLeafletMap = ({ height = 350 }) => {
 
     const events = {
         [LeafletMap.selectors.point]: {
-            click: (d: { properties: { cluster?: unknown }; id: string | number }) => {
-                if (!d.properties?.cluster) mapRef.current?.component.zoomToPointById(d.id, true, 5)
+            click: (d: { properties?: { cluster?: boolean }; id?: string | number }) => {
+                if (d.properties?.cluster || d.id == null) return;
+                mapRef.current?.component?.zoomToPointById(String(d.id), true, 5)
             },
         },
         [LeafletMap.selectors.background]: {
-            click: () => { mapRef.current?.component.unselectPoint() },
+            click: () => { mapRef.current?.component?.unselectPoint() },
         },
     }
 

@@ -11,6 +11,7 @@ import {
   AreaChart,
   Area,
 } from "recharts";
+import type { TooltipContentProps } from "recharts";
 
 const PercentReAreaChart = ({ height = 300 }) => {
   const { theme: config, setTheme: setConfig } = useThemeStore();
@@ -71,9 +72,19 @@ const PercentReAreaChart = ({ height = 300 }) => {
     return toPercent(ratio, 2);
   };
 
-  const renderTooltipContent = (o: { payload: ({ color: unknown; name: string; value: string })[]; label: string }) => {
-    const { payload, label } = o;
-    const total = payload.reduce((result, entry) => result + entry.value, 0);
+  const renderTooltipContent = ({
+    payload,
+    label,
+  }: TooltipContentProps) => {
+    const amountOf = (value: typeof payload[number]["value"]) => {
+      if (typeof value === "number") return value;
+      if (typeof value === "string") {
+        const parsed = Number(value);
+        return Number.isFinite(parsed) ? parsed : 0;
+      }
+      return 0;
+    };
+    const total = payload.reduce((result, entry) => result + amountOf(entry.value), 0);
 
     return (
       <div className="customized-tooltip-content">
@@ -82,7 +93,7 @@ const PercentReAreaChart = ({ height = 300 }) => {
           {payload.map((entry, index) => (
             <li key={`item-${index}`} style={{ color: entry.color }}>
               {`${entry.name}: ${entry.value}(${getPercent(
-                entry.value,
+                amountOf(entry.value),
                 total
               )})`}
             </li>

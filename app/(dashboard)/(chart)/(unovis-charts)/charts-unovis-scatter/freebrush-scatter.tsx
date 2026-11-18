@@ -11,6 +11,14 @@ import {
 } from "@unovis/react";
 import { brushChartData } from "./data";
 import type { FreeBrushSelection, ScatterBrushDatum } from "../datum-types";
+
+type UnovisBrush = [number, number] | [[number, number], [number, number]];
+
+function isXYBrush(
+  value: UnovisBrush
+): value is [[number, number], [number, number]] {
+  return typeof value[0] !== "number";
+}
 import { unovisTickFormat } from "@/lib/unovis-chart";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
@@ -64,10 +72,13 @@ const FreeBrushScatter = () => {
         <VisFreeBrush
           selectionMinLength={[0, 0]}
           autoHide={false}
-          onBrushEnd={useCallback(
-            (value: FreeBrushSelection | undefined) => setSelection(value),
-            []
-          )}
+          onBrushEnd={useCallback((value: UnovisBrush | undefined) => {
+            if (!value || !isXYBrush(value)) {
+              setSelection(undefined);
+              return;
+            }
+            setSelection([value[0], value[1]]);
+          }, [])}
           mode={FreeBrushMode.XY}
         />
       </VisXYContainer>

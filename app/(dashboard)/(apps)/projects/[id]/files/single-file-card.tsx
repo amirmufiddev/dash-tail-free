@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import pdfi from "@/public/images/files/pdf.png";
 import htmli from "@/public/images/files/html.png";
 import zipi from "@/public/images/files/zip.png";
@@ -10,19 +10,26 @@ import figmai from "@/public/images/files/figma.png";
 import aii from "@/public/images/files/ai.png";
 import { Icon } from "@iconify/react";
 
-const SingleFileCard = ({ item }: { item: { background: string; ext: string; heading?: React.ReactNode; date?: React.ReactNode; size?: React.ReactNode } }) => {
+const SingleFileCard = ({
+  item,
+}: {
+  item: {
+    background?: StaticImageData | string;
+    ext: string;
+    heading?: string;
+    date?: string;
+    size?: string;
+  };
+}) => {
   return (
     <div className="relative min-h-[164px] shadow-sm dark:border rounded">
-      <Image
-        alt=""
-        src={item?.background}
-        className={cn(
-          "absolute top-0 left-0 h-full w-full object-cover dark:border-none rounded",
-          {
-            hidden: item.background === undefined,
-          }
-        )}
-      />
+          {item.background ? (
+            <Image
+              alt=""
+              src={item.background}
+              className="absolute top-0 left-0 h-full w-full object-cover dark:border-none rounded"
+            />
+          ) : null}
 
       <div className="p-6">
         <div
@@ -34,11 +41,15 @@ const SingleFileCard = ({ item }: { item: { background: string; ext: string; hea
             alt=""
             className="h-full w-full object-cover"
             src={
-              (item?.ext === "pdf" && pdfi) ||
-              (item?.ext === "html" && htmli) ||
-              (item?.ext === "ai" && aii) ||
-              (item?.ext === "fig" && figmai) ||
-              (item?.ext === "zip" && zipi)
+              item.ext === "pdf"
+                ? pdfi
+                : item.ext === "html"
+                  ? htmli
+                  : item.ext === "ai"
+                    ? aii
+                    : item.ext === "fig"
+                      ? figmai
+                      : zipi
             }
           />
         </div>

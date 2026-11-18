@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { data } from "./data";
+import type { LabelProps } from "recharts";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 const WorkloadChart = ({ height = 295 }) => {
@@ -18,15 +19,17 @@ const WorkloadChart = ({ height = 295 }) => {
   const { theme: mode } = useTheme();
   const theme = themes.find((theme) => theme.name === config);
 
-  const renderCustomizedLabel = (props: { x: number; y: number; width: number; height: unknown; value: React.ReactNode }) => {
-    const { x, y, width, height, value } = props;
+  const renderCustomizedLabel = ({ x, y, width, value }: LabelProps) => {
+    const originX = typeof x === "number" ? x : Number(x ?? 0);
+    const originY = typeof y === "number" ? y : Number(y ?? 0);
+    const barWidth = typeof width === "number" ? width : Number(width ?? 0);
     const radius = 10;
 
     return (
       <g>
         <text
-          x={x + width / 2}
-          y={y - radius}
+          x={originX + barWidth / 2}
+          y={originY - radius}
           textAnchor="middle"
           fill={`hsl(${
             theme?.cssVars[mode === "dark" ? "dark" : "light"].chartLabel

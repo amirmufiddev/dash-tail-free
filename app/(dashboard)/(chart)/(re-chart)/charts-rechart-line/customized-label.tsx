@@ -12,18 +12,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import CustomTooltip from "./custom-tooltip";
+import type { LabelProps } from "recharts";
 
-const CustomLabel = ({
-  x,
-  y,
-  stroke,
-  value,
-}: {
-  x?: number;
-  y?: number;
-  stroke?: string;
-  value?: string | number;
-}) => {
+const CustomLabel = ({ x, y, stroke, value }: LabelProps) => {
   return (
     <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor="middle">
       {value}

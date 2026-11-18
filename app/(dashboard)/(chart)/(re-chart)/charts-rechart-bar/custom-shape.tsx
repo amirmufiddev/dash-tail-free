@@ -26,8 +26,19 @@ const getPath = (x: number, y: number, width: number, height: number) => {
     Z`;
 };
 
-const TriangleBar = (props: { fill: string; x: number; y: number; width: number; height: number }) => {
-  const { fill, x, y, width, height } = props;
+const TriangleBar = ({
+  fill = "none",
+  x = 0,
+  y = 0,
+  width = 0,
+  height = 0,
+}: {
+  fill?: string;
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+}) => {
 
   return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
 };

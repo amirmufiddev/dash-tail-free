@@ -7,6 +7,16 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
+import { LegacyColumn as Column } from "@tanstack/react-table/legacy";
+
+type InvoiceRow = {
+  id: string;
+  customer?: {
+    name?: string;
+    email?: string;
+    avatar?: { src?: string };
+  };
+};
 
 
 export const columns = [
@@ -36,7 +46,7 @@ export const columns = [
   },
   {
     accessorKey: "id",
-    header: ({ column }: { column: unknown }) => (
+    header: ({ column }: { column: Column<InvoiceRow, unknown> }) => (
       <DataTableColumnHeader column={column} title="INVOICE ID" />
     ),
     cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => <div className="w-[80px]">{row.getValue("id")}</div>,
@@ -49,12 +59,12 @@ export const columns = [
     cell: ({ row }: { row: { original?: { customer?: { avatar?: { src?: string }; name?: React.ReactNode; email?: React.ReactNode } } } }) => (
       <div className="flex gap-2 items-center">
         <Avatar className=" rounded-full">
-          <AvatarImage src={row?.original?.customer.avatar.src} />
+          <AvatarImage src={row.original?.customer?.avatar?.src} />
           <AvatarFallback>AB</AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
-          <span className=" text-sm font-medium text-default-600 whitespace-nowrap"> {row?.original?.customer.name} </span>
-          <span className=" text-xs text-default-500 whitespace-nowrap"> {row?.original?.customer.email} </span>
+          <span className=" text-sm font-medium text-default-600 whitespace-nowrap"> {row.original?.customer?.name} </span>
+          <span className=" text-xs text-default-500 whitespace-nowrap"> {row.original?.customer?.email} </span>
         </div>
       </div>
     ),

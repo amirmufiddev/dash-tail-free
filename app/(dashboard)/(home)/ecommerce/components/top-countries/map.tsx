@@ -1,7 +1,13 @@
 "use client"
 import GoogleMapReact from 'google-map-react';
 
-const Map = ({ height = 300, defaultProps }: { height?: unknown; defaultProps: unknown }) => {
+const Map = ({
+  height = 300,
+  defaultProps,
+}: {
+  height?: number;
+  defaultProps: { lat: number; lng: number };
+}) => {
   const GoogleMapApiKey = "AIzaSyAbvyBxmMbFhrzP9Z8moyYr6dCr-pzjhBE";
 
   return (

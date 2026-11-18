@@ -1,18 +1,18 @@
 "use client"
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import world from "./worldmap.json";
 import { VectorMap } from "@south-paw/react-vector-maps";
 
 const SelectingLayers = ({ height = 250 }) => {
 
-    const [selected, setSelected] = useState<unknown[]>([]);
+    const [selected, setSelected] = useState<string[]>([]);
 
-    const onClick = ({ target }: { target: { attributes: { id: { value: number } } } }) => {
-        const id = target.attributes.id.value;
-        selected.includes(id)
-            ? setSelected(selected.filter(sid => sid !== id))
-            : setSelected([...selected, id]);
+    const onClick = (event: MouseEvent<SVGPathElement>) => {
+        const id = event.currentTarget.getAttribute("id") ?? "";
+        setSelected((current) =>
+            current.includes(id) ? current.filter((sid) => sid !== id) : [...current, id]
+        );
     }
     return (
         <div>

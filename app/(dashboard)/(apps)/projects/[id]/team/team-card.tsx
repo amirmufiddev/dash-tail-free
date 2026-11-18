@@ -1,9 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 
-const TeamCard = ({ item }: { item: { name: string | React.ReactNode; designation: React.ReactNode; company: React.ReactNode; avatar: string; stats: ({ color: string; name: React.ReactNode; count: React.ReactNode })[] } }) => {
+const TeamCard = ({
+  item,
+}: {
+  item: {
+    name: string;
+    designation: string;
+    company: string;
+    avatar: StaticImageData | string;
+    stats: { color: string; name: string; count: string }[];
+  };
+}) => {
   const { name, designation, company, avatar, stats } = item;
   return (
     <Card className="p-6 bg-background">

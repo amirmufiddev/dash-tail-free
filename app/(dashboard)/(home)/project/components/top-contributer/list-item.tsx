@@ -2,7 +2,38 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-const ListItem = ({ item, index }: { item: { name: React.ReactNode; email: React.ReactNode; score: React.ReactNode | string | number; image: { src: string }; color: unknown; amount: React.ReactNode }; index: React.ReactNode }) => {
+import type { StaticImageData } from "next/image";
+
+type ProgressColor = "primary" | "dark" | "destructive" | "warning" | "info" | "success";
+
+function progressColor(color: string): ProgressColor {
+  if (
+    color === "dark" ||
+    color === "destructive" ||
+    color === "warning" ||
+    color === "info" ||
+    color === "success" ||
+    color === "primary"
+  ) {
+    return color;
+  }
+  return "primary";
+}
+
+const ListItem = ({
+  item,
+  index,
+}: {
+  item: {
+    name: string;
+    email: string;
+    score: string | number;
+    image: StaticImageData | { src: string };
+    color: string;
+    amount: string;
+  };
+  index: number;
+}) => {
   const { name, email, score, image, color, amount } = item;
   return (
     <>
@@ -35,7 +66,7 @@ const ListItem = ({ item, index }: { item: { name: React.ReactNode; email: React
               <span className="text-xs font-medium text-default-800">Score</span>
               <span className="text-xs font-medium text-default-800">{score}%</span>
             </div>
-            <Progress value={score} size="sm" color={color} />
+            <Progress value={score} size="sm" color={progressColor(color)} />
           </div>
         </div>
       </div>

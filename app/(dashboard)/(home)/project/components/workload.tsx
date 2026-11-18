@@ -3,6 +3,7 @@ import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
 import { ResponsiveContainer, BarChart, Bar, LabelList, XAxis } from "recharts";
+import type { LabelProps } from "recharts";
 import {
   Card,
   CardContent,
@@ -60,15 +61,17 @@ const Workload = ({ height = 285 }) => {
   const { theme: mode } = useTheme();
   const theme = themes.find((theme) => theme.name === config);
 
-  const renderCustomizedLabel = (props: { x: number; y: number; width: number; height: unknown; value: React.ReactNode }) => {
-    const { x, y, width, height, value } = props;
+  const renderCustomizedLabel = ({ x, y, width, value }: LabelProps) => {
+    const originX = typeof x === "number" ? x : Number(x ?? 0);
+    const originY = typeof y === "number" ? y : Number(y ?? 0);
+    const barWidth = typeof width === "number" ? width : Number(width ?? 0);
     const radius = 10;
 
     return (
       <g>
         <text
-          x={x + width / 2}
-          y={y - radius}
+          x={originX + barWidth / 2}
+          y={originY - radius}
           textAnchor="middle"
           fill={`hsl(${
             theme?.cssVars[mode === "dark" ? "dark" : "light"].chartLabel

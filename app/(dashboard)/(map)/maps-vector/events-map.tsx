@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useState, type FocusEvent, type MouseEvent } from "react";
 import world from "./worldmap.json";
 import { VectorMap } from "@south-paw/react-vector-maps";
 
@@ -10,12 +10,15 @@ const EventVMap = ({ height = 350 }) => {
     const [focused, setFocused] = useState('None');
     const [clicked, setClicked] = useState('None');
 
+    const layerName = (event: MouseEvent<SVGPathElement> | FocusEvent<SVGPathElement>) =>
+        event.currentTarget.getAttribute("name") ?? "None";
+
     const layerProps = {
-        onMouseEnter: ({ target }: { target: { attributes: { name: { value: React.ReactNode } } } }) => setHovered(target.attributes.name.value),
-        onMouseLeave: ({ target }: { target: unknown }) => setHovered('None'),
-        onFocus: ({ target }: { target: { attributes: { name: { value: React.ReactNode } } } }) => setFocused(target.attributes.name.value),
-        onBlur: ({ target }: { target: unknown }) => setFocused('None'),
-        onClick: ({ target }: { target: { attributes: { name: { value: React.ReactNode } } } }) => setClicked(target.attributes.name.value),
+        onMouseEnter: (event: MouseEvent<SVGPathElement>) => setHovered(layerName(event)),
+        onMouseLeave: () => setHovered("None"),
+        onFocus: (event: FocusEvent<SVGPathElement>) => setFocused(layerName(event)),
+        onBlur: () => setFocused("None"),
+        onClick: (event: MouseEvent<SVGPathElement>) => setClicked(layerName(event)),
     };
 
     return (

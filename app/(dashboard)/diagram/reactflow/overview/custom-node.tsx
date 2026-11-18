@@ -59,7 +59,13 @@ function Select({ value, handleId, nodeId }: { value: string | number; handleId:
   );
 }
 
-function CustomNode({ id, data }: { id: string | number; data: { selects: { [key: string]: string | number } | {} } }) {
+function CustomNode({
+  id,
+  data,
+}: {
+  id: string | number;
+  data: { selects: Record<string, string | number> };
+}) {
   return (
     <>
       <div className="custom-node__header">

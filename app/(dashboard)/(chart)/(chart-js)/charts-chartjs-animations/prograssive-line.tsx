@@ -65,12 +65,21 @@ const ProgressiveLine = ({ height = 350 }) => {
 
   const totalDuration = 10000;
   const delayBetweenPoints = totalDuration / data.length;
-  const previousY = (ctx: ({ index: number; chart: { scales: { y: { getPixelForValue: ((arg0: number) => unknown) } }; getDatasetMeta: ((arg0: unknown) => unknown) }; datasetIndex: unknown })) =>
+  const previousY = (ctx: {
+    index: number;
+    datasetIndex: number;
+    chart: {
+      scales: { y: { getPixelForValue: (value: number) => number } };
+      getDatasetMeta: (index: number) => {
+        data: { getProps: (props: string[], final: boolean) => { y: number } }[];
+      };
+    };
+  }) =>
     ctx.index === 0
       ? ctx.chart.scales.y.getPixelForValue(100)
       : ctx.chart
           .getDatasetMeta(ctx.datasetIndex)
-          .data[ctx.index - 1].getProps(["y"], true).y;
+          .data[ctx.index - 1]?.getProps(["y"], true).y;
   const animation = {
     x: {
       type: "number",

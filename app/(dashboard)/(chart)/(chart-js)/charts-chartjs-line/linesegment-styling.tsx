@@ -33,9 +33,13 @@ const LineSegmentStyling = ({ height = 350 }) => {
 
   const theme = themes.find((theme) => theme.name === config);
 
-  const skipped = (ctx: { p0: { skip: unknown }; p1: { skip: unknown } }, value: unknown) =>
+  type SegmentContext = {
+    p0: { skip?: boolean; parsed: { y: number } };
+    p1: { skip?: boolean; parsed: { y: number } };
+  };
+  const skipped = <T,>(ctx: SegmentContext, value: T): T | undefined =>
     ctx.p0.skip || ctx.p1.skip ? value : undefined;
-  const down = (ctx: { p0: { parsed: { y: number } }; p1: { parsed: { y: number } } }, value: unknown) =>
+  const down = <T,>(ctx: SegmentContext, value: T): T | undefined =>
     ctx.p0.parsed.y > ctx.p1.parsed.y ? value : undefined;
 
   const hslPrimary = `hsla(${
@@ -70,9 +74,9 @@ const LineSegmentStyling = ({ height = 350 }) => {
         data: [65, 59, NaN, 48, 56, 57, 40],
         borderColor: hexToRGB(hexInfo, 0.5),
         segment: {
-          borderColor: (ctx) =>
+          borderColor: (ctx: SegmentContext) =>
             skipped(ctx, hexPrimary) || down(ctx, hexDestructive),
-          borderDash: (ctx) => skipped(ctx, [6, 6]),
+          borderDash: (ctx: SegmentContext) => skipped(ctx, [6, 6]),
         },
         spanGaps: true,
       },

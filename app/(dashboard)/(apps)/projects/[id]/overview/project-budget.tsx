@@ -24,7 +24,7 @@ const iR = 100;
 const oR = 160;
 const value = 50;
 
-const needle = (value: number, data: ({ value: unknown })[], cx: number, cy: number, iR: number, oR: number, color: unknown) => {
+const needle = (value: number, data: { value: number }[], cx: number, cy: number, iR: number, oR: number, color: string) => {
   let total = 0;
   data.forEach((v) => {
     total += v.value;

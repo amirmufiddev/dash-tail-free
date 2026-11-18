@@ -4,7 +4,37 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
-const CustomerCard = ({ item, index }: { item: { name: React.ReactNode; score: React.ReactNode | string | number; image: { src: string }; color: string; amount: React.ReactNode }; index: number | React.ReactNode }) => {
+import type { StaticImageData } from "next/image";
+
+type ProgressColor = "primary" | "dark" | "destructive" | "warning" | "info" | "success";
+
+function progressColor(color: string): ProgressColor {
+  if (
+    color === "dark" ||
+    color === "destructive" ||
+    color === "warning" ||
+    color === "info" ||
+    color === "success" ||
+    color === "primary"
+  ) {
+    return color;
+  }
+  return "primary";
+}
+
+const CustomerCard = ({
+  item,
+  index,
+}: {
+  item: {
+    name: string;
+    score: string | number;
+    image: StaticImageData | { src: string };
+    color: string;
+    amount: string;
+  };
+  index: number;
+}) => {
   const { name, score, image, color, amount } = item;
 
 
@@ -44,7 +74,7 @@ const CustomerCard = ({ item, index }: { item: { name: React.ReactNode; score: R
                 <span className="text-xs font-medium text-default-800">Score</span>
                 <span className="text-xs font-medium text-default-900">{score}%</span>
               </div>
-              <Progress value={score} size="sm" color={color} />
+              <Progress value={score} size="sm" color={progressColor(color)} />
             </div>
           </div>
         </div>

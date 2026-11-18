@@ -6,18 +6,29 @@ import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
 
-const AreaChart = ({ series, color }: { series: unknown; color: string | number }) => {
-  const { theme: config, setTheme: setConfig } = useThemeStore();
-  const { theme: mode } = useTheme();
-  const theme = themes.find((theme) => theme.name === config);
-  const themeColors = {
+const themeColors = {
     primary: "#3B82F6",
     success: "#22C55E",
     warning: "#F97316",
-    destructive: "#EF4444"
-  };
+    destructive: "#EF4444",
+} as const;
 
-  let themeColor = themeColors[color] || themeColors.primary;
+type SparkColor = keyof typeof themeColors;
+
+const AreaChart = ({
+  series,
+  color,
+}: {
+  series: { data: number[] }[];
+  color: string;
+}) => {
+  const { theme: config, setTheme: setConfig } = useThemeStore();
+  const { theme: mode } = useTheme();
+  const theme = themes.find((theme) => theme.name === config);
+  const themeColor =
+    color === "success" || color === "warning" || color === "destructive"
+      ? themeColors[color]
+      : themeColors.primary;
   const options = {
     chart: {
       toolbar: {

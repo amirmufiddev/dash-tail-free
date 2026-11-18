@@ -62,7 +62,7 @@ const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: readon
     return (
       <div className="bg-background z-10 text-default-900 shadow-lg  space-y-2 rounded-md  pb-2">
         <div className="bg-default-50 rounded-t-md border-b border-default-200 py-1.5 px-2">
-          {payload[0].payload.name}
+          {payload[0]?.payload?.name}
         </div>
         {payload.map((item, index) => (
           <div
@@ -90,9 +90,11 @@ const YAxisFormatter = (value: number) => {
   return `${value / 1000}k`;
 };
 
-const CustomLegend = (props: { payload: ({ color: string; value: string })[] }) => {
-  const { payload } = props;
-
+const CustomLegend = ({
+  payload = [],
+}: {
+  payload?: { color?: string; value?: string }[];
+}) => {
   return (
     <ul className="flex justify-center gap-2 mt-2">
       {payload.map((entry, index) => (

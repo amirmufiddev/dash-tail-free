@@ -13,6 +13,7 @@ import {
   Legend,
 } from "recharts";
 import CustomTooltip from "./custom-tooltip";
+import type { XAxisTickContentProps } from "recharts";
 
 const data = [
   {
@@ -93,24 +94,26 @@ const monthTickFormatter = (tick: string | number | Date) => {
   const date = new Date(tick);
   return String(date.getMonth() + 1);
 };
-const renderQuarterTick = (tickProps: { x: number; y: number; payload: { value: string | number | Date; offset: number } }) => {
+const renderQuarterTick = (tickProps: XAxisTickContentProps) => {
   const { x, y, payload } = tickProps;
-  const { value, offset } = payload;
+  const tickX = typeof x === "number" ? x : Number(x);
+  const tickY = typeof y === "number" ? y : Number(y);
+  const { value, offset = 0 } = payload;
   const date = new Date(value);
   const month = date.getMonth();
   const quarterNo = Math.floor(month / 3) + 1;
   const isMidMonth = month % 3 === 1;
 
   if (month % 3 === 1) {
-    return <text x={x} y={y - 4} textAnchor="middle">{`Q${quarterNo}`}</text>;
+    return <text x={tickX} y={tickY - 4} textAnchor="middle">{`Q${quarterNo}`}</text>;
   }
 
   const isLast = month === 11;
 
   if (month % 3 === 0 || isLast) {
-    const pathX = Math.floor(isLast ? x + offset : x - offset) + 0.5;
+    const pathX = Math.floor(isLast ? tickX + offset : tickX - offset) + 0.5;
 
-    return <path d={`M${pathX},${y - 4}v${-35}`} stroke="red" />;
+    return <path d={`M${pathX},${tickY - 4}v${-35}`} stroke="red" />;
   }
   return null;
 };

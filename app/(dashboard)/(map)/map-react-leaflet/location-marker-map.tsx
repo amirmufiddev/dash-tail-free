@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 import { useMapEvents } from "react-leaflet";
-import Leaflet from "leaflet"
+import Leaflet, { type LatLng } from "leaflet"
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 
 Leaflet.Icon.Default.imagePath = "../node_modules/leaflet"
@@ -13,7 +13,7 @@ Leaflet.Icon.Default.mergeOptions({
 })
 
 function LocationMarker() {
-    const [position, setPosition] = useState<unknown | null>(null)
+    const [position, setPosition] = useState<LatLng | null>(null)
     const map = useMapEvents({
         click() {
             map.locate()

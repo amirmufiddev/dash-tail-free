@@ -56,16 +56,17 @@ export const connections = [
     ['CTB', 'PMB'],
 ]
 
-export const flows = connections.map(c => {
-    const sourcePoint = points.find(d => d.id === c[0])
-    const targetPoint = points.find(d => d.id === c[1])
-    return {
+export const flows = connections.flatMap((c) => {
+    const sourcePoint = points.find((d) => d.id === c[0])
+    const targetPoint = points.find((d) => d.id === c[1])
+    if (!sourcePoint || !targetPoint) return []
+    return [{
         sourceLat: sourcePoint.lat,
         sourceLon: sourcePoint.lon,
         targetLat: targetPoint.lat,
         targetLon: targetPoint.lon,
         particleDensity: 0.8 + Math.random() / 5,
-    }
+    }]
 })
 
 export const data = { points, flows }

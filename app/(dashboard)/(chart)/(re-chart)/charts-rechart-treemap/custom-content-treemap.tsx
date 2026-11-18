@@ -2,7 +2,7 @@
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
-import { ResponsiveContainer, Treemap } from 'recharts';
+import { ResponsiveContainer, Treemap, type TreemapNode } from 'recharts';
 
 const data = [
     {
@@ -145,7 +145,19 @@ const COLORS = [
     '#F8C12D'
 ];
 
-const CustomizedContent = ({ root, depth, x, y, width, height, index, colors, name }: { root: { children: { length: number } }; depth: number; x: number; y: number; width: number; height: number; index: number; colors: { [key: number]: unknown }; name: React.ReactNode }) => {
+const CustomizedContent = ({
+    root,
+    depth,
+    x,
+    y,
+    width,
+    height,
+    index,
+    colors,
+    name,
+}: TreemapNode & { colors?: string[] }) => {
+    const childCount = root?.children?.length || 1;
+    const fill = depth < 2 ? colors?.[Math.floor((index / childCount) * 6)] ?? "#ffffff00" : "#ffffff00";
     return (
         <g>
             <rect
@@ -154,7 +166,7 @@ const CustomizedContent = ({ root, depth, x, y, width, height, index, colors, na
                 width={width}
                 height={height}
                 style={{
-                    fill: depth < 2 ? colors[Math.floor((index / root.children.length) * 6)] : '#ffffff00',
+                    fill,
                     stroke: '#fff',
                     strokeWidth: 2 / (depth + 1e-10),
                     strokeOpacity: 1 / (depth + 1e-10),
@@ -188,11 +200,9 @@ const CustomContentTreeMap = ({ height = 300 }) => {
                 aspectRatio={4 / 3}
                 stroke="#fff"
                 fill={`hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].info})`}
-                content={
-                  ((props: unknown) => (
-                    <CustomizedContent {...props} colors={COLORS} />
-                  )) as never
-                }
+                content={(props: TreemapNode) => (
+                  <CustomizedContent {...props} colors={COLORS} />
+                )}
             />
         </ResponsiveContainer>
     );

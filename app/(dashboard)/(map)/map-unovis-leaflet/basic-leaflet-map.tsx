@@ -16,7 +16,7 @@ const BasicLeafletMap = () => {
 
     const pointLatitude = useCallback((mapData: { latitude: number }) => mapData.latitude, []);
     const pointLongitude = useCallback((mapData: { longitude: number }) => mapData.longitude, []);
-    const pointBottomLabel = useCallback((mapData: { id: string | number }) => mapData.id, []);
+    const pointBottomLabel = useCallback((mapData: { id: string | number }) => String(mapData.id), []);
 
     const pointColor = `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].info})`;
 

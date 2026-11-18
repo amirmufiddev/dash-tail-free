@@ -12,7 +12,7 @@ const TopCountries = () => {
     lng: 77.01502627
   },)
 
-  const handleSelected = (data: unknown) => {
+  const handleSelected = (data: { lat: number; lng: number }) => {
     setSelected(data)
   }
 
