@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { Calendar } from "@/components/ui/calendar";
 const CalendarPage = () => {
-  const [date, setDate] = React.useState(new Date());
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
   return (
     <div className=" space-y-5">
       <Card title="Calendar">
@@ -18,7 +18,7 @@ const CalendarPage = () => {
         <Calendar
           mode="single"
           selected={date}
-          onSelect={setDate}
+          onSelect={(next) => setDate(next)}
           className="rounded-md border"
         />
       </Card>

@@ -11,6 +11,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Undo2 } from "lucide-react";
 import Image from "next/image";
+import type {
+  ChatContact,
+  ChatMessage,
+  ChatProfile,
+  PinnedMessageRef,
+  ReplyDraft,
+} from "./types";
 const chatAction = [
   {
     label: "Remove",
@@ -36,41 +43,37 @@ const Messages = ({
   handlePinNote,
   pinnedMessages = [],
 }: {
-  message: {
-    senderId?: string | number;
-    message?: string;
-    time?: string;
-    replayMetadata?: { message?: string } | boolean;
-  };
-  contact: { avatar?: string };
-  profile?: { id?: string | number; avatar?: string | { src?: string } };
+  message: ChatMessage;
+  contact?: ChatContact;
+  profile?: ChatProfile;
   onDelete?: (chatId: string | number, index: number) => void;
   index?: number;
   selectedChatId?: string | number;
-  handleReply?: (data: unknown, contact: unknown) => void;
-  replayData?: {
-    contact?: { fullName?: string };
-    message?: string;
-  };
-  handleForward?: (message: unknown) => void;
-  handlePinMessage?: (message: unknown) => void;
-  handlePinNote?: (note: unknown) => void;
-  pinnedMessages?: { index?: number }[];
+  handleReply?: (data: string, contact: ChatContact) => void;
+  replayData?: ReplyDraft;
+  handleForward?: (message: string) => void;
+  handlePinMessage?: (message: PinnedMessageRef) => void;
+  handlePinNote?: (note: PinnedMessageRef) => void;
+  pinnedMessages?: PinnedMessageRef[];
 }) => {
   const { senderId, message: chatMessage, time, replayMetadata } = message;
-  const { avatar } = contact;
+  const avatar = contact?.avatar;
   // State to manage pin status
   const isMessagePinned = pinnedMessages.some(
     (pinnedMessage) => pinnedMessage.index === index
   );
 
-  const handlePinMessageLocal = (note: unknown) => {
-    const obj = {
+  const handlePinMessageLocal = (note: string) => {
+    handlePinMessage?.({
       note,
       avatar,
       index,
-    };
-    handlePinMessage(obj);
+    });
+  };
+  const deleteCurrent = () => {
+    if (onDelete && selectedChatId != null && index != null) {
+      onDelete(selectedChatId, index);
+    }
   };
   return (
     <>
@@ -111,9 +114,7 @@ const Messages = ({
                         align="center"
                         side="top"
                       >
-                        <DropdownMenuItem
-                          onClick={() => onDelete(selectedChatId, index)}
-                        >
+                        <DropdownMenuItem onClick={deleteCurrent}>
                           Delete
                         </DropdownMenuItem>
                         <DropdownMenuItem>Forward</DropdownMenuItem>
@@ -136,9 +137,9 @@ const Messages = ({
                     src={
                       typeof profile?.avatar === "string"
                         ? profile.avatar
-                        : profile?.avatar?.src
+                        : (profile?.avatar?.src ?? "")
                     }
-                    alt={avatar}
+                    alt=""
                     className="block w-full h-full object-cover rounded-full"
                   />
                 </div>
@@ -150,8 +151,8 @@ const Messages = ({
             <div className="flex-none self-end -translate-y-5">
               <div className="h-8 w-8 rounded-full">
                 <Image
-                  src={avatar}
-                  alt={avatar}
+                  src={avatar ?? ""}
+                  alt=""
                   className="block w-full h-full object-cover rounded-full"
                 />
               </div>
@@ -186,13 +187,13 @@ const Messages = ({
                         align="center"
                         side="top"
                       >
-                        <DropdownMenuItem
-                          onClick={() => onDelete(selectedChatId, index)}
-                        >
+                        <DropdownMenuItem onClick={deleteCurrent}>
                           Remove
                         </DropdownMenuItem>
                         <DropdownMenuItem
-                          onClick={() => handleReply(chatMessage, contact)}
+                          onClick={() => {
+                            if (contact) handleReply?.(chatMessage, contact);
+                          }}
                         >
                           Reply
                         </DropdownMenuItem>
@@ -202,7 +203,7 @@ const Messages = ({
                           {isMessagePinned ? "Unpin" : "Pin"}
                         </DropdownMenuItem>
                         <DropdownMenuItem
-                          onClick={() => handleForward(chatMessage)}
+                          onClick={() => handleForward?.(chatMessage)}
                         >
                           Forward
                         </DropdownMenuItem>

@@ -1,5 +1,12 @@
+import type {
+  BrushChartDatum,
+  EducationDatum,
+  ElectionVoteDatum,
+  MusicStreamDatum,
+  ProductTimelineDatum,
+} from "../datum-types";
 
-export const data = [
+export const data: ElectionVoteDatum[] = [
     {
         year: 1980,
         republican: 43642639,
@@ -79,7 +86,7 @@ export const data = [
     },
 ];
 
-export const educationsData = [
+export const educationsData: EducationDatum[] = [
     {
         country: 'Australia',
         masters: 9.4,
@@ -175,7 +182,7 @@ export const educationsData = [
     })
 })
 
-export const productData = [
+export const productData: ProductTimelineDatum[] = [
     {
         endDate: 1645056000000,
         startDate: 1534636800000,
@@ -2059,7 +2066,7 @@ export const productData = [
     },
 ].sort((p1, p2) => p1.startDate - p2.startDate);
 
-export const musicData = [
+export const musicData: MusicStreamDatum[] = [
     {
         year: 1973,
         vinyl: 1.436,
@@ -2438,7 +2445,7 @@ export const musicData = [
     },
 ]
 
-export const brushChartData = [
+export const brushChartData: BrushChartDatum[] = [
     {
         year: 1961,
         bra: 15.036353,

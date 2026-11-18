@@ -216,6 +216,8 @@ const ReactSelectOption = () => {
         <Select
           isClearable={false}
           closeMenuOnSelect={false}
+          // react-select's animated factory returns generic components that TypeScript cannot relate to a concrete option type.
+          // @ts-expect-error animated components are generic functions, not FruitOption component types
           components={animatedComponents}
           defaultValue={[fruits[4], fruits[5]].filter((item): item is FruitOption => item != null)}
           isMulti

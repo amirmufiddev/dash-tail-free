@@ -55,9 +55,11 @@ const ColumnSticky = () => {
                 <Badge
                   variant="soft"
                   color={
-                    (item.role === "admin" && "default") ||
-                    (item.role === "member" && "success") ||
-                    (item.role === "owner" && "info")
+                    item.role === "member"
+                      ? "success"
+                      : item.role === "owner"
+                        ? "info"
+                        : "default"
                   }
                   className=" capitalize"
                 >

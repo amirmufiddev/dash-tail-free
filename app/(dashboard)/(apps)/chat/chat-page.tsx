@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Card,
   CardContent,
@@ -36,22 +36,29 @@ import Loader from "./loader";
 import { isObjectNotEmpty } from "@/lib/utils";
 import SearchMessages from "./contact-info/search-messages";
 import Image from "next/image";
+import type {
+  ChatContact,
+  ChatProfile,
+  ContactsResponse,
+  MessagesResponse,
+  OutboundChatMessage,
+  PinnedMessageRef,
+  ReplyDraft,
+} from "./types";
 
 export const ChatPage = () => {
-  const [selectedChatId, setSelectedChatId] = useState<unknown | null>(null);
+  const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
 
   const [showInfo, setShowInfo] = useState(true);
   const queryClient = useQueryClient();
-  // Memoize getMessages using useCallback
-  const getMessagesCallback = useCallback((chatId: string | number) => getMessages(chatId), []);
   // reply state
   const [replay, setReply] = useState(false);
-  const [replayData, setReplyData] = useState({});
+  const [replayData, setReplyData] = useState<ReplyDraft>({});
 
   // search state
   const [isOpenSearch, setIsOpenSearch] = useState(false);
 
-  const [pinnedMessages, setPinnedMessages] = useState<{ avatar: string; note: React.ReactNode }[]>([]);
+  const [pinnedMessages, setPinnedMessages] = useState<PinnedMessageRef[]>([]);
 
   const {
     isLoading,
@@ -62,7 +69,8 @@ export const ChatPage = () => {
   } = useQuery({
     queryKey: ["contacts"],
     queryFn: () => getContacts(),
-    placeholderData: (previousData: unknown) => previousData,
+    placeholderData: (previousData: ContactsResponse | undefined) =>
+      previousData,
   });
   const {
     isLoading: messageLoading,
@@ -72,8 +80,15 @@ export const ChatPage = () => {
     refetch: refetchMessage,
   } = useQuery({
     queryKey: ["message", selectedChatId],
-    queryFn: () => getMessagesCallback(selectedChatId),
-    placeholderData: (previousData: unknown) => previousData,
+    queryFn: () => {
+      if (!selectedChatId) {
+        return Promise.reject(new Error("Chat belum dipilih"));
+      }
+      return getMessages(selectedChatId);
+    },
+    enabled: Boolean(selectedChatId),
+    placeholderData: (previousData: MessagesResponse | undefined) =>
+      previousData,
   });
   const {
     isLoading: profileLoading,
@@ -84,7 +99,7 @@ export const ChatPage = () => {
   } = useQuery({
     queryKey: ["profile"],
     queryFn: () => getProfile(),
-    placeholderData: (previousData: unknown) => previousData,
+    placeholderData: (previousData: ChatProfile | undefined) => previousData,
   });
   const messageMutation = useMutation({
     mutationFn: sendMessage,
@@ -100,39 +115,38 @@ export const ChatPage = () => {
     },
   });
 
-  const onDelete = (selectedChatId: string | number, index: unknown) => {
-    const obj = { selectedChatId, index };
-    deleteMutation.mutate(obj);
+  const onDelete = (chatId: string | number, index: number) => {
+    deleteMutation.mutate({ selectedChatId: String(chatId), index });
   };
 
   const openChat = (chatId: string | number | null) => {
-    setSelectedChatId(chatId);
+    setSelectedChatId(chatId != null ? String(chatId) : null);
     setReply(false);
   };
   const handleShowInfo = () => {
     setShowInfo(!showInfo);
   };
-  const handleSendMessage = (message: unknown) => {
+  const handleSendMessage = (message: string) => {
     if (!selectedChatId || !message) return;
 
-    const newMessage = {
-      message: message,
+    const newMessage: OutboundChatMessage = {
+      message,
+      selectedChatId,
       contact: { id: selectedChatId },
       replayMetadata: isObjectNotEmpty(replayData),
     };
     messageMutation.mutate(newMessage);
     console.log(message, "ami msg");
   };
-  const chatHeightRef = useRef(null);
+  const chatHeightRef = useRef<HTMLDivElement | null>(null);
 
   // replay message
-  const handleReply = (data: unknown, contact: unknown) => {
-    const newObj = {
+  const handleReply = (data: string, contact: ChatContact) => {
+    setReply(true);
+    setReplyData({
       message: data,
       contact,
-    };
-    setReply(true);
-    setReplyData(newObj);
+    });
   };
 
   useEffect(() => {
@@ -149,9 +163,8 @@ export const ChatPage = () => {
     setIsOpenSearch(!isOpenSearch);
   };
   // handle pin note
-  const handlePinNote = (note: unknown) => {
+  const handlePinNote = (note: PinnedMessageRef) => {
     setPinnedMessages([...pinnedMessages, note]);
-    console.log(pinnedMessages);
   };
   return (
     <div className="flex gap-5 app-height  relative rtl:space-x-reverse">
@@ -246,11 +259,13 @@ export const ChatPage = () => {
                                       (pinnedMessage, index) => (
                                         <div key={index}>
                                           <div className="h-10 w-10">
-                                            <Image
-                                              src={pinnedMessage.avatar}
-                                              alt=""
-                                              className="w-full h-full rounded-full object-cover"
-                                            />
+                                            {pinnedMessage.avatar ? (
+                                              <Image
+                                                src={pinnedMessage.avatar}
+                                                alt=""
+                                                className="w-full h-full rounded-full object-cover"
+                                              />
+                                            ) : null}
                                           </div>
 
                                           {pinnedMessage.note}

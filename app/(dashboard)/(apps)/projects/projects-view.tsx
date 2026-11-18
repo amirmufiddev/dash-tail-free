@@ -20,16 +20,17 @@ import {
   useLegacyTable as useReactTable
 } from "@tanstack/react-table/legacy";
 import { columns } from "./project-list/components/columns";
+import type { ProjectRow } from "./types";
 import { DataTableToolbar } from "./project-list/components/data-table-toolbar";
 import Blank from "@/components/blank";
 
 const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
-const ProjectsView = ({ projects }: { projects: unknown[] }) => {
+const ProjectsView = ({ projects }: { projects: ProjectRow[] }) => {
   const [pageView, setPageView] = React.useState("grid");
   // modal state
   const [isOpen, setIsOpen] = React.useState(false);
-  const [selectedProjectId, setSelectedProjectId] = useState<unknown | null>(null);
-  const [selectedProject, setSelectedProject] = useState<unknown | null>(null);
+  const [selectedProjectId, setSelectedProjectId] = useState<string | number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectRow | null>(null);
 
   // table state
   const [rowSelection, setRowSelection] = React.useState({});
@@ -66,7 +67,7 @@ const ProjectsView = ({ projects }: { projects: unknown[] }) => {
     wait().then(() => (document.body.style.pointerEvents = "auto"));
   };
 
-  const editProjectModal = (project: { id: string | number | null } | unknown | null) => {
+  const editProjectModal = (project: ProjectRow | null) => {
     if (project) {
       setSelectedProject(project);
       setSelectedProjectId(project.id);

@@ -1,3 +1,4 @@
+import type { CountryGdpDatum, MultiLineWeatherDatum } from "../datum-types";
 
 export const labels = {
     austin: 'Austin, TX',
@@ -5,7 +6,7 @@ export const labels = {
     sf: 'San Francisco, CA',
 }
 
-export const data = [
+export const data: MultiLineWeatherDatum[] = [
     { date: '2021-01-01', sf: 13.9, ny: null, austin: 0.9 },
     { date: '2021-01-02', sf: 13.9, ny: 2.8, austin: 5.7 },
     { date: '2021-01-03', sf: 11.7, ny: 5.6, austin: 11.6 },
@@ -387,7 +388,7 @@ export const countries = [{
     color: 'var(--vis-color1)',
 }]
 
-export const countriesData = [
+export const countriesData: CountryGdpDatum[] = [
     {
         year: 1961,
         cn: 109.659976,

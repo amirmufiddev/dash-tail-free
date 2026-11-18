@@ -11,6 +11,8 @@ import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
 import { data } from "./data";
+import type { ElectionVoteDatum } from "../datum-types";
+import { unovisMillionTick } from "@/lib/unovis-chart";
 
 const BasicGroupedBar = ({ height = 400 }) => {
   const { theme: config, setTheme: setConfig } = useThemeStore();
@@ -34,16 +36,16 @@ const BasicGroupedBar = ({ height = 400 }) => {
   return (
     <>
       <VisBulletLegend items={legendItems} />
-      <VisXYContainer height={height} data={data}>
+      <VisXYContainer<ElectionVoteDatum> height={height} data={data}>
         <VisGroupedBar
-          x={useCallback((d: { year: number }) => d.year, [])}
+          x={useCallback((d: ElectionVoteDatum) => d.year, [])}
           y={[
-            useCallback((d: { republican: number }) => d.republican, []),
-            useCallback((d: { democrat: number }) => d.democrat, []),
-            useCallback((d: { other: number }) => d.other, []),
-            useCallback((d: { libertarian: number }) => d.libertarian, []),
+            useCallback((d: ElectionVoteDatum) => d.republican, []),
+            useCallback((d: ElectionVoteDatum) => d.democrat, []),
+            useCallback((d: ElectionVoteDatum) => d.other, []),
+            useCallback((d: ElectionVoteDatum) => d.libertarian, []),
           ]}
-          color={useCallback((_: unknown, i: number) => legendItems[i].color, [])}
+          color={useCallback((_: ElectionVoteDatum, i: number) => legendItems[i].color, [legendItems])}
         />
         <VisAxis
           type="x"
@@ -62,10 +64,7 @@ const BasicGroupedBar = ({ height = 400 }) => {
         />
         <VisAxis
           type="y"
-          tickFormat={useCallback(
-            (value: number) => (value / 10 ** 6).toFixed(1),
-            []
-          )}
+          tickFormat={useCallback(unovisMillionTick, [])}
           label="Number of Votes (millions)"
           tickTextColor={`hsl(${
             theme?.cssVars[

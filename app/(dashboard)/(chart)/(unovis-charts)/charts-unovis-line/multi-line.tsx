@@ -8,6 +8,7 @@ import {
   VisBulletLegend,
 } from "@unovis/react";
 import { data } from "./data";
+import type { MultiLineWeatherDatum } from "../datum-types";
 
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
@@ -40,13 +41,17 @@ const MultiLineChart = ({ height = 400 }) => {
   return (
     <>
       <VisBulletLegend items={items} />
-      <VisXYContainer data={data} height={height} xScale={xScale}>
+      <VisXYContainer<MultiLineWeatherDatum>
+        data={data}
+        height={height}
+        xScale={xScale}
+      >
         <VisLine
-          x={useCallback((d: { date: string | number | Date }) => +new Date(d.date), [])}
+          x={useCallback((d: MultiLineWeatherDatum) => +new Date(d.date), [])}
           y={[
-            useCallback((d: { austin: number }) => d.austin, []),
-            useCallback((d: { ny: number }) => d.ny, []),
-            useCallback((d: { sf: number }) => d.sf, []),
+            useCallback((d: MultiLineWeatherDatum) => d.austin ?? 0, []),
+            useCallback((d: MultiLineWeatherDatum) => d.ny ?? 0, []),
+            useCallback((d: MultiLineWeatherDatum) => d.sf ?? 0, []),
           ]}
         />
         <VisAxis

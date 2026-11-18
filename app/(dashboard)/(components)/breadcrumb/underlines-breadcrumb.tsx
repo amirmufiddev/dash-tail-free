@@ -1,7 +1,7 @@
 import { Breadcrumbs, BreadcrumbItem } from "@/components/ui/breadcrumbs";
 
 const UnderlinesBreadcrumb = () => {
-  const underlines = ["none", "hover", "always", "active", "focus"];
+  const underlines = ["none", "hover", "always", "active", "focus"] as const;
   const descriptions = {
     none: "No underline",
     hover: "Underline on hover",

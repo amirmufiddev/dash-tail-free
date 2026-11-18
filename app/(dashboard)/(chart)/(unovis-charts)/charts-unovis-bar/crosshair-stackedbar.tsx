@@ -9,6 +9,7 @@ import {
   VisTooltip,
 } from "@unovis/react";
 import { musicData } from "./data";
+import type { MusicStreamDatum } from "../datum-types";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
@@ -59,7 +60,7 @@ const CrosshairStackedBar = ({ height = 400 }) => {
     },
   ];
   const getIcon = useCallback(
-    (f: { icon: string; color: unknown; label: React.ReactNode }) => (
+    (f: { icon: string; color: string; label: React.ReactNode }) => (
       <>
         <span
           className={`bi bi-${f.icon}`}
@@ -82,10 +83,12 @@ const CrosshairStackedBar = ({ height = 400 }) => {
           {getIcon(l)}
         </span>
       ))}
-      <VisXYContainer data={musicData} height={height}>
+      <VisXYContainer<MusicStreamDatum> data={musicData} height={height}>
         <VisStackedBar
-          x={useCallback((d: { year: number }) => d.year, [])}
-          y={labels.map((l) => useCallback((d: { [key: string]: unknown }) => d[l.format], []))}
+          x={useCallback((d: MusicStreamDatum) => d.year, [])}
+          y={labels.map((l) =>
+            useCallback((d: MusicStreamDatum) => d[l.format] as number, [])
+          )}
         />
         <VisTooltip
           verticalShift={height}

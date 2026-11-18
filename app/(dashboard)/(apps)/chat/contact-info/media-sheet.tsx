@@ -15,7 +15,13 @@ import mic from "@/public/images/all-img/mic.jpg";
 import orange from "@/public/images/all-img/orange.jpg";
 import waterfall from "@/public/images/all-img/water-fall.jpg";
 
-const MediaSheet = ({ showDrawer, handleDrawer }: { showDrawer: unknown; handleDrawer: ((arg0: unknown) => unknown) }) => {
+const MediaSheet = ({
+  showDrawer,
+  handleDrawer,
+}: {
+  showDrawer: string | null;
+  handleDrawer: (key: string | null) => void;
+}) => {
   return (
     <Card className="absolute top-0 right-0 w-full h-full z-10 bg-card">
       <CardHeader className="mb-0">
@@ -39,7 +45,7 @@ const MediaSheet = ({ showDrawer, handleDrawer }: { showDrawer: unknown; handleD
       </CardHeader>
       <CardContent className="px-2 pt-5 h-full">
         <Tabs
-          defaultValue={showDrawer ? showDrawer : "media"}
+          defaultValue={showDrawer ?? "media"}
           className="h-full "
         >
           <TabsList className="flex flex-wrap gap-2 dark:border dark:border-border">

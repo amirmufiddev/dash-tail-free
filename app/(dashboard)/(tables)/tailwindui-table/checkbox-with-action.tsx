@@ -18,7 +18,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 
 const CheckboxWithAction = () => {
-  const [selectedRows, setSelectedRows] = useState<unknown[]>([]);
+  const [selectedRows, setSelectedRows] = useState<number[]>([]);
 
   const handleSelectAll = (event: unknown) => {
     if (selectedRows?.length === users?.length) {
@@ -28,7 +28,7 @@ const CheckboxWithAction = () => {
     }
   };
 
-  const handleRowSelect = (id: never[]) => {
+  const handleRowSelect = (id: number) => {
     const updatedSelectedRows = [...selectedRows];
     if (selectedRows.includes(id)) {
       updatedSelectedRows.splice(selectedRows.indexOf(id), 1);
@@ -111,10 +111,13 @@ const CheckboxWithAction = () => {
               <Badge
                 variant="soft"
                 color={
-                  (item.role === "admin" && "default") ||
-                  (item.role === "member" && "success") ||
-                  (item.role === "owner" && "info") ||
-                  (item.role === "editor" && "warning")
+                  item.role === "member"
+                    ? "success"
+                    : item.role === "owner"
+                      ? "info"
+                      : item.role === "editor"
+                        ? "warning"
+                        : "default"
                 }
                 className=" capitalize"
               >

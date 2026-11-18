@@ -1,16 +1,12 @@
 "use client";
 
-import {
-  LegacyColumnDef as ColumnDef
-} from "@tanstack/react-table/legacy";
+import type { LegacyRow } from "@tanstack/react-table/legacy";
+import { LegacyColumnDef as ColumnDef } from "@tanstack/react-table/legacy";
+import type { StaticImageData } from "next/image";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-
-import { priorities, statuses } from "../data/data";
-
-import { DataTableColumnHeader } from "./data-table-column-header";
-import { DataTableRowActions } from "./data-table-row-actions";
 import {
   Avatar,
   AvatarFallback,
@@ -19,12 +15,24 @@ import {
 } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
-import Link from "next/link";
 
-export const columns = [
+import type { ProjectAssignee, ProjectRow } from "../../types";
+import { priorities, statuses } from "../data/data";
+import { DataTableColumnHeader } from "./data-table-column-header";
+import { DataTableRowActions } from "./data-table-row-actions";
+
+function staticSrc(value?: StaticImageData | { src?: string }): string | undefined {
+  if (!value) return undefined;
+  if (typeof value === "object" && "src" in value) {
+  return typeof value.src === "string" ? value.src : undefined;
+  }
+  return undefined;
+}
+
+export const columns: ColumnDef<ProjectRow>[] = [
   {
     id: "select",
-    header: ({ table }: { table: { getIsAllPageRowsSelected: () => boolean; getIsSomePageRowsSelected: () => boolean; toggleAllPageRowsSelected: ((arg0: boolean) => unknown) } }) => (
+    header: ({ table }) => (
       <div className=" min-w-[40px]">
         <Checkbox
           checked={
@@ -37,7 +45,7 @@ export const columns = [
         />
       </div>
     ),
-    cell: ({ row }: { row: { getIsSelected: () => boolean; toggleSelected: (value?: boolean) => void } }) => (
+    cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -50,26 +58,27 @@ export const columns = [
   },
   {
     accessorKey: "title",
-    header: ({ column }: { column: unknown }) => (
+    header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Title" />
     ),
-    cell: ({ row }: { row: { original?: { id?: string; logo?: { src?: string }; title?: { slice?: ((arg0: number, arg1: number) => unknown) } }; getValue: ((arg0: string) => React.ReactNode) } }) => {
+    cell: ({ row }) => {
+      const logo = staticSrc(row.original.logo);
       return (
         <Link
           href={{
-            pathname: `projects/${row?.original?.id}/overview`,
+            pathname: `projects/${row.original.id}/overview`,
           }}
-          className="flex items-center gap-2">
+          className="flex items-center gap-2"
+        >
           <Avatar className="rounded-sm  h-8 w-8">
-            <AvatarImage src={row?.original?.logo?.src} />
+            <AvatarImage src={logo} />
             <AvatarFallback className="bg-success/30 text-success">
-              {row?.original?.title?.slice(0, 2)}
+              {row.original.title.slice(0, 2)}
             </AvatarFallback>
           </Avatar>
           <div className="max-w-[140px] truncate  ">
             <span className="font-semibold text-default-900 capitalize">
-              {" "}
-              {row.getValue("title")}
+              {row.getValue("title") as string}
             </span>
           </div>
         </Link>
@@ -78,13 +87,12 @@ export const columns = [
   },
   {
     accessorKey: "status",
-    header: ({ column }: { column: unknown }) => (
+    header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Status" />
     ),
-    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => {
-      const status = statuses.find(
-        (status) => status.value === row.getValue("status")
-      );
+    cell: ({ row }) => {
+      const statusValue = row.getValue("status") as string;
+      const status = statuses.find((item) => item.value === statusValue);
 
       if (!status) {
         return null;
@@ -94,70 +102,60 @@ export const columns = [
         <div className="flex  items-center">
           <Badge
             variant="soft"
-            color={status?.color}
+            color={status.color}
             className="whitespace-normal"
           >
-            {status?.label}
+            {status.label}
           </Badge>
         </div>
       );
     },
-    filterFn: (row: ({ getValue: ((arg0: string) => React.ReactNode) }), id: string | number, value: ({ includes: ((arg0: unknown) => unknown) })) => {
-      return value.includes(row.getValue(id));
-    },
+    filterFn: (row, id, value: string[]) =>
+      value.includes(row.getValue(id) as string),
   },
   {
     accessorKey: "assign",
     header: "Team",
-    cell: ({ row }: { row: { original?: { assign?: ({ image?: { src?: string } } | React.ReactNode)[] } } }) => {
+    cell: ({ row }) => {
+      const assignees = row.original.assign ?? [];
       return (
-        <>
-          <AvatarGroup
-            max={3}
-            total={row?.original?.assign?.length}
-            countClass="w-7 h-7"
-          >
-            {row?.original?.assign?.map((item, i) => (
-              <div key={`assined-team-member-${i}`}>
-                {typeof item === "object" ? (
-                  <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-7 w-7">
-                    <AvatarImage src={item?.image?.src} />
-                    <AvatarFallback>AB</AvatarFallback>
-                  </Avatar>
-                ) : (
-                  <div>{item}</div>
-                )}
-              </div>
-            ))}
-          </AvatarGroup>
-        </>
+        <AvatarGroup max={3} total={assignees.length} countClass="w-7 h-7">
+          {assignees.map((item: ProjectAssignee, i) => (
+            <Avatar
+              key={`assined-team-member-${i}`}
+              className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-7 w-7"
+            >
+              <AvatarImage src={staticSrc(item.image)} />
+              <AvatarFallback>AB</AvatarFallback>
+            </Avatar>
+          ))}
+        </AvatarGroup>
       );
     },
   },
   {
     accessorKey: "percentage",
     header: "Progress",
-    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => {
+    cell: ({ row }) => {
+      const percentage = Number(row.getValue("percentage") ?? 0);
       return (
         <div className="min-w-[190px]">
           <div className="flex justify-end mb-2">
-            <Label className="text-end">{row.getValue("percentage")}%</Label>
+            <Label className="text-end">{percentage}%</Label>
           </div>
-          <Progress value={row.getValue("percentage")} size="sm" />
+          <Progress value={percentage} size="sm" />
         </div>
       );
     },
   },
-
   {
     accessorKey: "priority",
-    header: ({ column }: { column: unknown }) => (
+    header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Priority" />
     ),
-    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => {
-      const priority = priorities.find(
-        (priority) => priority.value === row.getValue("priority")
-      );
+    cell: ({ row }) => {
+      const priorityValue = row.getValue("priority") as string;
+      const priority = priorities.find((item) => item.value === priorityValue);
 
       if (!priority) {
         return null;
@@ -169,24 +167,23 @@ export const columns = [
         </Badge>
       );
     },
-    filterFn: (row: ({ getValue: ((arg0: string) => React.ReactNode) }), id: string | number, value: ({ includes: ((arg0: unknown) => unknown) })) => {
-      return value.includes(row.getValue(id));
-    },
+    filterFn: (row, id, value: string[]) =>
+      value.includes(row.getValue(id) as string),
   },
   {
     accessorKey: "dueDate",
     header: "Due Date",
-    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => {
-      return (
-        <div className="text-sm font-medium text-default-600 whitespace-nowrap">
-          {row.getValue("dueDate")}
-        </div>
-      );
-    },
+    cell: ({ row }) => (
+      <div className="text-sm font-medium text-default-600 whitespace-nowrap">
+        {row.getValue("dueDate") as string}
+      </div>
+    ),
   },
   {
     id: "actions",
     header: "Action",
-    cell: ({ row }: { row: unknown }) => <DataTableRowActions row={row} />,
+    cell: ({ row }: { row: LegacyRow<ProjectRow> }) => (
+      <DataTableRowActions row={row} />
+    ),
   },
 ];

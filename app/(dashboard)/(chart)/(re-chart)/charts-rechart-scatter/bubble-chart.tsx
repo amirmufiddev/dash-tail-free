@@ -13,6 +13,7 @@ import {
   ZAxis,
 } from "recharts";
 import CustomTooltip from "./custom-tooltip";
+import { scatterBubbleTooltip } from "@/lib/recharts-strict";
 const data01 = [
   { hour: "12a", index: 1, value: 170 },
   { hour: "1a", index: 1, value: 180 },
@@ -81,30 +82,7 @@ const parseDomain = () => [
   ),
 ];
 
-const renderTooltip = (props: { active: unknown; payload: { length: unknown; [key: number]: { payload: unknown } } }) => {
-  const { active, payload } = props;
-
-  if (active && payload && payload.length) {
-    const data = payload[0] && payload[0].payload;
-
-    return (
-      <div
-        style={{
-          backgroundColor: "#fff",
-          border: "1px solid #999",
-          margin: 0,
-          padding: 10,
-        }}
-      >
-        <p>{data.hour}</p>
-        <p>
-          <span>value: </span>
-          {data.value}
-        </p>
-      </div>
-    );
-  }
-};
+const renderTooltip = scatterBubbleTooltip;
 const BubbleChart = ({ height = 300 }) => {
   const { theme: config, setTheme: setConfig } = useThemeStore();
   const { theme: mode } = useTheme();

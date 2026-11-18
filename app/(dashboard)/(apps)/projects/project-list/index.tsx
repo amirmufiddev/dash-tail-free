@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import {
-  flexRender
-} from "@tanstack/react-table";
+import { flexRender } from "@tanstack/react-table";
+import type { LegacyColumnDef as ColumnDef } from "@tanstack/react-table/legacy";
+import type { LegacyReactTable } from "@tanstack/react-table/legacy";
 
 import {
   Table,
@@ -17,8 +17,17 @@ import {
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@iconify/react";
+import type { ProjectRow } from "../types";
 
-export default function ProjectList({ data, table, columns }: { data: unknown; table: { getHeaderGroups: (() => unknown); getRowModel: (() => unknown); getFilteredSelectedRowModel: (() => unknown); getFilteredRowModel: (() => unknown); previousPage: (() => unknown); getCanPreviousPage: (() => unknown); getPageOptions: (() => unknown); setPageIndex: ((arg0: unknown) => unknown); getState: (() => unknown); nextPage: (() => unknown); getCanNextPage: (() => unknown) }; columns: { length: number } }) {
+export default function ProjectList({
+  data,
+  table,
+  columns,
+}: {
+  data: ProjectRow[];
+  table: LegacyReactTable<ProjectRow>;
+  columns: ColumnDef<ProjectRow>[];
+}) {
   return (
     <Card className="rounded-lg">
       <CardContent className="p-0 pb-5">
@@ -67,10 +76,7 @@ export default function ProjectList({ data, table, columns }: { data: unknown; t
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
+                <TableCell colSpan={columns.length} className="h-24 text-center">
                   No results.
                 </TableCell>
               </TableRow>
@@ -78,52 +84,42 @@ export default function ProjectList({ data, table, columns }: { data: unknown; t
           </TableBody>
         </Table>
       </CardContent>
-      <CardFooter className="flex-none mt-4">
-        <div className="flex items-center gap-4 flex-wrap  w-full">
-          <div className="flex-1 text-sm whitespace-nowrap text-muted-foreground">
-            {table.getFilteredSelectedRowModel().rows.length} of{" "}
-            {table.getFilteredRowModel().rows.length} row(s) selected.
-          </div>
-
-          <div className="flex-none flex items-center gap-3">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => table.previousPage()}
-              disabled={!table.getCanPreviousPage()}
-              className="w-8 h-8 "
-            >
-              <Icon icon="heroicons:chevron-left" className="w-4 h-4" />
-            </Button>
-            <ul className=" flex gap-3 items-center">
-              {table.getPageOptions().map((page, pageIdx) => (
-                <li key={pageIdx}>
-                  <Button
-                    onClick={() => table.setPageIndex(pageIdx)}
-                    className={`w-8 h-8`}
-                    variant={`${
-                      pageIdx === table.getState().pagination.pageIndex
-                        ? ""
-                        : "outline"
-                    }`}
-                  >
-                    {page + 1}
-                  </Button>
-                </li>
-              ))}
-            </ul>
-
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage()}
-              className="w-8 h-8"
-            >
-              <Icon icon="heroicons:chevron-right" className="w-4 h-4" />
-            </Button>
-          </div>
+      <CardFooter className="flex items-center justify-between p-4 border-t">
+        <div className="flex-1 text-sm text-muted-foreground">
+          {table.getFilteredSelectedRowModel().rows.length} of{" "}
+          {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
+        <div className="space-x-2 flex items-center  ">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Previous
+          </Button>
+          <div className="text-sm text-default-600">
+            Page {table.getState().pagination.pageIndex + 1} of{" "}
+            {table.getPageOptions().length}
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Next
+          </Button>
+        </div>
+        <Button
+          variant="soft"
+          color="default"
+          size="sm"
+          onClick={() => table.setPageIndex(0)}
+        >
+          <Icon icon="lucide:rotate-ccw" className="h-4 w-4 mr-1" />
+          Reset
+        </Button>
       </CardFooter>
     </Card>
   );

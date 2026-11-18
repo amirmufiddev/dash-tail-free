@@ -81,7 +81,7 @@ const DelayChart = ({ height = 350 }) => {
     ],
   } as unknown as ChartData<"bar">;
 
-  let delayed;
+  let delayed = false;
   const options = {
     responsive: true,
     plugins: {

@@ -26,8 +26,19 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import type { ReplyDraft } from "./types";
 
-const MessageFooter = ({ handleSendMessage, replay, setReply, replayData }: { handleSendMessage: ((arg0: string) => void); replay: unknown; setReply: ((arg0: boolean) => void); replayData: { contact?: { fullName?: React.ReactNode }; message?: React.ReactNode } }) => {
+const MessageFooter = ({
+  handleSendMessage,
+  replay,
+  setReply,
+  replayData,
+}: {
+  handleSendMessage: (message: string) => void;
+  replay: boolean;
+  setReply: (value: boolean) => void;
+  replayData: ReplyDraft;
+}) => {
   const [message, setMessage] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setMessage(e.target.value);
@@ -39,7 +50,7 @@ const MessageFooter = ({ handleSendMessage, replay, setReply, replayData }: { ha
     setMessage(message + emoji.native);
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
+  const handleSubmit = (e: React.FormEvent | React.KeyboardEvent) => {
     e.preventDefault();
     handleSendMessage(message);
     setReply(false);

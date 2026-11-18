@@ -1764,23 +1764,31 @@ const GithubStyleChart = () => {
         autoSelected: "pan",
       },
       events: {
-        mounted: function (chart: ({ getSeriesTotalXRange: ((arg0: unknown, arg1: unknown) => unknown); w: { globals: { minX: unknown; maxX: unknown } } })) {
-          var commitsEl = document.querySelector(".cmeta span.commits");
-          var commits = chart.getSeriesTotalXRange(
+        mounted: function (chart: {
+          getSeriesTotalXRange: (minX: number, maxX: number) => number;
+          w: { globals: { minX: number; maxX: number } };
+        }) {
+          const commitsEl = document.querySelector(".cmeta span.commits");
+          if (!commitsEl) return;
+          const commits = chart.getSeriesTotalXRange(
             chart.w.globals.minX,
             chart.w.globals.maxX
           );
 
-          commitsEl.innerHTML = commits;
+          commitsEl.innerHTML = String(commits);
         },
-        updated: function (chart: ({ getSeriesTotalXRange: ((arg0: unknown, arg1: unknown) => unknown); w: { globals: { minX: unknown; maxX: unknown } } })) {
-          var commitsEl = document.querySelector(".cmeta span.commits");
-          var commits = chart.getSeriesTotalXRange(
+        updated: function (chart: {
+          getSeriesTotalXRange: (minX: number, maxX: number) => number;
+          w: { globals: { minX: number; maxX: number } };
+        }) {
+          const commitsEl = document.querySelector(".cmeta span.commits");
+          if (!commitsEl) return;
+          const commits = chart.getSeriesTotalXRange(
             chart.w.globals.minX,
             chart.w.globals.maxX
           );
 
-          commitsEl.innerHTML = commits;
+          commitsEl.innerHTML = String(commits);
         },
       },
     },

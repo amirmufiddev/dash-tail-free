@@ -11,13 +11,15 @@ import {
 
 import { Icon } from "@iconify/react";
 import Link from "next/link";
+import type { LegacyRow } from "@tanstack/react-table/legacy";
+import type { ProjectRow } from "../../types";
 
-export function DataTableRowActions({ row }: { row: { original?: { isFavourite?: unknown; id?: string } } }) {
+export function DataTableRowActions({ row }: { row: LegacyRow<ProjectRow> }) {
 
   return (
     <div className="flex justify-end gap-3 items-center">
       <div>
-        {row?.original?.isFavourite ? (
+        {row.original.isFavorite ? (
           <Icon
             icon="heroicons:star-16-solid"
             className="w-5 h-5 text-warning"

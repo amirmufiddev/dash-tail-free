@@ -8,7 +8,7 @@ import Image from "next/image";
 import { Upload } from "lucide-react";
 
 const FileUploaderMultiple = () => {
-  const [files, setFiles] = useState<{ name: string | number | React.ReactNode; size: number }[]>([]);
+  const [files, setFiles] = useState<File[]>([]);
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
@@ -16,7 +16,7 @@ const FileUploaderMultiple = () => {
     },
   });
 
-  const renderFilePreview = (file: { type: string; name: string } | Blob | MediaSource) => {
+  const renderFilePreview = (file: File) => {
     if (file.type.startsWith("image")) {
       return (
         <Image
@@ -32,7 +32,7 @@ const FileUploaderMultiple = () => {
     }
   };
 
-  const handleRemoveFile = (file: { name: unknown }) => {
+  const handleRemoveFile = (file: File) => {
     const uploadedFiles = files;
     const filtered = uploadedFiles.filter((i) => i.name !== file.name);
     setFiles([...filtered]);

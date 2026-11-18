@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Ban } from "lucide-react";
 const BlockUser = () => {
   const [selected, setSelected] = useState("cr_1");
-  const handleValueChange = (value: unknown )=> {
+  const handleValueChange = (value: string) => {
     setSelected(value)
   }
   return (

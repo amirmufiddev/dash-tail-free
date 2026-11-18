@@ -3,17 +3,28 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { cn, formatTime } from "@/lib/utils";
 import { Icon } from "@iconify/react";
+import { chatAvatarSrc, type ChatContactWithMeta } from "./types";
 
-const ContactList = ({ contact, openChat, selectedChatId }: { contact: { avatar: { src: string }; id: string | number; fullName: ({ slice: ((arg0: number, arg1: number) => unknown) } | React.ReactNode); status: string; about: unknown; chat: { lastMessage?: React.ReactNode }; unreadmessage: number; date: React.ReactNode }; openChat: ((arg0: unknown) => unknown); selectedChatId: string | number }) => {
+const ContactList = ({
+  contact,
+  openChat,
+  selectedChatId,
+}: {
+  contact: ChatContactWithMeta;
+  openChat: (chatId: string | number | null) => void;
+  selectedChatId: string | number | null;
+}) => {
   const { avatar, id, fullName, status, about, chat, unreadmessage, date } =
     contact;
+  const unread = unreadmessage ?? 0;
 
   return (
     <div
       className={cn(
         " gap-4 py-2 lg:py-2.5 px-3 border-l-2 border-transparent   hover:bg-default-200 cursor-pointer flex ",
         {
-          "lg:border-primary/70 lg:bg-default-200 ": id === selectedChatId,
+          "lg:border-primary/70 lg:bg-default-200 ":
+            String(id) === String(selectedChatId),
         }
       )}
       onClick={() => openChat(id)}
@@ -21,7 +32,7 @@ const ContactList = ({ contact, openChat, selectedChatId }: { contact: { avatar:
       <div className="flex-1 flex  gap-3 ">
         <div className="relative inline-block ">
           <Avatar>
-            <AvatarImage src={avatar.src} />
+            <AvatarImage src={chatAvatarSrc(avatar)} />
             <AvatarFallback className="uppercase">
               {fullName.slice(0, 2)}
             </AvatarFallback>
@@ -54,14 +65,14 @@ const ContactList = ({ contact, openChat, selectedChatId }: { contact: { avatar:
           className={cn(
             "h-[14px] w-[14px] flex items-center justify-center bg-default-400 rounded-full text-primary-foreground text-[10px] font-medium",
             {
-              "bg-primary/70": unreadmessage > 0,
+              "bg-primary/70": unread > 0,
             }
           )}
         >
-          {unreadmessage === 0 ? (
+          {unread === 0 ? (
             <Icon icon="uil:check" className="text-sm" />
           ) : (
-            unreadmessage
+            unread
           )}
         </span>
       </div>

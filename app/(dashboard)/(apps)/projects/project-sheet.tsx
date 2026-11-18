@@ -33,6 +33,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Textarea } from "@/components/ui/textarea";
 import { faker } from "@faker-js/faker";
+import type { ProjectAssignee, ProjectRow } from "./types";
 const assignOption = [
   {
     value: "mahedi",
@@ -86,6 +87,13 @@ const OptionComponent = (
     </Option>
   );
 };
+function toAssignOptions(items: ProjectAssignee[] | undefined): AssignOption[] {
+  return (items ?? []).flatMap((item) => {
+    if (!item.value || !item.label || typeof item.image !== "string") return [];
+    return [{ value: item.value, label: item.label, image: item.image }];
+  });
+}
+
 const assignItemSchema = z.object({
   value: z.string(),
   label: z.string(),
@@ -103,14 +111,27 @@ const schema = z.object({
   endDate: z.date().nullable().optional(),
 });
 
-const ProjectsSheet = ({ open, project, onClose, selectedId }: { open: boolean; project: { title?: unknown; description?: unknown; assign?: unknown; priority?: unknown; assignDate: string | number | Date; dueDate: string | number | Date }; onClose: (() => void); selectedId: unknown }) => {
-  // form state
-  const [priority, setPriority] = React.useState<unknown | null>(null);
-  const [assign, setAssign] = React.useState<unknown[]>([]);
-  const [selectedFile, setSelectedFile] = useState<unknown | null>(null);
+type ProjectFormValues = z.infer<typeof schema>;
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+const ProjectsSheet = ({
+  open,
+  project,
+  onClose,
+  selectedId,
+}: {
+  open: boolean;
+  project: ProjectRow | null;
+  onClose: () => void;
+  selectedId: string | number | null;
+}) => {
+  // form state
+  const [priority, setPriority] = React.useState("");
+  const [assign, setAssign] = React.useState<AssignOption[]>([]);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  void selectedFile;
+
+  const [startDate, setStartDate] = useState<Date | undefined>(new Date());
+  const [endDate, setEndDate] = useState<Date | undefined>(new Date());
   const [isPending, startTransition] = useTransition();
 
   const {
@@ -120,7 +141,7 @@ const ProjectsSheet = ({ open, project, onClose, selectedId }: { open: boolean; 
     setValue,
     reset,
     formState: { errors },
-  } = useForm({
+  } = useForm<ProjectFormValues>({
     resolver: zodResolver(schema),
   });
 
@@ -128,29 +149,33 @@ const ProjectsSheet = ({ open, project, onClose, selectedId }: { open: boolean; 
     reset();
   };
 
-  const onSubmit = (data: { priority: unknown; assign: unknown; assignDate: unknown; dueDate: unknown; title: unknown; description: unknown }) => {
-    data.priority = priority;
-    data.assign = assign;
-    data.assignDate = formatDate(startDate);
-    data.dueDate = formatDate(endDate);
+  const onSubmit = (data: ProjectFormValues) => {
+    const assignDate = startDate ? formatDate(startDate) : "";
+    const dueDate = endDate ? formatDate(endDate) : "";
     const updatedProject = {
       ...project,
       title: data.title,
-      assign: data.assign,
-      assignDate: data.assignDate,
-      dueDate: data.dueDate,
+      assign,
+      priority,
+      assignDate,
+      dueDate,
       description: data.description,
     };
-    var result;
 
-    if (project) {
+    if (project && selectedId != null) {
       startTransition(async () => {
-        result = await editProjectAction(selectedId, updatedProject);
+        await editProjectAction(selectedId, updatedProject);
         toast.success("Successfully Update");
       });
     } else {
       startTransition(async () => {
-        result = await addProjectAction(data);
+        await addProjectAction({
+          ...data,
+          priority,
+          assign,
+          assignDate,
+          dueDate,
+        });
         toast.success("Successfully Added");
       });
     }
@@ -162,12 +187,12 @@ const ProjectsSheet = ({ open, project, onClose, selectedId }: { open: boolean; 
   useEffect(() => {
     setValue("title", project?.title || "");
     setValue("description", project?.description || "");
-    setValue("assign", project?.assign || []);
+    setValue("assign", toAssignOptions(project?.assign));
     setValue("priority", project?.priority || "");
     const parsedAssignDate = project?.assignDate
       ? new Date(project.assignDate)
-      : null;
-    const parsedDueDate = project?.dueDate ? new Date(project.dueDate) : null;
+      : undefined;
+    const parsedDueDate = project?.dueDate ? new Date(project.dueDate) : undefined;
     // Set state for startDate and endDate
     setStartDate(parsedAssignDate);
     setEndDate(parsedDueDate);
@@ -289,7 +314,7 @@ const ProjectsSheet = ({ open, project, onClose, selectedId }: { open: boolean; 
                     render={({ field }) => (
                       <Select
                         {...field}
-                        onChange={(data) => setAssign([...data])}
+                        onChange={(data) => setAssign(data ? [...data] : [])}
                         options={assignOption}
                         className="react-select"
                         classNamePrefix="select"
@@ -332,7 +357,7 @@ const ProjectsSheet = ({ open, project, onClose, selectedId }: { open: boolean; 
                             <Calendar
                               mode="single"
                               selected={startDate}
-                              onSelect={setStartDate}
+                              onSelect={(next) => setStartDate(next)}
                             />
                           )}
                         />
@@ -368,7 +393,7 @@ const ProjectsSheet = ({ open, project, onClose, selectedId }: { open: boolean; 
                             <Calendar
                               mode="single"
                               selected={endDate}
-                              onSelect={setEndDate}
+                              onSelect={(next) => setEndDate(next)}
                             />
                           )}
                         />

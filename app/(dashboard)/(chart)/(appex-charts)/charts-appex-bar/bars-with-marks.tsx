@@ -118,9 +118,22 @@ const BarsWithMarkes = ({ height = 350 }) => {
       },
     },
     dataLabels: {
-      formatter: function (val: string, opt: { w: { config: { series: { [key: string]: { data: { [key: string]: { goals: unknown } } } } } }; seriesIndex: string | number; dataPointIndex: string | number }) {
+      formatter: function (
+        val: string,
+        opt: {
+          w: {
+            config: {
+              series: {
+                data: { goals?: { value: string }[] }[];
+              }[];
+            };
+          };
+          seriesIndex: number;
+          dataPointIndex: number;
+        }
+      ) {
         const goals =
-          opt.w.config.series[opt.seriesIndex].data[opt.dataPointIndex].goals;
+          opt.w.config.series[opt.seriesIndex]?.data[opt.dataPointIndex]?.goals;
 
         if (goals && goals.length) {
           return `${val} / ${goals[0].value}`;

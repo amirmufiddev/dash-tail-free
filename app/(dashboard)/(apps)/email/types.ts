@@ -16,12 +16,18 @@ export type MailDetail = {
 };
 
 export type MailContact = {
-  avatar?: { src?: string };
+  avatar?: string | { src?: string };
   id: string | number;
   fullName: string;
-  status: string;
+  status?: string;
   about?: string;
   chat?: { lastMessage?: string | null };
   unreadmessage?: number;
   date?: string;
 };
+
+export function mailAvatarSrc(avatar: MailContact["avatar"]): string | undefined {
+  if (!avatar) return undefined;
+  if (typeof avatar === "string") return avatar;
+  return avatar.src;
+}

@@ -8,6 +8,7 @@ import {
 } from "@unovis/react";
 import { Direction, FitMode, Orientation, StackedBar } from "@unovis/ts";
 import { educationsData } from "./data";
+import type { EducationDatum } from "../datum-types";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
@@ -49,14 +50,17 @@ const StackedBarChart = () => {
   return (
     <>
       <VisBulletLegend items={chartLabels.map((d) => ({ name: d.legend }))} />
-      <VisXYContainer
+      <VisXYContainer<EducationDatum>
         height={isSmallScreen ? 300 : 400}
         yDirection={Direction.South}
+        data={educationsData}
       >
         <VisStackedBar
-          data={educationsData}
-          x={(d, i) => i}
-          y={chartLabels.map((label) => (d) => d[label.key])}
+          x={(_d, i) => i}
+          y={chartLabels.map(
+            (label) => (d: EducationDatum) =>
+              d[label.key as keyof EducationDatum] as number
+          )}
           orientation={Orientation.Horizontal}
         />
         <VisTooltip
@@ -79,11 +83,11 @@ const StackedBarChart = () => {
           })`}
         />
         <VisAxis
-          tickTextWidth={isSmallScreen ? 75 : null}
+          tickTextWidth={isSmallScreen ? 75 : undefined}
           tickTextFitMode={FitMode.Trim}
           type="y"
-          tickFormat={(_, i) => educationsData[i].country}
-          label={isSmallScreen ? null : "Country"}
+          tickFormat={(_tick, i) => educationsData[i]?.country ?? ""}
+          label={isSmallScreen ? undefined : "Country"}
           numTicks={educationsData.length}
           tickTextColor={`hsl(${
             theme?.cssVars[

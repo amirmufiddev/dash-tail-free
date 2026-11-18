@@ -13,7 +13,7 @@ const DateTime = ({ height = 300 }) => {
 
   const theme = themes.find((theme) => theme.name === config);
 
-  function generateDayWiseTimeSeries(baseval: unknown, count: number, yrange: { max: number; min: number }) {
+  function generateDayWiseTimeSeries(baseval: number, count: number, yrange: { max: number; min: number }) {
     var i = 0;
     var series = [];
     while (i < count) {

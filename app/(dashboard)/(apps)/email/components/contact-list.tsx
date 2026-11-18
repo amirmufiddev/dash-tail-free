@@ -9,7 +9,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { MailContact } from "../types";
+import { mailAvatarSrc, type MailContact } from "../types";
 
 const ContactList = ({
   contact,
@@ -41,7 +41,7 @@ const ContactList = ({
               <TooltipTrigger asChild>
                 <div className=" inline-block">
                   <Avatar className="h-6 w-6">
-                    <AvatarImage src={avatar?.src} />
+                    <AvatarImage src={mailAvatarSrc(avatar)} />
                     <AvatarFallback className="uppercase">
                       {fullName.slice(0, 2)}
                     </AvatarFallback>
@@ -77,7 +77,7 @@ const ContactList = ({
           <div className="flex-1 flex  gap-3">
             <div className="relative inline-block">
               <Avatar>
-                <AvatarImage src={avatar?.src} />
+                <AvatarImage src={mailAvatarSrc(avatar)} />
                 <AvatarFallback className="uppercase">
                   {fullName.slice(0, 2)}
                 </AvatarFallback>

@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Label } from "@/components/ui/label";
 const ChangeTheme = () => {
   const [selected, setSelected] = useState("apple");
-  const handleSelect = (value: unknown )=> {
+  const handleSelect = (value: string) => {
     setSelected(value)
   }
   return (

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
 
 export type TaskContact = {
-  avatar?: { src?: string };
+  avatar?: string | { src?: string };
   id: string | number;
   fullName: string;
   status?: string;
@@ -14,6 +14,12 @@ export type TaskContact = {
   unreadmessage?: number;
   date?: string;
 };
+
+function taskAvatarSrc(avatar: TaskContact["avatar"]): string | undefined {
+  if (!avatar) return undefined;
+  if (typeof avatar === "string") return avatar;
+  return avatar.src;
+}
 
 const ContactList = ({ contact, selectedChatId }: { contact: TaskContact; selectedChatId?: string | number }) => {
   const { avatar, id, fullName, status, about, chat, unreadmessage, date } =
@@ -31,7 +37,7 @@ const ContactList = ({ contact, selectedChatId }: { contact: TaskContact; select
       <div className="flex-1 flex gap-3">
         <div className="relative inline-block ">
           <Avatar>
-            <AvatarImage src={avatar?.src} />
+            <AvatarImage src={taskAvatarSrc(avatar)} />
             <AvatarFallback>{fullName.slice(0, 2)}</AvatarFallback>
           </Avatar>
           <Badge

@@ -70,9 +70,9 @@ const LineSegmentStyling = ({ height = 350 }) => {
         data: [65, 59, NaN, 48, 56, 57, 40],
         borderColor: hexToRGB(hexInfo, 0.5),
         segment: {
-          borderColor: (ctx: unknown) =>
+          borderColor: (ctx) =>
             skipped(ctx, hexPrimary) || down(ctx, hexDestructive),
-          borderDash: (ctx: unknown) => skipped(ctx, [6, 6]),
+          borderDash: (ctx) => skipped(ctx, [6, 6]),
         },
         spanGaps: true,
       },

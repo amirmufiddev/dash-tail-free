@@ -10,10 +10,15 @@ import {
   VisFreeBrush,
 } from "@unovis/react";
 import { brushChartData } from "./data";
-
+import type { FreeBrushSelection, ScatterBrushDatum } from "../datum-types";
+import { unovisTickFormat } from "@/lib/unovis-chart";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
+
+const formatNumber = unovisTickFormat((value) =>
+  Intl.NumberFormat("en", { notation: "compact" }).format(value)
+);
 
 const FreeBrushScatter = () => {
   const { theme: config, setTheme: setConfig } = useThemeStore();
@@ -27,38 +32,46 @@ const FreeBrushScatter = () => {
     `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].success})`,
   ];
 
-  const categories = Array.from(new Set(brushChartData.map((d) => d.category))).sort();
+  const categories = Array.from(
+    new Set(brushChartData.map((d) => d.category))
+  ).sort();
   const colorScale = Scale.scaleOrdinal(palette).domain(categories);
-  const formatNumber = Intl.NumberFormat("en", { notation: "compact" }).format;
 
   const legendItems = categories.map((v) => ({
     name: v,
     color: colorScale(v),
   }));
-  const [selection, setSelection] = useState<null | ({ [key: number]: unknown }) | null>(null);
+  const [selection, setSelection] = useState<FreeBrushSelection | undefined>();
 
   const scatterProps = {
-    x: useCallback((d: { medianSalary: number }) => d.medianSalary, []),
-    y: useCallback((d: { employmentRate: number }) => d.employmentRate, []),
-    color: useCallback((d: { category: string }) => colorScale(d.category), []),
-    size: useCallback((d: { total: number }) => d.total, []),
-    label: useCallback((d: { major: string }) => d.major, []),
-    id: useCallback((d: { major: string }) => d.major, []),
+    x: useCallback((d: ScatterBrushDatum) => d.medianSalary, []),
+    y: useCallback((d: ScatterBrushDatum) => d.employmentRate, []),
+    color: useCallback((d: ScatterBrushDatum) => colorScale(d.category), []),
+    size: useCallback((d: ScatterBrushDatum) => d.total, []),
+    label: useCallback((d: ScatterBrushDatum) => d.major, []),
+    id: useCallback((d: ScatterBrushDatum) => d.major, []),
   };
 
   return (
     <>
       <VisBulletLegend items={legendItems} />
-      <VisXYContainer className="minimap" data={brushChartData} height={125}>
+      <VisXYContainer<ScatterBrushDatum>
+        className="minimap"
+        data={brushChartData}
+        height={125}
+      >
         <VisScatter {...scatterProps} sizeRange={[3, 10]} label={undefined} />
         <VisFreeBrush
           selectionMinLength={[0, 0]}
           autoHide={false}
-          onBrushEnd={useCallback(setSelection, [])}
+          onBrushEnd={useCallback(
+            (value: FreeBrushSelection | undefined) => setSelection(value),
+            []
+          )}
           mode={FreeBrushMode.XY}
         />
       </VisXYContainer>
-      <VisXYContainer
+      <VisXYContainer<ScatterBrushDatum>
         data={brushChartData}
         xDomain={selection?.[0]}
         yDomain={selection?.[1]}
@@ -70,38 +83,8 @@ const FreeBrushScatter = () => {
           sizeRange={[20, 80]}
           labelPosition={Position.Bottom}
         />
-        <VisAxis
-          type="x"
-          label="Median Salary ($)"
-          tickFormat={formatNumber}
-          gridLine={false}
-          tickTextColor={`hsl(${
-            theme?.cssVars[
-              mode === "dark" || mode === "system" ? "dark" : "light"
-            ].chartLabel
-          })`}
-          labelColor={`hsl(${
-            theme?.cssVars[
-              mode === "dark" || mode === "system" ? "dark" : "light"
-            ].chartLabel
-          })`}
-        />
-        <VisAxis
-          type="y"
-          label="Employment Rate"
-          tickPadding={0}
-          gridLine={false}
-          tickTextColor={`hsl(${
-            theme?.cssVars[
-              mode === "dark" || mode === "system" ? "dark" : "light"
-            ].chartLabel
-          })`}
-          labelColor={`hsl(${
-            theme?.cssVars[
-              mode === "dark" || mode === "system" ? "dark" : "light"
-            ].chartLabel
-          })`}
-        />
+        <VisAxis type="x" label="Median Salary ($)" tickFormat={formatNumber} gridLine={false} />
+        <VisAxis type="y" label="Employment Rate" tickPadding={0} gridLine={false} />
       </VisXYContainer>
     </>
   );

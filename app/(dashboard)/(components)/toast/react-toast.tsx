@@ -10,23 +10,23 @@ const ReactToast = () => {
   const successToast = () =>
     toast({
       title: "Success",
-      variant: "success",
+      color: "success",
     });
   const warningToast = () =>
     toast({
       title: "This Could be dangerous",
-      variant: "warning",
+      color: "warning",
     });
   const destructiveToast = () =>
     toast({
       title: "This is wrong",
       description: <>Please Choose Right Toast</>,
-      variant: "destructive",
+      color: "destructive",
     });
   const infoToast = () =>
     toast({
       title: "This is a toast",
-      variant: "info",
+      color: "info",
     });
   return (
     <>

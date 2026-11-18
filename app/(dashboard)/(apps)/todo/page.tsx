@@ -1,10 +1,25 @@
 "use client";
 import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { getTodos, createTodo, deleteTodo, updateTodo } from "./todo-layout";
-import { useForm } from "react-hook-form";
+import {
+  getTodos,
+  createTodo,
+  deleteTodo,
+  updateTodo,
+  type TodoDraft,
+  type TodoItem,
+} from "./todo-layout";
+import { useForm, type UseFormHandleSubmit, type UseFormRegister } from "react-hook-form";
 
-function TodoList({ item, onDelete, onEdit }: { item: { title: React.ReactNode; id: React.ReactNode }; onDelete: ((arg0: unknown) => unknown); onEdit: ((arg0: unknown) => unknown) }) {
+function TodoList({
+  item,
+  onDelete,
+  onEdit,
+}: {
+  item: TodoItem;
+  onDelete: (id: number) => void;
+  onEdit: (todo: TodoItem) => void;
+}) {
   const { title } = item;
   return (
     <li className=" px-6 py-3 text-default-900 flex space-x-5">
@@ -23,7 +38,19 @@ function TodoList({ item, onDelete, onEdit }: { item: { title: React.ReactNode; 
   );
 }
 
-function TodoAddEditBox({ onSubmit, register, isLoading, handleSubmit, todo }: { onSubmit: unknown; register: ((arg0: string, arg1: { required: boolean; }) => unknown); isLoading: boolean; handleSubmit: ((arg0: unknown) => unknown); todo: { title: unknown } }) {
+function TodoAddEditBox({
+  onSubmit,
+  register,
+  isLoading,
+  handleSubmit,
+  todo,
+}: {
+  onSubmit: (data: TodoDraft) => void;
+  register: UseFormRegister<TodoDraft>;
+  isLoading: boolean;
+  handleSubmit: UseFormHandleSubmit<TodoDraft>;
+  todo: TodoItem | null;
+}) {
   return (
     <form
       className="flex  items-center space-x-5"
@@ -54,7 +81,7 @@ function TodoAddEditBox({ onSubmit, register, isLoading, handleSubmit, todo }: {
 }
 
 const DataPage = () => {
-  const [selectedTodo, setSelectedTodo] = useState<null | ({ id: string | number }) | null>(null);
+  const [selectedTodo, setSelectedTodo] = useState<TodoItem | null>(null);
   const queryClient = useQueryClient();
   const [page, setPage] = useState(0);
   const {
@@ -63,7 +90,7 @@ const DataPage = () => {
     watch,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm<TodoDraft>();
 
   const {
     isLoading: isGetting,
@@ -75,7 +102,7 @@ const DataPage = () => {
   } = useQuery({
     queryKey: ["todos", page],
     queryFn: () => getTodos(page),
-    placeholderData: (previousData: unknown) => previousData,
+    placeholderData: (previousData: TodoItem[] | undefined) => previousData,
   });
   // simple way
   // const todoMutation = useMutation(createTodo, {
@@ -104,29 +131,25 @@ const DataPage = () => {
     },
   });
 
-  const onDelete = (id: string | number) => {
+  const onDelete = (id: number) => {
     deleteMutation.mutate(id);
   };
 
-  const openEditTodo = (todo: ({ id: string | number }) | null) => {
+  const openEditTodo = (todo: TodoItem) => {
     setSelectedTodo(todo);
   };
-  const handleEditTodo = (updatedTodo: unknown) => {
+  const handleEditTodo = (updatedTodo: TodoDraft) => {
+    if (!selectedTodo) return;
     updateMutation.mutate({
       id: selectedTodo.id,
       todo: updatedTodo,
     });
   };
 
-  const onSubmit = (data: { title: unknown }) => {
-    // need to add data
+  const onSubmit = (data: TodoDraft) => {
     const { title } = data;
-    const onUpdateTodoItem = {
-      ...selectedTodo,
-      title: title,
-    };
     if (selectedTodo) {
-      handleEditTodo(onUpdateTodoItem);
+      handleEditTodo({ title });
     } else {
       todoMutation.mutate({ title });
     }
@@ -183,12 +206,11 @@ const DataPage = () => {
       </button>{" "}
       <button
         onClick={() => {
-          if (!isPlaceholderData && data.hasMore) {
+          if (!isPlaceholderData) {
             setPage((old) => old + 1);
           }
         }}
-        // Disable the Next Page button until we know a next page is available
-        disabled={isPlaceholderData || !data?.hasMore}
+        disabled={isPlaceholderData}
       >
         Next Page
       </button>

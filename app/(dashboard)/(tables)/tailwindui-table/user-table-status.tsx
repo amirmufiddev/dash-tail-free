@@ -74,10 +74,13 @@ const UserTableStatus = () => {
                 <Badge
                   variant="soft"
                   color={
-                    (item.role === "admin" && "default") ||
-                    (item.role === "member" && "success") ||
-                    (item.role === "owner" && "info") ||
-                    (item.role === "editor" && "warning")
+                    item.role === "member"
+                      ? "success"
+                      : item.role === "owner"
+                        ? "info"
+                        : item.role === "editor"
+                          ? "warning"
+                          : "default"
                   }
                   className=" capitalize"
                 >

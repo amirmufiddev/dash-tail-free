@@ -1,3 +1,4 @@
+import type { ScatterBrushDatum, ScatterJobDatum } from "../datum-types";
 
 export const palette = [
     '#04c0c7',
@@ -14,7 +15,7 @@ export const palette = [
     '#f45a6d',
 ]
 
-export const data = [
+export const data: ScatterJobDatum[] = [
     {
         major: 'GENERAL AGRICULTURE',
         category: 'Agriculture & Natural Resources',
@@ -1228,7 +1229,7 @@ export const data = [
     },
 ].sort((a, b) => b.total - a.total)
 
-export const brushChartData = [
+export const brushChartData: ScatterBrushDatum[] = [
     {
         major: 'GENERAL AGRICULTURE',
         category: 'Agriculture & Natural Resources',

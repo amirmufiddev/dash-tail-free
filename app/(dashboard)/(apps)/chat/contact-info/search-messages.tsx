@@ -3,7 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
-const SearchMessages = ({ handleSetIsOpenSearch }: { handleSetIsOpenSearch: ((arg0: unknown) => void) }) => {
+const SearchMessages = ({
+  handleSetIsOpenSearch,
+}: {
+  handleSetIsOpenSearch: () => void;
+}) => {
   const [values, setValues] = useState("");
   const handleChangeValues = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> )=> {
     setValues(e.target.value)

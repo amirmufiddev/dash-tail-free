@@ -12,15 +12,16 @@ import { Icon } from "@iconify/react";
 import { InputGroup, InputGroupText } from "@/components/ui/input-group";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { chatAvatarSrc, type ChatProfile } from "./types";
 
-const MyProfileHeader = ({ profile }: { profile: { avatar?: { src?: string }; fullName?: ({ slice?: ((arg0: number, arg1: number) => unknown) } | React.ReactNode); bio?: React.ReactNode } }) => {
+const MyProfileHeader = ({ profile }: { profile?: ChatProfile }) => {
   return (
     <>
       <div className="flex  justify-between mb-4">
         <div className="flex   gap-3">
           <Avatar className="h-10 w-10">
-            <AvatarImage src={profile?.avatar.src} alt="" />
-            <AvatarFallback>{profile?.fullName.slice(0, 2)}</AvatarFallback>
+            <AvatarImage src={chatAvatarSrc(profile?.avatar)} alt="" />
+            <AvatarFallback>{profile?.fullName?.slice(0, 2)}</AvatarFallback>
           </Avatar>
           <div className="block">
             <div className="text-sm font-medium text-default-900 ">

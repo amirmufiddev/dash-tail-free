@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Menu } from "lucide-react";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { chatAvatarSrc, type ChatProfile } from "./types";
 
 const MessageHeader = ({
   showInfo,
@@ -22,7 +23,7 @@ const MessageHeader = ({
 }: {
   showInfo?: boolean;
   handleShowInfo?: () => void;
-  profile?: { fullName?: string; avatar?: string | { src?: string } };
+  profile?: ChatProfile;
   mblChatHandler?: () => void;
 }) => {
   let active = true;
@@ -40,11 +41,7 @@ const MessageHeader = ({
         <div className="relative inline-block">
           <Avatar>
             <AvatarImage
-            src={
-              typeof profile?.avatar === "string"
-                ? profile.avatar
-                : profile?.avatar?.src
-            }
+            src={chatAvatarSrc(profile?.avatar)}
             alt=""
           />
             <AvatarFallback>{profile?.fullName?.slice(0, 2)}</AvatarFallback>

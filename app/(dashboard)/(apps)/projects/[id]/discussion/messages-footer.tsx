@@ -38,7 +38,7 @@ const MessageFooter = () => {
     setMessage(message + emoji.native);
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
+  const handleSubmit = (e: React.FormEvent | React.KeyboardEvent) => {
     e.preventDefault();
     setMessage("");
   };

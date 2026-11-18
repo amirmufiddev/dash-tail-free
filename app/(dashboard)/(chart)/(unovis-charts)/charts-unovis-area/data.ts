@@ -1,5 +1,11 @@
+import type {
+  BaselineAreaDatum,
+  CovidAreaDatum,
+  StackedAreaDatum,
+  StepSentimentDatum,
+} from "../datum-types";
 
-export const data = [
+export const data: CovidAreaDatum[] = [
     {
         month: 'Jan ',
         year: '2020',
@@ -258,7 +264,7 @@ export const data = [
     },
 ];
 
-export const stackedData = [
+export const stackedData: StackedAreaDatum[] = [
     {
         year: 1973,
         vinyl: 1.436,
@@ -636,7 +642,7 @@ export const stackedData = [
         download: 0.8326,
     },
 ]
-export const baselineData = [
+export const baselineData: BaselineAreaDatum[] = [
     {
         year: 1929,
         art: [9, 0, 0, 0, 0, 0],
@@ -1018,7 +1024,7 @@ export const categories = [
     { id: 5, name: 'Media and Performance' },
 ];
 
-export const stepData = [
+export const stepData: StepSentimentDatum[] = [
     {
         year: 2007,
         'Jeb Bush': {

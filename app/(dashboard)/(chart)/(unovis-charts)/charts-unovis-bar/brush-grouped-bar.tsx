@@ -9,11 +9,15 @@ import {
   VisBulletLegend,
 } from "@unovis/react";
 import { brushChartData, groups } from "./data";
+import type { BrushChartDatum, BrushGroupMeta } from "../datum-types";
+import type { BulletLegendItemInterface } from "@unovis/ts";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
 
-const legendItems = groups.map((g) => ({ ...g, inactive: false }));
+type LegendItem = BrushGroupMeta & { inactive: boolean };
+
+const legendItems: LegendItem[] = groups.map((g) => ({ ...g, inactive: false }));
 
 const BrushGroupedBar = () => {
   const { theme: config, setTheme: setConfig } = useThemeStore();
@@ -21,27 +25,39 @@ const BrushGroupedBar = () => {
   const theme = themes.find((theme) => theme.name === config);
 
   const [domain, setDomain] = useState<[number, number]>([1980, 1990]);
-  const [duration, setDuration] = useState(undefined);
-  const [items, setItems] = useState(legendItems);
+  const [duration, setDuration] = useState<number | undefined>(undefined);
+  const [items, setItems] = useState<LegendItem[]>(legendItems);
 
-  const x = useCallback((d: { year: number }) => d.year, []);
+  const x = useCallback((d: BrushChartDatum) => d.year, []);
 
   const y = useMemo(
-    () => items.map((i) => (d: { [key: string]: unknown }) => i.inactive ? null : d[i.key]),
+    () =>
+      items.map((i) => (d: BrushChartDatum) =>
+        i.inactive ? null : (d[i.key] ?? null)
+      ),
     [items]
   );
 
-  const updateDomain = useCallback((selection: { [key: number]: number }, _: unknown, userDriven: unknown) => {
-    if (userDriven) {
-      setDuration(0);
-      setDomain(selection as [number, number]);
-    }
-  }, []);
+  const updateDomain = useCallback(
+    (
+      selection: [number, number] | undefined,
+      _event: unknown,
+      userDriven: boolean
+    ) => {
+      if (userDriven && selection) {
+        setDuration(0);
+        setDomain(selection);
+      }
+    },
+    []
+  );
 
   const updateItems = useCallback(
-    (item: { inactive: unknown }, i: number) => {
+    (_item: BulletLegendItemInterface, i: number) => {
       const newItems = [...items];
-      newItems[i] = { ...item, inactive: !item.inactive };
+      const current = newItems[i];
+      if (!current) return;
+      newItems[i] = { ...current, inactive: !current.inactive };
       setDuration(undefined);
       setItems(newItems);
     },
@@ -52,7 +68,7 @@ const BrushGroupedBar = () => {
   return (
     <>
       <VisBulletLegend items={items} onLegendItemClick={updateItems} />
-      <VisXYContainer
+      <VisXYContainer<BrushChartDatum>
         duration={duration}
         data={brushChartData}
         height={"50vh"}
@@ -97,7 +113,7 @@ const BrushGroupedBar = () => {
           })`}
         />
       </VisXYContainer>
-      <VisXYContainer
+      <VisXYContainer<BrushChartDatum>
         data={brushChartData}
         height={75}
         margin={brushChartMargin}

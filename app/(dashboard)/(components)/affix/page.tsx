@@ -8,7 +8,7 @@ const AffixPage = () => {
   const [top, setTop] = React.useState(100);
   const [bottom, setBottom] = React.useState(100);
 
-  const [container, setContainer] = useState<unknown | null>(null);
+  const [container, setContainer] = useState<HTMLElement | null>(null);
   const containerStyle = {
     width: "100%",
     height: 100,

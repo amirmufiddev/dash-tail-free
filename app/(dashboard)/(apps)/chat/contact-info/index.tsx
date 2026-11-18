@@ -19,6 +19,8 @@ import BlockUser from "./block-user";
 import MediaSheet from "./media-sheet";
 import { AlertTriangle, FolderClosed, Image } from "lucide-react";
 
+import { chatAvatarSrc, type ChatContact } from "../types";
+
 const ContactInfo = ({
   handleSetIsOpenSearch,
   handleShowInfo,
@@ -26,14 +28,10 @@ const ContactInfo = ({
 }: {
   handleSetIsOpenSearch?: () => void;
   handleShowInfo?: () => void;
-  contact?: {
-    fullName?: string;
-    avatar?: string | { src?: string };
-    about?: string;
-  };
+  contact?: ChatContact;
 }) => {
-  const [showDrawer, setShowDrawer] = useState<unknown | null>(null);
-  const handleDrawer = (itemKey: unknown | null) => {
+  const [showDrawer, setShowDrawer] = useState<string | null>(null);
+  const handleDrawer = (itemKey: string | null) => {
     setShowDrawer(itemKey);
   };
   return (
@@ -56,14 +54,10 @@ const ContactInfo = ({
           <div className="flex flex-col items-center">
             <Avatar className="w-16 h-16 lg:h-24 lg:w-24">
               <AvatarImage
-              src={
-                typeof contact?.avatar === "string"
-                  ? contact.avatar
-                  : contact?.avatar?.src
-              }
+              src={chatAvatarSrc(contact?.avatar)}
               alt=""
             />
-              <AvatarFallback>{contact?.fullName.slice(0, 2)}</AvatarFallback>
+              <AvatarFallback>{contact?.fullName?.slice(0, 2)}</AvatarFallback>
             </Avatar>
             <div className="mt-3 text-lg lg:text-xl font-semibold text-default-900">
               {contact?.fullName}

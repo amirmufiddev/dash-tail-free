@@ -9,6 +9,8 @@ import {
   VisBulletLegend,
 } from "@unovis/react";
 import { data } from "./data";
+import type { CovidAreaDatum } from "../datum-types";
+import { unovisTickFormat } from "@/lib/unovis-chart";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
@@ -21,9 +23,11 @@ const NonStackedArea = ({ height = 400 }) => {
   const Country = {
     UnitedStates: "us",
     India: "in",
-  };
+  } as const;
 
-  const countries = {
+  type CountryId = (typeof Country)[keyof typeof Country];
+
+  const countries: Record<CountryId, { name: string; color: string }> = {
     [Country.UnitedStates]: {
       name: "United States",
       color: `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].info})`,
@@ -36,19 +40,31 @@ const NonStackedArea = ({ height = 400 }) => {
     },
   };
 
-  const x = useCallback((_: unknown, i: unknown) => i, []);
-  const accessors = (id: string | number) => ({
-    y: useCallback((d: { cases: { [key: string]: unknown } }) => d.cases[id], []),
+  const x = useCallback((_d: CovidAreaDatum, i: number) => i, []);
+  const accessors = (id: CountryId) => ({
+    y: useCallback((d: CovidAreaDatum) => d.cases[id], []),
     color: countries[id].color,
   });
 
-  const xTicks = useCallback((i: number) => [data[i].month, data[i].year].join(""), []);
-  const yTicks = Intl.NumberFormat(navigator.language, {
-    notation: "compact",
-  }).format;
+  const xTicks = useCallback(
+    (tick: number | Date, i: number) => {
+      const row = data[i];
+      if (!row || typeof tick !== "number") return "";
+      return [row.month, row.year].join("");
+    },
+    []
+  );
+  const compactNumber = useCallback(
+    unovisTickFormat((value) =>
+      Intl.NumberFormat(navigator.language, { notation: "compact" }).format(
+        value
+      )
+    ),
+    []
+  );
 
   return (
-    <VisXYContainer data={data} height={height}>
+    <VisXYContainer<CovidAreaDatum> data={data} height={height}>
       <VisBulletLegend items={Object.values(countries)} />
       <VisArea
         {...accessors(Country.UnitedStates)}
@@ -73,7 +89,7 @@ const NonStackedArea = ({ height = 400 }) => {
       />
       <VisAxis
         type="y"
-        tickFormat={yTicks}
+        tickFormat={compactNumber}
         tickTextColor={`hsl(${
           theme?.cssVars[
             mode === "dark" || mode === "system" ? "dark" : "light"

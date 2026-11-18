@@ -13,7 +13,17 @@ import { Input } from "@/components/ui/input";
 import { Icon } from "@iconify/react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-const ForwardMessage = ({ open, contacts, setIsOpen }: { open: boolean; contacts: { contacts?: ({ avatar: string; fullName: React.ReactNode })[] }; setIsOpen: unknown }) => {
+import { chatAvatarSrc, type ContactsResponse } from "./types";
+const ForwardMessage = ({
+  open,
+  contacts,
+  setIsOpen,
+}: {
+  open: boolean;
+  contacts?: ContactsResponse;
+  setIsOpen: (open: boolean) => void;
+}) => {
+  void setIsOpen;
   return (
     <Dialog open={open} onOpenChange={() => alert("s")}>
       <DialogContent size="xl" className="px-0 pb-0">
@@ -46,7 +56,7 @@ const ForwardMessage = ({ open, contacts, setIsOpen }: { open: boolean; contacts
                   <div className="flex-1 flex items-center gap-3">
                     <div className="relative inline-block ">
                       <Avatar>
-                        <AvatarImage src={contact.avatar} />
+                        <AvatarImage src={chatAvatarSrc(contact.avatar)} />
                         <AvatarFallback>{contact.fullName}</AvatarFallback>
                       </Avatar>
                     </div>

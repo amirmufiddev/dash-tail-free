@@ -9,11 +9,14 @@ import {
   VisXYContainer,
 } from "@unovis/react";
 import { data, palette } from "./data";
+import type { ScatterJobDatum } from "../datum-types";
+import { unovisTickFormat } from "@/lib/unovis-chart";
 
 const categories = Array.from(new Set(data.map((d) => d.category))).sort();
 const colorScale = Scale.scaleOrdinal(palette).domain(categories);
-const formatNumber = (value: number | bigint | Intl.StringNumericLiteral) =>
-  Intl.NumberFormat("en", { notation: "compact" }).format(value);
+const formatNumber = unovisTickFormat((value) =>
+  Intl.NumberFormat("en", { notation: "compact" }).format(value)
+);
 
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
@@ -29,7 +32,7 @@ const BasicScatterChart = () => {
     color: colorScale(v),
   }));
   const tooltipTriggers = {
-    [Scatter.selectors.point]: (d: ({ major: string; total: { toLocaleString: (() => unknown) } })) => `
+    [Scatter.selectors.point]: (d: ScatterJobDatum) => `
       ${d.major}<br/>Number of graduates: ${d.total.toLocaleString()}
     `,
   };
@@ -38,13 +41,21 @@ const BasicScatterChart = () => {
     <>
       <h2>American College Graduates, 2010-2012</h2>
       <VisBulletLegend items={legendItems} />
-      <VisXYContainer data={data} height={"60vh"} scaleByDomain={true}>
+      <VisXYContainer<ScatterJobDatum>
+        data={data}
+        height={"60vh"}
+        scaleByDomain={true}
+      >
         <VisScatter
-          x={useCallback((d: { medianSalary: number }) => d.medianSalary, [])}
-          y={useCallback((d: { employmentRate: number }) => d.employmentRate, [])}
-          color={useCallback((d: { category: string }) => colorScale(d.category), [])}
-          size={useCallback((d: { total: number }) => d.total, [])}
-          label={useCallback((d: { total: number }) => formatNumber(d.total), [])}
+          x={useCallback((d: ScatterJobDatum) => d.medianSalary, [])}
+          y={useCallback((d: ScatterJobDatum) => d.employmentRate, [])}
+          color={useCallback((d: ScatterJobDatum) => colorScale(d.category), [])}
+          size={useCallback((d: ScatterJobDatum) => d.total, [])}
+          label={useCallback(
+            (d: ScatterJobDatum) =>
+              Intl.NumberFormat("en", { notation: "compact" }).format(d.total),
+            []
+          )}
           labelPosition={Position.Bottom}
           sizeRange={[10, 50]}
           cursor="pointer"

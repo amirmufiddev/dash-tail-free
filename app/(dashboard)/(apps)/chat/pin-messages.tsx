@@ -13,8 +13,15 @@ import { DialogClose } from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
+import type { PinnedMessageRef } from "./types";
 
-const PinnedMessages = ({ pinnedMessages, handleUnpinMessage }: { pinnedMessages: ({ isPinned?: unknown; avatar: string; note: React.ReactNode })[]; handleUnpinMessage: ((arg0: unknown) => unknown) }) => {
+const PinnedMessages = ({
+  pinnedMessages,
+  handleUnpinMessage,
+}: {
+  pinnedMessages: PinnedMessageRef[];
+  handleUnpinMessage: (message: PinnedMessageRef) => void;
+}) => {
   return (
     <>
       {pinnedMessages.length > 0 && (
@@ -44,11 +51,13 @@ const PinnedMessages = ({ pinnedMessages, handleUnpinMessage }: { pinnedMessages
                           className="flex items-center  gap-3 border-b last:border-none border-default-100 py-4"
                         >
                           <div className="h-10 w-10 self-end">
-                            <Image
-                              src={pinnedMessage.avatar}
-                              alt=""
-                              className="w-full h-full rounded-full object-cover"
-                            />
+                            {pinnedMessage.avatar ? (
+                              <Image
+                                src={pinnedMessage.avatar}
+                                alt=""
+                                className="w-full h-full rounded-full object-cover"
+                              />
+                            ) : null}
                           </div>
                           <span className="flex-1 ">{pinnedMessage.note}</span>
                           <Badge

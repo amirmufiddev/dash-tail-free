@@ -13,6 +13,7 @@ import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
 import { productData } from "./data";
+import type { ProductTimelineDatum } from "../datum-types";
 
 const labelWidth = 100;
 const dateFormatter = Intl.DateTimeFormat().format;
@@ -27,8 +28,8 @@ const BasicTimeline = ({ height = 400 }) => {
     `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].warning})`,
     `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].success})`,
   ];
-  const ProductType = { App: "app", Hardware: "hardware", Service: "service" };
-  const colorMap = {
+  const ProductType = { App: "app", Hardware: "hardware", Service: "service" } as const;
+  const colorMap: Record<string, string> = {
     [ProductType.App]: colors[0],
     [ProductType.Hardware]: colors[1],
     [ProductType.Service]: colors[2],
@@ -48,13 +49,13 @@ const BasicTimeline = ({ height = 400 }) => {
   }
 
   return (
-    <VisXYContainer data={productData} height={height}>
+    <VisXYContainer<ProductTimelineDatum> data={productData} height={height}>
       <VisBulletLegend items={legendItems} />
       <VisTimeline
-        x={useCallback((d: { startDate: number }) => d.startDate, [])}
-        length={useCallback((d: { endDate: number; startDate: number }) => d.endDate - d.startDate, [])}
-        type={useCallback((d: { name: string }) => d.name, [])}
-        color={useCallback((d: { type: string | number }) => colorMap[d.type], [])}
+        x={useCallback((d: ProductTimelineDatum) => d.startDate, [])}
+        length={useCallback((d: ProductTimelineDatum) => d.endDate - d.startDate, [])}
+        type={useCallback((d: ProductTimelineDatum) => d.name, [])}
+        color={useCallback((d: ProductTimelineDatum) => colorMap[d.type] ?? colors[0], [colors])}
         maxLabelWidth={labelWidth}
         showLabels={true}
         alternatingRowColors={true}

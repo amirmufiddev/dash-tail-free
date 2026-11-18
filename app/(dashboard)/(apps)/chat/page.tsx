@@ -35,22 +35,40 @@ import ForwardMessage from "./forward-message";
 import ContactInfo from "./contact-info";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
+import type {
+  ChatContact,
+  ChatProfile,
+  ContactsResponse,
+  MessagesResponse,
+  OutboundChatMessage,
+  PinnedMessageRef,
+  ReplyDraft,
+} from "./types";
+
 const ChatPage = () => {
-  const [selectedChatId, setSelectedChatId] = useState<unknown | null>(null);
+  const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
   const [showContactSidebar, setShowContactSidebar] = useState(false);
 
   const [showInfo, setShowInfo] = useState(false);
   const queryClient = useQueryClient();
   // Memoize getMessages using useCallback
-  const getMessagesCallback = useCallback((chatId: string | number) => getMessages(chatId), []);
+  const getMessagesCallback = useCallback(
+    (chatId: string | null) => {
+      if (!chatId) {
+        return Promise.reject(new Error("Chat belum dipilih"));
+      }
+      return getMessages(chatId);
+    },
+    []
+  );
   // reply state
   const [replay, setReply] = useState(false);
-  const [replayData, setReplyData] = useState({});
+  const [replayData, setReplyData] = useState<ReplyDraft>({});
 
   // search state
   const [isOpenSearch, setIsOpenSearch] = useState(false);
 
-  const [pinnedMessages, setPinnedMessages] = useState<{ selectedChatId: string | number; index: unknown }[]>([]);
+  const [pinnedMessages, setPinnedMessages] = useState<PinnedMessageRef[]>([]);
   // Forward State
   const [isForward, setIsForward] = useState(false);
 
@@ -63,7 +81,8 @@ const ChatPage = () => {
   } = useQuery({
     queryKey: ["contacts"],
     queryFn: () => getContacts(),
-    placeholderData: (previousData: unknown) => previousData,
+    placeholderData: (previousData: ContactsResponse | undefined) =>
+      previousData,
   });
   const {
     isLoading: messageLoading,
@@ -74,7 +93,9 @@ const ChatPage = () => {
   } = useQuery({
     queryKey: ["message", selectedChatId],
     queryFn: () => getMessagesCallback(selectedChatId),
-    placeholderData: (previousData: unknown) => previousData,
+    enabled: Boolean(selectedChatId),
+    placeholderData: (previousData: MessagesResponse | undefined) =>
+      previousData,
   });
   const {
     isLoading: profileLoading,
@@ -85,7 +106,7 @@ const ChatPage = () => {
   } = useQuery({
     queryKey: ["profile"],
     queryFn: () => getProfile(),
-    placeholderData: (previousData: unknown) => previousData,
+    placeholderData: (previousData: ChatProfile | undefined) => previousData,
   });
   const messageMutation = useMutation({
     mutationFn: sendMessage,
@@ -105,20 +126,20 @@ const ChatPage = () => {
   //   const obj = { selectedChatId, index };
   //   deleteMutation.mutate(obj);
   // };
-  const onDelete = (selectedChatId: string | number, index: unknown) => {
-    const obj = { selectedChatId, index };
+  const onDelete = (chatId: string | number, index: number) => {
+    const obj = { selectedChatId: String(chatId), index };
     deleteMutation.mutate(obj);
 
     // Remove the deleted message from pinnedMessages if it exists
     const updatedPinnedMessages = pinnedMessages.filter(
-      (msg) => msg.selectedChatId !== selectedChatId && msg.index !== index
+      (msg) => msg.selectedChatId !== chatId && msg.index !== index
     );
 
     setPinnedMessages(updatedPinnedMessages);
   };
 
   const openChat = (chatId: string | number | null) => {
-    setSelectedChatId(chatId);
+    setSelectedChatId(chatId != null ? String(chatId) : null);
     setReply(false);
     if (showContactSidebar) {
       setShowContactSidebar(false);
@@ -127,21 +148,22 @@ const ChatPage = () => {
   const handleShowInfo = () => {
     setShowInfo(!showInfo);
   };
-  const handleSendMessage = (message: unknown) => {
+  const handleSendMessage = (message: string) => {
     if (!selectedChatId || !message) return;
 
-    const newMessage = {
-      message: message,
+    const newMessage: OutboundChatMessage = {
+      message,
+      selectedChatId,
       contact: { id: selectedChatId },
       replayMetadata: isObjectNotEmpty(replayData),
     };
     messageMutation.mutate(newMessage);
     console.log(message, "ami msg");
   };
-  const chatHeightRef = useRef(null);
+  const chatHeightRef = useRef<HTMLDivElement | null>(null);
 
   // replay message
-  const handleReply = (data: unknown, contact: unknown) => {
+  const handleReply = (data: string, contact: ChatContact) => {
     const newObj = {
       message: data,
       contact,
@@ -174,7 +196,7 @@ const ChatPage = () => {
   };
   // handle pin note
 
-  const handlePinMessage = (note: { note: unknown } | never[]) => {
+  const handlePinMessage = (note: PinnedMessageRef) => {
     const updatedPinnedMessages = [...pinnedMessages];
 
     const existingIndex = updatedPinnedMessages.findIndex(
@@ -182,17 +204,15 @@ const ChatPage = () => {
     );
 
     if (existingIndex !== -1) {
-      updatedPinnedMessages.splice(existingIndex, 1); // Remove the message
-      //setIsPinned(false);
+      updatedPinnedMessages.splice(existingIndex, 1);
     } else {
-      updatedPinnedMessages.push(note); // Add the message
-      // setIsPinned(true);
+      updatedPinnedMessages.push(note);
     }
 
     setPinnedMessages(updatedPinnedMessages);
   };
 
-  const handleUnpinMessage = (pinnedMessage: { note: unknown; avatar: unknown }) => {
+  const handleUnpinMessage = (pinnedMessage: PinnedMessageRef) => {
     // Create a copy of the current pinned messages array
     const updatedPinnedMessages = [...pinnedMessages];
 
@@ -337,7 +357,7 @@ const ChatPage = () => {
                 handleSetIsOpenSearch={handleSetIsOpenSearch}
                 handleShowInfo={handleShowInfo}
                 contact={contacts?.contacts?.find(
-                  (contact) => contact.id === selectedChatId
+                  (contact) => String(contact.id) === selectedChatId
                 )}
               />
             )}

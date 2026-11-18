@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const SelectionOperation = () => {
-  const [selectedRows, setSelectedRows] = useState<unknown[]>([]);
+  const [selectedRows, setSelectedRows] = useState<number[]>([]);
 
   const handleSelectAll = (event: unknown) => {
     if (selectedRows?.length === users?.length) {
@@ -36,7 +36,7 @@ const SelectionOperation = () => {
     }
   };
 
-  const handleRowSelect = (id: never[]) => {
+  const handleRowSelect = (id: number) => {
     const updatedSelectedRows = [...selectedRows];
     if (selectedRows.includes(id)) {
       updatedSelectedRows.splice(selectedRows.indexOf(id), 1);
@@ -142,10 +142,13 @@ const SelectionOperation = () => {
               <Badge
                 variant="outline"
                 color={
-                  (item.role === "admin" && "default") ||
-                  (item.role === "member" && "success") ||
-                  (item.role === "owner" && "info") ||
-                  (item.role === "editor" && "warning")
+                  item.role === "member"
+                    ? "success"
+                    : item.role === "owner"
+                      ? "info"
+                      : item.role === "editor"
+                        ? "warning"
+                        : "default"
                 }
                 className=" capitalize"
               >

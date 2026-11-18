@@ -28,13 +28,27 @@ import {
 import { Icon } from "@iconify/react";
 import DeleteConfirmationDialog from "@/components/delete-confirmation-dialog";
 
-const prioritiesColorMap = {
+const prioritiesColorMap: Record<string, "destructive" | "info" | "warning"> = {
   high: "destructive",
   low: "info",
   medium: "warning",
 };
 import { useTheme } from "next-themes";
-const ProjectGrid = ({ project, onEdit }: { project: { id?: string; status?: string | React.ReactNode; isFavorite?: unknown; logo?: { src?: string }; title?: ({ slice?: ((arg0: number, arg1: number) => unknown) } | React.ReactNode); description?: React.ReactNode; assign: ({ image?: { src?: string } })[]; priority: string | number | React.ReactNode; percentage?: unknown; assignDate?: React.ReactNode; dueDate?: React.ReactNode }; onEdit: ((arg0: unknown) => unknown) }) => {
+import type { ProjectRow } from "./types";
+import type { StaticImageData } from "next/image";
+
+function staticSrc(value?: StaticImageData | { src?: string }): string | undefined {
+  if (!value || typeof value !== "object" || !("src" in value)) return undefined;
+  return typeof value.src === "string" ? value.src : undefined;
+}
+
+const ProjectGrid = ({
+  project,
+  onEdit,
+}: {
+  project: ProjectRow;
+  onEdit: (project: ProjectRow) => void;
+}) => {
   const [open, setOpen] = React.useState(false);
   async function onAction(id: string | number) {
     await deleteProjectAction(id);
@@ -126,9 +140,9 @@ const ProjectGrid = ({ project, onEdit }: { project: { id?: string; status?: str
             <div className="flex gap-2">
               <div>
                 <Avatar className="rounded h-12 w-12">
-                  <AvatarImage src={project?.logo?.src} alt="" />
+                  <AvatarImage src={staticSrc(project.logo)} alt="" />
                   <AvatarFallback className="rounded uppercase bg-success/30 text-success">
-                    {project?.title?.slice(0, 2)}
+                    {project.title.slice(0, 2)}
                   </AvatarFallback>
                 </Avatar>
               </div>
@@ -150,11 +164,11 @@ const ProjectGrid = ({ project, onEdit }: { project: { id?: string; status?: str
               <div className="text-sm font-medium text-default-900 mb-3">
                 Team:
               </div>
-              {project?.assign?.length > 0 && (
+              {(project.assign?.length ?? 0) > 0 && (
                 <div>
                   <AvatarGroup
                     max={3}
-                    total={project.assign.length}
+                    total={project.assign?.length ?? 0}
                     countClass="h-7 w-7"
                   >
                     {project.assign?.map((user, index) => (
@@ -162,7 +176,7 @@ const ProjectGrid = ({ project, onEdit }: { project: { id?: string; status?: str
                         className="ring-1 ring-background ring-offset-[2px]  ring-offset-background h-7 w-7 "
                         key={`assign-member-${index}`}
                       >
-                        <AvatarImage src={user?.image?.src} />
+                        <AvatarImage src={staticSrc(user.image)} />
                         <AvatarFallback>DC</AvatarFallback>
                       </Avatar>
                     ))}
@@ -177,7 +191,9 @@ const ProjectGrid = ({ project, onEdit }: { project: { id?: string; status?: str
               </div>
               {project.priority && (
                 <Badge
-                  color={prioritiesColorMap[project.priority]}
+                  color={
+                    prioritiesColorMap[project.priority ?? ""] ?? "info"
+                  }
                   variant={mode === "dark" ? "solid" : "solid"}
                   className=" capitalize"
                 >
@@ -192,10 +208,10 @@ const ProjectGrid = ({ project, onEdit }: { project: { id?: string; status?: str
                 Project Progress:
               </span>
               <span className="text-xs font-medium text-default-600">
-                {project?.percentage ? project?.percentage : 0}%
+                {project.percentage ?? 0}%
               </span>
             </div>
-            <Progress value={project?.percentage ? project?.percentage : 0} />
+            <Progress value={project.percentage ?? 0} />
           </div>
         </CardContent>
         <CardFooter className="flex justify-between border-t  p-4">

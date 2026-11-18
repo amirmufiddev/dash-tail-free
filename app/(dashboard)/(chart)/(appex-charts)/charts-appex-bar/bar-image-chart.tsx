@@ -33,9 +33,7 @@ const BarImageChart = ({ height = 350 }) => {
         barHeight: "100%",
       },
     },
-    labels: Array.apply(null, { length: 39 }).map(function (el, index) {
-      return index + 1;
-    }),
+    labels: Array.from({ length: 39 }, (_, index) => index + 1),
     dataLabels: {
       enabled: false,
     },

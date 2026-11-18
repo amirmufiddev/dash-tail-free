@@ -36,14 +36,16 @@ function channelValue(x: number, y: number, values: { [key: number]: unknown }) 
     : values[3];
 }
 
-function colorize(opaque: unknown, context: { raw: unknown }) {
+type BubbleRaw = { x: number; y: number; v?: number };
+
+function colorize(opaque: boolean, context: { raw: BubbleRaw }) {
   const value = context.raw;
   const x = value.x / 100;
   const y = value.y / 100;
   const r = channelValue(x, y, [250, 150, 50, 0]);
   const g = channelValue(x, y, [0, 50, 150, 250]);
   const b = channelValue(x, y, [0, 150, 150, 250]);
-  const a = opaque ? 1 : (0.5 * value.v) / 1000;
+  const a = opaque ? 1 : (0.5 * (value.v ?? 0)) / 1000;
 
   return "rgba(" + r + "," + g + "," + b + "," + a + ")";
 }
@@ -105,9 +107,12 @@ const ScriptBubble = ({ height = 350 }) => {
     },
     elements: {
       point: {
-        backgroundColor: function (context: { dataIndex: unknown; dataset: { data: { [key: string]: unknown } } }) {
+        backgroundColor: function (context: {
+          dataIndex: number;
+          dataset: { data: BubbleRaw[] };
+        }) {
           const index = context.dataIndex;
-          const value = context.dataset.data[index];
+          const value = context.dataset.data[index]?.x ?? 0;
           return value < 0 ? "red" : index % 2 ? "blue" : "green";
         },
       },

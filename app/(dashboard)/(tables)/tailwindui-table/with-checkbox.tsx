@@ -16,7 +16,7 @@ import { users } from "./data";
 import { Checkbox } from "@/components/ui/checkbox";
 
 const WithCheckbox = () => {
-  const [selectedRows, setSelectedRows] = useState<unknown[]>([]);
+  const [selectedRows, setSelectedRows] = useState<number[]>([]);
 
   const handleSelectAll = (event: unknown) => {
     if (selectedRows?.length === users?.length) {
@@ -26,7 +26,7 @@ const WithCheckbox = () => {
     }
   };
 
-  const handleRowSelect = (id: never[]) => {
+  const handleRowSelect = (id: number) => {
     const updatedSelectedRows = [...selectedRows];
     if (selectedRows.includes(id)) {
       updatedSelectedRows.splice(selectedRows.indexOf(id), 1);
