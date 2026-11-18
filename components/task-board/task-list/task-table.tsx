@@ -12,13 +12,15 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import {
-  flexRender,
+  flexRender
+} from "@tanstack/react-table";
+import {
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+  useLegacyTable as useReactTable
+} from "@tanstack/react-table/legacy";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Table,
@@ -82,22 +84,22 @@ const members = [
   {
     name: "Nick Jonas",
     value: "userid1",
-    image: faker.image.avatarLegacy(),
+    image: faker.image.avatar(),
   },
   {
     name: "Fahim",
     value: "userid2",
-    image: faker.image.avatarLegacy(),
+    image: faker.image.avatar(),
   },
   {
     name: "Nayeem",
     value: "userid3",
-    image: faker.image.avatarLegacy(),
+    image: faker.image.avatar(),
   },
   {
     name: "Iftekhar",
     value: "userid4",
-    image: faker.image.avatarLegacy(),
+    image: faker.image.avatar(),
   },
 ];
 const tabs = [

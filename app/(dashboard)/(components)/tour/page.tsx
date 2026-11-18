@@ -1,8 +1,8 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ShepherdTour, ShepherdTourContext } from "react-shepherd";
+import { ShepherdJourneyProvider, useShepherd } from "react-shepherd";
 import { Icon } from "@iconify/react";
 import newSteps from "./steps";
 import "shepherd.js/dist/css/shepherd.css";
@@ -22,9 +22,20 @@ const tourOptions = {
 };
 
 const Autton = () => {
-  const tour = useContext(ShepherdTourContext);
+  const Shepherd = useShepherd();
+  const tour = useMemo(
+    () =>
+      new Shepherd.Tour({
+        ...tourOptions,
+        steps: newSteps,
+      }),
+    [Shepherd],
+  );
   useEffect(() => {
     tour.start();
+    return () => {
+      if (tour.isActive()) tour.complete();
+    };
   }, [tour]);
   return <> </>;
 };
@@ -32,7 +43,7 @@ const Autton = () => {
 const UiTour = () => {
   return (
     <div>
-      <ShepherdTour steps={newSteps} tourOptions={tourOptions}>
+      <ShepherdJourneyProvider>
         <Autton />
 
         <div>
@@ -173,7 +184,7 @@ const UiTour = () => {
             </Card>
           </div>
         </div>
-      </ShepherdTour>
+      </ShepherdJourneyProvider>
     </div>
   );
 };

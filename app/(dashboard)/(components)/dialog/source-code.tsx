@@ -777,7 +777,7 @@ const DialogPlacement = () => {
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-4">
               <Avatar className="w-[72px] h-[72px]">
-                <AvatarImage src={faker.image.avatarLegacy()} />
+                <AvatarImage src={faker.image.avatar()} />
                 <AvatarFallback>SN</AvatarFallback>
               </Avatar>
               <Badge
@@ -815,7 +815,7 @@ const DialogPlacement = () => {
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-4">
               <Avatar className="w-[72px] h-[72px]">
-                <AvatarImage src={faker.image.avatarLegacy()} />
+                <AvatarImage src={faker.image.avatar()} />
                 <AvatarFallback>SN</AvatarFallback>
               </Avatar>
               <Badge
@@ -854,7 +854,7 @@ const DialogPlacement = () => {
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-4">
               <Avatar className="w-[72px] h-[72px]">
-                <AvatarImage src={faker.image.avatarLegacy()} />
+                <AvatarImage src={faker.image.avatar()} />
                 <AvatarFallback>SN</AvatarFallback>
               </Avatar>
               <Badge
@@ -893,7 +893,7 @@ const DialogPlacement = () => {
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-4">
               <Avatar className="w-[72px] h-[72px]">
-                <AvatarImage src={faker.image.avatarLegacy()} />
+                <AvatarImage src={faker.image.avatar()} />
                 <AvatarFallback>SN</AvatarFallback>
               </Avatar>
               <Badge
@@ -932,7 +932,7 @@ const DialogPlacement = () => {
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-4">
               <Avatar className="w-[72px] h-[72px]">
-                <AvatarImage src={faker.image.avatarLegacy()} />
+                <AvatarImage src={faker.image.avatar()} />
                 <AvatarFallback>SN</AvatarFallback>
               </Avatar>
               <Badge
@@ -971,7 +971,7 @@ const DialogPlacement = () => {
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-4">
               <Avatar className="w-[72px] h-[72px]">
-                <AvatarImage src={faker.image.avatarLegacy()} />
+                <AvatarImage src={faker.image.avatar()} />
                 <AvatarFallback>SN</AvatarFallback>
               </Avatar>
               <Badge
@@ -1010,7 +1010,7 @@ const DialogPlacement = () => {
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-4">
               <Avatar className="w-[72px] h-[72px]">
-                <AvatarImage src={faker.image.avatarLegacy()} />
+                <AvatarImage src={faker.image.avatar()} />
                 <AvatarFallback>SN</AvatarFallback>
               </Avatar>
               <Badge
@@ -1049,7 +1049,7 @@ const DialogPlacement = () => {
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-4">
               <Avatar className="w-[72px] h-[72px]">
-                <AvatarImage src={faker.image.avatarLegacy()} />
+                <AvatarImage src={faker.image.avatar()} />
                 <AvatarFallback>SN</AvatarFallback>
               </Avatar>
               <Badge
@@ -1088,7 +1088,7 @@ const DialogPlacement = () => {
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-4">
               <Avatar className="w-[72px] h-[72px]">
-                <AvatarImage src={faker.image.avatarLegacy()} />
+                <AvatarImage src={faker.image.avatar()} />
                 <AvatarFallback>SN</AvatarFallback>
               </Avatar>
               <Badge
@@ -1127,7 +1127,7 @@ const DialogPlacement = () => {
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-4">
               <Avatar className="w-[72px] h-[72px]">
-                <AvatarImage src={faker.image.avatarLegacy()} />
+                <AvatarImage src={faker.image.avatar()} />
                 <AvatarFallback>SN</AvatarFallback>
               </Avatar>
               <Badge

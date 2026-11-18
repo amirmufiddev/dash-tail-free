@@ -552,7 +552,7 @@ const customStyledRadio = () => {
             <RadioGroupItem value="csr_1" id="csr_1" color="success"></RadioGroupItem>
             <div className="flex items-center gap-3">
               <Avatar className="h-12 w-12">
-                <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+                <AvatarImage src={faker.image.avatar()} alt="" />
                 <AvatarFallback>CD</AvatarFallback>
               </Avatar>
               <div>
@@ -583,7 +583,7 @@ const customStyledRadio = () => {
             <RadioGroupItem value="csr_2" id="csr_2" color="success"></RadioGroupItem>
             <div className="flex items-center gap-3">
               <Avatar className="h-12 w-12">
-                <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+                <AvatarImage src={faker.image.avatar()} alt="" />
                 <AvatarFallback>CD</AvatarFallback>
               </Avatar>
               <div>

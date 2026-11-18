@@ -123,7 +123,7 @@ const BadgesStyle = () => {
     <>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge className=" w-5 h-5 p-0  items-center justify-center absolute left-[calc(100%-12px)] bottom-[calc(100%-12px)]">
@@ -132,7 +132,7 @@ const BadgesStyle = () => {
       </div>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge
@@ -144,7 +144,7 @@ const BadgesStyle = () => {
       </div>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge
@@ -156,7 +156,7 @@ const BadgesStyle = () => {
       </div>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge
@@ -168,7 +168,7 @@ const BadgesStyle = () => {
       </div>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge
@@ -180,7 +180,7 @@ const BadgesStyle = () => {
       </div>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge
@@ -204,14 +204,14 @@ const DotStyleBadge = () => {
     <>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge className=" h-2 w-2  p-0  items-center justify-center absolute left-[calc(100%-8px)] bottom-[calc(100%-8px)]"></Badge>
       </div>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge
@@ -221,7 +221,7 @@ const DotStyleBadge = () => {
       </div>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge
@@ -231,7 +231,7 @@ const DotStyleBadge = () => {
       </div>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge
@@ -241,7 +241,7 @@ const DotStyleBadge = () => {
       </div>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge
@@ -251,7 +251,7 @@ const DotStyleBadge = () => {
       </div>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge
@@ -273,28 +273,28 @@ const BadgeAlignment = () => {
     <>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge className=" h-2 w-2  p-0  items-center justify-center absolute left-[calc(100%-8px)] bottom-[calc(100%-8px)]"></Badge>
       </div>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge className=" h-2 w-2  p-0  items-center justify-center absolute left-[calc(100%-8px)] top-[calc(100%-8px)]"></Badge>
       </div>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge className=" h-2 w-2  p-0  items-center justify-center absolute right-[calc(100%-8px)] bottom-[calc(100%-8px)]"></Badge>
       </div>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         <Badge className=" h-2 w-2  p-0  items-center justify-center absolute right-[calc(100%-8px)] top-[calc(100%-8px)]"></Badge>
@@ -319,7 +319,7 @@ const BadgeVisibility = () => {
     <>
       <div className="relative inline-block">
         <Avatar>
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>SN</AvatarFallback>
         </Avatar>
         {show && count > 0 && (

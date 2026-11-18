@@ -3,13 +3,15 @@ import * as React from "react";
 
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import {
-  flexRender,
+  flexRender
+} from "@tanstack/react-table";
+import {
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+  useLegacyTable as useReactTable
+} from "@tanstack/react-table/legacy";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";

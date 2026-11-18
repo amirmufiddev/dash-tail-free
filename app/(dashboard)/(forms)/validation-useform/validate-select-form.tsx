@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 const schema = z.object({
-  subject: z.string({ required_error: "Please select a subject to display." })
+  subject: z.string({ error: "Please select a subject to display." })
 });
 
 const ValidateSelectForm = () => {

@@ -5,7 +5,9 @@ import {
   Eye,
 } from "lucide-react";
 
-import { Column } from "@tanstack/react-table";
+import {
+  LegacyColumn as Column
+} from "@tanstack/react-table/legacy";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {

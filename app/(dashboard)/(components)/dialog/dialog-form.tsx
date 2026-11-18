@@ -58,7 +58,10 @@ const DialogForm = () => {
                     className="w-full bg-background border border-default-200 focus:border-primary focus:outline-none h-10 rounded-md px-2 placeholder:text-default-600"
                     placeholder="Date of birth"
                     value={picker}
-                    onChange={(date) => setPicker(date)}
+                    onChange={(dates) => {
+                      const next = dates[0];
+                      if (next) setPicker(next);
+                    }}
                     id="default-picker"
                   />
                 </div>

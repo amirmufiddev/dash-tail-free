@@ -78,7 +78,7 @@ const JointLineScatter = ({ height = 300 }) => {
             theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird
           })`}
         />
-        <ZAxis type="number" range={[100]} />
+        <ZAxis type="number" range={[100, 100]} />
         <Tooltip content={<CustomTooltip />} />
         <Legend />
         <Scatter

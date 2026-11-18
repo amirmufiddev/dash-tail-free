@@ -77,14 +77,14 @@ const TimeScaleChart = ({ height = 350 }) => {
         backgroundColor: hexToRGB(hexDestructive, 0.5),
         borderColor: hexToRGB(hexDestructive, 0.5),
         fill: false,
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
+        data: labels.map(() => faker.number.int({ min: 0, max: 100 })),
       },
       {
         label: "My Second dataset",
         backgroundColor: hexToRGB(hexPrimary, 0.5),
         borderColor: hexToRGB(hexPrimary, 0.5),
         fill: false,
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
+        data: labels.map(() => faker.number.int({ min: 0, max: 100 })),
       },
       {
         label: "Dataset with point data",
@@ -94,19 +94,19 @@ const TimeScaleChart = ({ height = 350 }) => {
         data: [
           {
             x: [100],
-            y: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
+            y: labels.map(() => faker.number.int({ min: 0, max: 100 })),
           },
           {
             x: [43],
-            y: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
+            y: labels.map(() => faker.number.int({ min: 0, max: 100 })),
           },
           {
             x: [16],
-            y: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
+            y: labels.map(() => faker.number.int({ min: 0, max: 100 })),
           },
           {
             x: [5],
-            y: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
+            y: labels.map(() => faker.number.int({ min: 0, max: 100 })),
           },
         ],
       },

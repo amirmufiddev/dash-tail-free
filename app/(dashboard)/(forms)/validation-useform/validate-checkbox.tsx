@@ -37,19 +37,19 @@ const ValidateCheckbox = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <p className="text-sm mb-1 font-medium text-default-600">Select Size</p>
       <div className="flex items-center gap-2">
-        <Checkbox id="sm" {...register('checkboxes[0]')} />
+        <Checkbox id="sm" {...register("checkboxes.0")} />
         <Label htmlFor="sm">Small Size</Label>
       </div>
       <div className="flex items-center gap-2">
-        <Checkbox id="md" {...register('checkboxes[1]')} />
+        <Checkbox id="md" {...register("checkboxes.1")} />
         <Label htmlFor="md">Midium Size</Label>
       </div>
       <div className="flex items-center gap-2">
-        <Checkbox id="lg" {...register('checkboxes[2]')} />
+        <Checkbox id="lg" {...register("checkboxes.2")} />
         <Label htmlFor="lg">Large Size</Label>
       </div>
       <div className="flex items-center gap-2">
-        <Checkbox id="xl" {...register('checkboxes[3]')} />
+        <Checkbox id="xl" {...register("checkboxes.3")} />
         <Label htmlFor="xl">Extra Large Size</Label>
       </div>
       {errors.checkboxes && (

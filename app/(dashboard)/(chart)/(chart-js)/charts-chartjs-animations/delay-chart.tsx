@@ -59,21 +59,21 @@ const DelayChart = ({ height = 350 }) => {
     datasets: [
       {
         label: "Dataset 1",
-        data: labels.map(() => faker.datatype.number({ min: -100, max: 100 })),
+        data: labels.map(() => faker.number.int({ min: -100, max: 100 })),
         borderColor: hexToRGB(hexDestructive, 0.5),
         backgroundColor: hexToRGB(hexDestructive, 0.5),
         borderSkipped: "bottom",
       },
       {
         label: "Dataset 1",
-        data: labels.map(() => faker.datatype.number({ min: -100, max: 100 })),
+        data: labels.map(() => faker.number.int({ min: -100, max: 100 })),
         borderColor: hexToRGB(hexInfo, 0.5),
         backgroundColor: hexToRGB(hexInfo, 0.5),
         borderSkipped: "bottom",
       },
       {
         label: "Dataset 3",
-        data: labels.map(() => faker.datatype.number({ min: -100, max: 100 })),
+        data: labels.map(() => faker.number.int({ min: -100, max: 100 })),
         borderColor: hexToRGB(hexSuccess, 0.5),
         backgroundColor: hexToRGB(hexSuccess, 0.5),
         borderSkipped: "bottom",

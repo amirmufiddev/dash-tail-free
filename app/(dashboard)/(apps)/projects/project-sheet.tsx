@@ -37,22 +37,22 @@ const assignOption = [
   {
     value: "mahedi",
     label: "Mahedi Amin",
-    image: faker.image.avatarLegacy(),
+    image: faker.image.avatar(),
   },
   {
     value: "sovo",
     label: "Sovo Haldar",
-    image: faker.image.avatarLegacy(),
+    image: faker.image.avatar(),
   },
   {
     value: "rakibul",
     label: "Rakibul Islam",
-    image: faker.image.avatarLegacy(),
+    image: faker.image.avatar(),
   },
   {
     value: "pritom",
     label: "Pritom Miha",
-    image: faker.image.avatarLegacy(),
+    image: faker.image.avatar(),
   },
 ];
 import {
@@ -86,10 +86,21 @@ const OptionComponent = (
     </Option>
   );
 };
+const assignItemSchema = z.object({
+  value: z.string(),
+  label: z.string(),
+  image: z.string(),
+});
+
 const schema = z.object({
   title: z.string().min(2, { message: "Your email is invalid." }),
   description: z.string().optional(),
   subtitle: z.string().optional(),
+  assign: z.array(assignItemSchema).optional(),
+  priority: z.string().optional(),
+  status: z.string().optional(),
+  startDate: z.date().nullable().optional(),
+  endDate: z.date().nullable().optional(),
 });
 
 const ProjectsSheet = ({ open, project, onClose, selectedId }) => {
@@ -185,25 +196,13 @@ const ProjectsSheet = ({ open, project, onClose, selectedId }) => {
                     Thumbnail
                   </div>
 
-                  <Controller
-                    name="file"
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <Label
-                          htmlFor="projectLogo"
-                          className="h-12 w-12 flex justify-center items-center bg-default-100 rounded"
-                        >
-                          <Plus className="w-6 h-6 text-default-400" />
-                        </Label>
-                        <Input
-                          type="file"
-                          id="projectLogo"
-                          className="hidden"
-                        />
-                      </>
-                    )}
-                  />
+                  <Label
+                    htmlFor="projectLogo"
+                    className="h-12 w-12 flex justify-center items-center bg-default-100 rounded"
+                  >
+                    <Plus className="w-6 h-6 text-default-400" />
+                  </Label>
+                  <Input type="file" id="projectLogo" className="hidden" />
                 </div>
 
                 <div>
@@ -334,7 +333,6 @@ const ProjectsSheet = ({ open, project, onClose, selectedId }) => {
                               mode="single"
                               selected={startDate}
                               onSelect={setStartDate}
-                              initialFocus
                             />
                           )}
                         />
@@ -371,7 +369,6 @@ const ProjectsSheet = ({ open, project, onClose, selectedId }) => {
                               mode="single"
                               selected={endDate}
                               onSelect={setEndDate}
-                              initialFocus
                             />
                           )}
                         />

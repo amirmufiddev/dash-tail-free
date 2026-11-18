@@ -25,6 +25,17 @@ import { Icon } from "@iconify/react";
 import ChatBox from "./chat-box";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
+function layoutPercents(layout) {
+  if (!Array.isArray(layout) || layout.length === 0) return ["20%", "80%"];
+  const numbers = layout.map((value) => Number(value) || 0);
+  const total = numbers.reduce((sum, value) => sum + value, 0);
+  if (total <= 0) return numbers.map(() => "50%");
+  const alreadyPercent = total <= 100.01 && numbers.every((value) => value <= 100);
+  return numbers.map((value) =>
+    `${alreadyPercent ? value : (value / total) * 100}%`,
+  );
+}
+
 const Mail = ({
   accounts,
   mails,
@@ -33,6 +44,9 @@ const Mail = ({
   defaultCollapsed = false,
   navCollapsedSize,
 }) => {
+  const panelSizes = layoutPercents(defaultLayout);
+  const savedLayout =
+    defaultLayout && !Array.isArray(defaultLayout) ? defaultLayout : undefined;
   const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
   const [isPending, startTransition] = React.useTransition();
 
@@ -195,25 +209,32 @@ const Mail = ({
         )}
         <TooltipProvider delayDuration={0}>
           <ResizablePanelGroup
-            direction="horizontal"
-            onLayout={(sizes) => {
+            orientation="horizontal"
+            defaultLayout={savedLayout}
+            onLayoutChanged={(layout) => {
               document.cookie = `react-resizable-panels:layout=${JSON.stringify(
-                sizes
+                layout
               )}`;
             }}
             className="relative "
           >
             {!isDesktop && (
               <ResizablePanel
-                defaultSize={defaultLayout[0]}
-                collapsedSize={navCollapsedSize}
+                id="mail-nav"
+                defaultSize={panelSizes[0]}
+                collapsedSize={`${navCollapsedSize}%`}
                 collapsible={true}
-                minSize={15}
-                maxSize={20}
-                onCollapse={(collapsed) => {
+                minSize="15%"
+                maxSize="20%"
+                onResize={(panelSize, _id, prev) => {
+                  if (!prev) return;
+                  const limit = Number(navCollapsedSize) + 1;
+                  const collapsed = panelSize.asPercentage <= limit;
+                  const wasCollapsed = prev.asPercentage <= limit;
+                  if (collapsed === wasCollapsed) return;
                   setIsCollapsed(collapsed);
                   document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
-                    true
+                    collapsed
                   )}`;
                 }}
                 className={cn(
@@ -360,7 +381,7 @@ const Mail = ({
               </ResizablePanel>
             )}
             {!isDesktop && <ResizableHandle withHandle />}
-            <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
+            <ResizablePanel id="mail-list" defaultSize={panelSizes[1]} minSize="30%">
               <Card className=" h-full">
                 <CardContent className=" overflow-y-auto no-scrollbar h-full px-0">
                   {!isPending && (

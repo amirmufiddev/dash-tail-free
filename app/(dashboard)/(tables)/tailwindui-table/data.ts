@@ -72,7 +72,7 @@ export const users1 = [
     id: 1,
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -90,7 +90,7 @@ export const users1 = [
     id: 2,
     user: {
       name: "Courtney Henry	",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Designer",
       email: "courtney.henry@example.com",
     },
@@ -108,7 +108,7 @@ export const users1 = [
     id: 3,
     user: {
       name: "Tom Cook	",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Director of Product	",
       email: "tom.cook@example.com	",
     },
@@ -126,7 +126,7 @@ export const users1 = [
     id: 4,
     user: {
       name: "Whitney Francis",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Copywriter	",
       email: "whitney.francis@example.com	",
     },
@@ -144,7 +144,7 @@ export const users1 = [
     id: 5,
     user: {
       name: "Leonard Krasner",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Senior Designer		",
       email: "leonard.krasner@example.com	",
     },
@@ -162,7 +162,7 @@ export const users1 = [
     id: 6,
     user: {
       name: "Floyd Miles	",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Principal Designer		",
       email: "floyd.miles@example.com		",
     },

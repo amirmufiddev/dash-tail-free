@@ -1,7 +1,9 @@
 "use client";
 
 import { MoreHorizontal } from "lucide-react";
-import { Row } from "@tanstack/react-table";
+import {
+  LegacyRow as Row
+} from "@tanstack/react-table/legacy";
 
 import { Button } from "@/components/ui/button";
 import {

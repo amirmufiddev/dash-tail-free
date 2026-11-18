@@ -16,8 +16,8 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+  useLegacyTable as useReactTable
+} from "@tanstack/react-table/legacy";
 import { columns } from "./project-list/components/columns";
 import { DataTableToolbar } from "./project-list/components/data-table-toolbar";
 import Blank from "@/components/blank";

@@ -60,7 +60,7 @@ const MultiAxisLineChart = ({ height = 350 }) => {
       {
         label: "Dataset 1",
         data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 })
+          faker.number.int({ min: -1000, max: 1000 })
         ),
         borderColor: hexToRGB(hexDestructive, 0.5),
         backgroundColor: hexToRGB(hexDestructive, 0.5),
@@ -69,7 +69,7 @@ const MultiAxisLineChart = ({ height = 350 }) => {
       {
         label: "Dataset 2",
         data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 })
+          faker.number.int({ min: -1000, max: 1000 })
         ),
         borderColor: hexToRGB(hexPrimary, 0.5),
         backgroundColor: hexToRGB(hexPrimary, 0.5),

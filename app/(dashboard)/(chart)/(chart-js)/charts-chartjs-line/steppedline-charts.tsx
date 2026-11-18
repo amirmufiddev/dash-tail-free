@@ -47,7 +47,7 @@ const SteppedLineCharts = ({ height = 350 }) => {
     datasets: [
       {
         label: "Dataset",
-        data: labels.map(() => faker.datatype.number({ min: -100, max: 100 })),
+        data: labels.map(() => faker.number.int({ min: -100, max: 100 })),
         borderColor: hexToRGB(hexDestructive, 0.5),
         fill: false,
         stepped: true,

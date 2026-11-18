@@ -110,7 +110,7 @@ const BubbleChart = ({ height = 300 }) => {
   const { theme: mode } = useTheme();
   const theme = themes.find((theme) => theme.name === config);
   const domain = parseDomain();
-  const range = [16, 225];
+  const range: [number, number] = [16, 225];
 
   return (
     <>

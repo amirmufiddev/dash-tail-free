@@ -101,9 +101,9 @@ export function generateAssignments(numAssign) {
 
   for (let j = 0; j < numAssign; j++) {
     assignObjects.push({
-      image: faker.image.avatarLegacy(),
+      image: faker.image.avatar(),
       label: faker.person.firstName(),
-      value: faker.internet.userName(),
+      value: faker.internet.username(),
     });
   }
 
@@ -136,7 +136,7 @@ export function generateAssignments(numAssign) {
 //       assign: assignObjects,
 //       assignDate: formatDate(assignDate),
 //       dueDate: formatDate(dueDate),
-//       logo: faker.image.avatarLegacy(),
+//       logo: faker.image.avatar(),
 //       isFavourite: faker.datatype.boolean(),
 //     };
 //     data.push(newItem);

@@ -2,7 +2,9 @@
 
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { SlidersHorizontal } from "lucide-react";
-import { Table } from "@tanstack/react-table";
+import {
+  LegacyTable as Table
+} from "@tanstack/react-table/legacy";
 
 import { Button } from "@/components/ui/button";
 import {

@@ -19,7 +19,7 @@ export default function DatePickerWithRange({
 }: {
   className?: string;
 }) {
-  const [date, setDate] = React.useState(null);
+  const [date, setDate] = React.useState<DateRange | undefined>();
   const { theme: mode } = useTheme();
 
   return (
@@ -49,7 +49,6 @@ export default function DatePickerWithRange({
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="end">
           <Calendar
-            initialFocus
             mode="range"
             defaultMonth={date?.from}
             selected={date}

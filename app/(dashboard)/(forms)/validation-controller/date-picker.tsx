@@ -27,7 +27,7 @@ import { toast } from "@/components/ui/use-toast";
 
 const FormSchema = z.object({
   dob: z.date({
-    required_error: "A date of birth is required.",
+    error: "A date of birth is required.",
   }),
 });
 
@@ -83,7 +83,6 @@ const DatePickerForm = () => {
                     disabled={(date) =>
                       date > new Date() || date < new Date("1900-01-01")
                     }
-                    initialFocus
                   />
                 </PopoverContent>
               </Popover>

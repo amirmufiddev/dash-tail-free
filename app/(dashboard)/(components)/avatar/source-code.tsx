@@ -123,27 +123,27 @@ const ImageAvatar = () => {
   return (
     <React.Fragment>
       <Avatar>
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>SN</AvatarFallback>
       </Avatar>
       <Avatar>
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>AB</AvatarFallback>
       </Avatar>
       <Avatar>
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>CD</AvatarFallback>
       </Avatar>
       <Avatar>
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>EF</AvatarFallback>
       </Avatar>
       <Avatar>
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>GH</AvatarFallback>
       </Avatar>
       <Avatar>
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>IJ</AvatarFallback>
       </Avatar>
     </React.Fragment>
@@ -159,35 +159,35 @@ const AvatarSize = () => {
   return (
     <React.Fragment>
       <Avatar className="h-[64px] w-[64px]">
-        <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+        <AvatarImage src={faker.image.avatar()} alt="" />
         <AvatarFallback>SN</AvatarFallback>
       </Avatar>
       <Avatar className="h-[56px] w-[56px]">
-        <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+        <AvatarImage src={faker.image.avatar()} alt="" />
         <AvatarFallback>AB</AvatarFallback>
       </Avatar>
       <Avatar className="h-12 w-12">
-        <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+        <AvatarImage src={faker.image.avatar()} alt="" />
         <AvatarFallback>CD</AvatarFallback>
       </Avatar>
       <Avatar className="h-11 w-11">
-        <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+        <AvatarImage src={faker.image.avatar()} alt="" />
         <AvatarFallback>EF</AvatarFallback>
       </Avatar>
       <Avatar className="h-10 w-10">
-        <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+        <AvatarImage src={faker.image.avatar()} alt="" />
         <AvatarFallback>GH</AvatarFallback>
       </Avatar>
       <Avatar className="h-9 w-9">
-        <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+        <AvatarImage src={faker.image.avatar()} alt="" />
         <AvatarFallback>IJ</AvatarFallback>
       </Avatar>
       <Avatar className="h-8 w-8">
-        <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+        <AvatarImage src={faker.image.avatar()} alt="" />
         <AvatarFallback>KL</AvatarFallback>
       </Avatar>
       <Avatar className="h-[30px] w-[30px]">
-        <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+        <AvatarImage src={faker.image.avatar()} alt="" />
         <AvatarFallback>MN</AvatarFallback>
       </Avatar>
     </React.Fragment>
@@ -203,19 +203,19 @@ const RoundedAvatar = () => {
   return (
     <React.Fragment>
       <Avatar className=" rounded-md">
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>SN</AvatarFallback>
       </Avatar>
       <Avatar className=" rounded-lg">
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>AB</AvatarFallback>
       </Avatar>
       <Avatar className=" rounded-xl">
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>CD</AvatarFallback>
       </Avatar>
       <Avatar>
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>EF</AvatarFallback>
       </Avatar>
     </React.Fragment>
@@ -230,27 +230,27 @@ const AvatarBorder = () => {
   return (
     <React.Fragment>
       <Avatar className=" ring-1 ring-border ring-offset-[3px]  ring-offset-background">
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>SN</AvatarFallback>
       </Avatar>
       <Avatar className=" ring-1 ring-border ring-offset-[3px]  ring-offset-background">
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>AB</AvatarFallback>
       </Avatar>
       <Avatar className=" ring-1 ring-border ring-offset-[3px]  ring-offset-background">
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>CD</AvatarFallback>
       </Avatar>
       <Avatar className=" ring-1 ring-border ring-offset-[3px]  ring-offset-background">
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>EF</AvatarFallback>
       </Avatar>
       <Avatar className=" ring-1 ring-border ring-offset-[3px]  ring-offset-background">
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>GH</AvatarFallback>
       </Avatar>
       <Avatar className=" ring-1 ring-border ring-offset-[3px]  ring-offset-background">
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>IJ</AvatarFallback>
       </Avatar>
       <Avatar className=" ring-1 ring-border ring-offset-[3px]  ring-offset-background">
@@ -274,19 +274,19 @@ const AvatarBorderColor = () => {
   return (
     <>
       <Avatar className=" ring-1 ring-primary ring-offset-[3px]  ring-offset-background">
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>AB</AvatarFallback>
       </Avatar>
       <Avatar className=" ring-1 ring-warning ring-offset-[3px]  ring-offset-background">
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>CD</AvatarFallback>
       </Avatar>
       <Avatar className=" ring-1 ring-success ring-offset-[3px]  ring-offset-background">
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>EF</AvatarFallback>
       </Avatar>
       <Avatar className=" ring-1 ring-destructive ring-offset-[3px]  ring-offset-background">
-        <AvatarImage src={faker.image.avatarLegacy()} />
+        <AvatarImage src={faker.image.avatar()} />
         <AvatarFallback>GH</AvatarFallback>
       </Avatar>
       <Avatar className=" ring-1 ring-info ring-offset-[3px]  ring-offset-background">
@@ -315,19 +315,19 @@ const AvatarGroupBlock = () => {
     <React.Fragment>
       <AvatarGroup>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>AB</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>CD</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>EF</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>GH</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
@@ -353,23 +353,23 @@ const AvatarGroupMax = () => {
     <React.Fragment>
       <AvatarGroup max={4}>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>AB</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>CD</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>EF</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>EF</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>EF</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
@@ -395,23 +395,23 @@ const AvatarGroupTotal = () => {
     <React.Fragment>
       <AvatarGroup max={3} total={10}>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>AB</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>CD</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>EF</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>EF</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>EF</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
@@ -437,31 +437,31 @@ const AvatarGroupCustom = () => {
     <React.Fragment>
       <AvatarGroup max={4} custom>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>AB</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>CD</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>EF</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>EF</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>EF</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>EF</AvatarFallback>
         </Avatar>
         <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-          <AvatarImage src={faker.image.avatarLegacy()} />
+          <AvatarImage src={faker.image.avatar()} />
           <AvatarFallback>EF</AvatarFallback>
         </Avatar>
         <p className="ps-5">+10 others</p>
@@ -485,35 +485,35 @@ const AvatarGroupSize = () => {
       <div className="space-y-4">
         <AvatarGroup>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-10 w-10">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>AB</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-10 w-10">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>CD</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-10 w-10">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>EF</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-10 w-10">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>GH</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-10 w-10">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>AB</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-10 w-10">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>CD</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-10 w-10">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>EF</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-10 w-10">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>GH</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-10 w-10">
@@ -522,35 +522,35 @@ const AvatarGroupSize = () => {
         </AvatarGroup>
         <AvatarGroup>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-8 w-8">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>AB</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-8 w-8">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>CD</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-8 w-8">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>EF</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-8 w-8">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>GH</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-8 w-8">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>AB</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-8 w-8">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>CD</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-8 w-8">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>EF</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-8 w-8">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>GH</AvatarFallback>
           </Avatar>
 
@@ -560,35 +560,35 @@ const AvatarGroupSize = () => {
         </AvatarGroup>
         <AvatarGroup>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-6 w-6">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>AB</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-6 w-6">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>CD</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-6 w-6">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>EF</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-6 w-6">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>GH</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-6 w-6">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>AB</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-6 w-6">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>CD</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-6 w-6">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>EF</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-6 w-6">
-            <AvatarImage src={faker.image.avatarLegacy()} />
+            <AvatarImage src={faker.image.avatar()} />
             <AvatarFallback>GH</AvatarFallback>
           </Avatar>
           <Avatar className=" ring-1 ring-background ring-offset-[2px]  ring-offset-background h-6 w-6">

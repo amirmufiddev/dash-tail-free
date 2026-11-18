@@ -2,13 +2,15 @@
 import * as React from "react";
 
 import {
-  flexRender,
+  flexRender
+} from "@tanstack/react-table";
+import {
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+  useLegacyTable as useReactTable
+} from "@tanstack/react-table/legacy";
 
 import { Checkbox } from "@/components/ui/checkbox";
 

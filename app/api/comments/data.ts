@@ -11,7 +11,7 @@ function generateComments(numItems) {
   for (let i = 1; i <= numItems; i++) {
     const newItem = {
       id: i,
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       name: faker.person.fullName({ sex: "male" }),
       text: faker.lorem.paragraph(2),
       date: formatDate(assignDate),

@@ -5,7 +5,7 @@ export const data = [
     id: "m5gr84i9",
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -17,7 +17,7 @@ export const data = [
     id: "3u1reuv4",
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -29,7 +29,7 @@ export const data = [
     id: "derv1ws0",
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -40,7 +40,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -52,7 +52,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -65,7 +65,7 @@ export const data = [
     id: "m5gr84i10",
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -76,7 +76,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -88,7 +88,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -100,7 +100,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -112,7 +112,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -125,7 +125,7 @@ export const data = [
     id: "m5gr84i122",
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -136,7 +136,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -148,7 +148,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -160,7 +160,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -172,7 +172,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -185,7 +185,7 @@ export const data = [
     id: "m5gr84i922278",
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -196,7 +196,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -208,7 +208,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -220,7 +220,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -232,7 +232,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -245,7 +245,7 @@ export const data = [
     id: "m5gr84i98657",
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -256,7 +256,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -268,7 +268,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -280,7 +280,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -292,7 +292,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -305,7 +305,7 @@ export const data = [
     id: "m5gr8dfgjrf4i9",
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -316,7 +316,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -328,7 +328,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -340,7 +340,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -352,7 +352,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -365,7 +365,7 @@ export const data = [
     id: "m5gr84ieryre9",
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -376,7 +376,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -388,7 +388,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -400,7 +400,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -412,7 +412,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -425,7 +425,7 @@ export const data = [
     id: "m5gr8ryrey4i9",
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -436,7 +436,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -448,7 +448,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -460,7 +460,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },
@@ -472,7 +472,7 @@ export const data = [
   {
     user: {
       name: "Lindsay Walton",
-      avatar: faker.image.avatarLegacy(),
+      avatar: faker.image.avatar(),
       title: "Front-end Developer",
       email: "lindsay.walton@example.com",
     },

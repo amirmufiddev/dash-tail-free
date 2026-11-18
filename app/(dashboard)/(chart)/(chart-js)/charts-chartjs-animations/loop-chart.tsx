@@ -63,7 +63,7 @@ const LoopChart = ({ height = 350 }) => {
             delay: 500,
           },
         },
-        data: labels.map(() => faker.datatype.number({ min: -100, max: 100 })),
+        data: labels.map(() => faker.number.int({ min: -100, max: 100 })),
         borderColor: hexToRGB(hexDestructive, 0.5),
         backgroundColor: hexToRGB(hexDestructive, 0.5),
         fill: 1,
@@ -71,7 +71,7 @@ const LoopChart = ({ height = 350 }) => {
       },
       {
         label: "Dataset 1",
-        data: labels.map(() => faker.datatype.number({ min: -100, max: 100 })),
+        data: labels.map(() => faker.number.int({ min: -100, max: 100 })),
         borderColor: hexToRGB(hexInfo, 0.5),
         backgroundColor: hexToRGB(hexInfo, 0.5),
       },

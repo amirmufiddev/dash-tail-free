@@ -256,7 +256,7 @@ Satu keluarga dipasang, lalu keempat gerbang dijalankan, sebelum keluarga beriku
 
 ## Pengecualian
 
-Pengecualian ini sudah disetujui. Mereka bukan kegagalan peer.
+Pengecualian versi di tabel ini sudah disetujui. Baris `npm install` Tahap 6 adalah kegagalan peer.
 
 | Paket | Versi yang dipakai | Alasan |
 | --- | --- | --- |
@@ -269,6 +269,7 @@ Pengecualian ini sudah disetujui. Mereka bukan kegagalan peer.
 | `@fullcalendar/list` | 6.1.22 | Sama dengan daygrid |
 | `reactflow` | 11.11.4 | Tag `latest` nama paket ini |
 | `typescript` | 5.9.3 | Tahap 0: `typescript@7.0.2` gagal `tsc --noEmit` dengan `tsconfig` gate sempit; 7.0.2 dicoba lagi di Tahap 3 |
+| `npm install` Tahap 6 | `--legacy-peer-deps` | `@ckeditor/ckeditor5-react@6.3.0` menolak React 19 sampai diganti `12.0.0`. Sesudah itu `@emoji-mart/react@1.1.1` (latest, dikunci Tahap 2) tetap peer `react@^16.8 \|\| ^17 \|\| ^18`. Tidak ada rilis 1.x yang menerima React 19.3.1. `--force` tidak dipakai |
 
 Tahap 0 mencatat `buildOk` di baseline. `package.json` boleh memuat `allowScripts` yang menyetujui skrip native `bcrypt` agar `next build` tidak gagal di route auth.
 

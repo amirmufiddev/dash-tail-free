@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import logo from "@/public/images/logo/logo-2.png";
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter } from "@/components/brand-icons";
 import Image from "next/image";
 import Link from "next/link";
 import LightImage from "@/public/images/utility/construction-light.png";

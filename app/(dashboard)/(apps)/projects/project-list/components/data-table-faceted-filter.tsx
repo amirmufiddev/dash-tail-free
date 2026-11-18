@@ -1,5 +1,7 @@
 import * as React from "react";
-import { Column } from "@tanstack/react-table";
+import {
+  LegacyColumn as Column
+} from "@tanstack/react-table/legacy";
 import { Check } from "lucide-react";
 import { PlusCircle } from "lucide-react";
 

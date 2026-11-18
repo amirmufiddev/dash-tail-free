@@ -733,7 +733,7 @@ const CustomImplementation = () => {
           <div className="flex  items-center gap-5 ">
             <div className="flex flex-1 gap-5 items-center">
               <Avatar>
-                <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+                <AvatarImage src={faker.image.avatar()} alt="" />
                 <AvatarFallback>SN</AvatarFallback>
               </Avatar>
               <div className=" space-y-1">
@@ -778,7 +778,7 @@ const CustomImplementation = () => {
           <div className="flex  items-center gap-5 ">
             <div className="flex flex-1 gap-5 items-center">
               <Avatar>
-                <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+                <AvatarImage src={faker.image.avatar()} alt="" />
                 <AvatarFallback>SN</AvatarFallback>
               </Avatar>
               <div className=" space-y-1">
@@ -966,7 +966,7 @@ const CustomStyledCheckbox = () => {
           <Checkbox value="csc_1" id="csc_1" color="success" onCheckedChange={() => setchecked1(!checked1)} />
           <div className="flex items-center gap-3">
             <Avatar className="h-12 w-12">
-              <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+              <AvatarImage src={faker.image.avatar()} alt="" />
               <AvatarFallback>CD</AvatarFallback>
             </Avatar>
             <div>
@@ -998,7 +998,7 @@ const CustomStyledCheckbox = () => {
           <Checkbox value="csc_2" id="csc_2" color="success" onCheckedChange={() => setchecked2(!checked2)} />
           <div className="flex items-center gap-3">
             <Avatar className="h-12 w-12">
-              <AvatarImage src={faker.image.avatarLegacy()} alt="" />
+              <AvatarImage src={faker.image.avatar()} alt="" />
               <AvatarFallback>CD</AvatarFallback>
             </Avatar>
             <div>

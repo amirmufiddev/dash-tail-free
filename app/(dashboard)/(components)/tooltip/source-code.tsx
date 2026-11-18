@@ -296,7 +296,7 @@ const VariousTooltip = () => {
         <Tooltip>
           <TooltipTrigger asChild>
             <Avatar>
-              <AvatarImage src={faker.image.avatarLegacy()} />
+              <AvatarImage src={faker.image.avatar()} />
               <AvatarFallback>SN</AvatarFallback>
             </Avatar>
           </TooltipTrigger>

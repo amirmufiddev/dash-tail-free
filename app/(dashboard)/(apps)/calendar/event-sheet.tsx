@@ -36,6 +36,9 @@ import DeleteConfirmationDialog from "@/components/delete-confirmation-dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 const schema = z.object({
   title: z.string().min(3, { message: "Required" }),
+  startDate: z.date().optional(),
+  endDate: z.date().optional(),
+  calendarProps: z.string().optional(),
 });
 
 const EventSheet = ({ open, onClose, categories, event, selectedDate }) => {
@@ -208,7 +211,6 @@ const EventSheet = ({ open, onClose, categories, event, selectedDate }) => {
                                 mode="single"
                                 selected={startDate}
                                 onSelect={setStartDate}
-                                initialFocus
                               />
                             )}
                           />
@@ -246,7 +248,6 @@ const EventSheet = ({ open, onClose, categories, event, selectedDate }) => {
                                 mode="single"
                                 selected={endDate}
                                 onSelect={setEndDate}
-                                initialFocus
                               />
                             )}
                           />

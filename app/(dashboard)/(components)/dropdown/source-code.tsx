@@ -1612,7 +1612,7 @@ const CustomDropdown = () => {
         <DropdownMenuTrigger asChild className=" cursor-pointer">
           <div className=" flex items-center  space-x-3">
             <Avatar>
-              <AvatarImage src={faker.image.avatarLegacy()} />
+              <AvatarImage src={faker.image.avatar()} />
               <AvatarFallback>MA</AvatarFallback>
             </Avatar>
           </div>
@@ -1672,7 +1672,7 @@ const CustomDropdown = () => {
         <DropdownMenuTrigger asChild className=" cursor-pointer">
           <div className=" flex items-center  space-x-3">
             <Avatar>
-              <AvatarImage src={faker.image.avatarLegacy()} />
+              <AvatarImage src={faker.image.avatar()} />
               <AvatarFallback>MA</AvatarFallback>
             </Avatar>
           </div>

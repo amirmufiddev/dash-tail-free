@@ -53,7 +53,7 @@ const LogScaleChart = ({ height = 350 }) => {
     datasets: [
       {
         label: "Dataset 1",
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
+        data: labels.map(() => faker.number.int({ min: 0, max: 100 })),
         borderColor: hexToRGB(hexDestructive, 0.5),
       },
     ],

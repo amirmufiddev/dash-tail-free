@@ -28,22 +28,22 @@ const members = [
   {
     name: "Nick Jonas",
     value: "userid1",
-    image: faker.image.avatarLegacy(),
+    image: faker.image.avatar(),
   },
   {
     name: "Fahim",
     value: "userid2",
-    image: faker.image.avatarLegacy(),
+    image: faker.image.avatar(),
   },
   {
     name: "Nayeem",
     value: "userid3",
-    image: faker.image.avatarLegacy(),
+    image: faker.image.avatar(),
   },
   {
     name: "Iftekhar",
     value: "userid4",
-    image: faker.image.avatarLegacy(),
+    image: faker.image.avatar(),
   },
 ];
 const SubtaskDetailsSheet = ({ open, onClose }) => {

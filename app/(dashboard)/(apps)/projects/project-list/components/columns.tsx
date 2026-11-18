@@ -1,6 +1,8 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
+import {
+  LegacyColumnDef as ColumnDef
+} from "@tanstack/react-table/legacy";
 
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";

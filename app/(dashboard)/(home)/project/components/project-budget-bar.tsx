@@ -57,7 +57,7 @@ const data = [
   },
 ];
 
-const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: { name?: string; value?: number | string; color?: string; fill?: string; dataKey?: string | number; payload?: Record<string, string | number> }[] }) => {
+const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: readonly { name?: string | number; value?: string | number | readonly (string | number)[]; color?: string; fill?: string; payload?: { name?: string | number } }[] }) => {
   if (active && payload) {
     return (
       <div className="bg-background z-10 text-default-900 shadow-lg  space-y-2 rounded-md  pb-2">
