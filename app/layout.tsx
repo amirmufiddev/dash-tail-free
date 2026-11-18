@@ -1,3 +1,4 @@
+import "./assets/tailwind.css";
 import "./assets/scss/globals.scss";
 import "./assets/scss/theme.scss";
 import { Inter } from "next/font/google";

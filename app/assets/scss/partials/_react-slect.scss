@@ -35,7 +35,7 @@
     @apply cursor-not-allowed;
   }
     .react-select__control .select__indicator-separator {
-    @apply bg-default-50 text-default-800 placeholder:text-opacity-60;
+    @apply bg-default-50 text-default-800 placeholder:opacity-60;
   }
     .react-select__control .select__indicator svg {
     @apply cursor-pointer text-default-600;
