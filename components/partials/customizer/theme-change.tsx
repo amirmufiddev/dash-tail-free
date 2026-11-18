@@ -29,7 +29,7 @@ const ThemeChange = () => {
         })`,
       }}
     >
-      <div className="mb-2 relative inline-block px-3 py-[3px] rounded-md before:bg-[--theme-primary] before:absolute before:top-0 before:left-0 before:w-full  before:h-full before:rounded before:opacity-10 before:z-[-1]  text-[--theme-primary]  text-xs font-medium">
+      <div className="mb-2 relative inline-block px-3 py-[3px] rounded-md before:bg-[var(--theme-primary)] before:absolute before:top-0 before:left-0 before:w-full  before:h-full before:rounded before:opacity-10 before:z-[-1]  text-[var(--theme-primary)]  text-xs font-medium">
         Theme
       </div>
       <div className="text-muted-foreground font-normal text-xs mb-4">
@@ -67,7 +67,7 @@ const ThemeChange = () => {
                       className={cn(
                         "flex h-9 w-9 items-center justify-center rounded-full border-2 text-xs",
                         isActive
-                          ? "border-[--theme-primary]"
+                          ? "border-[var(--theme-primary)]"
                           : "border-transparent"
                       )}
                       style={{
@@ -80,7 +80,7 @@ const ThemeChange = () => {
                     >
                       <div
                         className={cn(
-                          "flex h-6 w-6 items-center justify-center rounded-full bg-[--theme-primary]"
+                          "flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-primary)]"
                         )}
                       >
                         {isActive && (

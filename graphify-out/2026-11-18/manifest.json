@@ -25,8 +25,8 @@
     "semantic_hash": ""
   },
   "next-env.d.ts": {
-    "mtime": 1794992148.9238973,
-    "ast_hash": "1e49761934a5500bd150892b8541acfe",
+    "mtime": 1794999523.1037884,
+    "ast_hash": "ca1476e0618b41df73c82f4e999dc3e9",
     "semantic_hash": ""
   },
   "package.json": {
@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   ".superpowers/sdd/progress.md": {
-    "mtime": 1794979263.256655,
-    "ast_hash": "7ec6cf2314dccd9f7c896a493827e0ad",
+    "mtime": 1794998848.208332,
+    "ast_hash": "33d8cfb6a68a8d37d56705c5e6154df2",
     "semantic_hash": ""
   },
   ".superpowers/sdd/task-1-brief.md": {
@@ -7915,8 +7915,8 @@
     "semantic_hash": ""
   },
   "app/layout.tsx": {
-    "mtime": 1794993225.9332771,
-    "ast_hash": "f5004589d73f955fba325633a43756e7",
+    "mtime": 1794999581.7288566,
+    "ast_hash": "b6b091fcbb68b9ac0e951d30529e648f",
     "semantic_hash": ""
   },
   "app/not-found.tsx": {
@@ -8975,8 +8975,8 @@
     "semantic_hash": ""
   },
   ".superpowers/sdd/task-10-report.md": {
-    "mtime": 1794996895.1002538,
-    "ast_hash": "024699af25c86f2a994b5acae3629999",
+    "mtime": 1794998801.1977825,
+    "ast_hash": "d6f42fcae838e0c17c68204f15b66a0a",
     "semantic_hash": ""
   },
   "app/(dashboard)/(apps)/email/types.ts": {

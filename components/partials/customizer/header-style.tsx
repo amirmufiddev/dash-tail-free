@@ -28,7 +28,7 @@ const HeaderStyle = () => {
         })`,
       }}
     >
-      <div className="mb-3 relative inline-block px-3 py-[3px] rounded before:bg-[--theme-primary] before:absolute before:top-0 before:left-0 before:w-full  before:h-full before:rounded before:opacity-10 before:z-[-1]  text-[--theme-primary]  text-xs font-medium">
+      <div className="mb-3 relative inline-block px-3 py-[3px] rounded before:bg-[var(--theme-primary)] before:absolute before:top-0 before:left-0 before:w-full  before:h-full before:rounded before:opacity-10 before:z-[-1]  text-[var(--theme-primary)]  text-xs font-medium">
         Navbar Type
       </div>
       <div className="flex flex-wrap items-center gap-3">

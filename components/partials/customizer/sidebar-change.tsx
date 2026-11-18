@@ -48,7 +48,7 @@ const SidebarChange = () => {
         })`,
       }}
     >
-      <div className="mb-2 relative inline-block px-3 py-[3px] rounded-md before:bg-[--theme-primary] before:absolute before:top-0 before:left-0 before:w-full  before:h-full before:rounded before:opacity-10 before:z-[-1]  text-[--theme-primary]  text-xs font-medium">
+      <div className="mb-2 relative inline-block px-3 py-[3px] rounded-md before:bg-[var(--theme-primary)] before:absolute before:top-0 before:left-0 before:w-full  before:h-full before:rounded before:opacity-10 before:z-[-1]  text-[var(--theme-primary)]  text-xs font-medium">
         Sidebar Layout
       </div>
       <div className="text-muted-foreground font-normal text-xs mb-4">
@@ -65,7 +65,7 @@ const SidebarChange = () => {
               className={cn(
                 " border block  rounded relative h-[72px] w-full disabled:cursor-not-allowed",
                 {
-                  "text-[--theme-primary] border-[--theme-primary]":
+                  "text-[var(--theme-primary)] border-[var(--theme-primary)]":
                     sidebarType === sidebarOption.key,
                   "text-muted-foreground border-border":
                     sidebarType !== sidebarOption.key,
@@ -75,7 +75,7 @@ const SidebarChange = () => {
               {sidebarType === sidebarOption.key && (
                 <Icon
                   icon="heroicons:check-circle-20-solid"
-                  className=" text-[--theme-primary] absolute top-1 right-1"
+                  className=" text-[var(--theme-primary)] absolute top-1 right-1"
                 />
               )}
               {sidebarOption.svg}

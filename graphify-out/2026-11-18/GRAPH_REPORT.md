@@ -1,16 +1,16 @@
 # Graph Report - dash-tail-free  (2026-11-18)
 
 ## Corpus Check
-- 1462 files · ~1,703,428 words
+- 1462 files · ~1,703,577 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 4180 nodes · 12895 edges · 290 communities (163 shown, 127 thin omitted)
+- 4183 nodes · 12898 edges · 308 communities (167 shown, 141 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 35 edges (avg confidence: 0.7)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a89f10c3`
+- Built from commit: `dd849e12`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -48,6 +48,7 @@
 - [[_COMMUNITY_basic-table.jsx|basic-table.jsx]]
 - [[_COMMUNITY_page.jsx|page.jsx]]
 - [[_COMMUNITY_mail.jsx|mail.jsx]]
+- [[_COMMUNITY_page.jsx|page.jsx]]
 - [[_COMMUNITY_page.jsx|page.jsx]]
 - [[_COMMUNITY_page.jsx|page.jsx]]
 - [[_COMMUNITY_page.jsx|page.jsx]]
@@ -160,6 +161,7 @@
 - [[_COMMUNITY_react-hot-toast.tsx|react-hot-toast.tsx]]
 - [[_COMMUNITY_task-8-brief|task-8-brief.md]]
 - [[_COMMUNITY_page.tsx|page.tsx]]
+- [[_COMMUNITY_page.tsx|page.tsx]]
 - [[_COMMUNITY_task-10-brief|task-10-brief.md]]
 - [[_COMMUNITY_task-table.tsx|task-table.tsx]]
 - [[_COMMUNITY_page.jsx|page.jsx]]
@@ -253,6 +255,7 @@
 - [[_COMMUNITY_layout.jsx|layout.jsx]]
 - [[_COMMUNITY_data-card.tsx|data-card.tsx]]
 - [[_COMMUNITY_cleave.tsx|cleave.tsx]]
+- [[_COMMUNITY_invoice-stats.tsx|invoice-stats.tsx]]
 - [[_COMMUNITY_layout.jsx|layout.jsx]]
 - [[_COMMUNITY_layout.jsx|layout.jsx]]
 - [[_COMMUNITY_layout.jsx|layout.jsx]]
@@ -271,6 +274,7 @@
 - [[_COMMUNITY_ripple.jsx|ripple.jsx]]
 - [[_COMMUNITY_Diagram|Diagram]]
 - [[_COMMUNITY_New Page|New Page]]
+- [[_COMMUNITY_stats.tsx|stats.tsx]]
 - [[_COMMUNITY_schema.js|schema.js]]
 - [[_COMMUNITY_next.config.js|next.config.js]]
 - [[_COMMUNITY_deployment|deployment.mdx]]
@@ -280,6 +284,12 @@
 - [[_COMMUNITY_thank-you|thank-you.mdx]]
 - [[_COMMUNITY_progress|progress.md]]
 - [[_COMMUNITY_task-1-brief|task-1-brief.md]]
+- [[_COMMUNITY_page.tsx|page.tsx]]
+- [[_COMMUNITY_page.tsx|page.tsx]]
+- [[_COMMUNITY_page.tsx|page.tsx]]
+- [[_COMMUNITY_page.tsx|page.tsx]]
+- [[_COMMUNITY_page.tsx|page.tsx]]
+- [[_COMMUNITY_Task|Task]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `useThemeStore` - 561 edges
@@ -294,93 +304,93 @@
 10. `CardHeader` - 116 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `ProjectProgress()` --calls--> `useThemeStore`  [EXTRACTED]
-  app/(dashboard)/(apps)/projects/[id]/overview/project-progress.tsx → store/index.ts
-- `PercentReAreaChart()` --calls--> `useThemeStore`  [EXTRACTED]
-  app/(dashboard)/(chart)/(re-chart)/charts-rechart-area/percent-area.tsx → store/index.ts
-- `CustomizedEvent()` --calls--> `useThemeStore`  [EXTRACTED]
-  app/(dashboard)/(chart)/(re-chart)/charts-rechart-bar/customized-event-bar.tsx → store/index.ts
-- `StackedArea()` --calls--> `useThemeStore`  [EXTRACTED]
-  app/(dashboard)/(chart)/(unovis-charts)/charts-unovis-area/stacked-area.tsx → store/index.ts
-- `StepAreaChart()` --calls--> `useThemeStore`  [EXTRACTED]
-  app/(dashboard)/(chart)/(unovis-charts)/charts-unovis-area/step-area.tsx → store/index.ts
+- `ForgotPage()` --indirect_call--> `Pagination()`  [INFERRED]
+  app/auth/(forgot)/forgot2/page.tsx → components/ui/pagination.tsx
+- `LockPage()` --indirect_call--> `Pagination()`  [INFERRED]
+  app/auth/(lock)/lock2/page.tsx → components/ui/pagination.tsx
+- `LoginPage()` --indirect_call--> `Pagination()`  [INFERRED]
+  app/auth/(login)/login2/page.tsx → components/ui/pagination.tsx
+- `CreatePasswordPage()` --indirect_call--> `Pagination()`  [INFERRED]
+  app/auth/(password)/create-password2/page.tsx → components/ui/pagination.tsx
+- `RegisterPage()` --indirect_call--> `Pagination()`  [INFERRED]
+  app/auth/(register)/register2/page.tsx → components/ui/pagination.tsx
 
 ## Import Cycles
 - None detected.
 
-## Communities (290 total, 127 thin omitted)
+## Communities (308 total, 141 thin omitted)
 
 ### Community 0 - "appex-chart-options.js"
 Cohesion: 0.03
-Nodes (136): ReportChart(), BasicArea(), Chart, Chart, GithubStyleChart(), Chart, GithubStyleCharts1(), Chart (+128 more)
+Nodes (144): BasicArea(), Chart, Chart, GithubStyleChart(), Chart, GithubStyleCharts1(), Chart, IrregularTimeSeries() (+136 more)
 
 ### Community 1 - "dependencies"
 Cohesion: 0.02
 Nodes (113): dependencies, apexcharts, axios, bcrypt, chart.js, ckeditor5, @ckeditor/ckeditor5-react, class-variance-authority (+105 more)
 
 ### Community 2 - "useThemeStore"
-Cohesion: 0.06
-Nodes (46): DelayChart(), DropChart(), LoopChart(), ProgressiveLine(), BasicArea(), DrawTime(), LineDatasets(), LineChartStacked() (+38 more)
+Cohesion: 0.05
+Nodes (48): DelayChart(), DropChart(), LoopChart(), ProgressiveLine(), BasicArea(), DrawTime(), LineDatasets(), LineChartStacked() (+40 more)
 
 ### Community 3 - "label.jsx"
-Cohesion: 0.04
-Nodes (50): addUser(), schema, schema, schema, schema, schema, schema, schema (+42 more)
+Cohesion: 0.09
+Nodes (27): addUser(), schema, schema, schema, schema, schema, schema, schema (+19 more)
 
 ### Community 4 - "button.jsx"
 Cohesion: 0.04
-Nodes (35): DefaultButton(), DisabledButton(), GhostButton(), IconButton(), OutlineButton(), RaisedButton(), RoundedButton(), RoundedOutline() (+27 more)
+Nodes (15): messages, DefaultButton(), DisabledButton(), GhostButton(), IconButton(), OutlineButton(), RaisedButton(), RoundedButton() (+7 more)
 
 ### Community 5 - "input.jsx"
 Cohesion: 0.09
-Nodes (15): BasicInputText(), DisabledTextInput(), InputColors(), InputControlled(), InputRadius(), InputSize(), InputVariant(), InputWithButton() (+7 more)
+Nodes (18): BasicFileUploader(), FileUploadWithButton(), BasicInputText(), DisabledTextInput(), InputColors(), InputControlled(), InputRadius(), InputSize() (+10 more)
 
 ### Community 6 - "table.jsx"
-Cohesion: 0.08
-Nodes (25): ProjectFile, columns, data, columns, data, columns, columns, users (+17 more)
+Cohesion: 0.16
+Nodes (9): UsersDataTable(), DataTablePagination(), columns, users, Table, TableBody, TableFooter, TableHeader (+1 more)
 
 ### Community 7 - "popover.jsx"
-Cohesion: 0.16
-Nodes (20): frameworks, DataTableFacetedFilter(), list, newtags, tagsColorMap, themeColors, data, AutocompleteItemProps (+12 more)
+Cohesion: 0.08
+Nodes (32): frameworks, BasicCommand(), UserPopover(), DataTableFacetedFilter(), DataTableFacetedFilter(), DataTableToolbar(), readFilterText(), DataTableViewOptions() (+24 more)
 
 ### Community 8 - "page.jsx"
-Cohesion: 0.11
-Nodes (18): KanbanBreadCrumbs(), CollapsingBreadcrumb(), ColorBreadcrumb(), CustomSeparator(), DefaultBreadCrumb(), DisabledBreadCrumb(), RadiusBreadcrumb(), RoutingBreadcrumb() (+10 more)
+Cohesion: 0.08
+Nodes (24): KanbanBreadCrumbs(), TaskBreadCrumbs(), TaskContact, priorityFilters, taskFilters, TaskRow, ViewTask(), CollapsingBreadcrumb() (+16 more)
 
 ### Community 9 - "pagination.jsx"
-Cohesion: 0.10
-Nodes (17): ForgotPage(), LockPage(), LoginPage(), CreatePasswordPage(), RegisterPage(), VerifyPage(), MultiStepSliderDialog(), DafaultPagination() (+9 more)
+Cohesion: 0.26
+Nodes (9): DafaultPagination(), PaginationContent, PaginationEllipsis(), PaginationItem, PaginationLink(), PaginationLinkProps, PaginationNext(), PaginationPrevious() (+1 more)
 
 ### Community 10 - "cn"
-Cohesion: 0.08
-Nodes (17): ColorsRadio(), ControlledRadio(), CustomImplementation(), CustomLabel(), LabelPlacementRadio(), LabelSlot(), RadioRight(), RadioWithBackground() (+9 more)
+Cohesion: 0.05
+Nodes (34): BasicDialog(), CounterDialog(), DialogAutoDestroyable(), DialogColors(), DialogNonDismisable(), DialogSizes(), DialogWithProgressbar(), DialogWithTimeline() (+26 more)
 
 ### Community 11 - "page.jsx"
-Cohesion: 0.11
-Nodes (19): ColorsSwitch(), ControlledSwtich(), CustomStyle(), CustomizedSwitch(), DefaultSwitch(), DisabledSwitch(), SwitchLabelPlacement(), SwitchLineStyle() (+11 more)
+Cohesion: 0.09
+Nodes (17): ColorsSwitch(), ControlledSwtich(), CustomStyle(), DefaultSwitch(), DisabledSwitch(), SwitchLabelPlacement(), SwitchLineStyle(), SwitchShadow() (+9 more)
 
 ### Community 12 - "badge.jsx"
-Cohesion: 0.05
-Nodes (43): BadgeColor, priorityColors, statusColors, TaskAssignee, ArrowTooltip(), ColorTooltip(), ControlTooltip(), DefaultTooltip() (+35 more)
+Cohesion: 0.12
+Nodes (15): ArrowTooltip(), ColorTooltip(), ControlTooltip(), DefaultTooltip(), OffsetTooltip(), PlacementTooltip(), VariousTooltip(), WithDelay() (+7 more)
 
 ### Community 13 - "data.js"
-Cohesion: 0.13
-Nodes (6): generateAssignments(), priorities, statuses, generateSubTasks(), subTasks, tasks
+Cohesion: 0.06
+Nodes (16): comments, generateComments(), assignDate, currentYear, dueDate, generateAssignments(), labels, priorities (+8 more)
 
 ### Community 14 - "page.jsx"
 Cohesion: 0.11
 Nodes (14): BasicDonut(), Chart, BasicPie(), Chart, Chart, DonutPattern(), Chart, GradiantDonut() (+6 more)
 
 ### Community 15 - "project-action.js"
-Cohesion: 0.10
-Nodes (28): addBoardAction(), addProjectAction(), addTaskAction(), deleteBoardAction(), deleteProjectAction(), deleteSubTaskAction(), deleteTaskAction(), editBoardAction() (+20 more)
+Cohesion: 0.05
+Nodes (63): addBoardAction(), addProjectAction(), addSubTaskAction(), addTaskAction(), deleteBoardAction(), deleteProjectAction(), deleteSubTaskAction(), deleteTaskAction() (+55 more)
 
 ### Community 16 - "dropdown-menu.jsx"
-Cohesion: 0.06
-Nodes (43): DocCard(), DataTableFacetedFilter(), DataTableToolbar(), readFilterText(), DataTableViewOptions(), labels, priorities, statuses (+35 more)
+Cohesion: 0.09
+Nodes (24): AlignmentOptions(), DefaultDropdown(), DropdownMenuCheckboxItemColor(), MenuContent(), OutlineDropdown(), OutlineSplitDropdown(), SizeDropdown(), SoftDropdown() (+16 more)
 
 ### Community 17 - "page.jsx"
-Cohesion: 0.20
-Nodes (12): StepsWithLineSpace(), VStepsLineSpace(), VSteps(), Step, StepDescription, StepLabel, Stepper, StepperProps (+4 more)
+Cohesion: 0.14
+Nodes (20): AlterNativeLabel(), AlternativeLabelStepGap(), ClickableStep(), DefaultSteps(), ErrorAlertSteps(), StepsSize(), StepsWithAction(), StepsWithDataContent() (+12 more)
 
 ### Community 18 - "page.jsx"
 Cohesion: 0.07
@@ -388,7 +398,7 @@ Nodes (21): DemoApp(), ColorsSlider(), DefaultSlider(), DisabledSlider(), MinMax
 
 ### Community 19 - "progress.jsx"
 Cohesion: 0.09
-Nodes (18): AnimateStripedProgressbar(), CircleColorProgress(), CircleProgressbarSize(), ColorProgress(), CustomTextProgressbar(), DefaultCircleProgressbar(), DefaultProgress(), DefaultSizeProgress() (+10 more)
+Nodes (13): AnimateStripedProgressbar(), CircleColorProgress(), CircleProgressbarSize(), ColorProgress(), CustomTextProgressbar(), DefaultCircleProgressbar(), DefaultProgress(), DefaultSizeProgress() (+5 more)
 
 ### Community 20 - "page.jsx"
 Cohesion: 0.11
@@ -396,7 +406,7 @@ Nodes (14): BasicRadialBar(), Chart, Chart, CustomAngle(), Chart, GradiantRadial
 
 ### Community 21 - "thems.js"
 Cohesion: 0.11
-Nodes (23): BackgroundBar(), BarChartWithMultiAxis(), data, BarWithMinHeight(), BiAxialBar(), BrushBar(), data, CustomShape() (+15 more)
+Nodes (19): ReComposedChartWithAxisLabels(), ReSameDataComposedChart(), ReLineBarAreaComposedChart(), ReScatterAndLineOfBestFit(), ReVerticalComposedChart(), BasicLeafletMap(), BasicMap(), MapClusterExpand() (+11 more)
 
 ### Community 22 - "use-media-query.js"
 Cohesion: 0.03
@@ -407,55 +417,59 @@ Cohesion: 0.22
 Nodes (10): AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter(), AlertDialogHeader(), AlertDialogOverlay, AlertDialogTitle (+2 more)
 
 ### Community 24 - "avatar.jsx"
-Cohesion: 0.05
-Nodes (46): prioritiesColorMap, ProjectGrid(), staticSrc(), DataTableRowActions(), ProjectAssignee, ProjectRow, ContactList(), taskAvatarSrc() (+38 more)
+Cohesion: 0.07
+Nodes (40): ContactList(), mailAvatarSrc(), prioritiesColorMap, ProjectGrid(), staticSrc(), ContactList(), taskAvatarSrc(), AvatarBorder() (+32 more)
 
 ### Community 25 - "page.jsx"
-Cohesion: 0.16
+Cohesion: 0.14
 Nodes (26): AlternativeReverseTimeline(), AlternativeTimeline(), BasicTimeline(), ColorDotTimeline(), LeftTimeline(), LineSpaceTimeline(), LineSpaceWithoutTextTimeline(), OutlineWithoutTextTimeline() (+18 more)
 
 ### Community 26 - "react-hot-toast.jsx"
 Cohesion: 0.08
-Nodes (25): ReAreaChartConnectNulls(), ReAreaChartFillByValue(), RechartBasicArea(), CardinalReAreaChart(), PercentReAreaChart(), StackedRechartArea(), ReSynchronizedAreaChart(), TinyRechartArea() (+17 more)
+Nodes (23): ReAreaChartConnectNulls(), ReAreaChartFillByValue(), RechartBasicArea(), CardinalReAreaChart(), PercentReAreaChart(), StackedRechartArea(), ReSynchronizedAreaChart(), TinyRechartArea() (+15 more)
 
 ### Community 27 - "utils.js"
 Cohesion: 0.09
 Nodes (21): compilerOptions, allowJs, esModuleInterop, forceConsistentCasingInFileNames, incremental, isolatedModules, jsx, lib (+13 more)
 
 ### Community 28 - "page.jsx"
-Cohesion: 0.17
-Nodes (10): DefaultSkeleton(), ECommerceCounterSkeleton(), ECommerceDefaultSkeleton(), ECommerceListSkeleton(), ImageBottomSkeleton(), ImageMiddleSkeleton(), ImageTopSkeleton(), ProfileSkeleton() (+2 more)
+Cohesion: 0.15
+Nodes (11): DefaultSkeleton(), ECommerceCounterSkeleton(), ECommerceDefaultSkeleton(), ECommerceListSkeleton(), ImageBottomSkeleton(), ImageMiddleSkeleton(), ImageTopSkeleton(), ProfileSkeleton() (+3 more)
 
 ### Community 29 - "index.jsx"
-Cohesion: 0.32
-Nodes (10): Kanban(), task(), TaskPageProps, ProjectPage(), TaskPage(), getBoards(), getComments(), getProjects() (+2 more)
+Cohesion: 0.07
+Nodes (22): AccessibleCheckbox(), CheckboxRight(), CheckboxWithBackground(), CircleCheckbox(), ColorOutlineCheckbox(), ColorsCheckbox(), ControlledCheckbox(), BulkSelectCheckbox() (+14 more)
 
 ### Community 30 - "basic-table.jsx"
-Cohesion: 0.40
-Nodes (9): createEmailAction(), deleteMailAction(), getMailAction(), api, readAxiosErrorData(), createEmail(), deleteEmail(), getMail() (+1 more)
+Cohesion: 0.17
+Nodes (8): ProjectFile, users, users1, VerticalLine(), WithCheckbox(), TableCaption, TableCell, TableHead
 
 ### Community 31 - "page.jsx"
 Cohesion: 0.03
-Nodes (84): LoginPage(), LoginPage(), LoginPage(), CreatePasswordPage(), RegisterPage(), VerifyPage(), BasicFunnel(), Chart (+76 more)
+Nodes (85): LoginPage(), LoginPage(), LoginPage(), CreatePasswordPage(), RegisterPage(), VerifyPage(), AlignmentAndTitlePosition(), LegendHTML() (+77 more)
 
 ### Community 32 - "mail.jsx"
-Cohesion: 0.15
-Nodes (10): defaultt(), destructive(), info(), promise(), promiseToast(), success(), themToast(), warning() (+2 more)
+Cohesion: 0.19
+Nodes (7): BadgeAlignment(), BadgesStyle(), BadgesWithIcon(), DefaultBadge(), DotStyleBadge(), OutlineBadge(), SoftBadge()
 
 ### Community 33 - "page.jsx"
-Cohesion: 0.18
+Cohesion: 0.15
 Nodes (16): BorderAlert(), ColorAlert(), DisableSoftIcon(), DisableAlert(), HeadingAlert(), HeadingAlertIcon(), LinkAlert(), OutlineAlert() (+8 more)
 
 ### Community 34 - "page.jsx"
-Cohesion: 0.16
-Nodes (5): assignDate, currentYear, dueDate, labels, projects
+Cohesion: 0.24
+Nodes (6): BasicRadar(), Chart, Chart, MultipleSeriesRadar(), Chart, RadarPolygonFill()
 
 ### Community 35 - "page.jsx"
 Cohesion: 0.09
 Nodes (25): BasicScatter(), data, BubbleChart(), data01, data02, parseDomain(), CustomTooltip(), data01 (+17 more)
 
+### Community 36 - "page.jsx"
+Cohesion: 0.09
+Nodes (9): data, ProjectBudgetBar(), Chart, ReportChart(), data, ListItem(), data, Workload() (+1 more)
+
 ### Community 37 - "page.jsx"
-Cohesion: 0.06
+Cohesion: 0.07
 Nodes (51): deleteMessage(), getContacts(), getMessages(), getProfile(), sendMessage(), ChatPage(), BlockUser(), ChangeTheme() (+43 more)
 
 ### Community 38 - "page.jsx"
@@ -463,36 +477,28 @@ Cohesion: 0.12
 Nodes (4): DefaultRating(), Rating, RatingProps, ratingVariants
 
 ### Community 39 - "card.jsx"
-Cohesion: 0.04
-Nodes (32): schema, data, needle(), ProjectBudget(), data, ProjectProgress(), totalTask, Chart (+24 more)
+Cohesion: 0.07
+Nodes (12): schema, socials, CustomerStatistics(), Orders(), products, TopBrowser(), data, ListItem() (+4 more)
 
 ### Community 40 - "use-toast.js"
-Cohesion: 0.23
-Nodes (7): AddBlock(), ModuleSidebar(), LogoutFooter(), MenuItem(), NavLink(), MenuOverlayPortal(), SidebarChildMenuItem
+Cohesion: 0.24
+Nodes (6): BasicScatter(), Chart, Chart, DateTime(), Chart, ScatterImage()
 
 ### Community 41 - "page.jsx"
 Cohesion: 0.14
 Nodes (15): BasicTextarea(), ColorsTextarea(), ControlledTextarea(), DisabledTextarea(), DisplayedRows(), LabelTextarea(), RadiusTextarea(), ReadonlyTextarea() (+7 more)
 
 ### Community 42 - "page.jsx"
-Cohesion: 0.28
-Nodes (7): DataPage(), createTodo(), deleteTodo(), getTodos(), TodoDraft, TodoItem, updateTodo()
+Cohesion: 0.24
+Nodes (5): data, upcomingDeadlineData, users, columns, columns
 
 ### Community 44 - "reg-form.jsx"
-Cohesion: 0.11
-Nodes (22): BasicSelect(), SelectColors(), ControlledSelect(), DisabledItems(), DisabledSelect(), RadiusSelect(), SelectVariant(), SelectWithDescription() (+14 more)
-
-### Community 45 - "projects-view.jsx"
-Cohesion: 0.32
-Nodes (9): AddEvent(), deleteEventAction(), updateEventAction(), CalenderPage(), createEvent(), deleteEvent(), getCategories(), getEvents() (+1 more)
+Cohesion: 0.10
+Nodes (24): CalendarCategory, CalendarEventSelection, schema, BasicSelect(), SelectColors(), ControlledSelect(), DisabledItems(), DisabledSelect() (+16 more)
 
 ### Community 46 - "page.jsx"
-Cohesion: 0.16
-Nodes (13): ComposeMail(), ContactList(), images, isPanelLayout(), layoutPercents(), MailList(), Mail(), MailSpam() (+5 more)
-
-### Community 47 - "event-sheet.jsx"
-Cohesion: 0.09
-Nodes (18): BarImageChart(), Chart, BarsWithMarkes(), Chart, Chart, CustomLabelBar(), Chart, GroupedStackBar() (+10 more)
+Cohesion: 0.07
+Nodes (41): AddEvent(), deleteEventAction(), updateEventAction(), CalenderPage(), createEmailAction(), deleteMailAction(), getMailAction(), ComposeMail() (+33 more)
 
 ### Community 48 - "page.jsx"
 Cohesion: 0.18
@@ -523,20 +529,20 @@ Cohesion: 0.25
 Nodes (7): Commit message, Completed, Error counts (final run), Gates notes, SHA, Status, Task 4 — TypeScript / UI fix report
 
 ### Community 56 - "page.jsx"
-Cohesion: 0.07
-Nodes (38): TaskBreadCrumbs(), TaskContact, CreateTask(), prioriy, statuses, styles, users, EditTask() (+30 more)
+Cohesion: 0.09
+Nodes (32): CreateTask(), prioriy, statuses, styles, users, EditTask(), prioriy, statuses (+24 more)
 
 ### Community 57 - "tabs.jsx"
-Cohesion: 0.19
-Nodes (12): BasicTabs(), ColorVariants(), DisabledTabs(), IconVariants(), RoundedTabs(), SizesTabs(), StyleVariants(), ListItem (+4 more)
+Cohesion: 0.16
+Nodes (13): BasicTabs(), ColorVariants(), DisabledTabs(), IconVariants(), RoundedTabs(), SizesTabs(), StyleVariants(), ListItem (+5 more)
 
 ### Community 58 - "page.jsx"
 Cohesion: 0.13
 Nodes (13): CheckboxTree(), treeData, DefaultTree(), treeData, HandleDataTree(), treeData, defaultExpandedKeys, OpenTree() (+5 more)
 
 ### Community 59 - "page.jsx"
-Cohesion: 0.10
-Nodes (22): FormSchema, items, FormSchema, languages, FormSchema, FormSchema, FormSchema, FormSchema (+14 more)
+Cohesion: 0.05
+Nodes (51): defaultt(), destructive(), info(), promise(), promiseToast(), success(), themToast(), warning() (+43 more)
 
 ### Community 60 - "page.jsx"
 Cohesion: 0.50
@@ -555,8 +561,8 @@ Cohesion: 0.17
 Nodes (11): Menubar, MenubarCheckboxItem, MenubarContent, MenubarItem, MenubarLabel, MenubarRadioItem, MenubarSeparator, MenubarShortcut() (+3 more)
 
 ### Community 64 - "project-sheet.jsx"
-Cohesion: 0.13
-Nodes (14): ClassicSidebar(), SingleMenuItem(), MenuLabel(), MultiMenuHandler(), SubMenuItem(), SingleMenuItem(), LinkButton(), SingleMenuItem() (+6 more)
+Cohesion: 0.11
+Nodes (20): ClassicSidebar(), SingleMenuItem(), AddBlock(), MenuLabel(), MultiMenuHandler(), SubMenuItem(), SingleMenuItem(), LinkButton() (+12 more)
 
 ### Community 65 - "page.jsx"
 Cohesion: 0.47
@@ -571,8 +577,8 @@ Cohesion: 0.22
 Nodes (8): Baseline, Commit, Constraints, File yang di-commit (Step 4 brief), Langkah brief, Pengecualian / catatan, Ringkasan, Task 3 Report — Tahap 0 baseline
 
 ### Community 68 - "page.jsx"
-Cohesion: 0.21
-Nodes (9): BaselineAreaChart(), data, NonStackedArea(), BasicGroupedBar(), data, CovidAreaDatum, ElectionVoteDatum, unovisMillionTick() (+1 more)
+Cohesion: 0.38
+Nodes (4): BasicGroupedBar(), data, ElectionVoteDatum, unovisMillionTick()
 
 ### Community 70 - "react-select-options.jsx"
 Cohesion: 0.12
@@ -591,8 +597,8 @@ Cohesion: 0.15
 Nodes (10): calendarCategories, calendarEvents, categories, date, nextDay, CalendarEvent, isRecord(), POST() (+2 more)
 
 ### Community 74 - "card-snippet.tsx"
-Cohesion: 0.11
-Nodes (23): FileUploaderRestrictions(), Toast, ToastAction, ToastClose, ToastDescription, ToastProps, ToastTitle, toastVariants (+15 more)
+Cohesion: 0.17
+Nodes (13): SonnToaster(), Toast, ToastAction, ToastClose, ToastDescription, ToastProps, ToastTitle, toastVariants (+5 more)
 
 ### Community 75 - "page.jsx"
 Cohesion: 0.19
@@ -611,20 +617,20 @@ Cohesion: 0.25
 Nodes (8): devDependencies, @faker-js/faker, @playwright/test, @svgr/webpack, @types/node, @types/react, @types/react-dom, typescript
 
 ### Community 79 - "row-editing-dialog.tsx"
-Cohesion: 0.19
-Nodes (9): addSubTaskAction(), comments, generateComments(), EventSheet(), ProjectsSheet(), AddSubTask(), schema, createSubTask() (+1 more)
+Cohesion: 0.33
+Nodes (4): stepData, candidates, SentimentField, StepAreaChart()
 
 ### Community 80 - "basic-scatter.jsx"
-Cohesion: 0.15
-Nodes (13): BasicScatterChart(), categories, colorScale, formatNumber, brushChartData, data, palette, formatNumber (+5 more)
+Cohesion: 0.14
+Nodes (15): BaselineAreaChart(), BasicScatterChart(), categories, colorScale, formatNumber, brushChartData, data, palette (+7 more)
 
 ### Community 81 - "sheet.jsx"
 Cohesion: 0.33
 Nodes (3): tourOptions, steps, TourButtonHost
 
 ### Community 82 - "form.jsx"
-Cohesion: 0.17
-Nodes (9): inter, metadata, SonnToaster(), siteConfig, sonner, AuthProvider(), TanstackProvider(), inter (+1 more)
+Cohesion: 0.27
+Nodes (5): inter, metadata, siteConfig, AuthProvider(), TanstackProvider()
 
 ### Community 83 - "tooltip.jsx"
 Cohesion: 0.23
@@ -632,7 +638,7 @@ Nodes (8): CustomTooltip(), footer(), customTooltip(), InteractionModes(), custo
 
 ### Community 84 - "layout.jsx"
 Cohesion: 0.10
-Nodes (18): MainLayout(), LayoutLoader(), SidebarChange(), FooterLayout(), Footer(), FullScreenToggle(), Header(), ClassicHeader() (+10 more)
+Nodes (18): MainLayout(), LayoutLoader(), FooterLayout(), Footer(), FullScreenToggle(), Header(), ClassicHeader(), MobileMenuHandler() (+10 more)
 
 ### Community 85 - "Global Constraints"
 Cohesion: 0.15
@@ -643,8 +649,8 @@ Cohesion: 0.21
 Nodes (3): demoData, delayResponse(), POST()
 
 ### Community 87 - "page.tsx"
-Cohesion: 0.32
-Nodes (4): CountryMap(), UsersStat(), UsersDataTable(), DashboardSelect()
+Cohesion: 0.17
+Nodes (8): CountryMap(), allUsersSeries, conversationSeries, eventCountSeries, newUserSeries, ReportsSnapshot(), UsersStat(), DashboardSelect()
 
 ### Community 88 - "index.tsx"
 Cohesion: 0.22
@@ -671,8 +677,8 @@ Cohesion: 0.33
 Nodes (5): BrandIconProps, Facebook(), Instagram(), Linkedin(), Twitter()
 
 ### Community 95 - "overdue-task.tsx"
-Cohesion: 0.10
-Nodes (12): CalendarCategory, CalendarEventSelection, data, upcomingDeadlineData, users, columns, ProjectDeadline(), WorkloadChart() (+4 more)
+Cohesion: 0.20
+Nodes (6): CalendarCategory, CalendarEventSelection, DatePickerWithRange(), buttonVariants, Calendar(), CalendarProps
 
 ### Community 96 - "data-table.tsx"
 Cohesion: 0.22
@@ -691,12 +697,8 @@ Cohesion: 0.20
 Nodes (9): API yang dihasilkan, Commit, Constraints, File yang dibuat, Langkah TDD, Ringkasan, Ringkasan tes, Self-review (+1 more)
 
 ### Community 103 - "toast.tsx"
-Cohesion: 0.18
+Cohesion: 0.17
 Nodes (9): ColumnSizing(), FormAutoSize(), FormGrid(), Gutters(), HrFormLabelSizing(), hriFormWithIcon(), HrFormWithLabel(), VFormWithIcon() (+1 more)
-
-### Community 104 - "page.jsx"
-Cohesion: 0.08
-Nodes (14): CustomerStatistics(), Orders(), products, TopBrowser(), countries, data, ListItem(), data (+6 more)
 
 ### Community 105 - "messages.tsx"
 Cohesion: 0.19
@@ -719,28 +721,24 @@ Cohesion: 0.14
 Nodes (13): allowScripts, bcrypt@6.0.0, name, private, scripts, build, dev, gates (+5 more)
 
 ### Community 111 - "index.tsx"
-Cohesion: 0.25
-Nodes (4): assignItemSchema, assignOption, ProjectFormValues, schema
+Cohesion: 0.11
+Nodes (15): ProjectPage(), columns, DataTableColumnHeader(), DataTableRowActions(), labels, priorities, statuses, assignItemSchema (+7 more)
 
 ### Community 112 - "drawer.tsx"
-Cohesion: 0.36
+Cohesion: 0.27
 Nodes (3): DefaultCard(), LinkCard(), PostCard()
 
 ### Community 113 - "index.tsx"
-Cohesion: 0.32
-Nodes (4): columns, DataTable(), data, AdvancedTable()
+Cohesion: 0.15
+Nodes (12): columns, Task, DataTableColumnHeader(), DataTable(), DataTableRowActions(), labels, priorities, statuses (+4 more)
 
 ### Community 114 - "toast.tsx"
-Cohesion: 0.38
-Nodes (5): viewProjectAction(), singleProjectLayout(), PageLink(), pages, getProject()
+Cohesion: 0.09
+Nodes (18): data, needle(), ProjectBudget(), ProjectDeadline(), data, ProjectProgress(), totalTask, Chart (+10 more)
 
 ### Community 115 - "data.ts"
 Cohesion: 0.33
 Nodes (5): chats, contacts, dayBeforePreviousDay, previousDay, profileUser
-
-### Community 116 - "inbox.jsx"
-Cohesion: 0.38
-Nodes (5): accounts, contacts, mails, EmailPage(), getEmails()
 
 ### Community 117 - "page.tsx"
 Cohesion: 0.40
@@ -762,9 +760,13 @@ Nodes (6): Bcrypt, CleaveProps, GoogleMapReactProps, PropTypeValidators, SyntaxH
 Cohesion: 0.29
 Nodes (3): initEdges, initNodes, nodeTypes
 
+### Community 122 - "CircularProgress"
+Cohesion: 0.50
+Nodes (4): DataTableFacetedFilter(), DataTableToolbar(), readFilterText(), DataTableViewOptions()
+
 ### Community 123 - "nested-menus.jsx"
-Cohesion: 0.10
-Nodes (20): Commit, Gerbang, Gerbang, Gerbang (belum lulus), Hasil compiler, Hasil compiler, Hasil compiler, Langkah berikutnya (PHASE 2+) (+12 more)
+Cohesion: 0.08
+Nodes (23): Commit, Gerbang, Gerbang, Gerbang (belum lulus), Hasil, Hasil compiler, Hasil compiler, Hasil compiler (+15 more)
 
 ### Community 125 - "Quick Start"
 Cohesion: 0.29
@@ -775,12 +777,12 @@ Cohesion: 0.29
 Nodes (6): Community, FAQs, Figma WorkSpace, Github Access, Resources, Support
 
 ### Community 127 - "page.tsx"
-Cohesion: 0.13
-Nodes (15): VerfiyForm(), TeamHeader(), BasicInputGroup(), CheckboxRadioGroup(), InputGroupRadius(), InputGroupSize(), InputGroupsButton(), MergedInputGroup() (+7 more)
+Cohesion: 0.14
+Nodes (14): VerfiyForm(), BasicInputGroup(), CheckboxRadioGroup(), InputButtonWithDropdown(), InputGroupRadius(), InputGroupSize(), InputGroupsButton(), MergedInputGroup() (+6 more)
 
 ### Community 128 - "index.tsx"
-Cohesion: 0.17
-Nodes (15): baselineData, categories, stackedData, stepData, StackedArea(), XYLabelConfig, candidates, SentimentField (+7 more)
+Cohesion: 0.21
+Nodes (13): baselineData, categories, data, stackedData, StackedArea(), XYLabelConfig, BaselineAreaDatum, BaselineCategory (+5 more)
 
 ### Community 133 - "view-task.tsx"
 Cohesion: 0.40
@@ -803,8 +805,8 @@ Cohesion: 0.33
 Nodes (5): About DashTail, Conceptual Dashboards, Key Features, Ready-to-Use Applications, Welcome
 
 ### Community 138 - "custom-content-treemap.tsx"
-Cohesion: 0.25
-Nodes (6): DrawerContent, DrawerDescription, DrawerFooter(), DrawerHeader(), DrawerOverlay, DrawerTitle
+Cohesion: 0.40
+Nodes (4): BadgeColor, priorityColors, statusColors, TaskAssignee
 
 ### Community 139 - "page.jsx"
 Cohesion: 0.40
@@ -822,21 +824,9 @@ Nodes (4): FAQ, Note to freelancers and creative agencies, Standard Licenses, Su
 Cohesion: 0.40
 Nodes (4): Horizontal Menu, Menu Customization, Vertical Collapsed Menu, Vertical Menu
 
-### Community 146 - "react-hot-toast.tsx"
-Cohesion: 0.33
-Nodes (5): allUsersSeries, conversationSeries, eventCountSeries, newUserSeries, ReportsSnapshot()
-
 ### Community 148 - "page.tsx"
-Cohesion: 0.27
-Nodes (5): columns, DataTable(), data, InvoiceListTable(), PromotionalCard()
-
-### Community 151 - "task-table.tsx"
-Cohesion: 0.40
-Nodes (3): CalendarCategory, CalendarEventSelection, schema
-
-### Community 153 - "page.tsx"
-Cohesion: 0.60
-Nodes (3): DataTableToolbar(), readFilterText(), statuses
+Cohesion: 0.31
+Nodes (5): columns, DataTable(), DataTablePagination(), data, InvoiceListTable()
 
 ### Community 157 - "Layout Customization"
 Cohesion: 0.50
@@ -862,25 +852,29 @@ Nodes (3): Deploy on Vercel, Getting Started, Learn More
 Cohesion: 0.50
 Nodes (4): BubbleRaw, channelValue(), colorize(), ScriptBubble()
 
+### Community 243 - "invoice-stats.tsx"
+Cohesion: 0.33
+Nodes (4): AreaChart(), Chart, SparkColor, themeColors
+
 ## Knowledge Gaps
-- **940 isolated node(s):** `CalendarCategory`, `CalendarEventSelection`, `schema`, `CalendarCategory`, `CalendarEventSelection` (+935 more)
+- **942 isolated node(s):** `CalendarCategory`, `CalendarEventSelection`, `schema`, `CalendarCategory`, `CalendarEventSelection` (+937 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **127 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **141 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `useThemeStore` connect `page.jsx` to `appex-chart-options.js`, `index.tsx`, `useThemeStore`, `label.jsx`, `cn`, `page.tsx`, `page.jsx`, `react-hot-toast.tsx`, `page.jsx`, `thems.js`, `react-hot-toast.jsx`, `page.jsx`, `card.jsx`, `reg-form.jsx`, `event-sheet.jsx`, `choropleth-world-map.jsx`, `page.jsx`, `page.jsx`, `page.jsx`, `project-sheet.jsx`, `page.jsx`, `page.jsx`, `page.jsx`, `basic-scatter.jsx`, `form.jsx`, `tooltip.jsx`, `layout.jsx`, `overdue-task.tsx`, `messages.tsx`, `react-hot-toast.tsx`?**
+- **Why does `useThemeStore` connect `page.jsx` to `appex-chart-options.js`, `index.tsx`, `useThemeStore`, `label.jsx`, `page.jsx`, `page.tsx`, `page.jsx`, `page.jsx`, `thems.js`, `react-hot-toast.jsx`, `page.jsx`, `page.jsx`, `page.jsx`, `use-toast.js`, `choropleth-world-map.jsx`, `page.jsx`, `page.jsx`, `page.jsx`, `project-sheet.jsx`, `page.jsx`, `card-snippet.tsx`, `page.jsx`, `page.jsx`, `row-editing-dialog.tsx`, `basic-scatter.jsx`, `tooltip.jsx`, `layout.jsx`, `page.tsx`, `messages.tsx`, `react-hot-toast.tsx`, `toast.tsx`, `invoice-stats.tsx`?**
   _High betweenness centrality (0.116) - this node is a cross-community bridge._
-- **Why does `cn()` connect `use-media-query.js` to `useThemeStore`, `label.jsx`, `button.jsx`, `view-task.tsx`, `table.jsx`, `popover.jsx`, `nav-menu.jsx`, `page.jsx`, `cn`, `page.jsx`, `badge.jsx`, `custom-content-treemap.tsx`, `pagination.jsx`, `project-action.js`, `dropdown-menu.jsx`, `page.jsx`, `react-hot-toast.tsx`, `progress.jsx`, `page.jsx`, `task-table.tsx`, `avatar.jsx`, `dialog.jsx`, `page.jsx`, `page.jsx`, `page.jsx`, `page.jsx`, `page.jsx`, `page.jsx`, `card.jsx`, `use-toast.js`, `page.jsx`, `reg-form.jsx`, `page.jsx`, `page.jsx`, `tabs.jsx`, `page.jsx`, `page.jsx`, `index.jsx`, `project-sheet.jsx`, `page.jsx`, `card-snippet.tsx`, `row-editing-dialog.tsx`, `form.jsx`, `layout.jsx`, `overdue-task.tsx`, `carousel.jsx`, `page.jsx`, `index.tsx`, `toast.tsx`, `invoice-stats.tsx`, `cleave.tsx`, `navigation-menu.jsx`, `page.tsx`?**
+- **Why does `cn()` connect `use-media-query.js` to `useThemeStore`, `label.jsx`, `view-task.tsx`, `nav-menu.jsx`, `popover.jsx`, `page.jsx`, `pagination.jsx`, `cn`, `page.jsx`, `table.jsx`, `data.js`, `badge.jsx`, `project-action.js`, `dropdown-menu.jsx`, `data.ts`, `react-hot-toast.tsx`, `page.jsx`, `page.jsx`, `page.tsx`, `dialog.jsx`, `avatar.jsx`, `page.jsx`, `page.jsx`, `index.jsx`, `basic-table.jsx`, `page.jsx`, `page.jsx`, `page.jsx`, `page.jsx`, `card.jsx`, `page.jsx`, `reg-form.jsx`, `page.jsx`, `stats.tsx`, `Task`, `page.jsx`, `tabs.jsx`, `page.jsx`, `page.jsx`, `index.jsx`, `project-sheet.jsx`, `page.jsx`, `card-snippet.tsx`, `layout.jsx`, `page.tsx`, `overdue-task.tsx`, `carousel.jsx`, `index.tsx`, `index.tsx`, `toast.tsx`, `invoice-stats.tsx`, `cleave.tsx`, `navigation-menu.jsx`, `page.tsx`?**
   _High betweenness centrality (0.082) - this node is a cross-community bridge._
-- **Why does `Button` connect `button.jsx` to `label.jsx`, `table.jsx`, `popover.jsx`, `cn`, `badge.jsx`, `dropdown-menu.jsx`, `page.jsx`, `data.ts`, `progress.jsx`, `page.tsx`, `use-media-query.js`, `task-table.tsx`, `avatar.jsx`, `page.tsx`, `dialog.jsx`, `error-block.tsx`, `mail.jsx`, `page.jsx`, `card.jsx`, `use-toast.js`, `page.jsx`, `reg-form.jsx`, `page.jsx`, `page.jsx`, `tabs.jsx`, `page.jsx`, `card-snippet.tsx`, `sheet.jsx`, `layout.jsx`, `page.tsx`, `index.tsx`, `overdue-task.tsx`, `carousel.jsx`, `page.jsx`, `page.tsx`, `index.tsx`, `drawer.tsx`, `CircularProgress`, `page.tsx`?**
+- **Why does `Button` connect `button.jsx` to `label.jsx`, `input.jsx`, `table.jsx`, `popover.jsx`, `page.jsx`, `cn`, `page.jsx`, `custom-content-treemap.tsx`, `badge.jsx`, `project-action.js`, `dropdown-menu.jsx`, `page.jsx`, `data.ts`, `react-hot-toast.tsx`, `page.tsx`, `page.tsx`, `task-table.tsx`, `avatar.jsx`, `page.jsx`, `page.tsx`, `page.tsx`, `page.jsx`, `switch-with-background.tsx`, `basic-table.jsx`, `dialog.jsx`, `page.jsx`, `page.jsx`, `page.jsx`, `card.jsx`, `page.jsx`, `page.jsx`, `reg-form.jsx`, `projects-view.jsx`, `page.jsx`, `event-sheet.jsx`, `page.jsx`, `tabs.jsx`, `page.jsx`, `project-sheet.jsx`, `sheet.jsx`, `layout.jsx`, `page.tsx`, `index.tsx`, `overdue-task.tsx`, `carousel.jsx`, `toast.tsx`, `page.tsx`, `index.tsx`, `drawer.tsx`, `data-card.tsx`, `toast.tsx`, `CircularProgress`, `page.tsx`?**
   _High betweenness centrality (0.064) - this node is a cross-community bridge._
 - **What connects `CalendarCategory`, `CalendarEventSelection`, `schema` to the rest of the system?**
-  _940 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _942 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `appex-chart-options.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.027979038505354294 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.02567287784679089 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.017699115044247787 - nodes in this community are weakly interconnected._
 - **Should `useThemeStore` be split into smaller, more focused modules?**
-  _Cohesion score 0.05742574257425743 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.054212454212454214 - nodes in this community are weakly interconnected._
