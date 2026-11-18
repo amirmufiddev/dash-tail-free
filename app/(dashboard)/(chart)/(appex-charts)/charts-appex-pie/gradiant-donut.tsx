@@ -1,0 +1,67 @@
+"use client";
+import type { ApexOptions } from "apexcharts";
+import dynamic from "next/dynamic";
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+import { useThemeStore } from "@/store";
+import { useTheme } from "next-themes";
+import { themes } from "@/config/thems";
+
+const GradiantDonut = ({ height = 350 }) => {
+
+    const { theme: config, setTheme: setConfig } = useThemeStore();
+    const { theme: mode } = useTheme();
+    const theme = themes.find((theme) => theme.name === config);
+
+    const series = [44, 55, 41, 17, 15];
+
+    const options = {
+        chart: {
+            toolbar: {
+                show: false,
+            }
+        },
+        plotOptions: {
+            pie: {
+                startAngle: -90,
+                endAngle: 270
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        fill: {
+            type: 'gradient',
+        },
+        legend: {
+            position: 'bottom',
+            formatter: function (val: string, opts: { w: { globals: { series: { [key: string]: string } } }; seriesIndex: string | number }) {
+                return val + " - " + opts.w.globals.series[opts.seriesIndex]
+            },
+            labels: {
+                colors: `hsl(${theme?.cssVars[
+                    mode === "dark" || mode === "system" ? "dark" : "light"
+                ].chartLabel
+                    })`
+            }
+        },
+        stroke: {
+            width: 0
+        },
+        tooltip: {
+            theme: mode === "dark" || mode === "system" ? "dark" : "light",
+        },
+    } as unknown as ApexOptions;
+    return (
+        <>
+            <Chart
+                options={options}
+                series={series}
+                type="donut"
+                height={height}
+                width={"100%"}
+            />
+        </>
+    );
+};
+
+export default GradiantDonut;

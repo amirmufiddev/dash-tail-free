@@ -1,0 +1,106 @@
+import * as React from "react";
+import * as AvatarPrimitive from "@radix-ui/react-avatar";
+
+import { cn } from "@/lib/utils";
+
+const Avatar = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Root
+    ref={ref}
+    className={cn(
+      "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
+      className
+    )}
+    {...props}
+  />
+));
+Avatar.displayName = AvatarPrimitive.Root.displayName;
+
+type AvatarGroupProps = React.HTMLAttributes<HTMLDivElement> & {
+  max?: number;
+  total?: number;
+  custom?: boolean;
+  countClass?: string;
+};
+
+const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
+  ({ className, children, max, total, custom, countClass, ...props }, ref) => {
+    const avatars = React.Children.toArray(children);
+    const visibleCount = max ?? avatars.length;
+
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          " relative w-max-content flex -space-x-3 avatarGroup items-center",
+          className
+        )}
+        {...props}
+      >
+        {avatars.slice(0, visibleCount).map((avatar, index) =>
+          React.isValidElement(avatar)
+            ? React.cloneElement(avatar, {
+                key: avatar.key ?? `avatar-group-${index}`,
+              })
+            : (
+                <span key={`avatar-group-${index}`} className="contents">
+                  {avatar}
+                </span>
+              )
+        )}
+        {avatars.length > visibleCount && (
+          <>
+            {custom ? (
+              <div className=" inline-block" style={{ marginLeft: "8px" }}>
+                +{avatars.length - (max ?? visibleCount)} more
+              </div>
+            ) : (
+              <Avatar
+                className={cn(
+                  "ring-1 ring-background ring-offset-[2px]  ring-offset-background ",
+                  countClass
+                )}
+              >
+                <AvatarFallback className="font-normal">
+                  +{total ? total : avatars.length - visibleCount}
+                </AvatarFallback>
+              </Avatar>
+            )}
+          </>
+        )}
+      </div>
+    );
+  }
+);
+AvatarGroup.displayName = "AvatarGroup";
+
+const AvatarImage = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Image
+    ref={ref}
+    className={cn("aspect-square h-full w-full", className)}
+    {...props}
+  />
+));
+AvatarImage.displayName = AvatarPrimitive.Image.displayName;
+
+const AvatarFallback = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Fallback>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Fallback
+    ref={ref}
+    className={cn(
+      "flex h-full w-full items-center justify-center rounded-full bg-muted font-semibold text-sm",
+      className
+    )}
+    {...props}
+  />
+));
+AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
+
+export { Avatar, AvatarImage, AvatarFallback, AvatarGroup };

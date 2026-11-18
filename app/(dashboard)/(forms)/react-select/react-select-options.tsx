@@ -1,0 +1,258 @@
+"use client";
+import React, { useState } from "react";
+import Select, {
+  components,
+  type ActionMeta,
+  type GroupBase,
+  type MultiValue,
+  type OptionProps,
+  type StylesConfig,
+} from "react-select";
+import makeAnimated from "react-select/animated";
+import { Icon } from "@iconify/react";
+
+type FruitOption = { value: string; label: string; icon?: string; isFixed?: boolean };
+
+const fruits: FruitOption[] = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
+  { value: "orange", label: "Orange" },
+  { value: "apple", label: "Apple" },
+];
+const formatGroupLabel = (data: GroupBase<FruitOption>) => (
+  <div className="flex justify-between items-center">
+    <strong>
+      <span className=" text-2xl font-semibold capitalize">{data.label}</span>
+    </strong>
+    <span>{data.options.length}</span>
+  </div>
+);
+const groupedOptions = [
+  {
+    label: "Ice Creams",
+    options: [
+      { value: "vanilla", label: "Vanilla" },
+      { value: "Dark Chocolate", label: "Dark Chocolate" },
+      { value: "chocolate", label: "Chocolate" },
+      { value: "strawberry", label: "Strawberry" },
+      { value: "salted-caramel", label: "Salted Caramel" },
+    ],
+  },
+  {
+    label: "Snacks",
+    options: [
+      { value: "Pizza", label: "Pizza" },
+      { value: "Burger", label: "Burger" },
+      { value: "Pasta", label: "Pasta" },
+      { value: "Pretzel", label: "Pretzel" },
+      { value: "Popcorn", label: "Popcorn" },
+    ],
+  },
+];
+const animatedComponents = makeAnimated();
+
+// Fixed Options Select
+
+function buildStyles<IsMulti extends boolean>(): StylesConfig<FruitOption, IsMulti> {
+  return {
+    multiValue: (base, state) => {
+      return state.data.isFixed ? { ...base, opacity: 0.5 } : base;
+    },
+    multiValueLabel: (base, state) => {
+      return state.data.isFixed
+        ? { ...base, color: "#626262", paddingRight: 6 }
+        : base;
+    },
+    multiValueRemove: (base, state) => {
+      return state.data.isFixed ? { ...base, display: "none" } : base;
+    },
+    option: (provided) => ({
+      ...provided,
+      fontSize: "14px",
+    }),
+  };
+}
+const multiStyles = buildStyles<true>();
+const singleStyles = buildStyles<false>();
+const orderOptions = (values: readonly FruitOption[]) => {
+  return values
+    .filter((v) => v.isFixed)
+    .concat(values.filter((v) => !v.isFixed));
+};
+
+const iconOptions = [
+  {
+    label: "Social Media",
+    options: [
+      {
+        value: "facebook",
+        label: "Facebook",
+        icon: "fe:facebook",
+      },
+      {
+        value: "twitter",
+        label: "Twitter",
+        icon: "fe:twitter",
+      },
+      {
+        value: "linkedin",
+        label: "Linkedin",
+        icon: "fe:linkedin",
+      },
+      {
+        value: "github",
+        label: "Github",
+        icon: "fe:github",
+      },
+      {
+        value: "instagram",
+        label: "Instagram",
+        icon: "fe:instagram",
+      },
+      {
+        value: "dribbble",
+        label: "Dribbble",
+        icon: "fe:dribbble",
+      },
+      {
+        value: "gitlab",
+        label: "Gitlab",
+        icon: "fe:gitlab",
+      },
+    ],
+  },
+  {
+    label: "File Types",
+    options: [
+      { value: "pdf", label: "PDF", icon: "fe:file" },
+      { value: "txt", label: "txt", icon: "fe:file-word" },
+      { value: "image", label: "Image", icon: "fe:file-image" },
+    ],
+  },
+  {
+    label: "Others",
+    options: [
+      { value: "figma", label: "Figma", icon: "logos:figma" },
+      { value: "chrome", label: "Chrome", icon: "logos:chrome" },
+      { value: "safari", label: "Safari", icon: "fe:globe" },
+      { value: "slack", label: "Slack", icon: "logos:slack-icon" },
+      { value: "youtube", label: "Youtube", icon: "fe:youtube" },
+    ],
+  },
+];
+const OptionComponent = (
+  props: OptionProps<FruitOption, true, GroupBase<FruitOption>>
+) => {
+  const { data } = props;
+
+  const Option = components.Option as React.ComponentType<
+    OptionProps<FruitOption, true, GroupBase<FruitOption>>
+  >;
+
+  return (
+    <Option {...props}>
+      <div className="flex items-center gap-2">
+        {data.icon ? <Icon icon={data.icon} /> : null}
+        {data.label}
+      </div>
+    </Option>
+  );
+};
+
+// start component
+const ReactSelectOption = () => {
+  const [fixedValue, setFixedValue] = useState<FruitOption[]>(() =>
+    orderOptions([fruits[0], fruits[1]].filter((item): item is FruitOption => item != null)),
+  );
+  const fixedOnChange = (
+    value: MultiValue<FruitOption>,
+    { action, removedValue }: ActionMeta<FruitOption>,
+  ) => {
+    let next = [...value];
+    switch (action) {
+      case "remove-value":
+      case "pop-value":
+        if (removedValue?.isFixed) {
+          return;
+        }
+        break;
+      case "clear":
+        next = fruits.filter((v) => v.isFixed);
+        break;
+      default:
+        break;
+    }
+
+    setFixedValue(orderOptions(next));
+  };
+
+  return (
+    <div className=" grid lg:grid-cols-2 grid-cols-1 gap-5">
+      <div>
+        <Select
+          isClearable={false}
+          defaultValue={[fruits[2], fruits[3]]}
+          styles={multiStyles}
+          isMulti
+          name="colors"
+          options={fruits}
+          className="react-select"
+          classNamePrefix="select"
+        />
+      </div>
+      <div>
+        <Select
+          isClearable={false}
+          defaultValue={fruits[1]}
+          options={groupedOptions}
+          styles={singleStyles}
+          formatGroupLabel={formatGroupLabel}
+          className="react-select"
+          classNamePrefix="select"
+        />
+      </div>
+      <div>
+        <Select
+          isClearable={false}
+          closeMenuOnSelect={false}
+          // react-select's animated factory returns generic components that TypeScript cannot relate to a concrete option type.
+          // @ts-expect-error animated components are generic functions, not FruitOption component types
+          components={animatedComponents}
+          defaultValue={[fruits[4], fruits[5]].filter((item): item is FruitOption => item != null)}
+          isMulti
+          options={fruits}
+          styles={multiStyles}
+          className="react-select"
+          classNamePrefix="select"
+        />
+      </div>
+      <div>
+        <Select
+          isClearable={false}
+          value={fixedValue}
+          styles={multiStyles}
+          isMulti
+          onChange={fixedOnChange}
+          name="furits"
+          className="react-select"
+          classNamePrefix="select"
+          options={fruits}
+        />
+      </div>
+      <div className="lg:col-span-2 col-span-1">
+        <Select
+          options={iconOptions}
+          className="react-select"
+          classNamePrefix="select"
+          components={{
+            Option: OptionComponent,
+          }}
+          styles={multiStyles}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default ReactSelectOption;
