@@ -3,7 +3,7 @@ import { calendarEvents } from "../data";
 
 export async function DELETE(request, response) {
   try {
-    const { id } = response.params;
+    const { id } = (await response.params);
     console.log(id, "ami id");
 
     const index = calendarEvents.findIndex((item) => item.id === parseInt(id));
@@ -31,7 +31,7 @@ export async function DELETE(request, response) {
 
 export async function PUT(request, response) {
   try {
-    const { id } = response.params;
+    const { id } = (await response.params);
     const updatedEventData = await request.json();
 
     const index = calendarEvents.findIndex((item) => item.id === parseInt(id));

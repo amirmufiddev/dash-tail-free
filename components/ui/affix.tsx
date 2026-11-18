@@ -47,7 +47,14 @@
 import React, { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const Affix = ({ children, offsetTop, target, onChange }) => {
+type AffixProps = {
+  children: React.ReactNode;
+  offsetTop: number;
+  target?: () => HTMLElement | null;
+  onChange?: (affixed: boolean) => void;
+};
+
+const Affix = ({ children, offsetTop, target, onChange }: AffixProps) => {
   const [isFixed, setIsFixed] = useState(false);
   const ref = useRef(null);
   const containerRef = useRef(null);

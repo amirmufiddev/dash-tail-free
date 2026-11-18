@@ -17,6 +17,12 @@ import {
     Rectangle,
 } from "react-leaflet"
 
+const MapCircle = Circle as React.ComponentType<{
+  center: [number, number];
+  radius: number;
+  pathOptions?: Record<string, unknown>;
+}>
+
 const polyline: [number, number][] = [
     [51.505, -0.09],
     [51.51, -0.1],
@@ -84,9 +90,13 @@ const VectorLayersMap = ({ height = 350 }) => {
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Circle center={position}
-                fillColor={`hsla(${theme?.cssVars[mode === "dark" ? "dark" : "light"].primary})`}
-                radius={200} />
+            <MapCircle
+                center={position}
+                radius={200}
+                pathOptions={{
+                  fillColor: `hsla(${theme?.cssVars[mode === "dark" ? "dark" : "light"].primary})`,
+                }}
+            />
             <CircleMarker
                 center={[51.51, -0.12]}
                 color={`hsla(${theme?.cssVars[mode === "dark" ? "dark" : "light"].warning})`}

@@ -140,13 +140,17 @@ const OptionComponent = (
 ) => {
   const { data } = props;
 
+  const Option = components.Option as React.ComponentType<
+    OptionProps<FruitOption, true, GroupBase<FruitOption>>
+  >;
+
   return (
-    <components.Option {...props}>
+    <Option {...props}>
       <div className="flex items-center gap-2">
         <Icon icon={data.icon} />
         {data.label}
       </div>
-    </components.Option>
+    </Option>
   );
 };
 
@@ -203,7 +207,7 @@ const ReactSelectOption = () => {
         <Select
           isClearable={false}
           closeMenuOnSelect={false}
-          components={animatedComponents}
+          components={animatedComponents as React.ComponentProps<typeof Select>["components"]}
           defaultValue={[fruits[4], fruits[5]]}
           isMulti
           options={fruits}

@@ -10,7 +10,7 @@ function delayResponse(responseObj, delay = 2000) {
 }
 
 export async function GET(request, response) {
-  const id = response.params.id;
+  const id = (await response.params).id;
   console.log(id, "ami form single");
   // Find the item with the given ID
   const item = demoData.find((item) => item.id === parseInt(id));
@@ -43,7 +43,7 @@ export async function PUT(request, response) {
 }
 
 export async function DELETE(request, response) {
-  const id = response.params.id;
+  const id = (await response.params).id;
 
   const index = demoData.findIndex((item) => item.id === parseInt(id));
 

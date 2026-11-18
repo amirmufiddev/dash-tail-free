@@ -3,6 +3,13 @@
 import { useState } from "react"
 import { Circle, FeatureGroup, LayerGroup, MapContainer, Popup, Rectangle, TileLayer } from "react-leaflet"
 
+const MapCircle = Circle as React.ComponentType<{
+  center: [number, number];
+  radius: number;
+  stroke?: boolean;
+  pathOptions?: Record<string, unknown>;
+}>
+
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
@@ -32,26 +39,30 @@ const LayerGroupMap = ({ height = 350 }) => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <LayerGroup>
-                <Circle center={position} fillColor="blue" radius={200} />
-                <Circle
+                <MapCircle center={position} radius={200} pathOptions={{ fillColor: "blue" }} />
+                <MapCircle
                     center={position}
-                    fillColor={`hsla(${theme?.cssVars[mode === "dark" ? "dark" : "light"].primary})`}
                     radius={100}
                     stroke={false}
+                    pathOptions={{
+                      fillColor: `hsla(${theme?.cssVars[mode === "dark" ? "dark" : "light"].primary})`,
+                    }}
                 />
                 <LayerGroup>
-                    <Circle
+                    <MapCircle
                         center={[51.51, -0.08]}
-                        color={`hsla(${theme?.cssVars[mode === "dark" ? "dark" : "light"].warning})`}
-                        fillColor={`hsla(${theme?.cssVars[mode === "dark" ? "dark" : "light"].warning})`}
                         radius={100}
+                        pathOptions={{
+                          color: `hsla(${theme?.cssVars[mode === "dark" ? "dark" : "light"].warning})`,
+                          fillColor: `hsla(${theme?.cssVars[mode === "dark" ? "dark" : "light"].warning})`,
+                        }}
                     />
                 </LayerGroup>
             </LayerGroup>
             <FeatureGroup
                 color={`hsla(${theme?.cssVars[mode === "dark" ? "dark" : "light"].info})`}>
                 <Popup>Popup in FeatureGroup</Popup>
-                <Circle center={[51.51, -0.06]} radius={200} />
+                <MapCircle center={[51.51, -0.06]} radius={200} pathOptions={{}} />
                 <Rectangle bounds={rectangle} />
             </FeatureGroup>
         </MapContainer>

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { chats, contacts } from "../../data";
 
 export async function GET(request, response) {
-  const id = response.params.id;
+  const id = (await response.params).id;
 
   // Find the item with the given ID
   const chat = chats.find((item) => item.id === parseInt(id));

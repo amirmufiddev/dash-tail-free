@@ -1,3 +1,3 @@
-export function middleware() {
+export function proxy() {
   console.log("hello middleware");
 }

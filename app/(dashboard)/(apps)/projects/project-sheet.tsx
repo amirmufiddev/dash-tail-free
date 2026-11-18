@@ -70,8 +70,12 @@ const OptionComponent = (
 ) => {
   const { data } = props;
 
+  const Option = components.Option as React.ComponentType<
+    OptionProps<AssignOption, true, GroupBase<AssignOption>>
+  >;
+
   return (
-    <components.Option {...props}>
+    <Option {...props}>
       <div className="flex items-center gap-2">
         <Avatar className="h-8 w-8 ring-1 ring-border   ring-offset-background">
           <AvatarImage src={data.image} />
@@ -79,7 +83,7 @@ const OptionComponent = (
         </Avatar>
         <div className="text-sm font-medium text-default-900">{data.label}</div>
       </div>
-    </components.Option>
+    </Option>
   );
 };
 const schema = z.object({

@@ -21,7 +21,7 @@ export async function PUT(request, response) {
 }
 
 export async function DELETE(request, response) {
-  const id = response.params.id;
+  const id = (await response.params).id;
 
   const index = tasks.findIndex((item) => item.id === parseInt(id));
 

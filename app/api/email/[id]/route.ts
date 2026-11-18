@@ -4,7 +4,7 @@ import { mails } from "../data";
 
 export async function GET(request, response) {
   try {
-    const { id } = response.params;
+    const { id } = (await response.params);
     const item = mails.find((item) => item.id === parseInt(id));
     if (item) {
       return NextResponse.json({
@@ -28,7 +28,7 @@ export async function GET(request, response) {
 }
 
 export async function DELETE(request, response) {
-  const { id } = response.params;
+  const { id } = (await response.params);
   const index = mails.findIndex((item) => item.id === parseInt(id));
   if (index !== -1) {
     // Remove the item from the array
