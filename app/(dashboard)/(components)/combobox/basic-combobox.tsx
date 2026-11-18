@@ -45,7 +45,7 @@ const BasicCombobox = () => {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} modal={false}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"

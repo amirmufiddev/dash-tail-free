@@ -65,7 +65,7 @@ const Autocomplete = React.forwardRef<HTMLDivElement, AutocompleteProps>(
 
     return (
       <div ref={ref} className={cn("w-full", className)} {...props}>
-        <Popover open={open} onOpenChange={setOpen}>
+        <Popover open={open} onOpenChange={setOpen} modal={false}>
           <PopoverTrigger asChild>
             <Button
               type="button"

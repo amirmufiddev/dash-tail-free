@@ -102,21 +102,47 @@ CommandSeparator.displayName = CommandPrimitive.Separator.displayName
 const CommandItem = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item>
->(({ className, onMouseDown, ...props }, ref) => (
-  <CommandPrimitive.Item
-    ref={ref}
-    className={cn(
-      "relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-default-200 aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
-    )}
-    onMouseDown={(event) => {
-      // Popover + Command: tanpa ini, blur ke input membuat popover tertutup sebelum click/onSelect
-      event.preventDefault();
-      onMouseDown?.(event);
-    }}
-    {...props}
-  />
-));
+>(({ className, onSelect, onMouseDown, onPointerUp, value, disabled, ...props }, ref) => {
+  const onSelectRef = React.useRef(onSelect);
+  onSelectRef.current = onSelect;
+  const lastSelectAt = React.useRef(0);
+
+  const selectItem = (selected: string) => {
+    const now = performance.now();
+    if (now - lastSelectAt.current < 150) return;
+    lastSelectAt.current = now;
+    onSelectRef.current?.(selected);
+  };
+
+  return (
+    <CommandPrimitive.Item
+      ref={ref}
+      value={value}
+      disabled={disabled}
+      className={cn(
+        "relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-default-200 aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+        className
+      )}
+      {...props}
+      onMouseDown={(event) => {
+        // Cegah input kehilangan fokus sehingga Popover tidak tertutup sebelum pilihan tercatat
+        event.preventDefault();
+        onMouseDown?.(event);
+      }}
+      onPointerUp={(event) => {
+        onPointerUp?.(event);
+        if (event.button !== 0 || disabled) return;
+        const fromDom = event.currentTarget.getAttribute("data-value");
+        const itemValue = fromDom ?? (typeof value === "string" ? value : "");
+        if (!itemValue) return;
+        selectItem(itemValue);
+      }}
+      onSelect={(selected) => {
+        selectItem(selected);
+      }}
+    />
+  );
+});
 
 CommandItem.displayName = CommandPrimitive.Item.displayName
 
