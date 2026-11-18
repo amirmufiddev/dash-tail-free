@@ -7,15 +7,22 @@ import { DataTableViewOptions } from "./data-table-view-options";
 
 import { priorities, statuses } from "../data/data";
 import { DataTableFacetedFilter } from "./data-table-faceted-filter";
+import type { RowData } from "@tanstack/react-table";
+import type { LegacyReactTable } from "@tanstack/react-table/legacy";
 
-export function DataTableToolbar({ table }) {
+function readFilterText(value: unknown): string {
+  if (typeof value === "string" || typeof value === "number") return String(value);
+  return "";
+}
+
+export function DataTableToolbar<TData extends RowData>({ table }: { table: LegacyReactTable<TData> }) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
   return (
     <div className="flex lg:flex-row flex-col flex-wrap items-center gap-2 lg:mr-2">
       <Input
         placeholder="Filter tasks..."
-        value={table.getColumn("title")?.getFilterValue() ?? ""}
+        value={readFilterText(table.getColumn("title")?.getFilterValue())}
         onChange={(event) =>
           table.getColumn("title")?.setFilterValue(event.target.value)
         }

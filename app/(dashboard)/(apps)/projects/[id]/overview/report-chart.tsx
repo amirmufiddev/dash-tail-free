@@ -17,13 +17,13 @@ const ReportChart = ({ height = 300 }) => {
   const { theme: config, setTheme: setConfig } = useThemeStore();
   const { theme: mode } = useTheme();
 
-  const getLabel = (colors) => ({
+  const getLabel = (colors: unknown) => ({
     style: {
       colors: colors,
       fontFamily: "Inter",
     },
   });
-  const getGridConfig = (colors) => ({
+  const getGridConfig = (colors: unknown) => ({
     show: true,
     borderColor: `hsl(${
       theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird
@@ -56,7 +56,7 @@ const ReportChart = ({ height = 300 }) => {
     },
   });
 
-  const getYAxisConfig = (colors) => ({
+  const getYAxisConfig = (colors: unknown) => ({
     labels: getLabel(colors),
   });
 

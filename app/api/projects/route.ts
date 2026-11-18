@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { projects } from "./data";
 
-export async function GET(request, response) {
+export async function GET(request: NextRequest, response: unknown) {
   return NextResponse.json(projects, { status: 200 });
 }
 
-export async function POST(request, response) {
+export async function POST(request: NextRequest, response: unknown) {
   const newItem = await request.json();
 
   // Assign a new ID to the item (assuming there's no unique ID generation yet)

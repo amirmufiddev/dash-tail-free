@@ -12,7 +12,7 @@ import { themes } from "@/config/thems";
 const yearRange = [1950, 2019]
 const ageRange = [50, 85]
 
-const YearSlider = ({ current, range, onUpdate }) => {
+const YearSlider = ({ current, range, onUpdate }: { current: React.ReactNode | string | number; range: { [key: number]: unknown }; onUpdate: ((arg0: number) => unknown) }) => {
     return (
         <header className='text-center pb-5'>
             <h2 className='text-card-foreground text-sm font-medium'>Life expectancy by Country, <em>{current}</em></h2>
@@ -23,9 +23,9 @@ const YearSlider = ({ current, range, onUpdate }) => {
 }
 
 
-const GradientLegend = ({ colors, range, title }) => {
+const GradientLegend = ({ colors, range, title }: { colors: ((arg0: unknown) => unknown); range: { [key: number]: number }; title: unknown }) => {
     const y = Array(range[1] - range[0]).fill(1);
-    const color = useCallback((_, i) => colors(i + range[0]), []);
+    const color = useCallback((_: unknown, i: number) => colors(i + range[0]), []);
 
     return (
         <div className='flex justify-center'>
@@ -36,7 +36,7 @@ const GradientLegend = ({ colors, range, title }) => {
                     label={title}
                     position="top"
                     numTicks={(range[1] - range[0]) / 5}
-                    tickFormat={useCallback(i => `${range[0] + i}`, [])}
+                    tickFormat={useCallback((i: number )=> `${range[0] + i}`, [])}
                 />
             </VisXYContainer>
         </div>
@@ -65,11 +65,11 @@ const ChoroplethWorldMap = ({ height = 550 }) => {
         .domain(yearRange)
         .rangeRound([0, yearRange[1] - yearRange[0]])
 
-    const getExpectancy = useCallback((d) => d.age[yearScale(year)], [year])
-    const getAreaColor = useCallback((d) => colorScale(getExpectancy(d)), [getExpectancy])
+    const getExpectancy = useCallback((d: { age: { [key: number]: unknown } }) => d.age[yearScale(year)], [year])
+    const getAreaColor = useCallback((d: unknown) => colorScale(getExpectancy(d)), [getExpectancy])
 
     const tooltipTriggers = {
-        [TopoJSONMap.selectors.feature]: d =>
+        [TopoJSONMap.selectors.feature]: (d: { properties: { name: string }; data: unknown }) =>
             `${d.properties.name}: ${d.data ? getExpectancy(d.data) : 'no data'}`
     }
 

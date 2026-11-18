@@ -59,7 +59,7 @@ const CrosshairStackedBar = ({ height = 400 }) => {
     },
   ];
   const getIcon = useCallback(
-    (f) => (
+    (f: { icon: string; color: unknown; label: React.ReactNode }) => (
       <>
         <span
           className={`bi bi-${f.icon}`}
@@ -84,8 +84,8 @@ const CrosshairStackedBar = ({ height = 400 }) => {
       ))}
       <VisXYContainer data={musicData} height={height}>
         <VisStackedBar
-          x={useCallback((d) => d.year, [])}
-          y={labels.map((l) => useCallback((d) => d[l.format], []))}
+          x={useCallback((d: { year: number }) => d.year, [])}
+          y={labels.map((l) => useCallback((d: { [key: string]: unknown }) => d[l.format], []))}
         />
         <VisTooltip
           verticalShift={height}

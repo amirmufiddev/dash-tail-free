@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-const ExternalDraggingevent = ({ event }) => {
+const ExternalDraggingevent = ({ event }: { event: { title: string; id: string | number; tag: string } }) => {
   const { title, id, tag } = event;
 
   return (

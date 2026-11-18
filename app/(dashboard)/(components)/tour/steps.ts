@@ -1,3 +1,9 @@
+type TourButtonHost = {
+  complete: () => void;
+  next: () => void;
+  back: () => void;
+};
+
 const steps = [
   {
     id: "intro",
@@ -14,14 +20,14 @@ const steps = [
       {
         text: "Skip",
         classes: "btn btn-warning",
-        action() {
+        action(this: TourButtonHost) {
           return this.complete();
         },
       },
       {
         classes: "btn btn-success",
         text: "Next",
-        action() {
+        action(this: TourButtonHost) {
           return this.next();
         },
       },
@@ -38,21 +44,21 @@ const steps = [
       {
         text: "Back",
         classes: "btn btn-light",
-        action() {
+        action(this: TourButtonHost) {
           return this.back();
         },
       },
       {
         text: "Skip",
         classes: "btn btn-warning",
-        action() {
+        action(this: TourButtonHost) {
           return this.complete();
         },
       },
       {
         text: "Next",
         classes: "btn btn-success",
-        action() {
+        action(this: TourButtonHost) {
           return this.next();
         },
       },
@@ -67,21 +73,21 @@ const steps = [
       {
         text: "Back",
         classes: "btn btn-light",
-        action() {
+        action(this: TourButtonHost) {
           return this.back();
         },
       },
       {
         text: "Skip",
         classes: "btn btn-warning",
-        action() {
+        action(this: TourButtonHost) {
           return this.complete();
         },
       },
       {
         text: "Next",
         classes: "btn btn-success",
-        action() {
+        action(this: TourButtonHost) {
           return this.next();
         },
       },
@@ -96,21 +102,21 @@ const steps = [
       {
         text: "Back",
         classes: "btn btn-light",
-        action() {
+        action(this: TourButtonHost) {
           return this.back();
         },
       },
       {
         text: "Skip",
         classes: "btn btn-warning",
-        action() {
+        action(this: TourButtonHost) {
           return this.complete();
         },
       },
       {
         text: "Next",
         classes: "btn btn-success",
-        action() {
+        action(this: TourButtonHost) {
           return this.next();
         },
       },
@@ -125,14 +131,14 @@ const steps = [
       {
         text: "Back",
         classes: "btn btn-light",
-        action() {
+        action(this: TourButtonHost) {
           return this.back();
         },
       },
       {
         text: "Thank you !",
         classes: "btn btn-primary",
-        action() {
+        action(this: TourButtonHost) {
           return this.complete();
         },
       },

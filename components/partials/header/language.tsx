@@ -30,7 +30,7 @@ const data = [
 ]
 const Language = () => {
   const [selected, setSelected] = useState(data[0]);
-  const handleSelected = (data) => setSelected(data);
+  const handleSelected = (item: (typeof data)[number]) => setSelected(item);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

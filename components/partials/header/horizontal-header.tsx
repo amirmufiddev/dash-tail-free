@@ -2,7 +2,11 @@ import React from "react";
 import { Search } from "lucide-react";
 import { SiteLogo } from "@/components/svg";
 import Link from "next/link";
-const horizontalHeader = ({ handleOpenSearch }) => {
+const horizontalHeader = ({
+  handleOpenSearch,
+}: {
+  handleOpenSearch?: () => void;
+}) => {
   return (
     <>
       <div className="flex items-center lg:gap-12 gap-3 ">

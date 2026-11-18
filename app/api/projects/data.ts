@@ -89,14 +89,14 @@ export const priorities = [
   },
 ];
 
-function getRandomDate(startDate, endDate) {
+function getRandomDate(startDate: Date, endDate: Date) {
   const start = startDate.getTime();
   const end = endDate.getTime();
   const randomTime = start + Math.random() * (end - start);
   return new Date(randomTime);
 }
 
-export function generateAssignments(numAssign) {
+export function generateAssignments(numAssign: number) {
   const assignObjects = [];
 
   for (let j = 0; j < numAssign; j++) {

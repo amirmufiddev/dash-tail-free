@@ -13,7 +13,7 @@ import {
 } from "recharts";
 import CustomTooltip from "./custom-tooltip";
 
-const CustomLabel = ({ x, y, stroke, value }) => {
+const CustomLabel = ({ x, y, stroke, value }: { x: unknown; y: unknown; stroke: unknown; value: React.ReactNode }) => {
   return (
     <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor="middle">
       {value}

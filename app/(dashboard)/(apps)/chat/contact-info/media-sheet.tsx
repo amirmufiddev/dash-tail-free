@@ -15,7 +15,7 @@ import mic from "@/public/images/all-img/mic.jpg";
 import orange from "@/public/images/all-img/orange.jpg";
 import waterfall from "@/public/images/all-img/water-fall.jpg";
 
-const MediaSheet = ({ showDrawer, handleDrawer }) => {
+const MediaSheet = ({ showDrawer, handleDrawer }: { showDrawer: unknown; handleDrawer: ((arg0: unknown) => unknown) }) => {
   return (
     <Card className="absolute top-0 right-0 w-full h-full z-10 bg-card">
       <CardHeader className="mb-0">

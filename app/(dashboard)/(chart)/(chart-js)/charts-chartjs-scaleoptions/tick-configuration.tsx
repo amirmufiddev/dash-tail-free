@@ -102,7 +102,7 @@ const TickConfiguration = ({ height = 350 }) => {
           })`,
         },
         ticks: {
-          callback: function (val, index) {
+          callback: function (val: unknown, index: number) {
             // Hide every 2nd tick label
             return index % 2 === 0 ? this.getLabelForValue(val) : "";
           },

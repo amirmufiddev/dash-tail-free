@@ -36,14 +36,14 @@ const BasicGroupedBar = ({ height = 400 }) => {
       <VisBulletLegend items={legendItems} />
       <VisXYContainer height={height} data={data}>
         <VisGroupedBar
-          x={useCallback((d) => d.year, [])}
+          x={useCallback((d: { year: number }) => d.year, [])}
           y={[
-            useCallback((d) => d.republican, []),
-            useCallback((d) => d.democrat, []),
-            useCallback((d) => d.other, []),
-            useCallback((d) => d.libertarian, []),
+            useCallback((d: { republican: number }) => d.republican, []),
+            useCallback((d: { democrat: number }) => d.democrat, []),
+            useCallback((d: { other: number }) => d.other, []),
+            useCallback((d: { libertarian: number }) => d.libertarian, []),
           ]}
-          color={useCallback((_, i) => legendItems[i].color, [])}
+          color={useCallback((_: unknown, i: number) => legendItems[i].color, [])}
         />
         <VisAxis
           type="x"

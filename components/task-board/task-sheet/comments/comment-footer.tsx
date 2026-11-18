@@ -6,19 +6,18 @@ import { formatDate } from "@/lib/utils";
 import { postCommentAction } from "@/action/project-action";
 import avatar from "@/public/images/avatar/avatar-7.jpg";
 import { SendHorizontal } from "lucide-react";
-const CommentFooter = ({ taskId }) => {
+
+const CommentFooter = ({ taskId }: { taskId: string | number }) => {
   const [message, setMessage] = useState("");
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setMessage(e.target.value);
-    e.target.style.height = "auto"; // Reset the height to auto to adjust
+    e.target.style.height = "auto";
     e.target.style.height = `${e.target.scrollHeight - 15}px`;
   };
 
-  const handleSelectEmoji = (emoji) => {
-    setMessage(message + emoji.native);
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const submitMessage = async () => {
     const newMessage = {
       name: "CodeShaper",
       avatar: avatar,
@@ -35,6 +34,11 @@ const CommentFooter = ({ taskId }) => {
     }
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await submitMessage();
+  };
+
   return (
     <>
       <div className="w-full flex items-end gap-4 px-4">
@@ -49,7 +53,7 @@ const CommentFooter = ({ taskId }) => {
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && !e.shiftKey) {
                     e.preventDefault();
-                    handleSubmit(e);
+                    void submitMessage();
                   }
                 }}
                 style={{
@@ -59,16 +63,17 @@ const CommentFooter = ({ taskId }) => {
                   resize: "none",
                 }}
               />
-
-              <Button
-                type="submit"
-                className="rounded-full bg-default-100 hover:bg-default-100 h-[42px] w-[42px] p-0 self-end"
-              >
-                <SendHorizontal className="w-5 h-8 text-primary" />
-              </Button>
             </div>
           </form>
         </div>
+        <Button
+          type="button"
+          size="icon"
+          className="rounded-full h-10 w-10"
+          onClick={() => void submitMessage()}
+        >
+          <SendHorizontal className="w-4 h-4" />
+        </Button>
       </div>
     </>
   );

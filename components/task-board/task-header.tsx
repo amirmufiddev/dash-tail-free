@@ -12,7 +12,15 @@ import {
 import { Icon } from "@iconify/react";
 import { Button } from "@/components/ui/button";
 
-const TaskHeader = ({ taskViewHandler, openCreateBoard, taskView }) => {
+const TaskHeader = ({
+  taskViewHandler,
+  openCreateBoard,
+  taskView,
+}: {
+  taskViewHandler: (value: string) => void;
+  openCreateBoard: () => void;
+  taskView: string;
+}) => {
   return (
     <div className="flex items-center flex-wrap gap-4">
       <div className="flex-1 flex items-center  gap-4">

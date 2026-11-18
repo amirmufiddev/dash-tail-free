@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 const AccessibleRadio = () => {
   const [selected, setSelected] = useState("acr_1");
-  const handleValueChange = value => {
+  const handleValueChange = (value: string )=> {
     setSelected(value)
   }
   return (

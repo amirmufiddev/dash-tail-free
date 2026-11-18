@@ -41,14 +41,35 @@ const schema = z.object({
   calendarProps: z.string().optional(),
 });
 
-const EventSheet = ({ open, onClose, categories, event, selectedDate }) => {
+type CalendarCategory = { value: string; label: string };
+type CalendarEventSelection = {
+  event?: {
+    id?: string | number;
+    start?: Date | string | number | null;
+    end?: Date | string | number | null;
+    title?: string;
+    extendedProps?: { calendar?: string };
+  };
+  title?: string;
+};
+
+function toDate(value: Date | string | number | null | undefined, fallback: Date) {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) return value;
+  if (typeof value === "string" || typeof value === "number") {
+    const parsed = new Date(value);
+    if (!Number.isNaN(parsed.getTime())) return parsed;
+  }
+  return fallback;
+}
+
+const EventSheet = ({ open, onClose, categories, event, selectedDate }: { open: boolean; onClose: () => void; categories: CalendarCategory[]; event: CalendarEventSelection | null; selectedDate: { date: Date } | null }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [isPending, startTransition] = React.useTransition();
-  const [calendarProps, setCalendarProps] = React.useState(categories[0].value);
+  const [calendarProps, setCalendarProps] = React.useState(categories[0]?.value ?? "");
   // delete modal state
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [eventIdToDelete, setEventIdToDelete] = useState(null);
+  const [eventIdToDelete, setEventIdToDelete] = useState<string | number | null>(null);
 
   const {
     register,
@@ -62,19 +83,22 @@ const EventSheet = ({ open, onClose, categories, event, selectedDate }) => {
     mode: "all",
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: z.infer<typeof schema>) => {
     startTransition(async () => {
       // if event is  null only create event
 
       if (!event) {
-        data.start = startDate;
-        data.end = endDate;
-        data.allDay = false;
-        data.extendedProps = {
-          calendar: calendarProps,
+        const payload = {
+          ...data,
+          start: startDate,
+          end: endDate,
+          allDay: false,
+          extendedProps: {
+            calendar: calendarProps,
+          },
         };
 
-        let response = await AddEvent(data);
+        let response = await AddEvent(payload);
         if (response?.status === "success") {
           toast.success(response?.message);
           reset();
@@ -85,7 +109,12 @@ const EventSheet = ({ open, onClose, categories, event, selectedDate }) => {
       }
       // if event is not null only update event
       if (event) {
-        let response = await updateEventAction(event?.event?.id, data);
+        const eventId = event.event?.id;
+        if (eventId == null) {
+          toast.error("Event ID not found");
+          return;
+        }
+        let response = await updateEventAction(eventId, data);
         if (response?.status === "success") {
           toast.success(response?.message);
           reset();
@@ -97,22 +126,18 @@ const EventSheet = ({ open, onClose, categories, event, selectedDate }) => {
     });
   };
   useEffect(() => {
-    if (selectedDate) {
+    if (selectedDate?.date) {
       setStartDate(selectedDate.date);
       setEndDate(selectedDate.date);
     }
-    if (event) {
-      setStartDate(event?.event?.start);
-      setEndDate(event?.event?.end);
-      const eventCalendar = event?.event?.extendedProps?.calendar;
-      if (eventCalendar) {
-        setCalendarProps(eventCalendar);
-      } else {
-        setCalendarProps(categories[0].value);
-      }
+    if (event?.event) {
+      setStartDate(toDate(event.event.start, new Date()));
+      setEndDate(toDate(event.event.end, new Date()));
+      const eventCalendar = event.event.extendedProps?.calendar;
+      setCalendarProps(eventCalendar || categories[0]?.value || "");
     }
     setValue("title", event?.event?.title || "");
-  }, [event, selectedDate, open]);
+  }, [event, selectedDate, open, categories, setValue]);
 
   const onDeleteEventAction = async () => {
     try {
@@ -136,7 +161,8 @@ const EventSheet = ({ open, onClose, categories, event, selectedDate }) => {
     }
   };
 
-  const handleOpenDeleteModal = (eventId) => {
+  const handleOpenDeleteModal = (eventId: string | number | null | undefined) => {
+    if (eventId == null) return;
     setEventIdToDelete(eventId);
     setDeleteModalOpen(true);
     onClose();
@@ -210,7 +236,9 @@ const EventSheet = ({ open, onClose, categories, event, selectedDate }) => {
                               <Calendar
                                 mode="single"
                                 selected={startDate}
-                                onSelect={setStartDate}
+                                onSelect={(selected) => {
+                                  if (selected) setStartDate(selected);
+                                }}
                               />
                             )}
                           />
@@ -247,7 +275,9 @@ const EventSheet = ({ open, onClose, categories, event, selectedDate }) => {
                               <Calendar
                                 mode="single"
                                 selected={endDate}
-                                onSelect={setEndDate}
+                                onSelect={(selected) => {
+                                  if (selected) setEndDate(selected);
+                                }}
                               />
                             )}
                           />
@@ -264,7 +294,7 @@ const EventSheet = ({ open, onClose, categories, event, selectedDate }) => {
                         control={control}
                         render={({ field }) => (
                           <Select
-                            value={calendarProps}
+                            value={String(calendarProps)}
                             onValueChange={(data) => setCalendarProps(data)}
                           >
                             <SelectTrigger>

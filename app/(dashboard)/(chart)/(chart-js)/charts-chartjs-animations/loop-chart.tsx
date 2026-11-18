@@ -95,7 +95,7 @@ const LoopChart = ({ height = 350 }) => {
       radius: {
         duration: 400,
         easing: "linear",
-        loop: (context) => context.active,
+        loop: (context: { active: unknown }) => context.active,
       },
     },
     hoverRadius: 12,

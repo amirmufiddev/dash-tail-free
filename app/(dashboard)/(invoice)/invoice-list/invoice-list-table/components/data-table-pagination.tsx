@@ -4,10 +4,12 @@ import {
   ChevronLeft,
 } from "lucide-react";
 
+import type { RowData } from "@tanstack/react-table";
+import type { LegacyReactTable } from "@tanstack/react-table/legacy";
 import { Button } from "@/components/ui/button";
 
 
-export function DataTablePagination({ table }) {
+export function DataTablePagination<TData extends RowData>({ table }: { table: LegacyReactTable<TData> }) {
   return (
     <div className="flex items-center flex-wrap gap-2 justify-between p-5">
       <div className="flex-1 text-sm text-muted-foreground whitespace-nowrap">

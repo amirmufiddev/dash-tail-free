@@ -5,7 +5,15 @@ import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-function LockLink({ href, children, subItem }) {
+function LockLink({
+  href,
+  children,
+  subItem,
+}: {
+  href: string;
+  children: React.ReactNode;
+  subItem: { badge?: React.ReactNode; title: React.ReactNode };
+}) {
   if (subItem.badge) {
     return (
       <span className="text-sm flex space-x-3 items-center transition-all duration-150 opacity-50  cursor-not-allowed">
@@ -25,10 +33,17 @@ function LockLink({ href, children, subItem }) {
   }
 }
 
-const SubMenuItem = ({ subItem, subIndex: _subIndex }: { subItem; subIndex?: number }) => {
+const SubMenuItem = ({
+  subItem,
+  subIndex: _subIndex,
+}: {
+  subItem: { href?: string; title: React.ReactNode };
+  subIndex?: number;
+}) => {
+  if (!subItem.href) return null;
   const locationName = usePathname();
   return (
-    <LockLink href={subItem.href} subItem={subItem}>
+    <LockLink href={subItem.href!} subItem={subItem}>
       <div
         className={cn(
           "text-sm  font-normal flex gap-3 items-center transition-all duration-150 rounded dark:hover:text-primary  ",

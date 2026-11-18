@@ -6,7 +6,7 @@ import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
 
-const AreaChart = ({ series, color }) => {
+const AreaChart = ({ series, color }: { series: unknown; color: string | number }) => {
   const { theme: config, setTheme: setConfig } = useThemeStore();
   const { theme: mode } = useTheme();
   const theme = themes.find((theme) => theme.name === config);

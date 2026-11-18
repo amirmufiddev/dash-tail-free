@@ -32,8 +32,8 @@ const ContactInfo = ({
     about?: string;
   };
 }) => {
-  const [showDrawer, setShowDrawer] = useState(null);
-  const handleDrawer = (itemKey) => {
+  const [showDrawer, setShowDrawer] = useState<unknown | null>(null);
+  const handleDrawer = (itemKey: unknown | null) => {
     setShowDrawer(itemKey);
   };
   return (

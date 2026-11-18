@@ -103,11 +103,11 @@ const schema = z.object({
   endDate: z.date().nullable().optional(),
 });
 
-const ProjectsSheet = ({ open, project, onClose, selectedId }) => {
+const ProjectsSheet = ({ open, project, onClose, selectedId }: { open: boolean; project: { title?: unknown; description?: unknown; assign?: unknown; priority?: unknown; assignDate: string | number | Date; dueDate: string | number | Date }; onClose: (() => void); selectedId: unknown }) => {
   // form state
-  const [priority, setPriority] = React.useState(null);
-  const [assign, setAssign] = React.useState([]);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [priority, setPriority] = React.useState<unknown | null>(null);
+  const [assign, setAssign] = React.useState<unknown[]>([]);
+  const [selectedFile, setSelectedFile] = useState<unknown | null>(null);
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -128,7 +128,7 @@ const ProjectsSheet = ({ open, project, onClose, selectedId }) => {
     reset();
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { priority: unknown; assign: unknown; assignDate: unknown; dueDate: unknown; title: unknown; description: unknown }) => {
     data.priority = priority;
     data.assign = assign;
     data.assignDate = formatDate(startDate);

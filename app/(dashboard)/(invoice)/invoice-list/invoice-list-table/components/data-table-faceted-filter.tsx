@@ -1,4 +1,6 @@
 import * as React from "react";
+import type { RowData } from "@tanstack/react-table";
+import { LegacyColumn as Column } from "@tanstack/react-table/legacy";
 
 import { Check, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -20,9 +22,20 @@ import {
 } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
 
-export function DataTableFacetedFilter({ column, title, options }) {
+export function DataTableFacetedFilter<TData extends RowData>({
+  column,
+  title,
+  options,
+}: {
+  column?: Column<TData, unknown>;
+  title?: string;
+  options: { value: string | number; label: React.ReactNode; icon?: React.ElementType }[];
+}) {
   const facets = column?.getFacetedUniqueValues();
-  const selectedValues = new Set(column?.getFilterValue());
+  const current = column?.getFilterValue();
+  const selectedValues = new Set<string>(
+    Array.isArray(current) ? current.map((item) => String(item)) : [],
+  );
 
   return (
     <Popover>
@@ -52,7 +65,7 @@ export function DataTableFacetedFilter({ column, title, options }) {
                   </Badge>
                 ) : (
                   options
-                    .filter((option) => selectedValues.has(option.value))
+                    .filter((option) => selectedValues.has(String(option.value)))
                     .map((option) => (
                       <Badge
                         color="secondary"
@@ -75,15 +88,15 @@ export function DataTableFacetedFilter({ column, title, options }) {
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup>
               {options.map((option) => {
-                const isSelected = selectedValues.has(option.value);
+                const isSelected = selectedValues.has(String(option.value));
                 return (
                   <CommandItem
                     key={option.value}
                     onSelect={() => {
                       if (isSelected) {
-                        selectedValues.delete(option.value);
+                        selectedValues.delete(String(option.value));
                       } else {
-                        selectedValues.add(option.value);
+                        selectedValues.add(String(option.value));
                       }
                       const filterValues = Array.from(selectedValues);
                       column?.setFilterValue(
@@ -105,9 +118,9 @@ export function DataTableFacetedFilter({ column, title, options }) {
                       <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />
                     )}
                     <span>{option.label}</span>
-                    {facets?.get(option.value) && (
+                    {facets?.get(String(option.value)) && (
                       <span className="ml-auto flex h-4 w-4 items-center justify-center text-xs">
-                        {facets.get(option.value)}
+                        {facets.get(String(option.value))}
                       </span>
                     )}
                   </CommandItem>

@@ -3,7 +3,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useState } from "react";
 const ControlledRadio = () => {
   const [selected, setSelected] = useState("apple");
-  const handleSelect = value => {
+  const handleSelect = (value: React.ReactNode )=> {
     setSelected(value)
   }
   return (

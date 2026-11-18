@@ -1,4 +1,5 @@
 "use client";
+import type { ColumnFiltersState, SortingState } from "@tanstack/react-table";
 import * as React from "react";
 
 import {
@@ -9,8 +10,10 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useLegacyTable as useReactTable
+  useLegacyTable as useReactTable,
+  type LegacyColumnDef as ColumnDef,
 } from "@tanstack/react-table/legacy";
+import type { RowSelectionState } from "@tanstack/react-table";
 
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -51,24 +54,49 @@ import { Icon } from "@iconify/react";
 import { Grip } from "lucide-react";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
-const statusColors = {
+type BadgeColor =
+  | "default"
+  | "destructive"
+  | "success"
+  | "info"
+  | "warning"
+  | "secondary"
+  | "dark";
+
+export type TaskAssignee = {
+  name: string;
+  image?: { src?: string };
+};
+
+export type TaskRow = {
+  id: string | number;
+  title?: string;
+  image?: { src?: string };
+  status?: string;
+  assign?: TaskAssignee[];
+  priority?: string;
+  date?: string;
+};
+
+const statusColors: Record<string, BadgeColor> = {
   todo: "warning",
   completed: "success",
+  inprogress: "info",
 };
-const priorityColors = {
+const priorityColors: Record<string, BadgeColor> = {
   high: "success",
   medium: "warning",
   low: "destructive",
 };
 import { Menu } from "lucide-react";
 
-const TaskTable = ({ data, handleEditSheetOpen, handleSidebar }) => {
+const TaskTable = ({ data, handleEditSheetOpen, handleSidebar }: { data: TaskRow[]; handleEditSheetOpen: () => void; handleSidebar: () => void }) => {
   const isDesktop = useMediaQuery("(max-width: 1280px)");
-  const [sorting, setSorting] = React.useState([]);
-  const [columnFilters, setColumnFilters] = React.useState([]);
-  const [columnVisibility, setColumnVisibility] = React.useState({});
-  const [rowSelection, setRowSelection] = React.useState({});
-  const columns = [
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = React.useState<Record<string, boolean>>({});
+  const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
+  const columns: ColumnDef<TaskRow>[] = [
     {
       accessorKey: "title",
       header: ({ table }) => (
@@ -86,7 +114,7 @@ const TaskTable = ({ data, handleEditSheetOpen, handleSidebar }) => {
           <span className="text-default-800">Task Name</span>
         </div>
       ),
-      cell: ({ row }) => (
+      cell: ({ row }: { row: { getIsSelected: () => boolean; toggleSelected: (value?: boolean) => void; original: { image?: { src?: string }; title?: React.ReactNode } } }) => (
         <div className="flex items-center gap-3 pr-4">
           <Button
             type="button"
@@ -122,10 +150,10 @@ const TaskTable = ({ data, handleEditSheetOpen, handleSidebar }) => {
         <div>
           <Badge
             variant="soft"
-            color={statusColors[row.getValue("status")]}
+            color={statusColors[row.original.status ?? ""] ?? "default"}
             className="capitalize"
           >
-            {row.getValue("status")}
+            {row.original.status}
           </Badge>
         </div>
       ),
@@ -135,19 +163,19 @@ const TaskTable = ({ data, handleEditSheetOpen, handleSidebar }) => {
       header: "Assigned",
       cell: ({ row }) => (
         <div>
-          {row.getValue("assign")?.length > 0 && (
+          {(row.original.assign?.length ?? 0) > 0 && (
             <div className="flex items-center gap-3">
               <AvatarGroup
                 max={2}
-                total={row.getValue("assign").length}
+                total={row.original.assign?.length ?? 0}
                 countClass="w-8 h-8"
               >
-                {row.getValue("assign").map((user, index) => (
+                {row.original.assign?.map((user, index) => (
                   <TooltipProvider key={`assigned-user-${index}`}>
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <Avatar className="h-8 w-8 ring-1 ring-background ring-offset-[2px]  ring-offset-background">
-                          <AvatarImage src={user.image.src} />
+                          <AvatarImage src={user.image?.src} />
                           <AvatarFallback>AB</AvatarFallback>
                         </Avatar>
                       </TooltipTrigger>
@@ -169,10 +197,10 @@ const TaskTable = ({ data, handleEditSheetOpen, handleSidebar }) => {
       header: "Priority",
       cell: ({ row }) => (
         <Badge
-          color={priorityColors[row.getValue("priority")] || ""}
+          color={priorityColors[row.original.priority ?? ""] ?? "default"}
           className="capitalize"
         >
-          {row.getValue("priority")}
+          {row.original.priority}
         </Badge>
       ),
     },
@@ -181,14 +209,14 @@ const TaskTable = ({ data, handleEditSheetOpen, handleSidebar }) => {
       header: "Due Date",
       cell: ({ row }) => (
         <div className="text-sm  text-default-600 whitespace-nowrap">
-          {row.getValue("date")}
+          {row.original.date}
         </div>
       ),
     },
     {
       accessorKey: "id",
       header: "Actions",
-      cell: ({ row }) => {
+      cell: () => {
         return (
           <div className="flex justify-center items-center gap-2">
             <Button

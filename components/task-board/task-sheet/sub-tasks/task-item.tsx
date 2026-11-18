@@ -30,13 +30,22 @@ import {
 } from "@/components/ui/dropdown-menu";
 import DeleteConfirmationDialog from "@/components/delete-confirmation-dialog";
 
-const TaskItem = ({ subtask, handlerSubSheet }) => {
+import type { SubTaskRecord } from "../../types";
+import type { CheckedState } from "@radix-ui/react-checkbox";
+
+const TaskItem = ({
+  subtask,
+  handlerSubSheet,
+}: {
+  subtask: SubTaskRecord;
+  handlerSubSheet: () => void;
+}) => {
   const { completed, assignDate, id } = subtask;
   const [isDone, setIsDone] = React.useState(completed);
   // update isComplete
   const [open, setOpen] = useState(false);
 
-  const handleIsComplete = async (value) => {
+  const handleIsComplete = async (value: CheckedState) => {
     try {
       const newData = {
         ...subtask,
@@ -50,7 +59,7 @@ const TaskItem = ({ subtask, handlerSubSheet }) => {
     setIsDone(!isDone);
   };
 
-  const onAction = async (dltId) => {
+  const onAction = async (dltId: string | number) => {
     await deleteSubTaskAction(dltId);
   };
   return (
@@ -89,11 +98,11 @@ const TaskItem = ({ subtask, handlerSubSheet }) => {
             </div>
             <div className="flex-none flex items-center gap-2">
               {/* assigned members */}
-              {subtask?.assign?.length > 0 && (
+              {(subtask.assign?.length ?? 0) > 0 && (
                 <div>
                   <AvatarGroup
                     max={3}
-                    total={subtask.assign.length}
+                    total={subtask.assign?.length ?? 0}
                     countClass="w-7 h-7"
                   >
                     {subtask.assign?.map((user, i) => (

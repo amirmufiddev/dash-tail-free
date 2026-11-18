@@ -1,12 +1,12 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { demoBoards } from "./data";
 import { revalidatePath } from "next/cache";
 
-export async function GET(request, response) {
+export async function GET(request: NextRequest, response: unknown) {
   return NextResponse.json(demoBoards, { status: 200 });
 }
 
-export async function POST(request, response) {
+export async function POST(request: NextRequest, response: unknown) {
   const newItem = await request.json();
   newItem.id = demoBoards.length + 1;
   demoBoards.push(newItem);
@@ -14,7 +14,7 @@ export async function POST(request, response) {
   return NextResponse.json(newItem, { status: 201 });
 }
 
-export async function PATCH(request, response) {
+export async function PATCH(request: NextRequest, response: unknown) {
   const payloadItem = await request.json();
   const { activeBoardId, overBoardId } = payloadItem;
 

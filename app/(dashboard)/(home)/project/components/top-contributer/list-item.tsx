@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-const ListItem = ({ item, index }) => {
+const ListItem = ({ item, index }: { item: { name: React.ReactNode; email: React.ReactNode; score: React.ReactNode | string | number; image: { src: string }; color: unknown; amount: React.ReactNode }; index: React.ReactNode }) => {
   const { name, email, score, image, color, amount } = item;
   return (
     <>

@@ -28,12 +28,12 @@ const prioriy = [
 ];
 
 const styles = {
-  option: (provided, state) => ({
+  option: (provided: Record<string, unknown>, state: unknown) => ({
     ...provided,
     fontSize: "14px",
   }),
 };
-const CreateTask = ({ open, onClose }) => {
+const CreateTask = ({ open, onClose }: { open: boolean; onClose: ((arg0: unknown) => void) }) => {
 
   const [openDate, setOPenDate] = useState(true);
   const toggleOpenDate = () => setOPenDate(!openDate);
@@ -124,7 +124,9 @@ const CreateTask = ({ open, onClose }) => {
                   <Calendar
                     mode="single"
                     selected={date}
-                    onSelect={setDate}
+                    onSelect={(selected) => {
+                      if (selected) setDate(selected);
+                    }}
                     className="border border-default-200 rounded-md shadow-sm"
                   />
                 </div>

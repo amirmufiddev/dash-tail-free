@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { profileUser, contacts, chats } from "./data";
 
@@ -11,7 +11,7 @@ import { profileUser, contacts, chats } from "./data";
 //   return NextResponse.json(contacts, { status: 200 });
 // }
 
-export async function GET(request, response) {
+export async function GET(request: NextRequest, response: unknown) {
   const contactsData = contacts; // Assuming this fetches all contacts data
 
   const chatsContacts = contactsData.map((contact) => {

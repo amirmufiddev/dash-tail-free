@@ -12,7 +12,7 @@ import { addSubTaskAction } from "@/action/project-action";
 const schema = z.object({
   title: z.string().min(2, { message: "title lagbe re vai ." }),
 });
-const AddSubTask = ({ taskId }) => {
+const AddSubTask = ({ taskId }: { taskId: string | number }) => {
   const [isPending, startTransition] = React.useTransition();
   const {
     register,
@@ -24,14 +24,17 @@ const AddSubTask = ({ taskId }) => {
   } = useForm({
     resolver: zodResolver(schema),
   });
-  const onSubmit = (data) => {
-    data.assignDate = formatDate(new Date());
-    data.completed = false;
-    data.taskId = taskId;
+  const onSubmit = (data: { title: string }) => {
+    const payload = {
+      ...data,
+      assignDate: formatDate(new Date()),
+      completed: false,
+      taskId,
+    };
     var result;
 
     startTransition(async () => {
-      result = await addSubTaskAction(data);
+      result = await addSubTaskAction(payload);
       toast.success("Successfully added");
     });
 

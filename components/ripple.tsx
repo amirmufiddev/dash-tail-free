@@ -1,7 +1,14 @@
 import { AnimatePresence, motion } from "framer-motion";
 
-export const clamp = (value, min, max) => {
+export const clamp = (value: number, min: number, max: number) => {
   return Math.min(Math.max(value, min), max);
+};
+
+type RippleItem = {
+  size: number;
+  key: string | number;
+  y: number;
+  x: number;
 };
 
 const Ripple = ({
@@ -9,6 +16,11 @@ const Ripple = ({
   motionProps,
   color = "currentColor",
   style,
+}: {
+  ripples?: RippleItem[];
+  motionProps?: React.ComponentProps<typeof motion.span>;
+  color?: string;
+  style?: React.CSSProperties;
 }) => {
   return (
     <>

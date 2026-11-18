@@ -7,7 +7,7 @@ import {
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-const AccordionTrigger = ({ children, value, activeItem, setActiveItem }) => {
+const AccordionTrigger = ({ children, value, activeItem, setActiveItem }: { children: React.ReactNode; value: unknown; activeItem: unknown; setActiveItem: ((arg0: unknown) => void) }) => {
   const isOpen = activeItem === value;
 
   const toggleOpen = () => {
@@ -39,7 +39,7 @@ const AccordionTrigger = ({ children, value, activeItem, setActiveItem }) => {
 };
 
 const CollapseIconAccordion = () => {
-  const [activeItem, setActiveItem] = useState(null);
+  const [activeItem, setActiveItem] = useState<unknown | null>(null);
   return (
     <Accordion type="single" collapsible className="w-full  space-y-3.5">
       <AccordionItem value="item-1">

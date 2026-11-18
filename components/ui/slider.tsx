@@ -77,10 +77,10 @@ const Slider = React.forwardRef<
     },
     ref
   ) => {
-    const steps = showSteps
-      ? Math.floor((props.max - props.min) / step) + 1
-      : 0;
-    const value = props.value || props.defaultValue;
+    const min = props.min ?? 0;
+    const max = props.max ?? 100;
+    const steps = showSteps ? Math.floor((max - min) / step) + 1 : 0;
+    const value = props.value || props.defaultValue || [min];
     // step props
 
     // tooltip value
@@ -90,13 +90,13 @@ const Slider = React.forwardRef<
         : [0]
     );
 
-    const getStepProps = (index) => {
-      const innerValue = index * step + props.min;
+    const getStepProps = (index: number) => {
+      const innerValue = index * step + min;
       const maxMappedValue = Math.max(...mappedValues);
       const isInRange = innerValue <= maxMappedValue;
 
-      const range = props.max - props.min;
-      const percent = ((innerValue - props.min) / range) * 100;
+      const range = max - min;
+      const percent = ((innerValue - min) / range) * 100;
 
       return {
         className: cn(
@@ -112,9 +112,11 @@ const Slider = React.forwardRef<
         },
       };
     };
-    const getMarksProps = (index) => {
-      const { min, max } = props;
+    const getMarksProps = (index: number) => {
       const mark = marks[index];
+      if (!mark) {
+        return { className: "", "data-in-range": "false", style: {} };
+      }
       const percent = ((mark.value - min) / (max - min)) * 100;
       const isInRange = mark.value <= max;
 

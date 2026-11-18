@@ -36,7 +36,7 @@ const ForgotForm = () => {
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: unknown) => {
     startTransition(async () => {
       toast.success("Password Reset code has been sent to your email");
       reset();

@@ -3,7 +3,17 @@ import React, { CSSProperties, useEffect, useState } from "react";
 /**
  * generate svg string for watermark
  */
-function generateSvg(options) {
+function generateSvg(options: {
+  text: string;
+  textColor: string;
+  textSize: string;
+  fontFamily: string;
+  lineHeight: string;
+  multiline: boolean;
+  opacity: string;
+  gutter: number;
+  rotate: string;
+}) {
   const {
     text,
     textColor,
@@ -15,7 +25,12 @@ function generateSvg(options) {
     gutter,
     rotate,
   } = options;
-  const rect = calcTextRenderedRect(text, textSize, lineHeight, fontFamily);
+  const rect = calcTextRenderedRect(
+    text,
+    Number(textSize),
+    lineHeight,
+    fontFamily
+  );
   const size =
     Math.sqrt(rect.width * rect.width + rect.height * rect.height) + gutter * 2;
   const center = size / 2;
@@ -37,10 +52,15 @@ function generateSvg(options) {
   }' xmlns='http://www.w3.org/2000/svg'>${textEl}</svg>`;
 }
 
-function calcTextRenderedRect(text, fontSize, lineHeight, fontFamily) {
+function calcTextRenderedRect(
+  text: string,
+  fontSize: number,
+  _lineHeight: string,
+  fontFamily: string
+) {
   const span = document.createElement("span");
   span.innerText = text;
-  span.style.fontSize = fontSize + "px";
+  span.style.fontSize = `${fontSize}px`;
   span.style.fontFamily = fontFamily;
   span.style.visibility = "hidden";
   document.body.appendChild(span);
@@ -114,11 +134,11 @@ const Watermark = ({
       const svg = generateSvg({
         text,
         textColor,
-        textSize,
-        fontFamily,
-        opacity,
+        textSize: String(textSize),
+        fontFamily: fontFamily ?? "sans-serif",
+        opacity: String(opacity),
         gutter,
-        rotate,
+        rotate: String(rotate),
         multiline,
         lineHeight,
       });

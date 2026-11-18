@@ -12,7 +12,7 @@ import { data, palette } from "./data";
 
 const categories = Array.from(new Set(data.map((d) => d.category))).sort();
 const colorScale = Scale.scaleOrdinal(palette).domain(categories);
-const formatNumber = (value) =>
+const formatNumber = (value: number | bigint | Intl.StringNumericLiteral) =>
   Intl.NumberFormat("en", { notation: "compact" }).format(value);
 
 import { useThemeStore } from "@/store";
@@ -29,7 +29,7 @@ const BasicScatterChart = () => {
     color: colorScale(v),
   }));
   const tooltipTriggers = {
-    [Scatter.selectors.point]: (d) => `
+    [Scatter.selectors.point]: (d: ({ major: string; total: { toLocaleString: (() => unknown) } })) => `
       ${d.major}<br/>Number of graduates: ${d.total.toLocaleString()}
     `,
   };
@@ -40,11 +40,11 @@ const BasicScatterChart = () => {
       <VisBulletLegend items={legendItems} />
       <VisXYContainer data={data} height={"60vh"} scaleByDomain={true}>
         <VisScatter
-          x={useCallback((d) => d.medianSalary, [])}
-          y={useCallback((d) => d.employmentRate, [])}
-          color={useCallback((d) => colorScale(d.category), [])}
-          size={useCallback((d) => d.total, [])}
-          label={useCallback((d) => formatNumber(d.total), [])}
+          x={useCallback((d: { medianSalary: number }) => d.medianSalary, [])}
+          y={useCallback((d: { employmentRate: number }) => d.employmentRate, [])}
+          color={useCallback((d: { category: string }) => colorScale(d.category), [])}
+          size={useCallback((d: { total: number }) => d.total, [])}
+          label={useCallback((d: { total: number }) => formatNumber(d.total), [])}
           labelPosition={Position.Bottom}
           sizeRange={[10, 50]}
           cursor="pointer"

@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Invoice"
 }
-const InvoiceLayout = ({ children }) => {
+const InvoiceLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {children}

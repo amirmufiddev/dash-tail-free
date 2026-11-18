@@ -190,7 +190,7 @@ export const tasks = [
   },
 ];
 
-function generateSubTasks(numItems) {
+function generateSubTasks(numItems: number) {
   const data = [];
 
   for (let i = 1; i <= numItems; i++) {

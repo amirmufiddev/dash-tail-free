@@ -18,7 +18,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@iconify/react";
 
-export default function ProjectList({ data, table, columns }) {
+export default function ProjectList({ data, table, columns }: { data: unknown; table: { getHeaderGroups: (() => unknown); getRowModel: (() => unknown); getFilteredSelectedRowModel: (() => unknown); getFilteredRowModel: (() => unknown); previousPage: (() => unknown); getCanPreviousPage: (() => unknown); getPageOptions: (() => unknown); setPageIndex: ((arg0: unknown) => unknown); getState: (() => unknown); nextPage: (() => unknown); getCanNextPage: (() => unknown) }; columns: { length: number } }) {
   return (
     <Card className="rounded-lg">
       <CardContent className="p-0 pb-5">

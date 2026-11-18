@@ -84,7 +84,7 @@ const GridConfigure = ({ height = 350 }) => {
           display: false,
         },
         grid: {
-          color: function (context) {
+          color: function (context: { tick: { value: number } }) {
             if (context.tick.value > 50) {
               return hexToRGB(hexPrimary, 0.5);
             } else if (context.tick.value < 51) {

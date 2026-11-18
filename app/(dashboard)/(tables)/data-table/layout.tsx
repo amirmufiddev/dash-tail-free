@@ -2,7 +2,7 @@ export const metadata = {
   title: "Data Table",
 };
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 

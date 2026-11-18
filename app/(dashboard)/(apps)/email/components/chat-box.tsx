@@ -18,10 +18,10 @@ import { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-const ChatBox = ({ onClose }) => {
+const ChatBox = ({ onClose }: { onClose: ((arg0: unknown) => void) }) => {
   const [minimize, setMinimize] = useState(false);
   const [message, setMessage] = useState("");
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setMessage(e.target.value);
     e.target.style.height = "auto";
     e.target.style.height = `${e.target.scrollHeight - 15}px`;

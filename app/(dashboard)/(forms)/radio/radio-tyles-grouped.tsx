@@ -13,7 +13,7 @@ import book6 from "@/public/images/all-img/book-5.png"
 
 const RadioTylesGrouped = () => {
   const [selected, setSelected] = useState("rtg_1");
-  const handleValueChange = value => setSelected(value)
+  const handleValueChange = (value: string )=> setSelected(value)
   return (
     <div>
       <h3 className="text-xl font-medium text-default-800 mb-5">Choose your favorite subject</h3>

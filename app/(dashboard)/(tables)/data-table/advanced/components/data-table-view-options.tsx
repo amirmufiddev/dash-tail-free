@@ -1,5 +1,7 @@
 "use client";
 
+import type { RowData } from "@tanstack/react-table";
+import type { LegacyReactTable } from "@tanstack/react-table/legacy";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { SlidersHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,7 +13,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
-export function DataTableViewOptions({ table }) {
+export function DataTableViewOptions<TData extends RowData>({ table }: { table: LegacyReactTable<TData> }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

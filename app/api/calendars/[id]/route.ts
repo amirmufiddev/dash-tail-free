@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { calendarEvents } from "../data";
 
-export async function DELETE(request, response) {
+export async function DELETE(request: NextRequest, response: { params: Promise<{ id: string }> }) {
   try {
     const { id } = (await response.params);
     console.log(id, "ami id");
@@ -29,7 +29,7 @@ export async function DELETE(request, response) {
   }
 }
 
-export async function PUT(request, response) {
+export async function PUT(request: NextRequest, response: { params: Promise<{ id: string }> }) {
   try {
     const { id } = (await response.params);
     const updatedEventData = await request.json();

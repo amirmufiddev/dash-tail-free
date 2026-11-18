@@ -93,7 +93,7 @@ const DropChart = ({ height = 350 }) => {
     animation: {
       y: {
         easing: "easeInOutElastic",
-        from: (ctx) => {
+        from: (ctx: { type: string; mode: string; dropped: unknown }) => {
           if (ctx.type === "data") {
             if (ctx.mode === "default" && !ctx.dropped) {
               ctx.dropped = true;

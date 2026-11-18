@@ -58,7 +58,7 @@ const breadcrumbsVariants = cva(" flex flex-wrap list-none max-w-fit ", {
 });
 
 export interface BreadcrumbsProps
-  extends Omit<React.OlHTMLAttributes<HTMLOListElement>, "children">,
+  extends Omit<React.OlHTMLAttributes<HTMLOListElement>, "children" | "color">,
     Omit<VariantProps<typeof breadcrumbsVariants>, "variant"> {
   children?: React.ReactNode;
   maxItems?: number;
@@ -108,16 +108,16 @@ const Breadcrumbs = React.forwardRef<HTMLOListElement, BreadcrumbsProps>(
     ) as React.ReactElement<BreadcrumbItemProps>[];
     const totalItems = breadcrumbItems.length;
 
-    let visibleItems = breadcrumbItems;
+    const beforeCollapse = itemsBeforeCollapse ?? 1;
+    const afterCollapse = itemsAfterCollapse ?? 1;
+    let visibleItems: (React.ReactElement<BreadcrumbItemProps> | null)[] =
+      breadcrumbItems;
     if (maxItems && totalItems > maxItems) {
       const visibleBefore = Math.min(
-        itemsBeforeCollapse,
-        totalItems - itemsAfterCollapse
+        beforeCollapse,
+        totalItems - afterCollapse
       );
-      const visibleAfter = Math.min(
-        itemsAfterCollapse,
-        totalItems - visibleBefore
-      );
+      const visibleAfter = Math.min(afterCollapse, totalItems - visibleBefore);
       visibleItems = [
         ...breadcrumbItems.slice(0, visibleBefore),
         null, // Placeholder for ellipsis
@@ -255,9 +255,9 @@ const BreadcrumbItem = React.forwardRef<HTMLSpanElement, BreadcrumbItemProps>(
     },
     ref
   ) => {
-    const ariaCurrent = isCurrent ? "page" : null;
-    const dataState = isCurrent ? "active" : null;
-    const dataDisabled = disabled && !isCurrent ? "true" : null;
+    const ariaCurrent = isCurrent ? "page" : undefined;
+    const dataState = isCurrent ? "active" : undefined;
+    const dataDisabled = disabled && !isCurrent ? "true" : undefined;
 
     const handleClick = () => {
       if (onAction && !isCurrent) {

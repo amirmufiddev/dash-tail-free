@@ -105,7 +105,7 @@ const NegativeValuesBar = ({ height = 350 }) => {
         show: false,
       },
       labels: {
-        formatter: function (val) {
+        formatter: function (val: number) {
           return Math.abs(Math.round(val)) + "%";
         },
         style: {

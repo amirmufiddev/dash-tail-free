@@ -4,7 +4,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getTodos, createTodo, deleteTodo, updateTodo } from "./todo-layout";
 import { useForm } from "react-hook-form";
 
-function TodoList({ item, onDelete, onEdit }) {
+function TodoList({ item, onDelete, onEdit }: { item: { title: React.ReactNode; id: React.ReactNode }; onDelete: ((arg0: unknown) => unknown); onEdit: ((arg0: unknown) => unknown) }) {
   const { title } = item;
   return (
     <li className=" px-6 py-3 text-default-900 flex space-x-5">
@@ -23,7 +23,7 @@ function TodoList({ item, onDelete, onEdit }) {
   );
 }
 
-function TodoAddEditBox({ onSubmit, register, isLoading, handleSubmit, todo }) {
+function TodoAddEditBox({ onSubmit, register, isLoading, handleSubmit, todo }: { onSubmit: unknown; register: ((arg0: string, arg1: { required: boolean; }) => unknown); isLoading: boolean; handleSubmit: ((arg0: unknown) => unknown); todo: { title: unknown } }) {
   return (
     <form
       className="flex  items-center space-x-5"
@@ -54,7 +54,7 @@ function TodoAddEditBox({ onSubmit, register, isLoading, handleSubmit, todo }) {
 }
 
 const DataPage = () => {
-  const [selectedTodo, setSelectedTodo] = useState(null);
+  const [selectedTodo, setSelectedTodo] = useState<null | ({ id: string | number }) | null>(null);
   const queryClient = useQueryClient();
   const [page, setPage] = useState(0);
   const {
@@ -104,21 +104,21 @@ const DataPage = () => {
     },
   });
 
-  const onDelete = (id) => {
+  const onDelete = (id: string | number) => {
     deleteMutation.mutate(id);
   };
 
-  const openEditTodo = (todo) => {
+  const openEditTodo = (todo: ({ id: string | number }) | null) => {
     setSelectedTodo(todo);
   };
-  const handleEditTodo = (updatedTodo) => {
+  const handleEditTodo = (updatedTodo: unknown) => {
     updateMutation.mutate({
       id: selectedTodo.id,
       todo: updatedTodo,
     });
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { title: unknown }) => {
     // need to add data
     const { title } = data;
     const onUpdateTodoItem = {

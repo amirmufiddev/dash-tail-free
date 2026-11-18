@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { cn, isLocationMatch } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
+import type { SidebarNestedMenuItem } from "../types";
+
 const LinkButton = ({
   children,
   item,
@@ -9,6 +11,13 @@ const LinkButton = ({
   index,
   locationName,
   multiIndex,
+}: {
+  children: React.ReactNode;
+  item: SidebarNestedMenuItem;
+  toggleMulti: (subIndex: number) => void;
+  index: number;
+  locationName: string;
+  multiIndex: number | null;
 }) => {
   return (
     <>
@@ -37,21 +46,23 @@ const LinkButton = ({
           </span>
         </button>
       ) : (
-        <Link
-          href={item?.href}
-          className={cn("", {
-            " text-primary    rounded": isLocationMatch(
-              item.href,
-              locationName
-            ),
-            " text-default-700 hover:text-primary ": !isLocationMatch(
-              item.href,
-              locationName
-            ),
-          })}
-        >
-          {children}
-        </Link>
+        item.href && (
+          <Link
+            href={item.href}
+            className={cn("", {
+              " text-primary    rounded": isLocationMatch(
+                item.href,
+                locationName
+              ),
+              " text-default-700 hover:text-primary ": !isLocationMatch(
+                item.href,
+                locationName
+              ),
+            })}
+          >
+            {children}
+          </Link>
+        )
       )}
     </>
   );

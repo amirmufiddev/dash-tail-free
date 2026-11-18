@@ -11,8 +11,10 @@ import img3 from "@/public/images/all-img/email-3.png";
 import Image from "next/image";
 
 const images = [img1, img2, img3];
-const MailDisplay = ({ mail }) => {
-  const { subject } = mail.data;
+import type { MailDetail } from "../types";
+
+const MailDisplay = ({ mail }: { mail: MailDetail }) => {
+  const subject = mail.data?.subject;
   return (
     <div className="flex h-full flex-col px-6 mt-2">
       <div>

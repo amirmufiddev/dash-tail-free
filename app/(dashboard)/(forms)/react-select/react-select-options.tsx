@@ -2,8 +2,11 @@
 import React, { useState } from "react";
 import Select, {
   components,
+  type ActionMeta,
   type GroupBase,
+  type MultiValue,
   type OptionProps,
+  type StylesConfig,
 } from "react-select";
 import makeAnimated from "react-select/animated";
 import { Icon } from "@iconify/react";
@@ -17,7 +20,7 @@ const fruits: FruitOption[] = [
   { value: "orange", label: "Orange" },
   { value: "apple", label: "Apple" },
 ];
-const formatGroupLabel = (data) => (
+const formatGroupLabel = (data: GroupBase<FruitOption>) => (
   <div className="flex justify-between items-center">
     <strong>
       <span className=" text-2xl font-semibold capitalize">{data.label}</span>
@@ -51,28 +54,31 @@ const animatedComponents = makeAnimated();
 
 // Fixed Options Select
 
-const styles = {
-  multiValue: (base, state) => {
-    return state.data.isFixed ? { ...base, opacity: "0.5" } : base;
-  },
-  multiValueLabel: (base, state) => {
-    return state.data.isFixed
-      ? { ...base, color: "#626262", paddingRight: 6 }
-      : base;
-  },
-  multiValueRemove: (base, state) => {
-    return state.data.isFixed ? { ...base, display: "none" } : base;
-  },
-  option: (provided, state) => ({
-    ...provided,
-    fontSize: "14px",
-  }),
-};
-const orderOptions = (values) => {
-  if (values.length > 0)
-    return values
-      .filter((v) => v.isFixed)
-      .concat(values.filter((v) => !v.isFixed));
+function buildStyles<IsMulti extends boolean>(): StylesConfig<FruitOption, IsMulti> {
+  return {
+    multiValue: (base, state) => {
+      return state.data.isFixed ? { ...base, opacity: 0.5 } : base;
+    },
+    multiValueLabel: (base, state) => {
+      return state.data.isFixed
+        ? { ...base, color: "#626262", paddingRight: 6 }
+        : base;
+    },
+    multiValueRemove: (base, state) => {
+      return state.data.isFixed ? { ...base, display: "none" } : base;
+    },
+    option: (provided) => ({
+      ...provided,
+      fontSize: "14px",
+    }),
+  };
+}
+const multiStyles = buildStyles<true>();
+const singleStyles = buildStyles<false>();
+const orderOptions = (values: readonly FruitOption[]) => {
+  return values
+    .filter((v) => v.isFixed)
+    .concat(values.filter((v) => !v.isFixed));
 };
 
 const iconOptions = [
@@ -147,7 +153,7 @@ const OptionComponent = (
   return (
     <Option {...props}>
       <div className="flex items-center gap-2">
-        <Icon icon={data.icon} />
+        {data.icon ? <Icon icon={data.icon} /> : null}
         {data.label}
       </div>
     </Option>
@@ -156,26 +162,29 @@ const OptionComponent = (
 
 // start component
 const ReactSelectOption = () => {
-  const [fixedValue, setFixedValue] = useState(
-    orderOptions([fruits[0], fruits[1]])
+  const [fixedValue, setFixedValue] = useState<FruitOption[]>(() =>
+    orderOptions([fruits[0], fruits[1]].filter((item): item is FruitOption => item != null)),
   );
-  const fixedOnChange = (value, { action, removedValue }) => {
+  const fixedOnChange = (
+    value: MultiValue<FruitOption>,
+    { action, removedValue }: ActionMeta<FruitOption>,
+  ) => {
+    let next = [...value];
     switch (action) {
       case "remove-value":
       case "pop-value":
-        if (removedValue.isFixed) {
+        if (removedValue?.isFixed) {
           return;
         }
         break;
       case "clear":
-        value = fruits.filter((v) => v.isFixed);
+        next = fruits.filter((v) => v.isFixed);
         break;
       default:
         break;
     }
 
-    value = orderOptions(value);
-    setFixedValue(value);
+    setFixedValue(orderOptions(next));
   };
 
   return (
@@ -184,7 +193,7 @@ const ReactSelectOption = () => {
         <Select
           isClearable={false}
           defaultValue={[fruits[2], fruits[3]]}
-          styles={styles}
+          styles={multiStyles}
           isMulti
           name="colors"
           options={fruits}
@@ -197,7 +206,7 @@ const ReactSelectOption = () => {
           isClearable={false}
           defaultValue={fruits[1]}
           options={groupedOptions}
-          styles={styles}
+          styles={singleStyles}
           formatGroupLabel={formatGroupLabel}
           className="react-select"
           classNamePrefix="select"
@@ -207,11 +216,11 @@ const ReactSelectOption = () => {
         <Select
           isClearable={false}
           closeMenuOnSelect={false}
-          components={animatedComponents as React.ComponentProps<typeof Select>["components"]}
-          defaultValue={[fruits[4], fruits[5]]}
+          components={animatedComponents}
+          defaultValue={[fruits[4], fruits[5]].filter((item): item is FruitOption => item != null)}
           isMulti
           options={fruits}
-          styles={styles}
+          styles={multiStyles}
           className="react-select"
           classNamePrefix="select"
         />
@@ -220,7 +229,7 @@ const ReactSelectOption = () => {
         <Select
           isClearable={false}
           value={fixedValue}
-          styles={styles}
+          styles={multiStyles}
           isMulti
           onChange={fixedOnChange}
           name="furits"
@@ -237,7 +246,7 @@ const ReactSelectOption = () => {
           components={{
             Option: OptionComponent,
           }}
-          styles={styles}
+          styles={multiStyles}
         />
       </div>
     </div>

@@ -53,7 +53,7 @@ const LogInForm = () => {
   const toggleVisibility = () => setIsVisible(!isVisible);
   const isDesktop2xl = useMediaQuery("(max-width: 1530px)");
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { email: unknown; password: unknown }) => {
     startTransition(async () => {
       let response = await signIn("credentials", {
         email: data.email,

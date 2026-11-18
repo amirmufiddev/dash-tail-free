@@ -7,7 +7,7 @@ import {
 import { cn, isLocationMatch } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-const MultiNestedMenu = ({ subItem, subIndex, activeMultiMenu }) => {
+const MultiNestedMenu = ({ subItem, subIndex, activeMultiMenu }: { subItem: { multi_menu?: ({ href: string; title: React.ReactNode })[] }; subIndex: unknown; activeMultiMenu: unknown }) => {
   const locationName = usePathname();
   return (
     <Collapsible open={activeMultiMenu === subIndex}>

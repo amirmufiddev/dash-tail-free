@@ -25,7 +25,21 @@ const schema = z.object({
   name: z.string().min(2, { message: "Your email is invalid." }),
   status: z.string().optional(),
 });
-const CreateBoard = ({ open, onClose, board, boardId }) => {
+import type { BoardRecord } from "./types";
+
+type BoardForm = z.infer<typeof schema>;
+
+const CreateBoard = ({
+  open,
+  onClose,
+  board,
+  boardId,
+}: {
+  open: boolean;
+  onClose: () => void;
+  board: BoardRecord | null;
+  boardId: string | number | null;
+}) => {
   const [isPending, startTransition] = useTransition();
   const {
     register,
@@ -41,14 +55,14 @@ const CreateBoard = ({ open, onClose, board, boardId }) => {
   const ResetForm = async () => {
     reset();
   };
-  const onSubmit = (data) => {
+  const onSubmit = (data: BoardForm) => {
     const updatedData = {
       ...board,
       name: data.name,
       status: data.status,
     };
     var result;
-    if (board) {
+    if (board && boardId != null) {
       startTransition(async () => {
         result = await editBoardAction(boardId, updatedData);
         toast.success("Successfully update");
@@ -65,9 +79,9 @@ const CreateBoard = ({ open, onClose, board, boardId }) => {
     reset();
   };
   React.useEffect(() => {
-    setValue("name", board?.name || "");
-    setValue("status", board?.status || "defaultStatus");
-  }, [open]);
+    setValue("name", String(board?.name ?? ""));
+    setValue("status", board?.status ?? "defaultStatus");
+  }, [open, board, setValue]);
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent hiddenCloseIcon>

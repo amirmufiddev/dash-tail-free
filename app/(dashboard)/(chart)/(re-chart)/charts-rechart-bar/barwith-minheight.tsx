@@ -15,7 +15,7 @@ import {
 import { data } from "./data";
 import CustomTooltip from "./custom-tooltip";
 
-const renderCustomizedLabel = (props) => {
+const renderCustomizedLabel = (props: { x: number; y: number; width: number; height: unknown; value: string }) => {
   const { x, y, width, height, value } = props;
   const radius = 10;
 

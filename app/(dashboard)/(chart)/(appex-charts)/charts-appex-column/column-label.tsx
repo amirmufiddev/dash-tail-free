@@ -33,7 +33,7 @@ const ColumnWithLabel = ({ height = 300 }) => {
     dataLabels: {
       enabled: true,
       offsetY: -20,
-      formatter: function (val) {
+      formatter: function (val: string) {
         return val + "%";
       },
       style: {

@@ -12,15 +12,17 @@ import SingleMenuItem from "./single-menu-item";
 import SubMenuHandler from "./sub-menu-handler";
 import NestedSubMenu from "../common/nested-menus";
 import AddBlock from "../common/add-block";
+import type { SidebarMenuItem } from "../types";
+
 const ClassicSidebar = () => {
   const { sidebarBg } = useSidebar();
-  const [activeSubmenu, setActiveSubmenu] = useState(null);
-  const [activeMultiMenu, setMultiMenu] = useState(null);
-  const menus = menusConfig?.sidebarNav?.classic || [];
+  const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null);
+  const [activeMultiMenu, setMultiMenu] = useState<number | null>(null);
+  const menus = (menusConfig?.sidebarNav?.classic || []) as SidebarMenuItem[];
   const { collapsed, setCollapsed } = useSidebar();
   const [hovered, setHovered] = useState(false);
 
-  const toggleSubmenu = (i) => {
+  const toggleSubmenu = (i: number) => {
     if (activeSubmenu === i) {
       setActiveSubmenu(null);
     } else {
@@ -28,7 +30,7 @@ const ClassicSidebar = () => {
     }
   };
 
-  const toggleMultiMenu = (subIndex) => {
+  const toggleMultiMenu = (subIndex: number) => {
     if (activeMultiMenu === subIndex) {
       setMultiMenu(null);
     } else {
@@ -38,8 +40,8 @@ const ClassicSidebar = () => {
   const locationName = usePathname();
 
   React.useEffect(() => {
-    let subMenuIndex = null;
-    let multiMenuIndex = null;
+    let subMenuIndex: number | null = null;
+    let multiMenuIndex: number | null = null;
     menus?.map((item, i) => {
       if (item?.child) {
         item.child.map((childItem, j) => {
@@ -47,7 +49,7 @@ const ClassicSidebar = () => {
             subMenuIndex = i;
           }
           if (childItem?.multi_menu) {
-            childItem.multi_menu.map((multiItem, k) => {
+            childItem.multi_menu.map((multiItem) => {
               if (isLocationMatch(multiItem.href, locationName)) {
                 subMenuIndex = i;
                 multiMenuIndex = j;
@@ -98,9 +100,9 @@ const ClassicSidebar = () => {
             <li key={`menu_key_${i}`}>
               {/* single menu  */}
 
-              {!item.child && !item.isHeader && (
+              {!item.child && !item.isHeader && item.href && (
                 <SingleMenuItem
-                  item={item}
+                  item={{ ...item, href: item.href }}
                   collapsed={collapsed}
                   hovered={hovered}
                 />

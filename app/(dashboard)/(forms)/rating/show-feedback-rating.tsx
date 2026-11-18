@@ -5,7 +5,7 @@ const ShowFeedbackRating = () => {
   const [rating, setRating] = useState(3);
   const [rating1, setRating1] = useState(3);
 
-  function getRating(rating) {
+  function getRating(rating: unknown) {
     switch (rating) {
       case 1:
         return "Poor";

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-const DocCard = ({ item }) => {
+const DocCard = ({ item }: { item: { title: unknown; text: React.ReactNode; last_view: unknown; time: unknown } }) => {
   const { title, text, last_view, time } = item;
   return (
     <Link href="/dashboard">

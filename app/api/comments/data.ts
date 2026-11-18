@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { formatDate } from "@/lib/utils";
 
-function generateComments(numItems) {
+function generateComments(numItems: number) {
   const data = [];
   const currentYear = new Date().getFullYear();
   const assignDate = faker.date.between({

@@ -13,7 +13,7 @@ import { InputGroup, InputGroupText } from "@/components/ui/input-group";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const MyProfileHeader = ({ profile }) => {
+const MyProfileHeader = ({ profile }: { profile: { avatar?: { src?: string }; fullName?: ({ slice?: ((arg0: number, arg1: number) => unknown) } | React.ReactNode); bio?: React.ReactNode } }) => {
   return (
     <>
       <div className="flex  justify-between mb-4">

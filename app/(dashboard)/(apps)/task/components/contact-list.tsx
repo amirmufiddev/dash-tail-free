@@ -4,7 +4,18 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
 
-const ContactList = ({ contact, selectedChatId = undefined }) => {
+export type TaskContact = {
+  avatar?: { src?: string };
+  id: string | number;
+  fullName: string;
+  status?: string;
+  about?: string;
+  chat?: { lastMessage?: string | null };
+  unreadmessage?: number;
+  date?: string;
+};
+
+const ContactList = ({ contact, selectedChatId }: { contact: TaskContact; selectedChatId?: string | number }) => {
   const { avatar, id, fullName, status, about, chat, unreadmessage, date } =
     contact;
 
@@ -51,7 +62,7 @@ const ContactList = ({ contact, selectedChatId = undefined }) => {
           className={cn(
             "h-[14px] w-[14px] flex items-center justify-center bg-default-400 rounded-full text-primary-foreground text-[10px] font-medium",
             {
-              "bg-primary/70": unreadmessage > 0,
+              "bg-primary/70": (unreadmessage ?? 0) > 0,
             }
           )}
         >

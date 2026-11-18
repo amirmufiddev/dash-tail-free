@@ -14,9 +14,9 @@ const BasicLeafletMap = () => {
 
     const style = `https://api.maptiler.com/maps/streets/style.json?key=${MAP_KEY}`;
 
-    const pointLatitude = useCallback((mapData) => mapData.latitude, []);
-    const pointLongitude = useCallback((mapData) => mapData.longitude, []);
-    const pointBottomLabel = useCallback((mapData) => mapData.id, []);
+    const pointLatitude = useCallback((mapData: { latitude: number }) => mapData.latitude, []);
+    const pointLongitude = useCallback((mapData: { longitude: number }) => mapData.longitude, []);
+    const pointBottomLabel = useCallback((mapData: { id: string | number }) => mapData.id, []);
 
     const pointColor = `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].info})`;
 

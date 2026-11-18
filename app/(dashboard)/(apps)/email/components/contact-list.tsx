@@ -9,11 +9,18 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import type { MailContact } from "../types";
+
 const ContactList = ({
   contact,
-  selectedChatId = undefined,
-  handleOpenChatBox = undefined,
-  isCollapsed = undefined,
+  selectedChatId,
+  handleOpenChatBox,
+  isCollapsed = false,
+}: {
+  contact: MailContact;
+  selectedChatId?: string | number;
+  handleOpenChatBox?: () => void;
+  isCollapsed?: boolean;
 }) => {
   const { avatar, id, fullName, status, about, chat, unreadmessage, date } =
     contact;

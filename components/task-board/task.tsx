@@ -46,23 +46,33 @@ import AssignMembers from "./common/assign-members";
 import DeleteConfirmationDialog from "@/components/delete-confirmation-dialog";
 import { cn } from "@/lib/utils";
 
-const prioritiesColorMap = {
+const prioritiesColorMap: Record<string, string> = {
   high: "success",
   low: "destructive",
   medium: "warning",
 };
 
-const tagsColorMap = {
+const tagsColorMap: Record<string, string> = {
   development: "destructive",
   planning: "info",
   design: "success",
   "ui/ux": "warning",
 };
+
+import type { BoardRecord, TaskRecord } from "./types";
 // dnd
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-const Task = ({ task, onUpdateTask = undefined, boards }) => {
+const Task = ({
+  task,
+  onUpdateTask,
+  boards,
+}: {
+  task: TaskRecord;
+  onUpdateTask?: (task: TaskRecord) => void;
+  boards: BoardRecord[];
+}) => {
   const [open, setOpen] = React.useState(false);
   const {
     id,
@@ -82,7 +92,7 @@ const Task = ({ task, onUpdateTask = undefined, boards }) => {
     time,
   } = task;
 
-  const handleMoveTask = (task, boardId) => {
+  const handleMoveTask = (task: { id: string | number }, boardId: string | number) => {
     const newData = {
       ...task,
       boardId: boardId,
@@ -90,12 +100,12 @@ const Task = ({ task, onUpdateTask = undefined, boards }) => {
     updateTaskAction(task.id, newData);
   };
 
-  const getBoardNameById = (boardId) => {
+  const getBoardNameById = (boardId: string | number) => {
     const foundBoard = boards.find((board) => board.id === boardId);
     return foundBoard ? foundBoard.name : "Unknown Board";
   };
   // delete task
-  const onAction = async (dltId) => {
+  const onAction = async (dltId: string | number) => {
     await deleteTaskAction(dltId);
   };
   // dnd
@@ -136,12 +146,12 @@ const Task = ({ task, onUpdateTask = undefined, boards }) => {
             "opacity-50": isDragging,
           }
         )}
-        onClick={() => onUpdateTask(task)}
+        onClick={() => onUpdateTask?.(task)}
       >
         <CardHeader className="space-x-0 space-y-0 p-0 flex-row items-center justify-between mb-0 border-none">
           <div className="flex items-center gap-1">
             <div className="text-[10px] leading-[14px] font-semibold uppercase text-default-600 border border-default-200 px-1.5  rounded-sm">
-              {getWords(title)}
+              {getWords(String(title ?? ""))}
             </div>
 
             <div onClick={(e) => e.stopPropagation()}>
@@ -209,7 +219,11 @@ const Task = ({ task, onUpdateTask = undefined, boards }) => {
 
           <div className="flex flex-wrap items-center gap-1 mt-2">
             <Badge
-              color={prioritiesColorMap[task.priority]}
+              color={
+                task.priority
+                  ? prioritiesColorMap[String(task.priority)] ?? ""
+                  : ""
+              }
               className="text-[10px] px-1 py-0 rounded leading-4 capitalize"
             >
               {priority}
@@ -217,7 +231,7 @@ const Task = ({ task, onUpdateTask = undefined, boards }) => {
             {tags?.map((tag, i) => (
               <Badge
                 key={`badge-key-ssk-${i}`}
-                color={tagsColorMap[tag]}
+                color={tagsColorMap[String(tag)] ?? ""}
                 className="text-[10px] px-1 py-0 rounded leading-4 capitalize"
               >
                 {tag}
@@ -228,7 +242,7 @@ const Task = ({ task, onUpdateTask = undefined, boards }) => {
             <div onClick={(e) => e.stopPropagation()}>
               <AssignMembers />
             </div>
-            {assign?.length > 0 && (
+            {(assign?.length ?? 0) > 0 && (
               <AvatarGroup total={assign?.length} max={3} countClass="w-5 h-5">
                 {assign?.map((member, i) => (
                   <TooltipProvider key={`assign-member-task-${i}`}>

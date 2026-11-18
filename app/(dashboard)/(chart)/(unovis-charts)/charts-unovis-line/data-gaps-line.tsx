@@ -16,13 +16,13 @@ import { themes } from "@/config/thems";
 const DataGapsLine = ({ height = 400 }) => {
   const [current, setCurrent] = useState(0);
   const [fallbackValue, setFallbackValue] = useState<number | undefined>();
-  const [items, setLegendItems] = useState([]);
+  const [items, setLegendItems] = useState<unknown[]>([]);
 
   const { theme: config, setTheme: setConfig } = useThemeStore();
   const { theme: mode } = useTheme();
   const theme = themes.find((theme) => theme.name === config);
 
-  const getY = useCallback((c) => (d) => d[c.id], []);
+  const getY = useCallback((c: { id: string | number }) => (d: { [key: string]: unknown }) => d[c.id], []);
 
   useEffect(() => {
     setFallbackValue(legendItems[current].value);
@@ -43,7 +43,7 @@ const DataGapsLine = ({ height = 400 }) => {
         </span>
         <VisBulletLegend
           items={items}
-          onLegendItemClick={useCallback((_, i) => setCurrent(i), [])}
+          onLegendItemClick={useCallback((_: unknown, i: number) => setCurrent(i), [])}
         />
       </div>
       <VisXYContainer
@@ -54,7 +54,7 @@ const DataGapsLine = ({ height = 400 }) => {
       >
         <VisLine
           data={countriesData}
-          x={useCallback((d) => d.year, [])}
+          x={useCallback((d: { year: number; cn: number; us: number; } | { year: number; us: number; cn?: undefined; }) => d.year, [])}
           y={useMemo(() => countries.map(getY), [])}
           fallbackValue={fallbackValue}
           color={`hsl(${
@@ -66,10 +66,10 @@ const DataGapsLine = ({ height = 400 }) => {
           data={countries}
           x={2019.5}
           y={useCallback(
-            (c) => getY(c)(countriesData[countriesData.length - 1]),
+            (c: unknown) => getY(c)(countriesData[countriesData.length - 1]),
             []
           )}
-          label={useCallback((c) => c.label, [])}
+          label={useCallback((c: { label: string }) => c.label, [])}
           backgroundColor="none"
         />
 

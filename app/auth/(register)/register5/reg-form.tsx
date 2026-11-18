@@ -53,7 +53,7 @@ const RegForm = () => {
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: unknown) => {
     startTransition(async () => {
       let response = await addUser(data);
       if (response?.status === "success") {

@@ -1,4 +1,5 @@
 "use client";
+import type { ColumnFiltersState, RowData, RowSelectionState, SortingState } from "@tanstack/react-table";
 
 import * as React from "react";
 import {
@@ -11,7 +12,8 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useLegacyTable as useReactTable
+  useLegacyTable as useReactTable,
+  type LegacyColumnDef as ColumnDef,
 } from "@tanstack/react-table/legacy";
 
 import {
@@ -26,11 +28,17 @@ import {
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
 
-export function DataTable({ columns, data }) {
-  const [rowSelection, setRowSelection] = React.useState({});
-  const [columnVisibility, setColumnVisibility] = React.useState({});
-  const [columnFilters, setColumnFilters] = React.useState([]);
-  const [sorting, setSorting] = React.useState([]);
+export function DataTable<TData extends RowData>({
+  columns,
+  data,
+}: {
+  columns: ColumnDef<TData>[];
+  data: TData[];
+}) {
+  const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
+  const [columnVisibility, setColumnVisibility] = React.useState<Record<string, boolean>>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const table = useReactTable({
     data,

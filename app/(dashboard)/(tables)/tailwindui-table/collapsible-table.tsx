@@ -17,8 +17,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 
 const CollapsibleTable = () => {
-  const [collapsedRows, setCollapsedRows] = useState([]);
-  const toggleRow = (id) => {
+  const [collapsedRows, setCollapsedRows] = useState<unknown[]>([]);
+  const toggleRow = (id: string | number) => {
     if (collapsedRows.includes(id)) {
       setCollapsedRows(collapsedRows.filter((rowId) => rowId !== id));
     } else {

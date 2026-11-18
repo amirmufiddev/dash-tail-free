@@ -11,7 +11,7 @@ const SynchronizedChart = ({ height = 300 }) => {
   const { theme: config, setTheme: setConfig } = useThemeStore();
   const { theme: mode } = useTheme();
   const theme = themes.find((theme) => theme.name === config);
-  function generateDayWiseTimeSeries(baseval, count, yrange) {
+  function generateDayWiseTimeSeries(baseval: unknown, count: number, yrange: { max: number; min: number }) {
     var i = 0;
     var series = [];
     while (i < count) {

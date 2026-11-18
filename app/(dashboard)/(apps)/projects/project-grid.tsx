@@ -34,9 +34,9 @@ const prioritiesColorMap = {
   medium: "warning",
 };
 import { useTheme } from "next-themes";
-const ProjectGrid = ({ project, onEdit }) => {
+const ProjectGrid = ({ project, onEdit }: { project: { id?: string; status?: string | React.ReactNode; isFavorite?: unknown; logo?: { src?: string }; title?: ({ slice?: ((arg0: number, arg1: number) => unknown) } | React.ReactNode); description?: React.ReactNode; assign: ({ image?: { src?: string } })[]; priority: string | number | React.ReactNode; percentage?: unknown; assignDate?: React.ReactNode; dueDate?: React.ReactNode }; onEdit: ((arg0: unknown) => unknown) }) => {
   const [open, setOpen] = React.useState(false);
-  async function onAction(id) {
+  async function onAction(id: string | number) {
     await deleteProjectAction(id);
   }
   const { theme: mode } = useTheme();

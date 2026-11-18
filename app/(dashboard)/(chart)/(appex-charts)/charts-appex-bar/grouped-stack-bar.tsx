@@ -74,7 +74,7 @@ const GroupedStackBar = ({ height = 350 }) => {
           })`,
         ],
       },
-      formatter: (val) => {
+      formatter: (val: number) => {
         return val / 1000 + "K";
       },
     },
@@ -115,7 +115,7 @@ const GroupedStackBar = ({ height = 350 }) => {
         show: false,
       },
       labels: {
-        formatter: function (val) {
+        formatter: function (val: string) {
           return val + "K";
         },
         style: {

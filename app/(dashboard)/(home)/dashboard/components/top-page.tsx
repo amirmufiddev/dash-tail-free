@@ -1,4 +1,5 @@
 "use client";
+import type { ColumnFiltersState, SortingState } from "@tanstack/react-table";
 import * as React from "react";
 
 import {
@@ -33,7 +34,7 @@ const columns = [
   {
     accessorKey: "page",
     header: "Page",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => (
       <div className="flex gap-4">
         <span className="text-default-600">{row.getValue("id")}</span>
         <span>{row.getValue("page")}</span>
@@ -43,7 +44,7 @@ const columns = [
   {
     accessorKey: "post",
     header: "Post",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => (
       <div className="truncate max-w-[200px]">
         {row.getValue("post")}
       </div>
@@ -52,7 +53,7 @@ const columns = [
   {
     accessorKey: "count",
     header: "Count",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => (
       <div className="flex items-center gap-1">
         <span> {row.getValue("count")}</span>
       </div>
@@ -61,15 +62,15 @@ const columns = [
   {
     accessorKey: "id",
     header: "Action",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: unknown }) => (
       <Link href="#" className="text-primary hover:underline">Details</Link>
     )
   }
 ];
 
 const TopPage = () => {
-  const [sorting, setSorting] = React.useState([]);
-  const [columnFilters, setColumnFilters] = React.useState([]);
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState({});
   const [rowSelection, setRowSelection] = React.useState({});
 

@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 const LabelPlacement = () => {
   const [inputValue, setInputValue] = useState('');
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setInputValue(e.target.value);
   };
   const clearInput = () => {

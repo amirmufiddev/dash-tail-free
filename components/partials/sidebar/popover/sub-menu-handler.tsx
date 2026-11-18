@@ -5,6 +5,7 @@ import * as HoverCard from "@radix-ui/react-hover-card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 import CollapsedHoverMenu from "./collapsed-hover-menu";
+import type { SidebarMenuItem } from "../types";
 
 const SubMenuHandler = ({
   item,
@@ -13,8 +14,15 @@ const SubMenuHandler = ({
   activeSubmenu,
   collapsed,
   menuTitle,
+}: {
+  item: SidebarMenuItem;
+  toggleSubmenu: (menuIndex: number) => void;
+  index: number;
+  activeSubmenu: number | null;
+  collapsed: boolean;
+  menuTitle: React.ReactNode;
 }) => {
-  const { title } = item;
+  const { title, icon: IconComponent } = item;
 
   return (
     <>
@@ -22,7 +30,7 @@ const SubMenuHandler = ({
         <HoverCard.Root>
           <HoverCard.Trigger asChild>
             <div className="inline-flex cursor-pointer items-center justify-center data-[state=open]:bg-primary-100 data-[state=open]:text-primary  w-12 h-12  rounded-md">
-              <item.icon className="w-6 h-6" />
+              {IconComponent && <IconComponent className="w-6 h-6" />}
             </div>
           </HoverCard.Trigger>
           <HoverCard.Portal>
@@ -35,10 +43,11 @@ const SubMenuHandler = ({
               <ScrollArea
                 className={cn("p-5", {
                   "h-[250px]":
-                    item.child.length > 5 ||
-                    item.child.some(
+                    (item.child?.length ?? 0) > 5 ||
+                    item.child?.some(
                       (childItem) =>
-                        childItem.multi_menu && childItem.multi_menu.length > 5
+                        childItem.multi_menu &&
+                        childItem.multi_menu.length > 5
                     ),
                 })}
               >
@@ -58,9 +67,11 @@ const SubMenuHandler = ({
           )}
         >
           <div className="flex-1  gap-3 flex items-start">
-            <span className="inline-flex items-center  text-lg ">
-              <item.icon className="w-5 h-5" />
-            </span>
+            {IconComponent && (
+              <span className="inline-flex items-center  text-lg ">
+                <IconComponent className="w-5 h-5" />
+              </span>
+            )}
             <div className=" ">{title}</div>
           </div>
           <div className="flex-0">

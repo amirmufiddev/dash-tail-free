@@ -3,7 +3,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react";
 const ControlledSelect = () => {
   const [value, setValue] = useState("");
-  const handleValueChange = value => {
+  const handleValueChange = (value: React.ReactNode )=> {
     setValue(value)
   }
   return (

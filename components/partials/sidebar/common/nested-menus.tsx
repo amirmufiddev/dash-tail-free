@@ -1,15 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   Collapsible,
   CollapsibleContent,
-  CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import MultiMenuHandler from "./multi-menu-handler";
 import MultiNestedMenu from "./multi-nested-menu";
 import SubMenuItem from "./sub-menu-item";
 import { usePathname } from "next/navigation";
 import { isLocationMatch, cn } from "@/lib/utils";
+import type { SidebarMenuItem } from "../types";
 
 const NestedSubMenu = ({
   activeSubmenu,
@@ -17,16 +17,14 @@ const NestedSubMenu = ({
   index,
   activeMultiMenu,
   toggleMultiMenu,
-  title,
   collapsed: _collapsed,
   hovered: _hovered,
 }: {
-  activeSubmenu;
-  item;
-  index;
-  activeMultiMenu;
-  toggleMultiMenu;
-  title?;
+  activeSubmenu: number | null;
+  item: SidebarMenuItem;
+  index: number;
+  activeMultiMenu: number | null;
+  toggleMultiMenu: (subIndex: number) => void;
   collapsed?: boolean;
   hovered?: boolean;
 }) => {
@@ -62,7 +60,9 @@ const NestedSubMenu = ({
                   />
                 </div>
               ) : (
-                <SubMenuItem subItem={subItem} subIndex={j} />
+                subItem.href && (
+                  <SubMenuItem subItem={subItem} subIndex={j} />
+                )
               )}
             </li>
           ))}

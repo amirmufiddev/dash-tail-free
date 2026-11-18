@@ -35,7 +35,7 @@ const PyramidChart = ({ height = 350 }) => {
     },
     dataLabels: {
       enabled: true,
-      formatter: function (val, opt) {
+      formatter: function (val: string, opt: { w: { globals: { labels: { [key: string]: string } } }; dataPointIndex: string | number }) {
         return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val;
       },
       dropShadow: {

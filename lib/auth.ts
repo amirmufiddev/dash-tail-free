@@ -1,18 +1,19 @@
+import type { AuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { user } from "@/app/api/user/data";
 import bcrypt from "bcrypt";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
-      clientId: process.env.AUTH_GOOGLE_ID,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+      clientId: process.env.AUTH_GOOGLE_ID ?? "",
+      clientSecret: process.env.AUTH_GOOGLE_SECRET ?? "",
     }),
     GithubProvider({
-      clientId: process.env.AUTH_GITHUB_ID,
-      clientSecret: process.env.AUTH_GITHUB_SECRET,
+      clientId: process.env.AUTH_GITHUB_ID ?? "",
+      clientSecret: process.env.AUTH_GITHUB_SECRET ?? "",
     }),
     Credentials({
       name: "credentials",
@@ -52,13 +53,14 @@ export const authOptions = {
   callbacks: {
     async signIn({ user }) {
       const domain = process.env.ALLOWED_DOMAIN ?? "";
-      if (domain && !user.email?.endsWith(domain)) {
+      const email = user.email ?? "";
+      if (domain && !email.endsWith(domain)) {
         throw new Error("You are not allowed to access this platform");
       }
       return true;
     },
-    jwt: async ({ token, user }) => {
-      if (user) {
+    async jwt({ token, user }) {
+      if (user?.role) {
         token.role = user.role;
       }
       return token;

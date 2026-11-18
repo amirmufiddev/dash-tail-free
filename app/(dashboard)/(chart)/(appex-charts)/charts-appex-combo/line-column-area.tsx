@@ -119,7 +119,7 @@ const LineColumnArea = ({ height = 300 }) => {
       shared: true,
       intersect: false,
       y: {
-        formatter: function (y) {
+        formatter: function (y: ({ toFixed: ((arg0: number) => unknown) })) {
           if (typeof y !== "undefined") {
             return y.toFixed(0) + " points";
           }

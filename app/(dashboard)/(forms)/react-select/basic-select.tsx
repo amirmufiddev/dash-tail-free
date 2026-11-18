@@ -7,7 +7,7 @@ const furits = [
 ];
 
 const styles = {
-  option: (provided, state) => ({
+  option: (provided: Record<string, unknown>, state: unknown) => ({
     ...provided,
     fontSize: "14px",
   }),

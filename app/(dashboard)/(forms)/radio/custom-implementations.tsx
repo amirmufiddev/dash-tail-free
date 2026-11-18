@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 const CustomImplementation = () => {
   const [selected, setSelected] = useState("cr_1");
-  const handleValueChange = value => {
+  const handleValueChange = (value: string )=> {
     setSelected(value)
   }
   return (

@@ -65,7 +65,7 @@ const ProgressiveLine = ({ height = 350 }) => {
 
   const totalDuration = 10000;
   const delayBetweenPoints = totalDuration / data.length;
-  const previousY = (ctx) =>
+  const previousY = (ctx: ({ index: number; chart: { scales: { y: { getPixelForValue: ((arg0: number) => unknown) } }; getDatasetMeta: ((arg0: unknown) => unknown) }; datasetIndex: unknown })) =>
     ctx.index === 0
       ? ctx.chart.scales.y.getPixelForValue(100)
       : ctx.chart
@@ -77,7 +77,7 @@ const ProgressiveLine = ({ height = 350 }) => {
       easing: "linear",
       duration: delayBetweenPoints,
       from: NaN, // the point is initially skipped
-      delay(ctx) {
+      delay(ctx: { type: string; xStarted: unknown; index: number }) {
         if (ctx.type !== "data" || ctx.xStarted) {
           return 0;
         }
@@ -90,7 +90,7 @@ const ProgressiveLine = ({ height = 350 }) => {
       easing: "linear",
       duration: delayBetweenPoints,
       from: previousY,
-      delay(ctx) {
+      delay(ctx: { type: string; yStarted: unknown; index: number }) {
         if (ctx.type !== "data" || ctx.yStarted) {
           return 0;
         }

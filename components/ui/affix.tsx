@@ -56,8 +56,8 @@ type AffixProps = {
 
 const Affix = ({ children, offsetTop, target, onChange }: AffixProps) => {
   const [isFixed, setIsFixed] = useState(false);
-  const ref = useRef(null);
-  const containerRef = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const handleScroll = () => {
     if (!ref.current || !containerRef.current) return;

@@ -33,7 +33,7 @@ const MonoChrome = ({ height = 350 }) => {
             }
         },
         dataLabels: {
-            formatter(val, opts) {
+            formatter(val: ({ toFixed: ((arg0: number) => unknown) }), opts: { w: { globals: { labels: { [key: string]: unknown } } }; seriesIndex: string | number }) {
                 const name = opts.w.globals.labels[opts.seriesIndex]
                 return [name, val.toFixed(1) + '%']
             }

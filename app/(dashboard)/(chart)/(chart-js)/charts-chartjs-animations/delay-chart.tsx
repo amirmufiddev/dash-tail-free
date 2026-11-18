@@ -99,7 +99,7 @@ const DelayChart = ({ height = 350 }) => {
       onComplete: () => {
         delayed = true;
       },
-      delay: (context) => {
+      delay: (context: { type: string; mode: string; dataIndex: number; datasetIndex: number }) => {
         let delay = 0;
         if (context.type === "data" && context.mode === "default" && !delayed) {
           delay = context.dataIndex * 300 + context.datasetIndex * 100;

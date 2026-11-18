@@ -56,7 +56,7 @@ const CustomizedEvent = ({ height = 300 }) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const activeItem = data[activeIndex];
 
-    const handleClick = (entry, index) => {
+    const handleClick = (entry: unknown, index: number) => {
         setActiveIndex(index);
     };
 

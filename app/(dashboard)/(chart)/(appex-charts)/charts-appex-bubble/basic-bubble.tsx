@@ -16,7 +16,7 @@ const BasicBubble = ({ height = 350 }) => {
   const { theme: mode } = useTheme();
   const theme = themes.find((theme) => theme.name === config);
 
-  function generateData(baseval, count, yrange) {
+  function generateData(baseval: unknown, count: number, yrange: { max: number; min: number }) {
     var i = 0;
     var series = [];
     while (i < count) {

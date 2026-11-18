@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { Rating } from "@/components/ui/rating";
 const HoverRating = () => {
-  function getRating(rating) {
+  function getRating(rating: unknown) {
     switch (rating) {
       case 1:
         return "Poor";

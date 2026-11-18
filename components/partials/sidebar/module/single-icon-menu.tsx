@@ -8,8 +8,21 @@ import {
   TooltipArrow,
 } from "@/components/ui/tooltip";
 import Link from "next/link";
-const SingleIconMenu = ({ index, activeIndex, item, locationName }) => {
-  const { icon, title, href } = item;
+import type { SidebarMenuItem } from "../types";
+
+const SingleIconMenu = ({
+  index,
+  activeIndex,
+  item,
+  locationName,
+}: {
+  index: number;
+  activeIndex: number | null;
+  item: SidebarMenuItem;
+  locationName: string;
+}) => {
+  const { title, href } = item;
+  const ItemIcon = item.icon;
   return (
     <>
       <TooltipProvider>
@@ -27,7 +40,7 @@ const SingleIconMenu = ({ index, activeIndex, item, locationName }) => {
                   }
                 )}
               >
-                <item.icon className="w-8 h-8" />
+                {ItemIcon && <ItemIcon className="w-8 h-8" />}
               </Link>
             ) : (
               <button
@@ -41,7 +54,7 @@ const SingleIconMenu = ({ index, activeIndex, item, locationName }) => {
                   }
                 )}
               >
-                <item.icon className="w-6 h-6" />
+                {ItemIcon && <ItemIcon className="w-6 h-6" />}
               </button>
             )}
           </TooltipTrigger>

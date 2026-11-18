@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 const RadioWithBackground = () => {
   const [selected, setSelected] = useState("rwb_1");
-  const handleValueChange = value => {
+  const handleValueChange = (value: string )=> {
     setSelected(value)
   }
   return (

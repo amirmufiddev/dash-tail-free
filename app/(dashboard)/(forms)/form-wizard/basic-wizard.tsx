@@ -18,7 +18,7 @@ const BasicWizard = () => {
 
   const steps = ["Account Details", "Personal Info", "Address", "Social Links"];
 
-  const isStepOptional = (step) => {
+  const isStepOptional = (step: number) => {
     return step === 1;
   };
 

@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Icon } from "@iconify/react";
 import { updateTaskAction } from "@/action/project-action";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import type { TaskRecord } from "../types";
 
 const schema = z.object({
   title: z.string().min(1, {
@@ -14,7 +15,16 @@ const schema = z.object({
   }),
   desc: z.string().optional(),
 });
-const SheetTitleDesc = ({ task, taskId }) => {
+
+type TaskTitleForm = z.infer<typeof schema>;
+
+const SheetTitleDesc = ({
+  task,
+  taskId,
+}: {
+  task: TaskRecord;
+  taskId: string | number;
+}) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => {
@@ -30,36 +40,31 @@ const SheetTitleDesc = ({ task, taskId }) => {
   const {
     register,
     handleSubmit,
-    control,
     setValue,
-    reset,
     formState: { errors },
-  } = useForm({
+  } = useForm<TaskTitleForm>({
     resolver: zodResolver(schema),
     mode: "all",
   });
 
-  const onSubmit = async (data) => {
-    const newData = {
+  const onSubmit = async (data: TaskTitleForm) => {
+    const newData: TaskRecord = {
       ...task,
       title: data.title,
       desc: data.desc,
     };
     try {
       await updateTaskAction(taskId, newData);
-      console.log("update data");
-      // Additional logic after updating assign
     } catch (error) {
       console.log(error);
     }
   };
 
   React.useEffect(() => {
-    if (task) {
-      setValue("title", task.title);
-      setValue("desc", task.desc || "");
-    }
+    setValue("title", String(task.title ?? ""));
+    setValue("desc", String(task.desc ?? ""));
   }, [task, setValue]);
+
   return (
     <form
       className="py-5 px-6 pb-8 border-b border-default-200"
@@ -77,33 +82,25 @@ const SheetTitleDesc = ({ task, taskId }) => {
         />
       </div>
       {errors.title && (
-        <div className=" text-destructive">{String(errors.title.message ?? "")}</div>
-      )}
-
-      <div className="flex gap-1 relative">
-        <div className="mt-1">
-          <Icon
-            icon="heroicons:information-circle"
-            className="w-5 h-5 text-default-900"
-          />
+        <div className=" text-destructive">
+          {String(errors.title.message ?? "")}
         </div>
-        <textarea
-          className="w-full h-16 border-none border border-transparent focus:border-default-200 focus:outline-none p-1 text-sm text-default-700 peer bg-card focus:bg-default-50"
-          placeholder="Add Task Descriptions"
-          rows={1}
-          {...register("desc")}
-          onInput={handleFocus}
-          onBlur={handleBlur}
-          style={{ resize: "none", overflowY: "hidden" }}
-        />
-      </div>
-      <div className="flex justify-end">
-        {isFocused && (
-          <Button className=" text-xs h-6 py-0" type="submit">
+      )}
+      <textarea
+        {...register("desc")}
+        className="w-full text-sm text-default-600 border border-transparent rounded-sm focus:border focus:border-default-200 focus:outline-none px-1 focus:bg-default-50 bg-card min-h-[80px]"
+        placeholder="Add a description..."
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      />
+      {isFocused && (
+        <div className="flex justify-end gap-2 mt-2">
+          <Button type="submit" size="sm">
+            <Icon icon="heroicons:check" className="w-4 h-4 mr-1" />
             Save
           </Button>
-        )}
-      </div>
+        </div>
+      )}
     </form>
   );
 };

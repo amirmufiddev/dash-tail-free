@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 
 import { X } from "lucide-react";
-const MailSpam = ({ open, onClose }) => {
+const MailSpam = ({ open, onClose }: { open: boolean; onClose: ((arg0: unknown) => void) }) => {
   return (
     <Dialog open={open}>
       <DialogContent className="py-4" hiddenCloseIcon>

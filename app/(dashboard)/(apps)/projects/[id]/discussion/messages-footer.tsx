@@ -28,17 +28,17 @@ import {
 } from "@/components/ui/popover";
 const MessageFooter = () => {
   const [message, setMessage] = useState("");
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setMessage(e.target.value);
     e.target.style.height = "auto"; // Reset the height to auto to adjust
     e.target.style.height = `${e.target.scrollHeight - 15}px`;
   };
 
-  const handleSelectEmoji = (emoji) => {
+  const handleSelectEmoji = (emoji: { native: string }) => {
     setMessage(message + emoji.native);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setMessage("");
   };

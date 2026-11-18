@@ -28,9 +28,9 @@ const BaselineAreaChart = ({ height = 400 }) => {
       return max / 2 + dir * 1000;
     });
 
-  const x = useCallback((d) => d.year, []);
-  const y = useCallback((c) => (d) => d.art[c.id], []);
-  const baseline = useCallback((_, i) => (max - sums[i]) / 2, []);
+  const x = useCallback((d: { year: number }) => d.year, []);
+  const y = useCallback((c: { id: string | number }) => (d: { art: { [key: string]: unknown } }) => d.art[c.id], []);
+  const baseline = useCallback((_: unknown, i: number) => (max - sums[i]) / 2, []);
 
   return (
     <div>

@@ -14,7 +14,7 @@ const FooterStyle = () => {
     setFooterType,
   } = useThemeStore();
   const newTheme = themes.find((theme) => theme.name === config);
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFooterType(event.target.value);
   };
 

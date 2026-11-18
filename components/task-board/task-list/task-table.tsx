@@ -1,4 +1,9 @@
 "use client";
+import type {
+  ColumnFiltersState,
+  RowSelectionState,
+  SortingState,
+} from "@tanstack/react-table";
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import {
@@ -19,8 +24,10 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useLegacyTable as useReactTable
+  useLegacyTable as useReactTable,
+  type LegacyColumnDef as ColumnDef,
 } from "@tanstack/react-table/legacy";
+import type { BoardRecord, TaskRecord } from "../types";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Table,
@@ -113,7 +120,7 @@ const tabs = [
   },
 ];
 
-const priorityColors = {
+const priorityColors: Record<string, string> = {
   high: "success",
   medium: "warning",
   low: "destructive",
@@ -123,23 +130,37 @@ const schema = z.object({
   title: z.string().min(2, { message: "Need Task Title" }),
 });
 
-const TaskTable = ({ data, boards, onUpdateTask, boardID2 }) => {
-  const [sorting, setSorting] = React.useState([]);
-  const [columnFilters, setColumnFilters] = React.useState([]);
-  const [columnVisibility, setColumnVisibility] = React.useState({});
-  const [rowSelection, setRowSelection] = React.useState({});
-  const [dueDate, setDueDate] = React.useState(new Date());
-  const [startDate, setStartDate] = React.useState(new Date());
+const TaskTable = ({
+  data,
+  boards,
+  onUpdateTask,
+  boardID2,
+}: {
+  data: TaskRecord[];
+  boards: BoardRecord[];
+  onUpdateTask: (task: TaskRecord) => void;
+  boardID2: string | number;
+}) => {
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = React.useState<
+    Record<string, boolean>
+  >({});
+  const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
+  const [dueDate, setDueDate] = React.useState<Date | undefined>(new Date());
+  const [startDate, setStartDate] = React.useState<Date | undefined>(
+    new Date()
+  );
   // for delete action state
   const [open, setOpen] = React.useState(false);
 
   // create task
   const [isPending, startTransition] = React.useTransition();
-  const getBoardNameById = (boardId) => {
+  const getBoardNameById = (boardId: string | number) => {
     const foundBoard = boards.find((board) => board.id === boardId);
     return foundBoard ? foundBoard.name : "Unknown Board";
   };
-  const handleMoveTask = (task, boardId) => {
+  const handleMoveTask = (task: { id: string | number }, boardId: string | number) => {
     const newData = {
       ...task,
       boardId: boardId,
@@ -147,7 +168,7 @@ const TaskTable = ({ data, boards, onUpdateTask, boardID2 }) => {
     updateTaskAction(task.id, newData);
   };
 
-  const onAction = async (dltId) => {
+  const onAction = async (dltId: string | number) => {
     await deleteTaskAction(dltId);
   };
 
@@ -162,8 +183,12 @@ const TaskTable = ({ data, boards, onUpdateTask, boardID2 }) => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    data.boardId = boardID2;
+  const onSubmit = (formData: { title: string }) => {
+    const data: TaskRecord = {
+      title: formData.title,
+      boardId: boardID2,
+      id: "",
+    };
     var result;
 
     startTransition(async () => {
@@ -174,7 +199,7 @@ const TaskTable = ({ data, boards, onUpdateTask, boardID2 }) => {
     reset();
   };
 
-  const columns = [
+  const columns: ColumnDef<TaskRecord>[] = [
     {
       id: "id",
       header: ({ table }) => (
@@ -287,7 +312,7 @@ const TaskTable = ({ data, boards, onUpdateTask, boardID2 }) => {
                 </div>
                 <CommandEmpty>No Item found</CommandEmpty>
                 <CommandGroup>
-                  {row.getValue("list")?.map((item, index) => (
+                  {row.original.list?.map((item, index) => (
                     <CommandItem key={`assigned-list-item-${index}`}>
                       {item.title}
                     </CommandItem>
@@ -333,14 +358,14 @@ const TaskTable = ({ data, boards, onUpdateTask, boardID2 }) => {
       header: "Assigns",
       cell: ({ row }) => (
         <div>
-          {row.getValue("assign")?.length > 0 && (
+          {(row.original.assign?.length ?? 0) > 0 && (
             <div className="flex items-center gap-3">
               <AvatarGroup
                 max={2}
-                total={row.getValue("assign").length}
+                total={row.original.assign?.length ?? 0}
                 countClass="w-8 h-8"
               >
-                {row.getValue("assign").map((user) => (
+                {row.original.assign?.map((user) => (
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
@@ -450,6 +475,7 @@ const TaskTable = ({ data, boards, onUpdateTask, boardID2 }) => {
                     mode="single"
                     selected={dueDate}
                     onSelect={setDueDate}
+                    required={false}
                     className=" w-full"
                   />
                 </TabsContent>
@@ -458,6 +484,7 @@ const TaskTable = ({ data, boards, onUpdateTask, boardID2 }) => {
                     mode="single"
                     selected={startDate}
                     onSelect={setStartDate}
+                    required={false}
                     className=" w-full"
                   />
                 </TabsContent>
@@ -480,12 +507,12 @@ const TaskTable = ({ data, boards, onUpdateTask, boardID2 }) => {
       header: "Priority",
       cell: ({ row }) => (
         <div>
-          {row.getValue("priority") ? (
+          {row.original.priority ? (
             <Badge
-              color={priorityColors[row.getValue("priority")] || ""}
+              color={priorityColors[row.original.priority] || ""}
               className="capitalize"
             >
-              {row.getValue("priority")}
+              {row.original.priority}
             </Badge>
           ) : (
             <DropdownMenu>
@@ -514,8 +541,8 @@ const TaskTable = ({ data, boards, onUpdateTask, boardID2 }) => {
       header: "Story Point",
       cell: ({ row }) => (
         <div>
-          {row.getValue("storyPoints") ? (
-            row.getValue("storyPoints")
+          {row.original.storyPoints ? (
+            row.original.storyPoints
           ) : (
             <input
               type="text"

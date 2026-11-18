@@ -6,9 +6,9 @@ import { VectorMap } from "@south-paw/react-vector-maps";
 
 const SelectingLayers = ({ height = 250 }) => {
 
-    const [selected, setSelected] = useState([]);
+    const [selected, setSelected] = useState<unknown[]>([]);
 
-    const onClick = ({ target }) => {
+    const onClick = ({ target }: { target: { attributes: { id: { value: number } } } }) => {
         const id = target.attributes.id.value;
         selected.includes(id)
             ? setSelected(selected.filter(sid => sid !== id))

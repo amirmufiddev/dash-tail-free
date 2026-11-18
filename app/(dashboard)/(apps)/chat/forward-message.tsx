@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Icon } from "@iconify/react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-const ForwardMessage = ({ open, contacts, setIsOpen }) => {
+const ForwardMessage = ({ open, contacts, setIsOpen }: { open: boolean; contacts: { contacts?: ({ avatar: string; fullName: React.ReactNode })[] }; setIsOpen: unknown }) => {
   return (
     <Dialog open={open} onOpenChange={() => alert("s")}>
       <DialogContent size="xl" className="px-0 pb-0">

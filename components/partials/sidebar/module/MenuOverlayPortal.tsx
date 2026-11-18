@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const MenuOverlayPortal = ({ isOpen, onClose }) => {
+const MenuOverlayPortal = ({ isOpen, onClose }: { isOpen: unknown; onClose: (() => void) }) => {
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(

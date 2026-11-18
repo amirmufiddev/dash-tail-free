@@ -106,7 +106,7 @@ const StackedBar2 = ({ height = 350 }) => {
         show: false,
       },
       labels: {
-        formatter: function (val) {
+        formatter: function (val: string) {
           return val + "K";
         },
         style: {

@@ -38,12 +38,12 @@ import SearchMessages from "./contact-info/search-messages";
 import Image from "next/image";
 
 export const ChatPage = () => {
-  const [selectedChatId, setSelectedChatId] = useState(null);
+  const [selectedChatId, setSelectedChatId] = useState<unknown | null>(null);
 
   const [showInfo, setShowInfo] = useState(true);
   const queryClient = useQueryClient();
   // Memoize getMessages using useCallback
-  const getMessagesCallback = useCallback((chatId) => getMessages(chatId), []);
+  const getMessagesCallback = useCallback((chatId: string | number) => getMessages(chatId), []);
   // reply state
   const [replay, setReply] = useState(false);
   const [replayData, setReplyData] = useState({});
@@ -51,7 +51,7 @@ export const ChatPage = () => {
   // search state
   const [isOpenSearch, setIsOpenSearch] = useState(false);
 
-  const [pinnedMessages, setPinnedMessages] = useState([]);
+  const [pinnedMessages, setPinnedMessages] = useState<{ avatar: string; note: React.ReactNode }[]>([]);
 
   const {
     isLoading,
@@ -100,19 +100,19 @@ export const ChatPage = () => {
     },
   });
 
-  const onDelete = (selectedChatId, index) => {
+  const onDelete = (selectedChatId: string | number, index: unknown) => {
     const obj = { selectedChatId, index };
     deleteMutation.mutate(obj);
   };
 
-  const openChat = (chatId) => {
+  const openChat = (chatId: string | number | null) => {
     setSelectedChatId(chatId);
     setReply(false);
   };
   const handleShowInfo = () => {
     setShowInfo(!showInfo);
   };
-  const handleSendMessage = (message) => {
+  const handleSendMessage = (message: unknown) => {
     if (!selectedChatId || !message) return;
 
     const newMessage = {
@@ -126,7 +126,7 @@ export const ChatPage = () => {
   const chatHeightRef = useRef(null);
 
   // replay message
-  const handleReply = (data, contact) => {
+  const handleReply = (data: unknown, contact: unknown) => {
     const newObj = {
       message: data,
       contact,
@@ -149,7 +149,7 @@ export const ChatPage = () => {
     setIsOpenSearch(!isOpenSearch);
   };
   // handle pin note
-  const handlePinNote = (note) => {
+  const handlePinNote = (note: unknown) => {
     setPinnedMessages([...pinnedMessages, note]);
     console.log(pinnedMessages);
   };

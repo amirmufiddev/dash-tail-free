@@ -12,7 +12,7 @@ const TopCountries = () => {
     lng: 77.01502627
   },)
 
-  const handleSelected = (data) => {
+  const handleSelected = (data: unknown) => {
     setSelected(data)
   }
 

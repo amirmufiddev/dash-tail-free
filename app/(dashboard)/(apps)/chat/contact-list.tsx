@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { cn, formatTime } from "@/lib/utils";
 import { Icon } from "@iconify/react";
 
-const ContactList = ({ contact, openChat, selectedChatId }) => {
+const ContactList = ({ contact, openChat, selectedChatId }: { contact: { avatar: { src: string }; id: string | number; fullName: ({ slice: ((arg0: number, arg1: number) => unknown) } | React.ReactNode); status: string; about: unknown; chat: { lastMessage?: React.ReactNode }; unreadmessage: number; date: React.ReactNode }; openChat: ((arg0: unknown) => unknown); selectedChatId: string | number }) => {
   const { avatar, id, fullName, status, about, chat, unreadmessage, date } =
     contact;
 

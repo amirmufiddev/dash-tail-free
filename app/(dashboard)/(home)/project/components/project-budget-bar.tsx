@@ -86,11 +86,11 @@ const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: readon
 
   return null;
 };
-const YAxisFormatter = (value) => {
+const YAxisFormatter = (value: number) => {
   return `${value / 1000}k`;
 };
 
-const CustomLegend = (props) => {
+const CustomLegend = (props: { payload: ({ color: string; value: string })[] }) => {
   const { payload } = props;
 
   return (

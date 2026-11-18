@@ -12,7 +12,7 @@ import {
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 
-export function DataTableRowActions({ row }) {
+export function DataTableRowActions({ row }: { row: { original?: { isFavourite?: unknown; id?: string } } }) {
 
   return (
     <div className="flex justify-end gap-3 items-center">

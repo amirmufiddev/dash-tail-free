@@ -4,15 +4,22 @@ import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Check } from "lucide-react";
-const Comments = ({ className, comments = undefined, taskId = undefined }) => {
-  const filteredComments =
-    comments?.filter((cm) => cm.subTaskId === taskId) || [];
+import type { CommentRecord } from "../../types";
 
-  const totalComments = filteredComments ? filteredComments.length : 0;
-  let content = "comments";
-  if (totalComments < 2) {
-    content = "comment";
-  }
+const Comments = ({
+  className,
+  comments = [],
+  taskId,
+}: {
+  className?: string;
+  comments?: CommentRecord[];
+  taskId: string | number;
+}) => {
+  const filteredComments =
+    comments?.filter((cm) => cm.subTaskId === taskId) ?? [];
+
+  const totalComments = filteredComments.length;
+  const content = totalComments < 2 ? "comment" : "comments";
 
   return (
     <div className="flex flex-col justify-between">
@@ -32,13 +39,15 @@ const Comments = ({ className, comments = undefined, taskId = undefined }) => {
         <div className="relative before:absolute before:top-1/2 -translate-y-1/2 before:left-0 before:w-full before:h-[1px] before:bg-default-300 text-center">
           <span className="relative bg-card   px-3">Today</span>
         </div>
-        {/* jodi comments thake */}
         <div className={className}>
           <ScrollArea className="h-full">
             <div className="space-y-3.5 px-5">
-              {filteredComments?.length > 0 ? (
-                filteredComments.map((comment) => (
-                  <div className="flex gap-2" key={`comment-key-${comment.id}`}>
+              {filteredComments.length > 0 ? (
+                filteredComments.map((comment, idx) => (
+                  <div
+                    className="flex gap-2"
+                    key={`comment-key-${comment.id ?? idx}`}
+                  >
                     <div className="felx-none">
                       <Avatar>
                         <AvatarImage src={comment.avatar} />

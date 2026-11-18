@@ -8,7 +8,7 @@ import {
 import { useMediaQuery } from "@/hooks/use-media-query";
 const ErrorAlertSteps = () => {
   const steps = ["Step 1", "Step 2", "Step 3"];
-  const isStepFailed = (step) => {
+  const isStepFailed = (step: number) => {
     return step === 1;
   };
   const isTablet = useMediaQuery("(max-width: 1024px)");

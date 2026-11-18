@@ -10,7 +10,7 @@ import figmai from "@/public/images/files/figma.png";
 import aii from "@/public/images/files/ai.png";
 import { Icon } from "@iconify/react";
 
-const SingleFileCard = ({ item }) => {
+const SingleFileCard = ({ item }: { item: { background: string; ext: string; heading?: React.ReactNode; date?: React.ReactNode; size?: React.ReactNode } }) => {
   return (
     <div className="relative min-h-[164px] shadow-sm dark:border rounded">
       <Image

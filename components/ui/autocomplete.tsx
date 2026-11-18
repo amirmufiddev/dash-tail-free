@@ -34,9 +34,10 @@ const Autocomplete = React.forwardRef<HTMLDivElement, AutocompleteProps>(
   ({ label, className, children, labelClass, ...props }, ref) => {
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState("");
-    const [selectedLabel, setSelectedLabel] = React.useState("Select item...");
+    const [selectedLabel, setSelectedLabel] =
+      React.useState<React.ReactNode>("Select item...");
 
-    const handleSelect = (newValue: string, newLabel: string) => {
+    const handleSelect = (newValue: string, newLabel: React.ReactNode) => {
       setValue(newValue);
       setSelectedLabel(newLabel);
       setOpen(false);
@@ -60,17 +61,16 @@ const Autocomplete = React.forwardRef<HTMLDivElement, AutocompleteProps>(
             <CommandInput placeholder={`Search ${label.toLowerCase()}...`} />
             <CommandEmpty>No item found.</CommandEmpty>
             <CommandGroup>
-              {React.Children.map(children, (child) =>
-                React.cloneElement(
-                  child as React.ReactElement<AutocompleteItemProps>,
-                  {
-                    onSelect: handleSelect,
-                    isSelected:
-                      (child as React.ReactElement<AutocompleteItemProps>).props
-                        .value === value,
-                  }
-                )
-              )}
+              {React.Children.map(children, (child) => {
+                if (!React.isValidElement<AutocompleteItemProps>(child)) {
+                  return child;
+                }
+                const itemProps: Partial<AutocompleteItemProps> = {
+                  onSelect: handleSelect,
+                  isSelected: child.props.value === value,
+                };
+                return React.cloneElement(child, itemProps);
+              })}
             </CommandGroup>
           </Command>
         </DropdownMenuContent>
@@ -93,7 +93,7 @@ const AutocompleteItem = React.forwardRef<
   AutocompleteItemProps
 >(({ children, value, onSelect, isSelected, ...props }, ref) => {
     const handleItemClick = () => {
-      onSelect(value, children);
+      onSelect?.(value, children);
     };
 
     return (

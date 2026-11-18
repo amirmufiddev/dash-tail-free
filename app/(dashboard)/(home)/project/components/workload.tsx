@@ -60,7 +60,7 @@ const Workload = ({ height = 285 }) => {
   const { theme: mode } = useTheme();
   const theme = themes.find((theme) => theme.name === config);
 
-  const renderCustomizedLabel = (props) => {
+  const renderCustomizedLabel = (props: { x: number; y: number; width: number; height: unknown; value: React.ReactNode }) => {
     const { x, y, width, height, value } = props;
     const radius = 10;
 

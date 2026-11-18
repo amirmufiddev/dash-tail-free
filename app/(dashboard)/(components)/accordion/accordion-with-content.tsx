@@ -11,7 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import avatar2 from "@/public/images/avatar/avatar-2.jpg";
 
-const AccordionTrigger = ({ children, value, activeItem, setActiveItem }) => {
+const AccordionTrigger = ({ children, value, activeItem, setActiveItem }: { children: React.ReactNode; value: unknown; activeItem: unknown; setActiveItem: ((arg0: unknown) => void) }) => {
 
 
   const isOpen = activeItem === value;
@@ -38,7 +38,7 @@ const AccordionTrigger = ({ children, value, activeItem, setActiveItem }) => {
 };
 
 const AccordionWithContent = () => {
-  const [activeItem, setActiveItem] = useState(null);
+  const [activeItem, setActiveItem] = useState<unknown | null>(null);
   return (
     <Accordion type="single" collapsible className="w-full  space-y-3.5">
       <AccordionItem value="item-1">

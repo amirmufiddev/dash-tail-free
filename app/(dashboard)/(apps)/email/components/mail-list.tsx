@@ -7,7 +7,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Icon } from "@iconify/react";
 import DeleteConfirmationDialog from "@/components/delete-confirmation-dialog";
 import { deleteMailAction } from "./_action";
-export function MailList({ mail, handleSelectedMail }) {
+import type { MailRecord } from "../types";
+export function MailList({ mail, handleSelectedMail }: { mail: MailRecord; handleSelectedMail: (id: string | number) => void }) {
   const { id, name, label, text, starred } = mail;
   const [isChecked, setIsChecked] = React.useState(false);
   const [open, setOpen] = React.useState(false);

@@ -89,11 +89,11 @@ const data = [
   },
 ];
 
-const monthTickFormatter = (tick) => {
+const monthTickFormatter = (tick: string | number | Date) => {
   const date = new Date(tick);
   return String(date.getMonth() + 1);
 };
-const renderQuarterTick = (tickProps) => {
+const renderQuarterTick = (tickProps: { x: number; y: number; payload: { value: string | number | Date; offset: number } }) => {
   const { x, y, payload } = tickProps;
   const { value, offset } = payload;
   const date = new Date(value);

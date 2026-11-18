@@ -10,38 +10,38 @@ const VerfiyForm = () => {
   const otpArray = Array.from({ length: totalOtpField }, () => "");
   const [otp, setOtp] = useState(otpArray);
   const otpFields = Array.from({ length: totalOtpField }, (_, index) => index);
-  const inputRefs = useRef([]);
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  const handleChange = (e, index) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>, index: number) => {
     const { value } = e.target;
-    if (!isNaN(value) && value.length <= 1) {
+    if (!isNaN(Number(value)) && value.length <= 1) {
       const newOtp = [...otp];
       newOtp[index] = value;
       setOtp(newOtp);
       if (value.length === 1 && index < totalOtpField - 1) {
-        inputRefs.current[index + 1].focus();
+        inputRefs.current[index + 1]?.focus();
       }
     }
   };
-  const handleKeyDown = (index, event) => {
+  const handleKeyDown = (index: number, event: React.KeyboardEvent<HTMLElement>) => {
     if (event.key === "Backspace" && otp[index] === "" && index > 0) {
       setOtp(prevOtp => {
         const newOtp = [...prevOtp];
         newOtp[index - 1] = "";
         return newOtp;
       });
-      inputRefs.current[index - 1].focus();
+      inputRefs.current[index - 1]?.focus();
     } else if (event.key === "ArrowLeft" && index > 0) {
-      inputRefs.current[index - 1].focus();
+      inputRefs.current[index - 1]?.focus();
     } else if (event.key === "ArrowRight" && index < totalOtpField - 1) {
-      inputRefs.current[index + 1].focus();
+      inputRefs.current[index + 1]?.focus();
     }
   };
   const handleSubmit = () => {
     const enteredOtp = otp.join("");
     console.log("Entered OTP:", enteredOtp);
     setOtp(otpArray);
-    inputRefs.current[0].focus();
+    inputRefs.current[0]?.focus();
   };
 
   const isOtpComplete = otp.every((digit) => digit !== "");

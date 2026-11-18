@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { chats } from "../data";
 
-export async function POST(request, response) {
+export async function POST(request: NextRequest, response: unknown) {
   const obj = await request.json();
 
   let activeChat = chats.find((item) => item.id === parseInt(obj.contact.id));

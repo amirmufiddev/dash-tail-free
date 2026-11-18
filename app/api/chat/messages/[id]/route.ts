@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { chats, contacts } from "../../data";
 
-export async function GET(request, response) {
+export async function GET(request: NextRequest, response: { params: Promise<{ id: string }> }) {
   const id = (await response.params).id;
 
   // Find the item with the given ID
@@ -17,7 +17,7 @@ export async function GET(request, response) {
   }
 }
 
-export async function DELETE(request, response) {
+export async function DELETE(request: NextRequest, response: unknown) {
   const { selectedChatId, index } = await request.json();
 
   const chatIndex = chats.findIndex(

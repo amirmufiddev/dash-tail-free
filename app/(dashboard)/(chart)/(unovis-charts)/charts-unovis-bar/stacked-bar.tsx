@@ -21,7 +21,7 @@ const chartLabels = Object.entries(labels).map(function ([k, v], i) {
   return {
     key: k,
     legend: v,
-    tooltip: function (d) {
+    tooltip: function (d: { [key: string]: string }) {
       return [
         v.split(" ")[0],
         `<span style="color: var(--vis-color${i}); font-weight: 800">${d[k]}%</span>`,
@@ -30,7 +30,7 @@ const chartLabels = Object.entries(labels).map(function ([k, v], i) {
   };
 });
 
-function tooltipTemplate(d) {
+function tooltipTemplate(d: { country: string; total: string }) {
   const title = `<div style="color: #666; text-align: center">${d.country}</div>`;
   const total = `Total: <b>${d.total}%</b> of population with a college degree</br>`;
   const stats = chartLabels

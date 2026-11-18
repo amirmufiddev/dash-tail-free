@@ -4,7 +4,20 @@ import { Badge } from "@/components/ui/badge";
 import { cn, isLocationMatch } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-const SingleMenuItem = ({ item, collapsed, hovered }) => {
+const SingleMenuItem = ({
+  item,
+  collapsed,
+  hovered,
+}: {
+  item: {
+    badge?: React.ReactNode;
+    href: string;
+    title: React.ReactNode;
+    icon?: React.ElementType;
+  };
+  collapsed: boolean;
+  hovered: boolean;
+}) => {
   const { badge, href, title } = item;
   const locationName = usePathname();
   return (
@@ -22,9 +35,11 @@ const SingleMenuItem = ({ item, collapsed, hovered }) => {
               }
             )}
           >
-            <span className="flex-grow-0">
-              <item.icon className="w-5 h-5  " />
-            </span>
+            {item.icon && (
+              <span className="flex-grow-0">
+                <item.icon className="w-5 h-5  " />
+              </span>
+            )}
             <div className="text-box flex-grow">{title}</div>
             {badge && <Badge className=" rounded">{item.badge}</Badge>}
           </div>
@@ -42,7 +57,7 @@ const SingleMenuItem = ({ item, collapsed, hovered }) => {
                 }
               )}
             >
-              <item.icon className="w-6 h-6" />
+              {item.icon && <item.icon className="w-6 h-6" />}
             </span>
           </div>
         )}

@@ -4,7 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 
 const OptionArrayCheckbox = () => {
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState<unknown[]>([]);
   const options = [
     {
       value: "orange",

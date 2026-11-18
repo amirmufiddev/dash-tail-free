@@ -33,16 +33,26 @@ const newtags = [
     label: "UI/UX",
   },
 ];
-const tagsColorMap = {
+import type { TaskRecord } from "../types";
+
+const tagsColorMap: Record<string, string> = {
   development: "destructive",
   planning: "info",
   design: "success",
 };
 const themeColors = ["primary", "success", "info", "warning", "destructive"];
 
-const AssignTags = ({ task, taskId }) => {
+const AssignTags = ({
+  task,
+  taskId,
+}: {
+  task: TaskRecord;
+  taskId: string | number;
+}) => {
   const [open, setOpen] = React.useState(false);
-  const [selectedValues, setSelectedValues] = React.useState(task?.tags || []);
+  const [selectedValues, setSelectedValues] = React.useState<string[]>(
+    task?.tags ?? []
+  );
   const [openTagColor, setOpenTagColor] = useState(false);
 
   const [newTagName, setNewTagName] = useState("");
@@ -58,7 +68,7 @@ const AssignTags = ({ task, taskId }) => {
     setOpen(false);
     setOpenTagColor(false);
   };
-  const handleSelect = async (value) => {
+  const handleSelect = async (value: string) => {
     const index = selectedValues.indexOf(value);
     let updatedValues;
 
@@ -83,7 +93,9 @@ const AssignTags = ({ task, taskId }) => {
     }
   };
 
-  const handleTagSubmission = async (e) => {
+  const handleTagSubmission = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
 
     const newTag = {

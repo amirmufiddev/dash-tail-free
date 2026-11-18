@@ -19,13 +19,13 @@ const Sidebar = () => {
   if (!isDesktop && (sidebarType === "popover" || sidebarType === "classic")) {
     selectedSidebar = <MobileSidebar />;
   } else {
-    const sidebarComponents = {
+    const sidebarComponents: Record<string, React.ReactNode> = {
       module: <ModuleSidebar collapsed={collapsed} />,
       popover: <PopoverSidebar collapsed={collapsed} />,
       classic: <ClassicSidebar />,
     };
 
-    selectedSidebar = sidebarComponents[sidebarType] || <ModuleSidebar />;
+    selectedSidebar = sidebarComponents[sidebarType] ?? <ModuleSidebar />;
   }
 
   return <div>{selectedSidebar}</div>;

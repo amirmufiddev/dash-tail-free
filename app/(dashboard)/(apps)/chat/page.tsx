@@ -36,13 +36,13 @@ import ContactInfo from "./contact-info";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
 const ChatPage = () => {
-  const [selectedChatId, setSelectedChatId] = useState(null);
+  const [selectedChatId, setSelectedChatId] = useState<unknown | null>(null);
   const [showContactSidebar, setShowContactSidebar] = useState(false);
 
   const [showInfo, setShowInfo] = useState(false);
   const queryClient = useQueryClient();
   // Memoize getMessages using useCallback
-  const getMessagesCallback = useCallback((chatId) => getMessages(chatId), []);
+  const getMessagesCallback = useCallback((chatId: string | number) => getMessages(chatId), []);
   // reply state
   const [replay, setReply] = useState(false);
   const [replayData, setReplyData] = useState({});
@@ -50,7 +50,7 @@ const ChatPage = () => {
   // search state
   const [isOpenSearch, setIsOpenSearch] = useState(false);
 
-  const [pinnedMessages, setPinnedMessages] = useState([]);
+  const [pinnedMessages, setPinnedMessages] = useState<{ selectedChatId: string | number; index: unknown }[]>([]);
   // Forward State
   const [isForward, setIsForward] = useState(false);
 
@@ -105,7 +105,7 @@ const ChatPage = () => {
   //   const obj = { selectedChatId, index };
   //   deleteMutation.mutate(obj);
   // };
-  const onDelete = (selectedChatId, index) => {
+  const onDelete = (selectedChatId: string | number, index: unknown) => {
     const obj = { selectedChatId, index };
     deleteMutation.mutate(obj);
 
@@ -117,7 +117,7 @@ const ChatPage = () => {
     setPinnedMessages(updatedPinnedMessages);
   };
 
-  const openChat = (chatId) => {
+  const openChat = (chatId: string | number | null) => {
     setSelectedChatId(chatId);
     setReply(false);
     if (showContactSidebar) {
@@ -127,7 +127,7 @@ const ChatPage = () => {
   const handleShowInfo = () => {
     setShowInfo(!showInfo);
   };
-  const handleSendMessage = (message) => {
+  const handleSendMessage = (message: unknown) => {
     if (!selectedChatId || !message) return;
 
     const newMessage = {
@@ -141,7 +141,7 @@ const ChatPage = () => {
   const chatHeightRef = useRef(null);
 
   // replay message
-  const handleReply = (data, contact) => {
+  const handleReply = (data: unknown, contact: unknown) => {
     const newObj = {
       message: data,
       contact,
@@ -174,7 +174,7 @@ const ChatPage = () => {
   };
   // handle pin note
 
-  const handlePinMessage = (note) => {
+  const handlePinMessage = (note: { note: unknown } | never[]) => {
     const updatedPinnedMessages = [...pinnedMessages];
 
     const existingIndex = updatedPinnedMessages.findIndex(
@@ -192,7 +192,7 @@ const ChatPage = () => {
     setPinnedMessages(updatedPinnedMessages);
   };
 
-  const handleUnpinMessage = (pinnedMessage) => {
+  const handleUnpinMessage = (pinnedMessage: { note: unknown; avatar: unknown }) => {
     // Create a copy of the current pinned messages array
     const updatedPinnedMessages = [...pinnedMessages];
 

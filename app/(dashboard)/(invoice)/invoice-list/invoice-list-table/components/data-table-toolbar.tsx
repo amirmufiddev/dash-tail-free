@@ -13,8 +13,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Link from "next/link";
+import type { RowData } from "@tanstack/react-table";
+import type { LegacyReactTable } from "@tanstack/react-table/legacy";
 
-export function DataTableToolbar({ table }) {
+function readFilterText(value: unknown): string {
+  if (typeof value === "string" || typeof value === "number") return String(value);
+  return "";
+}
+
+export function DataTableToolbar<TData extends RowData>({ table }: { table: LegacyReactTable<TData> }) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
   return (
@@ -41,7 +48,7 @@ export function DataTableToolbar({ table }) {
         <div className="relative">
           <Input
             placeholder="Search Invoice..."
-            value={table.getColumn("id")?.getFilterValue() ?? ""}
+            value={readFilterText(table.getColumn("id")?.getFilterValue())}
             onChange={(event) =>
               table.getColumn("id")?.setFilterValue(event.target.value)
             }

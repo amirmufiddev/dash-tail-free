@@ -1,14 +1,21 @@
 "use client";
-import React, { useState } from "react";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import React from "react";
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 import { cn, isLocationMatch } from "@/lib/utils";
 import Link from "next/link";
+import type { SidebarMultiMenuItem } from "../types";
 
-const MultiNestedMenus = ({ multiIndex, index, menus, locationName }) => {
+const MultiNestedMenus = ({
+  multiIndex,
+  index,
+  menus,
+  locationName,
+}: {
+  multiIndex: number | null;
+  index: number;
+  menus?: SidebarMultiMenuItem[];
+  locationName: string;
+}) => {
   return (
     <Collapsible open={multiIndex === index}>
       <CollapsibleContent className="CollapsibleContent">

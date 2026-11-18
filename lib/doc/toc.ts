@@ -1,25 +1,38 @@
 import { toc } from "mdast-util-toc";
 import { remark } from "remark";
+import type { Node } from "unist";
 import { visit } from "unist-util-visit";
 
 const textTypes = ["text", "emphasis", "strong", "inlineCode"];
 
-function flattenNode(node) {
-  const p = [];
-  visit(node, (node) => {
-    if (!textTypes.includes(node.type)) return;
-    p.push(node.value);
-  });
-  return p.join(``);
+interface MdNode extends Node {
+  value?: string;
+  url?: string;
+  children?: MdNode[];
 }
 
-function getItems(node, current) {
+interface TocItem {
+  title?: string;
+  url?: string;
+  items?: TocItem[];
+}
+
+function flattenNode(node: Node) {
+  const parts: string[] = [];
+  visit(node, (current: MdNode) => {
+    if (!textTypes.includes(current.type) || typeof current.value !== "string") return;
+    parts.push(current.value);
+  });
+  return parts.join("");
+}
+
+function getItems(node: MdNode | undefined, current: TocItem): TocItem {
   if (!node) {
     return {};
   }
 
   if (node.type === "paragraph") {
-    visit(node, (item) => {
+    visit(node, (item: MdNode) => {
       if (item.type === "link") {
         current.url = item.url;
         current.title = flattenNode(node);
@@ -34,14 +47,16 @@ function getItems(node, current) {
   }
 
   if (node.type === "list") {
-    current.items = node.children.map((i) => getItems(i, {}));
-
+    current.items = (node.children ?? []).map((child) => getItems(child, {}));
     return current;
-  } else if (node.type === "listItem") {
-    const heading = getItems(node.children[0], {});
+  }
 
-    if (node.children.length > 1) {
-      getItems(node.children[1], heading);
+  if (node.type === "listItem") {
+    const heading = getItems(node.children?.[0], {});
+
+    const nested = node.children?.[1];
+    if (nested) {
+      getItems(nested, heading);
     }
 
     return heading;
@@ -50,14 +65,12 @@ function getItems(node, current) {
   return {};
 }
 
-const getToc = () => (node, file) => {
+const getToc = () => (node: Node, file: { data: unknown }) => {
   const table = toc(node);
-  const items = getItems(table.map, {});
-
-  file.data = items;
+  file.data = getItems(table.map as MdNode | undefined, {});
 };
 
-export async function getTableOfContents(content) {
+export async function getTableOfContents(content: string) {
   const result = await remark().use(getToc).process(content);
 
   return result.data;

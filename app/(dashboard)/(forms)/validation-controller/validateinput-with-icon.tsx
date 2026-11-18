@@ -31,7 +31,7 @@ const ValidateInputWithIcon = () => {
     },
   });
 
-  function onSubmit(data) {
+  function onSubmit(data: unknown) {
     toast({
       title: "You submitted the following values:",
       description: (

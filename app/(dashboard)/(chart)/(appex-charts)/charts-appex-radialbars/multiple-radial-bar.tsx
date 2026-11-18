@@ -41,7 +41,7 @@ const MultipleRadialBar = ({ height = 350 }) => {
           total: {
             show: true,
             label: "Total",
-            formatter: function (w) {
+            formatter: function (w: unknown) {
               return 249;
             },
           },

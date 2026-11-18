@@ -1,8 +1,28 @@
-import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { mails } from "./data";
 
-export async function GET(request, response) {
+type Mail = (typeof mails)[number];
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function readMail(value: unknown, id: number): Mail {
+  const body = isRecord(value) ? value : {};
+  return {
+    id,
+    name: typeof body.name === "string" ? body.name : "",
+    subject: typeof body.subject === "string" ? body.subject : "",
+    text: typeof body.text === "string" ? body.text : "",
+    starred: body.starred === true,
+    isRead: body.isRead === true,
+    date: typeof body.date === "string" ? body.date : new Date().toISOString(),
+    category: typeof body.category === "string" ? body.category : "primary",
+    label: typeof body.label === "string" ? body.label : "work",
+  };
+}
+
+export async function GET(_request: NextRequest) {
   try {
     return NextResponse.json({
       status: "success",
@@ -18,16 +38,16 @@ export async function GET(request, response) {
   }
 }
 
-export async function POST(request, response) {
+export async function POST(request: NextRequest) {
   try {
-    let reqBody = await request.json();
-    reqBody.id = mails.length + 1;
-    mails.unshift(reqBody);
+    const reqBody: unknown = await request.json();
+    const mail = readMail(reqBody, mails.length + 1);
+    mails.unshift(mail);
 
     return NextResponse.json({
       status: "success",
       message: "Email Send successfully",
-      data: reqBody,
+      data: mail,
     });
   } catch (error) {
     return NextResponse.json({

@@ -28,6 +28,7 @@ type AvatarGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
   ({ className, children, max, total, custom, countClass, ...props }, ref) => {
     const avatars = React.Children.toArray(children);
+    const visibleCount = max ?? avatars.length;
 
     return (
       <div
@@ -38,14 +39,14 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         )}
         {...props}
       >
-        {avatars.slice(0, max).map((avatar, index) => (
+        {avatars.slice(0, visibleCount).map((avatar, index) => (
           <React.Fragment key={index}>{avatar}</React.Fragment>
         ))}
-        {avatars.length > max && (
+        {avatars.length > visibleCount && (
           <>
             {custom ? (
               <div className=" inline-block" style={{ marginLeft: "8px" }}>
-                +{avatars.length - max} more
+                +{avatars.length - (max ?? visibleCount)} more
               </div>
             ) : (
               <Avatar
@@ -55,7 +56,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
                 )}
               >
                 <AvatarFallback className="font-normal">
-                  +{total ? total : avatars.length - max}
+                  +{total ? total : avatars.length - visibleCount}
                 </AvatarFallback>
               </Avatar>
             )}

@@ -23,7 +23,7 @@ const options = [
 ];
 
 const styles = {
-  option: (provided, state) => ({
+  option: (provided: Record<string, unknown>, state: unknown) => ({
     ...provided,
     fontSize: "14px",
   }),
@@ -32,7 +32,13 @@ const styles = {
 const schema = z.object({
   title: z.string().min(2, { message: "title lagbe re vai ." }),
 });
-const AddTask = ({ onClose, boardId }) => {
+const AddTask = ({
+  onClose,
+  boardId,
+}: {
+  onClose: () => void;
+  boardId: string | number;
+}) => {
   const [isPending, startTransition] = React.useTransition();
   const {
     register,
@@ -45,12 +51,12 @@ const AddTask = ({ onClose, boardId }) => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    data.boardId = boardId;
+  const onSubmit = (data: { title: string }) => {
+    const payload = { ...data, boardId };
     var result;
 
     startTransition(async () => {
-      result = await addTaskAction(data);
+      result = await addTaskAction(payload);
       toast.success("Successfully added");
     });
 

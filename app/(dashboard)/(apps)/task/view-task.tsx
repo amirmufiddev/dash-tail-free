@@ -10,8 +10,10 @@ import CreateTask from "./components/create-task";
 import EditTask from "./components/edit-task";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
+import type { TaskRow } from "./components/task-table";
+import type { TaskContact } from "./components/contact-list";
 
-const ViewTask = ({ contacts, tasks }) => {
+const ViewTask = ({ contacts, tasks }: { contacts: { contacts?: TaskContact[] }; tasks: TaskRow[] }) => {
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const handleSheetOpen = () => {

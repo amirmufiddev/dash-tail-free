@@ -50,7 +50,7 @@ const OrganizationTree = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initEdges);
 
-  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
+  const onConnect = useCallback((params: import("/home/amirmufid/projects/dash-tail-free/node_modules/reactflow/dist/esm/index").Edge | import("/home/amirmufid/projects/dash-tail-free/node_modules/reactflow/dist/esm/index").Connection) => setEdges((eds) => addEdge(params, eds)), []);
 
   return (
     <Card>

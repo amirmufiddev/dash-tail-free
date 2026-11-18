@@ -5,11 +5,18 @@ import MultiMenuHandler from "../common/multi-menu-handler";
 import MultiNestedMenu from "../common/multi-nested-menu";
 import { cn, isLocationMatch } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import type { SidebarMenuItem } from "../types";
 
-const CollapsedHoverMenu = ({ item, index = undefined, menuTitle }) => {
-  const [activeMultiMenu, setMultiMenu] = useState(null);
+const CollapsedHoverMenu = ({
+  item,
+  menuTitle,
+}: {
+  item: SidebarMenuItem;
+  menuTitle: React.ReactNode;
+}) => {
+  const [activeMultiMenu, setMultiMenu] = useState<number | null>(null);
 
-  const toggleMultiMenu = (subIndex) => {
+  const toggleMultiMenu = (subIndex: number) => {
     if (activeMultiMenu === subIndex) {
       setMultiMenu(null);
     } else {
@@ -22,7 +29,7 @@ const CollapsedHoverMenu = ({ item, index = undefined, menuTitle }) => {
       {item?.child ? (
         <ul className="space-y-2 relative before:absolute before:left-4 before:top-0  before:h-[calc(100%-5px)]  before:w-[2px] before:bg-primary/20 before:rounded">
           <li className=" text-primary-foreground bg-primary font-medium px-3 py-3 rounded  relative flex items-center gap-3 ">
-            <item.icon className="h-5 w-5 " />
+            {item.icon && <item.icon className="h-5 w-5 " />}
             {menuTitle}
           </li>
           {item.child?.map((subItem, j) => (
@@ -54,7 +61,9 @@ const CollapsedHoverMenu = ({ item, index = undefined, menuTitle }) => {
                   </div>
                 </div>
               ) : (
-                <SubMenuItem subItem={subItem} subIndex={j} />
+                subItem.href && (
+                  <SubMenuItem subItem={subItem} subIndex={j} />
+                )
               )}
             </li>
           ))}

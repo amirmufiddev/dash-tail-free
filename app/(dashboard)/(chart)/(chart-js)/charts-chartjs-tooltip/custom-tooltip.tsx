@@ -29,7 +29,7 @@ ChartJS.register(
   PointElement
 );
 
-const footer = (tooltipItems) => {
+const footer = (tooltipItems: ({ parsed: { y: number } })[]) => {
   let sum = 0;
 
   tooltipItems.forEach(function (tooltipItem) {

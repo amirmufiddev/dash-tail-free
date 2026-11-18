@@ -145,7 +145,7 @@ const COLORS = [
     '#F8C12D'
 ];
 
-const CustomizedContent = ({ root, depth, x, y, width, height, index, colors, name }) => {
+const CustomizedContent = ({ root, depth, x, y, width, height, index, colors, name }: { root: { children: { length: number } }; depth: number; x: number; y: number; width: number; height: number; index: number; colors: { [key: number]: unknown }; name: React.ReactNode }) => {
     return (
         <g>
             <rect
@@ -189,7 +189,7 @@ const CustomContentTreeMap = ({ height = 300 }) => {
                 stroke="#fff"
                 fill={`hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].info})`}
                 content={
-                  ((props) => (
+                  ((props: unknown) => (
                     <CustomizedContent {...props} colors={COLORS} />
                   )) as never
                 }

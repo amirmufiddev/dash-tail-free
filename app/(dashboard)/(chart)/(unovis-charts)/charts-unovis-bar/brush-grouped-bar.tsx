@@ -24,14 +24,14 @@ const BrushGroupedBar = () => {
   const [duration, setDuration] = useState(undefined);
   const [items, setItems] = useState(legendItems);
 
-  const x = useCallback((d) => d.year, []);
+  const x = useCallback((d: { year: number }) => d.year, []);
 
   const y = useMemo(
-    () => items.map((i) => (d) => i.inactive ? null : d[i.key]),
+    () => items.map((i) => (d: { [key: string]: unknown }) => i.inactive ? null : d[i.key]),
     [items]
   );
 
-  const updateDomain = useCallback((selection, _, userDriven) => {
+  const updateDomain = useCallback((selection: { [key: number]: number }, _: unknown, userDriven: unknown) => {
     if (userDriven) {
       setDuration(0);
       setDomain(selection as [number, number]);
@@ -39,7 +39,7 @@ const BrushGroupedBar = () => {
   }, []);
 
   const updateItems = useCallback(
-    (item, i) => {
+    (item: { inactive: unknown }, i: number) => {
       const newItems = [...items];
       newItems[i] = { ...item, inactive: !item.inactive };
       setDuration(undefined);

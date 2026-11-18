@@ -1,4 +1,5 @@
 "use client";
+import type { ColumnFiltersState, SortingState } from "@tanstack/react-table";
 import * as React from "react";
 
 import {
@@ -31,35 +32,35 @@ const columns = [
   {
     accessorKey: "invoice",
     header: "Invoice",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => (
       <span>{row.getValue("invoice")}</span>
     ),
   },
   {
     accessorKey: "username",
     header: "Username",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => (
       <span className="whitespace-nowrap">{row.getValue("username")}</span>
     ),
   },
   {
     accessorKey: "date",
     header: "Date",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => (
       <span className="whitespace-nowrap">{row.getValue("date")}</span>
     ),
   },
   {
     accessorKey: "amount",
     header: "Amount",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => (
       <span>{row.getValue("amount")}</span>
     ),
   },
   {
     accessorKey: "isComplete",
     header: "Order Status",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => (
       <div className="whitespace-nowrap">
 
         {row.getValue("isComplete") === true ?
@@ -75,8 +76,8 @@ const columns = [
 ];
 
 const OrdersTable = () => {
-  const [sorting, setSorting] = React.useState([]);
-  const [columnFilters, setColumnFilters] = React.useState([]);
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState({});
   const [rowSelection, setRowSelection] = React.useState({});
 

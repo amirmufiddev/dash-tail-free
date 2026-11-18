@@ -5,7 +5,13 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-const Labels = ({ items, isCollapsed }) => {
+const Labels = ({
+  items,
+  isCollapsed,
+}: {
+  items: { color: string; label: React.ReactNode; total: React.ReactNode }[];
+  isCollapsed: boolean;
+}) => {
   return (
     <div
       className={cn("mx-4", {

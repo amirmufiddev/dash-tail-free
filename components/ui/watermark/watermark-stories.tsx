@@ -1,6 +1,8 @@
 import React from "react";
 import Watermark from "./watermark";
 
+type WatermarkStoryProps = React.ComponentProps<typeof Watermark>;
+
 export default {
   title: "watermark test",
   component: Watermark,
@@ -23,30 +25,36 @@ export default {
   },
 };
 
-const Template = (args) => (
+const Template = (args: WatermarkStoryProps) => (
   <Watermark {...args}>
     <div style={{ height: 500, backgroundColor: "#5f5f5f" }}></div>
   </Watermark>
 );
 
-export const Default = Template.bind({});
-Default.args = {
-  text: "Hello World",
+export const Default = {
+  render: Template,
+  args: {
+    text: "Hello World",
+  } satisfies Partial<WatermarkStoryProps>,
 };
 
-export const MultilineText = Template.bind({});
-MultilineText.args = {
-  text: "Hello\nagain",
-  multiline: true,
-  gutter: 16,
+export const MultilineText = {
+  render: Template,
+  args: {
+    text: "Hello\nagain",
+    multiline: true,
+    gutter: 16,
+  } satisfies Partial<WatermarkStoryProps>,
 };
 
-export const MultilineTextWithLineHeight = Template.bind({});
-MultilineTextWithLineHeight.args = {
-  text: "🌚\n🚀",
-  multiline: true,
-  lineHeight: "3.2rem",
-  gutter: 24,
-  rotate: 0,
-  opacity: 1,
+export const MultilineTextWithLineHeight = {
+  render: Template,
+  args: {
+    text: "🌚\n🚀",
+    multiline: true,
+    lineHeight: "3.2rem",
+    gutter: 24,
+    rotate: 0,
+    opacity: 1,
+  } satisfies Partial<WatermarkStoryProps>,
 };

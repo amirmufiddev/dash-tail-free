@@ -63,8 +63,9 @@ const Kbd = React.forwardRef<HTMLElement, KbdProps>(
       help: "?",
       space: "␣",
     };
+    const keyMap: Record<string, string> = kbdKeysMap;
     const getKeys = keys.map((key) => {
-      const keyLabel = kbdKeysMap[key];
+      const keyLabel = keyMap[key] ?? key;
       return (
         <abbr key={key} title={`key-${key}`} className=" no-underline  ">
           {keyLabel}

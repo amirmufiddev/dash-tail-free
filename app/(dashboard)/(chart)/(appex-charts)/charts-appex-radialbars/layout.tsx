@@ -2,7 +2,7 @@ export const metadata = {
   title: "Appex Radial Chart ",
 };
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 

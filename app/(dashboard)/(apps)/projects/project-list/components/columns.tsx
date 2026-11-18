@@ -24,7 +24,7 @@ import Link from "next/link";
 export const columns = [
   {
     id: "select",
-    header: ({ table }) => (
+    header: ({ table }: { table: { getIsAllPageRowsSelected: () => boolean; getIsSomePageRowsSelected: () => boolean; toggleAllPageRowsSelected: ((arg0: boolean) => unknown) } }) => (
       <div className=" min-w-[40px]">
         <Checkbox
           checked={
@@ -37,7 +37,7 @@ export const columns = [
         />
       </div>
     ),
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getIsSelected: () => boolean; toggleSelected: (value?: boolean) => void } }) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -50,10 +50,10 @@ export const columns = [
   },
   {
     accessorKey: "title",
-    header: ({ column }) => (
+    header: ({ column }: { column: unknown }) => (
       <DataTableColumnHeader column={column} title="Title" />
     ),
-    cell: ({ row }) => {
+    cell: ({ row }: { row: { original?: { id?: string; logo?: { src?: string }; title?: { slice?: ((arg0: number, arg1: number) => unknown) } }; getValue: ((arg0: string) => React.ReactNode) } }) => {
       return (
         <Link
           href={{
@@ -78,10 +78,10 @@ export const columns = [
   },
   {
     accessorKey: "status",
-    header: ({ column }) => (
+    header: ({ column }: { column: unknown }) => (
       <DataTableColumnHeader column={column} title="Status" />
     ),
-    cell: ({ row }) => {
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => {
       const status = statuses.find(
         (status) => status.value === row.getValue("status")
       );
@@ -102,14 +102,14 @@ export const columns = [
         </div>
       );
     },
-    filterFn: (row, id, value) => {
+    filterFn: (row: ({ getValue: ((arg0: string) => React.ReactNode) }), id: string | number, value: ({ includes: ((arg0: unknown) => unknown) })) => {
       return value.includes(row.getValue(id));
     },
   },
   {
     accessorKey: "assign",
     header: "Team",
-    cell: ({ row }) => {
+    cell: ({ row }: { row: { original?: { assign?: ({ image?: { src?: string } } | React.ReactNode)[] } } }) => {
       return (
         <>
           <AvatarGroup
@@ -137,7 +137,7 @@ export const columns = [
   {
     accessorKey: "percentage",
     header: "Progress",
-    cell: ({ row }) => {
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => {
       return (
         <div className="min-w-[190px]">
           <div className="flex justify-end mb-2">
@@ -151,10 +151,10 @@ export const columns = [
 
   {
     accessorKey: "priority",
-    header: ({ column }) => (
+    header: ({ column }: { column: unknown }) => (
       <DataTableColumnHeader column={column} title="Priority" />
     ),
-    cell: ({ row }) => {
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => {
       const priority = priorities.find(
         (priority) => priority.value === row.getValue("priority")
       );
@@ -169,14 +169,14 @@ export const columns = [
         </Badge>
       );
     },
-    filterFn: (row, id, value) => {
+    filterFn: (row: ({ getValue: ((arg0: string) => React.ReactNode) }), id: string | number, value: ({ includes: ((arg0: unknown) => unknown) })) => {
       return value.includes(row.getValue(id));
     },
   },
   {
     accessorKey: "dueDate",
     header: "Due Date",
-    cell: ({ row }) => {
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => {
       return (
         <div className="text-sm font-medium text-default-600 whitespace-nowrap">
           {row.getValue("dueDate")}
@@ -187,6 +187,6 @@ export const columns = [
   {
     id: "actions",
     header: "Action",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: ({ row }: { row: unknown }) => <DataTableRowActions row={row} />,
   },
 ];

@@ -67,7 +67,7 @@ const CustomAngle = ({ height = 350 }) => {
             markers: {
                 size: 0
             },
-            formatter: function (seriesName, opts) {
+            formatter: function (seriesName: string, opts: { w: { globals: { series: { [key: string]: string } } }; seriesIndex: string | number }) {
                 return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
             },
             itemMargin: {

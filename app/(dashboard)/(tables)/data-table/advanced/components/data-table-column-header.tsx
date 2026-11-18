@@ -8,6 +8,7 @@ import {
   Timer,
   Eye,
 } from "lucide-react";
+import type { RowData } from "@tanstack/react-table";
 import {
   LegacyColumn as Column
 } from "@tanstack/react-table/legacy";
@@ -22,7 +23,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export function DataTableColumnHeader<TData, TValue>({
+export function DataTableColumnHeader<TData extends RowData, TValue>({
   column,
   title,
   className,

@@ -25,14 +25,14 @@ const minimapStyle = {
   height: 120,
 };
 
-const onInit = (reactFlowInstance) => console.log('flow loaded:', reactFlowInstance);
+const onInit = (reactFlowInstance: unknown) => console.log('flow loaded:', reactFlowInstance);
 
 const OverviewFlow = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(
     initialNodes as Node[]
   );
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
+  const onConnect = useCallback((params: import("/home/amirmufid/projects/dash-tail-free/node_modules/reactflow/dist/esm/index").Edge | import("/home/amirmufid/projects/dash-tail-free/node_modules/reactflow/dist/esm/index").Connection) => setEdges((eds) => addEdge(params, eds)), []);
 
   // we are using a bit of a shortcut here to adjust the edge type
   // this could also be done with a custom edge for example

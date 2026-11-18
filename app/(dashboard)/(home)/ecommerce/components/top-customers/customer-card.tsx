@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
-const CustomerCard = ({ item, index }) => {
+const CustomerCard = ({ item, index }: { item: { name: React.ReactNode; score: React.ReactNode | string | number; image: { src: string }; color: string; amount: React.ReactNode }; index: number | React.ReactNode }) => {
   const { name, score, image, color, amount } = item;
 
 

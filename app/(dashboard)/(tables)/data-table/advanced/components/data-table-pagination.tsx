@@ -5,6 +5,8 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import type { RowData } from "@tanstack/react-table";
+import type { LegacyReactTable } from "@tanstack/react-table/legacy";
 import {
   Select,
   SelectContent,
@@ -13,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function DataTablePagination({ table }) {
+export function DataTablePagination<TData extends RowData>({ table }: { table: LegacyReactTable<TData> }) {
   return (
     <div className="flex items-center flex-wrap gap-2 justify-between px-2">
       <div className="flex-1 text-sm text-muted-foreground whitespace-nowrap">

@@ -15,12 +15,29 @@ import { Plus } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 
 const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
-const CalendarView = ({ events, categories }) => {
+type CalendarCategory = {
+  value: string;
+  label: string;
+  className?: string;
+};
+
+type CalendarEventSelection = {
+  event?: {
+    id?: string;
+    start?: Date | null;
+    end?: Date | null;
+    title?: string;
+    extendedProps?: { calendar?: string };
+  };
+  title?: string;
+};
+
+const CalendarView = ({ events, categories }: { events: { extendedProps: { calendar: string } }[]; categories: CalendarCategory[] }) => {
   const [selectedCategory, setSelectedCategory] = useState<string[] | null>(
     null
   );
-  const [selectedEventDate, setSelectedEventDate] = useState(null);
-  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedEventDate, setSelectedEventDate] = useState<{ date: Date } | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<CalendarEventSelection | null>(null);
   const [draggableInitialized, setDraggableInitialized] = useState(false);
 
   // event canvas state
@@ -35,7 +52,7 @@ const CalendarView = ({ events, categories }) => {
   ]);
 
   useEffect(() => {
-    setSelectedCategory(categories?.map((c) => c.value));
+    setSelectedCategory(categories?.map((c) => c.value) ?? []);
   }, [events, categories]);
 
   useEffect(() => {
@@ -71,10 +88,30 @@ const CalendarView = ({ events, categories }) => {
     };
   }, [dragEvents]);
   // event click
-  const handleEventClick = (arg) => {
+  const handleEventClick = (arg: {
+    event: {
+      id: string;
+      start: Date | null;
+      end: Date | null;
+      title: string;
+      extendedProps: { calendar?: unknown };
+    };
+  }) => {
+    const calendar = arg.event.extendedProps.calendar;
     setSelectedEventDate(null);
     setSheetOpen(true);
-    setSelectedEvent(arg);
+    setSelectedEvent({
+      title: arg.event.title,
+      event: {
+        id: arg.event.id,
+        start: arg.event.start,
+        end: arg.event.end,
+        title: arg.event.title,
+        extendedProps: {
+          calendar: typeof calendar === "string" ? calendar : undefined,
+        },
+      },
+    });
     wait().then(() => (document.body.style.pointerEvents = "auto"));
   };
   // handle close modal
@@ -83,14 +120,14 @@ const CalendarView = ({ events, categories }) => {
     setSelectedEvent(null);
     setSelectedEventDate(null);
   };
-  const handleDateClick = (arg) => {
+  const handleDateClick = (date: Date) => {
     setSheetOpen(true);
-    setSelectedEventDate(arg);
+    setSelectedEventDate({ date });
     setSelectedEvent(null);
     wait().then(() => (document.body.style.pointerEvents = "auto"));
   };
 
-  const handleCategorySelection = (category) => {
+  const handleCategorySelection = (category: string) => {
     setSelectedCategory((prev) => {
       const current = prev ?? [];
       if (current.includes(category)) {
@@ -100,20 +137,22 @@ const CalendarView = ({ events, categories }) => {
     });
   };
 
-  const handleClassName = (arg) => {
-    if (arg.event.extendedProps.calendar === "holiday") {
+  const handleClassName = (arg: { event: { extendedProps: { calendar?: unknown } } }) => {
+    const calendar = arg.event.extendedProps.calendar;
+    if (calendar === "holiday") {
       return "destructive";
-    } else if (arg.event.extendedProps.calendar === "business") {
+    } else if (calendar === "business") {
       return "primary";
-    } else if (arg.event.extendedProps.calendar === "personal") {
+    } else if (calendar === "personal") {
       return "success";
-    } else if (arg.event.extendedProps.calendar === "family") {
+    } else if (calendar === "family") {
       return "info";
-    } else if (arg.event.extendedProps.calendar === "etc") {
+    } else if (calendar === "etc") {
       return "info";
-    } else if (arg.event.extendedProps.calendar === "meeting") {
+    } else if (calendar === "meeting") {
       return "warning";
     }
+    return "";
   };
   const filteredEvents = events?.filter((event) =>
     selectedCategory?.includes(event.extendedProps.calendar)
@@ -125,7 +164,7 @@ const CalendarView = ({ events, categories }) => {
         <Card className="col-span-12 lg:col-span-4 2xl:col-span-3  pb-5">
           <CardContent className="p-0 ">
             <CardHeader className="border-none mb-2 pt-5">
-              <Button onClick={handleDateClick}>
+              <Button onClick={() => handleDateClick(new Date())}>
                 <Plus className="w-4 h-4 text-primary-foreground mr-1" />
                 Add Event
               </Button>
@@ -134,8 +173,8 @@ const CalendarView = ({ events, categories }) => {
               <Calendar
                 mode="single"
                 selected={date}
-                onSelect={(s) => {
-                  handleDateClick(s);
+                onSelect={(selected) => {
+                  if (selected) handleDateClick(selected);
                 }}
                 className="rounded-md border w-full p-0 border-none"
               />
@@ -205,7 +244,7 @@ const CalendarView = ({ events, categories }) => {
               dayMaxEvents={2}
               weekends={true}
               eventClassNames={handleClassName}
-              dateClick={handleDateClick}
+              dateClick={(arg) => handleDateClick(arg.date)}
               eventClick={handleEventClick}
               initialView="dayGridMonth"
             />

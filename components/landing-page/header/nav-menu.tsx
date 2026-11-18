@@ -9,7 +9,10 @@ export default function NavMenu() {
   const [list, setList] = React.useState<HTMLUListElement | null>(null);
   const [value, setValue] = React.useState("");
 
-  const onNodeUpdate = (trigger, itemValue) => {
+  const onNodeUpdate = (
+    trigger: HTMLButtonElement | null,
+    itemValue: string
+  ) => {
     if (trigger && list && value === itemValue) {
       const triggerOffsetLeft = trigger.offsetLeft + trigger.offsetWidth / 6;
 
@@ -17,7 +20,6 @@ export default function NavMenu() {
     } else if (value === "") {
       setOffset(null);
     }
-    return trigger;
   };
 
   return (

@@ -1,21 +1,25 @@
-import { clsx } from "clsx";
+import { clsx, type ClassValue } from "clsx";
 import { format } from "date-fns";
 import { twMerge } from "tailwind-merge";
 import { useRouter, usePathname } from "next/navigation";
 
-export function cn(...inputs) {
+export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const isLocationMatch = (targetLocation, locationName) => {
+export const isLocationMatch = (
+  targetLocation: string | null | undefined,
+  locationName: string | null | undefined
+) => {
+  if (!targetLocation || !locationName) return false;
   return (
     locationName === targetLocation ||
     locationName.startsWith(`${targetLocation}/`)
   );
 };
 
-export const RGBToHex = (r, g, b) => {
-  const componentToHex = (c) => {
+export const RGBToHex = (r: number, g: number, b: number) => {
+  const componentToHex = (c: number) => {
     const hex = c.toString(16);
     return hex.length === 1 ? "0" + hex : hex;
   };
@@ -27,7 +31,7 @@ export const RGBToHex = (r, g, b) => {
   return "#" + redHex + greenHex + blueHex;
 };
 
-export function hslToHex(hsl) {
+export function hslToHex(hsl: string) {
   // Remove "hsla(" and ")" from the HSL string
   hsl = hsl.replace("hsla(", "").replace(")", "");
 
@@ -43,7 +47,7 @@ export function hslToHex(hsl) {
   });
 
   // Function to convert HSL to RGB
-  function hslToRgb(h, s, l) {
+  function hslToRgb(h: number, s: number, l: number) {
     h /= 360;
     s /= 100;
     l /= 100;
@@ -53,7 +57,7 @@ export function hslToHex(hsl) {
     if (s === 0) {
       r = g = b = l;
     } else {
-      const hue2rgb = (p, q, t) => {
+      const hue2rgb = (p: number, q: number, t: number) => {
         if (t < 0) t += 1;
         if (t > 1) t -= 1;
         if (t < 1 / 6) return p + (q - p) * 6 * t;
@@ -75,7 +79,7 @@ export function hslToHex(hsl) {
     const bInt = Math.round(b * 255);
 
     // Convert RGB values to a hex color code
-    const rgbToHex = (value) => {
+    const rgbToHex = (value: number) => {
       const hex = value.toString(16);
       return hex.length === 1 ? "0" + hex : hex;
     };
@@ -87,7 +91,7 @@ export function hslToHex(hsl) {
   return hslToRgb(h, s, l);
 }
 
-export const hexToRGB = (hex, alpha = 1) => {
+export const hexToRGB = (hex: string, alpha = 1) => {
   var r = parseInt(hex.slice(1, 3), 16),
     g = parseInt(hex.slice(3, 5), 16),
     b = parseInt(hex.slice(5, 7), 16);
@@ -99,7 +103,7 @@ export const hexToRGB = (hex, alpha = 1) => {
   }
 };
 
-export const formatTime = (time) => {
+export const formatTime = (time: string | number | Date) => {
   if (!time) return "";
 
   const date = new Date(time);
@@ -113,7 +117,7 @@ export const formatTime = (time) => {
 };
 
 // object check
-export function isObjectNotEmpty(obj) {
+export function isObjectNotEmpty(obj: null | {}) {
   if (typeof obj !== "object" || obj === null) {
     return false;
   }
@@ -131,7 +135,7 @@ export const formatDate = (
 };
 
 // random word
-export function getWords(inputString) {
+export function getWords(inputString: string) {
   // Remove spaces from the input string
   const stringWithoutSpaces = inputString.replace(/\s/g, "");
 

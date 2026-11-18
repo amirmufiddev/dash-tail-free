@@ -38,7 +38,7 @@ const BasicTimeline = ({ height = 400 }) => {
     color: colorMap[name],
   }));
 
-  function getTooltipText(_, i) {
+  function getTooltipText(_: unknown, i: number) {
     const { startDate, endDate, description } = productData[i];
     return `
       <div style="width:${labelWidth}px">
@@ -51,10 +51,10 @@ const BasicTimeline = ({ height = 400 }) => {
     <VisXYContainer data={productData} height={height}>
       <VisBulletLegend items={legendItems} />
       <VisTimeline
-        x={useCallback((d) => d.startDate, [])}
-        length={useCallback((d) => d.endDate - d.startDate, [])}
-        type={useCallback((d) => d.name, [])}
-        color={useCallback((d) => colorMap[d.type], [])}
+        x={useCallback((d: { startDate: number }) => d.startDate, [])}
+        length={useCallback((d: { endDate: number; startDate: number }) => d.endDate - d.startDate, [])}
+        type={useCallback((d: { name: string }) => d.name, [])}
+        color={useCallback((d: { type: string | number }) => colorMap[d.type], [])}
         maxLabelWidth={labelWidth}
         showLabels={true}
         alternatingRowColors={true}

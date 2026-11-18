@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 const InputControlled = () => {
   const [value, setValue] = useState("UserName");
-  const handleValue = (event) => setValue(event.target.value);
+  const handleValue = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => setValue(event.target.value);
   return (
     <div>
       <Input type="text" placeholder="UserName" onChange={handleValue} />

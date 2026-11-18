@@ -13,7 +13,7 @@ import MobileSidebar from "@/components/partials/sidebar/mobile-sidebar";
 import HeaderSearch from "@/components/header-search";
 import { useMounted } from "@/hooks/use-mounted";
 import LayoutLoader from "@/components/layout-loader";
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { collapsed, sidebarType, setCollapsed, subMenu } = useSidebar();
   const [open, setOpen] = React.useState(false);
   const { layout } = useThemeStore();
@@ -154,11 +154,22 @@ const MainLayout = ({ children }) => {
 
 export default MainLayout;
 
-const LayoutWrapper = ({ children, isMobile, setOpen, open, location }) => {
+const LayoutWrapper = ({
+  children,
+  setOpen,
+  open,
+  location,
+}: {
+  children: React.ReactNode;
+  isMobile: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  open: boolean;
+  location: string | null;
+}) => {
   return (
     <>
       <motion.div
-        key={location}
+        key={location ?? "page"}
         initial="pageInitial"
         animate="pageAnimate"
         exit="pageExit"

@@ -18,6 +18,12 @@ const DeleteConfirmationDialog = ({
   onConfirm,
   defaultToast = true,
   toastMessage = "Successfully deleted",
+}: {
+  open: boolean;
+  onClose: () => void;
+  onConfirm: () => void | Promise<void>;
+  defaultToast?: boolean;
+  toastMessage?: string;
 }) => {
   const [isPending, startTransition] = useTransition();
 
@@ -44,7 +50,7 @@ const DeleteConfirmationDialog = ({
         <AlertDialogFooter>
           <AlertDialogCancel onClick={onClose}>Cancel</AlertDialogCancel>
           <AlertDialogAction
-            className={isPending && "pointer-events-none"}
+            className={isPending ? "pointer-events-none" : undefined}
             onClick={() => startTransition(handleConfirm)}
           >
             {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}

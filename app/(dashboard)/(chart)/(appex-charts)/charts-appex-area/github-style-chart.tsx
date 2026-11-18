@@ -1764,7 +1764,7 @@ const GithubStyleChart = () => {
         autoSelected: "pan",
       },
       events: {
-        mounted: function (chart) {
+        mounted: function (chart: ({ getSeriesTotalXRange: ((arg0: unknown, arg1: unknown) => unknown); w: { globals: { minX: unknown; maxX: unknown } } })) {
           var commitsEl = document.querySelector(".cmeta span.commits");
           var commits = chart.getSeriesTotalXRange(
             chart.w.globals.minX,
@@ -1773,7 +1773,7 @@ const GithubStyleChart = () => {
 
           commitsEl.innerHTML = commits;
         },
-        updated: function (chart) {
+        updated: function (chart: ({ getSeriesTotalXRange: ((arg0: unknown, arg1: unknown) => unknown); w: { globals: { minX: unknown; maxX: unknown } } })) {
           var commitsEl = document.querySelector(".cmeta span.commits");
           var commits = chart.getSeriesTotalXRange(
             chart.w.globals.minX,

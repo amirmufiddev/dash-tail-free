@@ -46,7 +46,7 @@ const BarImageChart = ({ height = 350 }) => {
       shared: false,
       theme: mode === "dark" ? "dark" : "light",
       y: {
-        formatter: function (val) {
+        formatter: function (val: string) {
           return val + "K";
         },
       },

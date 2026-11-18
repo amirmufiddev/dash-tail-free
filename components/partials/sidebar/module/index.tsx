@@ -16,15 +16,18 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import MenuOverlayPortal from "./MenuOverlayPortal";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import type { SidebarChildMenuItem, SidebarMenuItem } from "../types";
 
 const ModuleSidebar = ({ collapsed: _collapsedProp }: { collapsed?: boolean } = {}) => {
-  const menus = menusConfig?.sidebarNav?.modern || [];
+  const menus = (menusConfig?.sidebarNav?.modern || []) as SidebarMenuItem[];
   const { subMenu, setSubmenu, collapsed, setCollapsed, sidebarBg } =
     useSidebar();
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [currentSubMenu, setCurrentSubMenu] = useState([]);
-  const [nestedIndex, setNestedIndex] = useState(null);
-  const [multiNestedIndex, setMultiNestedIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [currentSubMenu, setCurrentSubMenu] = useState<SidebarChildMenuItem[]>(
+    []
+  );
+  const [nestedIndex, setNestedIndex] = useState<number | null>(null);
+  const [multiNestedIndex, setMultiNestedIndex] = useState<number | null>(null);
   // mobile menu overlay
   const [menuOverlay, setMenuOverlay] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 1280px)");
@@ -32,12 +35,14 @@ const ModuleSidebar = ({ collapsed: _collapsedProp }: { collapsed?: boolean } = 
 
   // location
 
-  const locationName = usePathname();
+  const locationName = usePathname() ?? "";
 
-  const toggleSubMenu = (index) => {
+  const toggleSubMenu = (index: number) => {
     setActiveIndex(index);
-    if (menus[index].child) {
-      setCurrentSubMenu(menus[index].child);
+  const topItem = menus[index];
+    if (!topItem) return;
+    if (topItem.child) {
+      setCurrentSubMenu(topItem.child);
       setSubmenu(false);
       setCollapsed(false);
       if (!isDesktop) {
@@ -49,18 +54,14 @@ const ModuleSidebar = ({ collapsed: _collapsedProp }: { collapsed?: boolean } = 
 
       if (!isDesktop) {
         // when location match need to close the sub menu
-        if (
-          "href" in menus[index] &&
-          menus[index].href &&
-          isLocationMatch(menus[index].href, locationName)
-        ) {
+        if (topItem.href && isLocationMatch(topItem.href, locationName)) {
           setSubmenu(false);
         }
       }
     }
   };
   // for second level  menu
-  const toggleNested = (subIndex) => {
+  const toggleNested = (subIndex: number) => {
     if (nestedIndex === subIndex) {
       setNestedIndex(null);
     } else {
@@ -69,7 +70,7 @@ const ModuleSidebar = ({ collapsed: _collapsedProp }: { collapsed?: boolean } = 
   };
 
   // for third level menu
-  const toggleMultiNested = (index) => {
+  const toggleMultiNested = (index: number) => {
     if (multiNestedIndex === index) {
       setMultiNestedIndex(null);
     } else {
@@ -77,13 +78,17 @@ const ModuleSidebar = ({ collapsed: _collapsedProp }: { collapsed?: boolean } = 
     }
   };
 
-  function setActiveMenu(menuIndex, childMenu) {
+  function setActiveMenu(menuIndex: number, childMenu: SidebarChildMenuItem[]) {
     setActiveIndex(menuIndex);
     setCurrentSubMenu(childMenu);
     setSubmenu(false);
     setCollapsed(false);
   }
-  function setActiveNestedMenu(menuIndex, nestedMenuIndex, childMenu) {
+  function setActiveNestedMenu(
+    menuIndex: number,
+    nestedMenuIndex: number,
+    childMenu: SidebarChildMenuItem[]
+  ) {
     setActiveIndex(menuIndex);
     setNestedIndex(nestedMenuIndex);
     setCurrentSubMenu(childMenu);
@@ -92,7 +97,7 @@ const ModuleSidebar = ({ collapsed: _collapsedProp }: { collapsed?: boolean } = 
   }
   //
   const getMenuTitle = () => {
-    if (activeIndex !== null) {
+    if (activeIndex !== null && menus[activeIndex]) {
       return menus[activeIndex].title;
     }
     return "";
@@ -109,7 +114,7 @@ const ModuleSidebar = ({ collapsed: _collapsedProp }: { collapsed?: boolean } = 
       }
 
       item?.child?.forEach((childItem, j) => {
-        if (isLocationMatch(childItem.href, locationName)) {
+        if (isLocationMatch(childItem.href, locationName) && item.child) {
           setActiveMenu(i, item.child);
           setMenuOverlay(false);
           isMenuMatched = true;
@@ -117,15 +122,17 @@ const ModuleSidebar = ({ collapsed: _collapsedProp }: { collapsed?: boolean } = 
 
         if (childItem.nested) {
           childItem.nested.forEach((nestedItem) => {
-            if (isLocationMatch(nestedItem.href, locationName)) {
+            if (isLocationMatch(nestedItem.href, locationName) && item.child) {
               setActiveNestedMenu(i, j, item.child);
               setMenuOverlay(false);
               isMenuMatched = true;
             }
-            if (nestedItem.child) {
-              nestedItem.child.forEach((multiItem, k) => {
+            if (nestedItem.child && item.child) {
+              nestedItem.child.forEach((multiItem) => {
                 if (isLocationMatch(multiItem.href, locationName)) {
-                  setActiveNestedMenu(i, j, item.child);
+                  if (item.child) {
+                    setActiveNestedMenu(i, j, item.child);
+                  }
                   setMenuOverlay(false);
                   isMenuMatched = true;
                 }

@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 
-const TeamCard = ({ item }) => {
+const TeamCard = ({ item }: { item: { name: string | React.ReactNode; designation: React.ReactNode; company: React.ReactNode; avatar: string; stats: ({ color: string; name: React.ReactNode; count: React.ReactNode })[] } }) => {
   const { name, designation, company, avatar, stats } = item;
   return (
     <Card className="p-6 bg-background">

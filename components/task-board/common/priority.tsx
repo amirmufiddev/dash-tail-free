@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react"; // Import useState hook
+import { useState } from "react";
 import {
   Select,
   SelectContent,
@@ -9,13 +9,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { updateTaskAction } from "@/action/project-action";
+import type { TaskRecord } from "../types";
 
-const Priority = ({ task = undefined, taskId = undefined }) => {
-  const [selectedPriority, setSelectedPriority] = useState(task?.priority);
+const Priority = ({
+  task,
+  taskId,
+}: {
+  task: TaskRecord;
+  taskId: string | number;
+}) => {
+  const [selectedPriority, setSelectedPriority] = useState(
+    task.priority ?? "medium"
+  );
 
-  const handlePriorityChange = async (value) => {
+  const handlePriorityChange = async (value: string) => {
     try {
-      const newData = {
+      const newData: TaskRecord = {
         ...task,
         priority: value,
       };

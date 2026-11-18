@@ -4,7 +4,7 @@ import world from "./worldmap.json";
 import { VectorMap } from "@south-paw/react-vector-maps";
 
 const LayerLinks = ({ height = 350 }) => {
-    const onClick = ({ target }) => {
+    const onClick = ({ target }: { target: { attributes: { name: { value: number } } } }) => {
         const name = target.attributes.name.value;
         window.open(`https://www.google.com/search?q=${name}%20nz`)
     }

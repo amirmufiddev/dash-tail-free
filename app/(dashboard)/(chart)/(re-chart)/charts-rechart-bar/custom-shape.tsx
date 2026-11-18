@@ -15,7 +15,7 @@ import {
 import { data } from "./data";
 import CustomTooltip from "./custom-tooltip";
 
-const getPath = (x, y, width, height) => {
+const getPath = (x: number, y: number, width: number, height: number) => {
   return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${
     y + height / 3
   }
@@ -26,7 +26,7 @@ const getPath = (x, y, width, height) => {
     Z`;
 };
 
-const TriangleBar = (props) => {
+const TriangleBar = (props: { fill: string; x: number; y: number; width: number; height: number }) => {
   const { fill, x, y, width, height } = props;
 
   return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;

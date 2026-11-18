@@ -16,7 +16,7 @@ const schema = z.object({
   description: z.string().optional(),
   subject: z.string().optional(),
 });
-const ComposeMail = ({ onClose }) => {
+const ComposeMail = ({ onClose }: { onClose: () => void }) => {
   const [minimize, setMinimize] = useState(false);
   const [maximize, setMaximize] = useState(false);
 
@@ -32,11 +32,14 @@ const ComposeMail = ({ onClose }) => {
   } = useForm({
     resolver: zodResolver(schema),
   });
-  const onSubmit = (data) => {
+  const onSubmit = (data: z.infer<typeof schema>) => {
     startTransition(async () => {
-      data.category = "primary";
-      data.date = new Date();
-      let response = await createEmailAction(data);
+      const payload = {
+        ...data,
+        category: "primary",
+        date: new Date(),
+      };
+      let response = await createEmailAction(payload);
       if (response?.status === "success") {
         toast.success(response?.message);
         reset();

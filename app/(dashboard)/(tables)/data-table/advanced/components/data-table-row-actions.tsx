@@ -23,7 +23,7 @@ import {
 import { labels } from "../data/data";
 import { taskSchema } from "../data/schema";
 
-export function DataTableRowActions({ row }) {
+export function DataTableRowActions({ row }: { row: { original: unknown } }) {
   const task = taskSchema.parse(row.original);
 
   return (

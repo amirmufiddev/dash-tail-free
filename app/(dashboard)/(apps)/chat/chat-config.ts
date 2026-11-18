@@ -5,7 +5,7 @@ export const getContacts = async () => {
   return response.data;
 };
 
-export const getMessages = async (id) => {
+export const getMessages = async (id: string) => {
   try {
     const response = await api.get(`/chat/messages/${id}`);
     console.log("Response from getMessages:", response.data);
@@ -15,7 +15,7 @@ export const getMessages = async (id) => {
     throw error;
   }
 };
-export const deleteMessage = async (obj) => {
+export const deleteMessage = async (obj: { selectedChatId: string }) => {
   console.log("Object to be sent:", obj); // Add this log statement
   try {
     await api.delete(`/chat/messages/${obj.selectedChatId}`, { data: obj });
@@ -31,7 +31,7 @@ export const getProfile = async () => {
   return response.data;
 };
 
-export const sendMessage = async (msg) => {
+export const sendMessage = async (msg: unknown) => {
   const response = await api.post("/chat/messages", msg);
   return response.data;
 };

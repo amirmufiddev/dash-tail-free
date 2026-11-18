@@ -34,7 +34,7 @@ const GradiantDonut = ({ height = 350 }) => {
         },
         legend: {
             position: 'bottom',
-            formatter: function (val, opts) {
+            formatter: function (val: string, opts: { w: { globals: { series: { [key: string]: string } } }; seriesIndex: string | number }) {
                 return val + " - " + opts.w.globals.series[opts.seriesIndex]
             },
             labels: {

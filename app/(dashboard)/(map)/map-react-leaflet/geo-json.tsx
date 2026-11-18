@@ -10,12 +10,12 @@ const GeoJSONMap = ({ height = 350 }) => {
         return { weight: 1 };
     };
 
-    const customMarkerIcon = (name) =>
+    const customMarkerIcon = (name: unknown) =>
         divIcon({
             html: name,
             className: "icon",
         });
-    const setIcon = ({ properties }, latlng) => {
+    const setIcon = ({ properties }: { properties: { Name: unknown } }, latlng: L.LatLng | L.LatLngLiteral | L.LatLngTuple) => {
         return L.marker(latlng, { icon: customMarkerIcon(properties.Name) });
     };
     return (

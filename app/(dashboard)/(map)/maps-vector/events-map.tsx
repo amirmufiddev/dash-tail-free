@@ -11,11 +11,11 @@ const EventVMap = ({ height = 350 }) => {
     const [clicked, setClicked] = useState('None');
 
     const layerProps = {
-        onMouseEnter: ({ target }) => setHovered(target.attributes.name.value),
-        onMouseLeave: ({ target }) => setHovered('None'),
-        onFocus: ({ target }) => setFocused(target.attributes.name.value),
-        onBlur: ({ target }) => setFocused('None'),
-        onClick: ({ target }) => setClicked(target.attributes.name.value),
+        onMouseEnter: ({ target }: { target: { attributes: { name: { value: React.ReactNode } } } }) => setHovered(target.attributes.name.value),
+        onMouseLeave: ({ target }: { target: unknown }) => setHovered('None'),
+        onFocus: ({ target }: { target: { attributes: { name: { value: React.ReactNode } } } }) => setFocused(target.attributes.name.value),
+        onBlur: ({ target }: { target: unknown }) => setFocused('None'),
+        onClick: ({ target }: { target: { attributes: { name: { value: React.ReactNode } } } }) => setClicked(target.attributes.name.value),
     };
 
     return (

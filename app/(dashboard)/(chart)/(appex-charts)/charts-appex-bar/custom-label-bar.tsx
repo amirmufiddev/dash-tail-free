@@ -41,7 +41,7 @@ const CustomLabelBar = ({ height = 350 }) => {
       style: {
         colors: ["#fff"],
       },
-      formatter: function (val, opt) {
+      formatter: function (val: string, opt: { w: { globals: { labels: { [key: string]: string } } }; dataPointIndex: string | number }) {
         return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val;
       },
       offsetX: 0,

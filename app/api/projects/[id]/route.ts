@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { projects } from "../data";
 
-export async function GET(request, response) {
+export async function GET(request: NextRequest, response: { params: Promise<{ id: string }> }) {
   const id = (await response.params).id;
 
   const item = projects.find((item) => item.id === parseInt(id));
@@ -13,7 +13,7 @@ export async function GET(request, response) {
   }
 }
 
-export async function PUT(request, response) {
+export async function PUT(request: NextRequest, response: unknown) {
   const payloadItem = await request.json();
 
   const index = projects.findIndex(
@@ -33,7 +33,7 @@ export async function PUT(request, response) {
   }
 }
 
-export async function DELETE(request, response) {
+export async function DELETE(request: NextRequest, response: { params: Promise<{ id: string }> }) {
   const id = (await response.params).id;
 
   const index = projects.findIndex((item) => item.id === parseInt(id));

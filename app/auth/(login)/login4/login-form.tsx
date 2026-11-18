@@ -54,7 +54,7 @@ const LogInForm = () => {
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { email: unknown; password: unknown }) => {
     startTransition(async () => {
       let response = await signIn("credentials", {
         email: data.email,

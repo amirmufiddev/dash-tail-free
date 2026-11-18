@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/table";
 
 
-const UsersDataTable = ({ users }) => {
+const UsersDataTable = ({ users }: { users: ({ id: string | number; country: React.ReactNode; count: React.ReactNode })[] }) => {
 
   return (
     <div className="h-[250px]">

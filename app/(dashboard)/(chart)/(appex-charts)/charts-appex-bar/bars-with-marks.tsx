@@ -118,7 +118,7 @@ const BarsWithMarkes = ({ height = 350 }) => {
       },
     },
     dataLabels: {
-      formatter: function (val, opt) {
+      formatter: function (val: string, opt: { w: { config: { series: { [key: string]: { data: { [key: string]: { goals: unknown } } } } } }; seriesIndex: string | number; dataPointIndex: string | number }) {
         const goals =
           opt.w.config.series[opt.seriesIndex].data[opt.dataPointIndex].goals;
 

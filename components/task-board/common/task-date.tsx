@@ -19,8 +19,8 @@ const tabs = [
 const TaskDate = () => {
   const [open, setOpen] = useState(false);
   const togglePopover = () => setOpen(!open);
-  const [dueDate, setDueDate] = useState(new Date());
-  const [startDate, setStartDate] = useState(new Date());
+  const [dueDate, setDueDate] = useState<Date | undefined>(new Date());
+  const [startDate, setStartDate] = useState<Date | undefined>(new Date());
   return (
     <CustomPopover
       trigger={
@@ -50,7 +50,7 @@ const TaskDate = () => {
           <Calendar
             mode="single"
             selected={dueDate}
-            onSelect={setDueDate}
+            onSelect={(date) => setDueDate(date)}
             className=" w-full"
           />
         </TabsContent>
@@ -58,7 +58,7 @@ const TaskDate = () => {
           <Calendar
             mode="single"
             selected={startDate}
-            onSelect={setStartDate}
+            onSelect={(date) => setStartDate(date)}
             className=" w-full"
           />
         </TabsContent>

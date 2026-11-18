@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const FileUploaderSingle = () => {
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<{ name: string | number } | Blob | MediaSource[]>([]);
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,

@@ -27,19 +27,19 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-const MessageFooter = ({ handleSendMessage, replay, setReply, replayData }) => {
+const MessageFooter = ({ handleSendMessage, replay, setReply, replayData }: { handleSendMessage: ((arg0: string) => void); replay: unknown; setReply: ((arg0: boolean) => void); replayData: { contact?: { fullName?: React.ReactNode }; message?: React.ReactNode } }) => {
   const [message, setMessage] = useState("");
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setMessage(e.target.value);
     e.target.style.height = "auto"; // Reset the height to auto to adjust
     e.target.style.height = `${e.target.scrollHeight - 15}px`;
   };
 
-  const handleSelectEmoji = (emoji) => {
+  const handleSelectEmoji = (emoji: { native: string }) => {
     setMessage(message + emoji.native);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     handleSendMessage(message);
     setReply(false);

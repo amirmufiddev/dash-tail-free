@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { tasks } from "../data";
 
-export async function PUT(request, response) {
+export async function PUT(request: NextRequest, response: unknown) {
   const payloadItem = await request.json();
 
   const index = tasks.findIndex((item) => item.id === parseInt(payloadItem.id));
@@ -20,7 +20,7 @@ export async function PUT(request, response) {
   }
 }
 
-export async function DELETE(request, response) {
+export async function DELETE(request: NextRequest, response: { params: Promise<{ id: string }> }) {
   const id = (await response.params).id;
 
   const index = tasks.findIndex((item) => item.id === parseInt(id));

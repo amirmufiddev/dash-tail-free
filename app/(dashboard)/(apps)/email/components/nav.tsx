@@ -9,7 +9,20 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-export function Nav({ links, isCollapsed, handleSidebar = undefined }) {
+export function Nav({
+  links,
+  isCollapsed,
+  handleSidebar,
+}: {
+  links: {
+    icon: string;
+    title: React.ReactNode;
+    label?: React.ReactNode;
+    active?: boolean;
+  }[];
+  isCollapsed: boolean;
+  handleSidebar?: () => void;
+}) {
   return (
     <div
       data-collapsed={isCollapsed}

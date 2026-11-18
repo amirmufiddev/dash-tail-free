@@ -6,12 +6,18 @@ import SubtaskDetailsSheet from "./subtask-details";
 import {
   Collapsible,
   CollapsibleContent,
-  CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import TaskItem from "./task-item";
 import AddSubTask from "./add-sub-task";
+import type { SubTaskRecord } from "../../types";
 
-const SubTasks = ({ subTasks, taskId }) => {
+const SubTasks = ({
+  subTasks,
+  taskId,
+}: {
+  subTasks: SubTaskRecord[];
+  taskId: string | number;
+}) => {
   const [showComplete, setShowComplete] = useState(false);
   const filteredSubtasks = subTasks.filter((st) => st.taskId === taskId);
   const completedSubtasks = filteredSubtasks.filter(

@@ -7,7 +7,7 @@ import { SiteLogo } from "@/components/svg";
 import Link from "next/link";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
-const MenuBar = ({ collapsed, setCollapsed }) => {
+const MenuBar = ({ collapsed, setCollapsed }: { collapsed: boolean; setCollapsed: ((arg0: boolean) => unknown) }) => {
   return (
     <button
       className="relative group  disabled:cursor-not-allowed opacity-50"

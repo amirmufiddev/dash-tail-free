@@ -1,4 +1,5 @@
 "use client";
+import type { ColumnFiltersState, SortingState } from "@tanstack/react-table";
 import * as React from "react";
 
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
@@ -43,7 +44,7 @@ import { cn } from "@/lib/utils";
 const columns = [
   {
     id: "select",
-    header: ({ table }) => (
+    header: ({ table }: { table: { getIsAllPageRowsSelected: () => boolean; getIsSomePageRowsSelected: () => boolean; toggleAllPageRowsSelected: ((arg0: boolean) => unknown) } }) => (
       <Checkbox
         checked={
           table.getIsAllPageRowsSelected() ||
@@ -53,7 +54,7 @@ const columns = [
         aria-label="Select all"
       />
     ),
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getIsSelected: () => boolean; toggleSelected: (value?: boolean) => void } }) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -66,15 +67,15 @@ const columns = [
   {
     accessorKey: "user",
     header: "User",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { original?: { user?: { avatar?: string; name?: React.ReactNode } } } }) => (
       <div className="  font-medium  text-card-foreground/80">
         <div className="flex space-x-3  rtl:space-x-reverse items-center">
           <Avatar className=" rounded-full">
-            <AvatarImage src={row?.original?.user.avatar} />
+            <AvatarImage src={row.original?.user?.avatar} />
             <AvatarFallback>AB</AvatarFallback>
           </Avatar>
           <span className=" text-sm   text-card-foreground whitespace-nowrap">
-            {row?.original?.user.name}
+            {row.original?.user?.name}
           </span>
         </div>
       </div>
@@ -82,7 +83,7 @@ const columns = [
   },
   {
     accessorKey: "email",
-    header: ({ column }) => {
+    header: ({ column }: { column: { toggleSorting: ((arg0: boolean) => unknown); getIsSorted: (() => unknown) } }) => {
       return (
         <Button
           variant="ghost"
@@ -93,18 +94,22 @@ const columns = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase whitespace-nowrap">{row.getValue("email")}</div>,
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => <div className="lowercase whitespace-nowrap">{row.getValue("email")}</div>,
   },
   {
     accessorKey: "status",
     header: "Status",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => (
       <Badge
         variant="soft"
         color={
-          (row.getValue("status") === "failed" && "destructive") ||
-          (row.getValue("status") === "success" && "success") ||
-          (row.getValue("status") === "processing" && "info")
+          row.getValue("status") === "failed"
+            ? "destructive"
+            : row.getValue("status") === "success"
+              ? "success"
+              : row.getValue("status") === "processing"
+                ? "info"
+                : "default"
         }
         className=" capitalize"
       >
@@ -116,8 +121,13 @@ const columns = [
   {
     accessorKey: "amount",
     header: () => <div className="text-right">Amount</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => {
+      const rawAmount = row.getValue("amount");
+      const amount = typeof rawAmount === "number"
+        ? rawAmount
+        : typeof rawAmount === "string"
+          ? parseFloat(rawAmount)
+          : 0;
 
       // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
@@ -131,7 +141,7 @@ const columns = [
   {
     id: "actions",
     enableHiding: false,
-    cell: ({ row }) => {
+    cell: ({ row }: { row: { original: { id: string } } }) => {
       const payment = row.original;
 
       return (
@@ -162,8 +172,8 @@ const columns = [
 ];
 
 export function BasicDataTable() {
-  const [sorting, setSorting] = React.useState([]);
-  const [columnFilters, setColumnFilters] = React.useState([]);
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState({});
   const [rowSelection, setRowSelection] = React.useState({});
 

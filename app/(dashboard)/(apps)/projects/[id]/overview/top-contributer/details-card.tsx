@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 import { Crown } from "@/components/svg";
-const DetailsCard = ({ item, index }) => {
+const DetailsCard = ({ item, index }: { item: { name: React.ReactNode; score: React.ReactNode | string | number; image: { src: string }; count: React.ReactNode }; index: number }) => {
   const { name, score, image, count } = item;
 
   let color = "success";

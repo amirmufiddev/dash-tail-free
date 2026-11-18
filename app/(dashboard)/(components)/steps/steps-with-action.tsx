@@ -14,11 +14,11 @@ const StepsWithAction = () => {
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = ["Step 1", "Step 2", "Step 3"];
   const isTablet = useMediaQuery("(max-width: 1024px)");
-  const isStepOptional = (step) => {
+  const isStepOptional = (step: number) => {
     return step === 1;
   };
 
-  const isStepSkipped = (step) => {
+  const isStepSkipped = (step: unknown) => {
     return skipped.has(step);
   };
 

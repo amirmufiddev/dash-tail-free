@@ -85,7 +85,7 @@ const MultiSeries = ({ height = 300 }) => {
     },
     dataLabels: {
       enabled: true,
-      formatter: function (val) {
+      formatter: function (val: { [key: number]: string | number | (string | number)[] | Date | moment.Moment | moment.MomentInputObject | null | undefined }) {
         var a = moment(val[0]);
         var b = moment(val[1]);
         var diff = b.diff(a, "days");

@@ -2,6 +2,26 @@ import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronRight, Check, Minus } from "lucide-react";
 
+export interface TreeNodeData {
+  id: string | number;
+  label?: React.ReactNode;
+  children?: TreeNodeData[] | null;
+  checked?: boolean | null;
+  icon?: React.ReactNode;
+}
+
+interface TreeNodeProps {
+  node: TreeNodeData;
+  onCheck: (id: string | number, updatedChecked: boolean) => void;
+  onExpand: (id: string | number) => void;
+  onSelect?: (node: TreeNodeData) => void;
+  expandedKeys: Array<string | number>;
+  checkable?: boolean;
+  endContent?: React.ReactNode;
+  className?: string;
+  showLine?: boolean;
+}
+
 const TreeNode = ({
   node,
   onCheck,
@@ -12,7 +32,7 @@ const TreeNode = ({
   endContent,
   className,
   showLine,
-}) => {
+}: TreeNodeProps) => {
   const { id, label, children, checked, icon } = node;
   const [isChecked, setIsChecked] = useState(checked || false);
   const [isIndeterminate, setIsIndeterminate] = useState(false);
@@ -25,7 +45,7 @@ const TreeNode = ({
     const someChecked = children && children.some((child) => child.checked);
     const allChecked = children && children.every((child) => child.checked);
 
-    setIsIndeterminate(someChecked && !allChecked);
+    setIsIndeterminate(Boolean(someChecked) && !Boolean(allChecked));
   }, [children]);
 
   const handleCheck = () => {
@@ -166,15 +186,26 @@ const Tree = ({
   endContent = <ChevronRight />,
   className = undefined,
   showLine = false,
+}: {
+  data?: TreeNodeData[];
+  onSelect?: (node: TreeNodeData) => void;
+  defaultExpandedKeys?: Array<string | number>;
+  defaultSelectedKeys?: Array<string | number>;
+  defaultCheckedKeys?: Array<string | number>;
+  onCheck?: (nodes: TreeNodeData[]) => void;
+  checkable?: boolean;
+  endContent?: React.ReactNode;
+  className?: string;
+  showLine?: boolean;
 }) => {
-  const [treeData, setTreeData] = useState(data);
-  const [expandedKeys, setExpandedKeys] = useState(defaultExpandedKeys);
+  const [treeData, setTreeData] = useState<TreeNodeData[]>(data);
+  const [expandedKeys, setExpandedKeys] = useState<Array<string | number>>(defaultExpandedKeys);
 
   useEffect(() => {
     setTreeData(data);
   }, [data]);
 
-  const handleCheck = (nodeId) => {
+  const handleCheck = (nodeId: string | number) => {
     const updatedData = toggleNodeChecked(treeData, nodeId);
     setTreeData(updatedData);
     if (onCheck) {
@@ -182,7 +213,7 @@ const Tree = ({
     }
   };
 
-  const toggleNodeChecked = (nodes, nodeId) => {
+  const toggleNodeChecked = (nodes: TreeNodeData[], nodeId: string | number): TreeNodeData[] => {
     return nodes.map((node) => {
       if (node.id === nodeId) {
         const updatedNode = { ...node, checked: !node.checked };
@@ -208,7 +239,10 @@ const Tree = ({
     });
   };
 
-  const toggleAllChildren = (children, checked) => {
+  const toggleAllChildren = (
+    children: TreeNodeData[],
+    checked: boolean | null
+  ): TreeNodeData[] => {
     return children.map((child) => ({
       ...child,
       checked,
@@ -218,7 +252,7 @@ const Tree = ({
     }));
   };
 
-  const handleExpand = (nodeId) => {
+  const handleExpand = (nodeId: string | number) => {
     setExpandedKeys((prevExpandedKeys) =>
       prevExpandedKeys.includes(nodeId)
         ? prevExpandedKeys.filter((key) => key !== nodeId)
@@ -226,7 +260,7 @@ const Tree = ({
     );
   };
 
-  const handleSelect = (selectedNode) => {
+  const handleSelect = (selectedNode: TreeNodeData) => {
     if (onSelect) {
       onSelect(selectedNode);
     }

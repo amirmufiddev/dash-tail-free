@@ -26,7 +26,19 @@ import {
 } from "@/components/ui/tooltip";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
-const MailHeader = ({ selectedMail, onClose, handleSpam, handleSidebar }) => {
+import type { MailDetail } from "../types";
+
+const MailHeader = ({
+  selectedMail,
+  onClose,
+  handleSpam,
+  handleSidebar,
+}: {
+  selectedMail: MailDetail | null;
+  onClose: () => void;
+  handleSpam: () => void;
+  handleSidebar: () => void;
+}) => {
   const isDesktop = useMediaQuery("(max-width: 1280px)");
   return (
     <>

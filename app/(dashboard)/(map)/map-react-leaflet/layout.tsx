@@ -2,7 +2,7 @@ export const metadata = {
   title: "React Leaflet map",
 };
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 

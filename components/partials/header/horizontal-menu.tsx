@@ -14,7 +14,10 @@ export default function MainMenu() {
   const [list, setList] = React.useState<HTMLUListElement | null>(null);
   const [value, setValue] = React.useState("");
 
-  const onNodeUpdate = (trigger, itemValue) => {
+  const onNodeUpdate = (
+    trigger: HTMLButtonElement | null,
+    itemValue: string
+  ) => {
     if (trigger && list && value === itemValue) {
       const triggerOffsetLeft = trigger.offsetLeft + trigger.offsetWidth / 6;
 
@@ -22,7 +25,6 @@ export default function MainMenu() {
     } else if (value === "") {
       setOffset(null);
     }
-    return trigger;
   };
 
   return (
@@ -168,7 +170,7 @@ const ListItem = React.forwardRef<
   HTMLAnchorElement,
   React.ComponentPropsWithoutRef<typeof Link> & {
     title?: string;
-    childItem?: { title?: string; href?: string; icon?: React.ElementType };
+    childItem?: { title?: string; href?: string; icon?: React.ElementType | string };
   }
 >(({ className, children, title, childItem, ...props }, forwardedRef) => (
     <NavigationMenu.Link asChild>

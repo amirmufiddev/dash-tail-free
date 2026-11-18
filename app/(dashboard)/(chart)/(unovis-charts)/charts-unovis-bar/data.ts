@@ -166,7 +166,7 @@ export const educationsData = [
     }
 
 ].map(d => {
-    const round = (n) => Math.floor(n * 100) / 100
+    const round = (n: number) => Math.floor(n * 100) / 100
     return ({
         ...d,
         bachelors: round(d.bachelors - d.masters),

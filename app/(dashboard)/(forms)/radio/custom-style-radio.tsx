@@ -10,7 +10,7 @@ import avatar8 from "@/public/images/avatar/avatar-8.jpg";
 
 const CustomStyledRadio = () => {
   const [selected, setSelected] = useState("csr_1");
-  const handleValueChange = value => {
+  const handleValueChange = (value: string )=> {
     setSelected(value)
   }
   return (

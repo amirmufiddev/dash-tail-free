@@ -14,11 +14,9 @@ import TaskSheet from "./task-sheet";
 import TaskTable from "./task-list/task-table";
 import TaskList from "./task-list";
 import { toast } from "react-hot-toast";
-// dnd
 import {
   DndContext,
   DragEndEvent,
-  DragOverEvent,
   DragOverlay,
   DragStartEvent,
   PointerSensor,
@@ -26,45 +24,65 @@ import {
   useSensors,
   closestCorners,
 } from "@dnd-kit/core";
-import { SortableContext, arrayMove } from "@dnd-kit/sortable";
-import { createPortal } from "react-dom";
-import { editBoardAction, swapBoardAction } from "@/action/project-action";
+import { SortableContext } from "@dnd-kit/sortable";
+import { swapBoardAction } from "@/action/project-action";
+import type {
+  BoardRecord,
+  CommentRecord,
+  SubTaskRecord,
+  TaskRecord,
+} from "./types";
 
 const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
-const TaskBoard = ({ boards, tasks, subTasks, comments }) => {
+
+const TaskBoard = ({
+  boards,
+  tasks,
+  subTasks,
+  comments,
+}: {
+  boards: BoardRecord[];
+  tasks: TaskRecord[];
+  subTasks: SubTaskRecord[];
+  comments: CommentRecord[];
+}) => {
   const [taskView, setTaskView] = useState("kanban");
 
   const [open, setOpen] = useState(false);
-  // for task create modal
   const [open2, setOpen2] = useState(false);
-  // update task
   const [open3, setOpen3] = useState(false);
-  // for board
-  const [selectedBoardId, setSelectedBoardId] = React.useState(null);
-  const [selectedBoard, setSelectedBoard] = React.useState(null);
-  // for task
-  const [selectedTaskId, setSelectedTaskId] = React.useState(null);
-  const [selectedTask, setSelectedTask] = React.useState(null);
-  const [selectedBoardForTask, setSelectedBoardForTask] = React.useState(null);
+  const [selectedBoardId, setSelectedBoardId] = React.useState<
+    string | number | null
+  >(null);
+  const [selectedBoard, setSelectedBoard] = React.useState<BoardRecord | null>(
+    null
+  );
+  const [selectedTaskId, setSelectedTaskId] = React.useState<
+    string | number | null
+  >(null);
+  const [selectedTask, setSelectedTask] = React.useState<TaskRecord | null>(
+    null
+  );
+  const [selectedBoardForTask, setSelectedBoardForTask] = React.useState<
+    string | number | null
+  >(null);
 
-  // handler task view
-  const taskViewHandler = (value) => {
+  const taskViewHandler = (value: string) => {
     setTaskView(value);
   };
-  // handle create board
+
   const openCreateBoard = () => {
     setSelectedBoardId(null);
     setSelectedBoard(null);
     setOpen(true);
   };
-  // handle edit board
-  const openEdit = (board) => {
+
+  const openEdit = (board: BoardRecord) => {
     setSelectedBoardId(board.id);
     setSelectedBoard(board);
     setOpen(true);
   };
 
-  // handle close create board
   const closeCreateBoard = () => {
     setSelectedBoardId(null);
     setSelectedBoard(null);
@@ -72,8 +90,7 @@ const TaskBoard = ({ boards, tasks, subTasks, comments }) => {
     wait().then(() => (document.body.style.pointerEvents = "auto"));
   };
 
-  // handle task board opener
-  const handleTaskOpener = (boardId) => {
+  const handleTaskOpener = (boardId: string | number | null) => {
     setSelectedTaskId(null);
     setSelectedTask(null);
     setSelectedBoardForTask(boardId);
@@ -87,60 +104,60 @@ const TaskBoard = ({ boards, tasks, subTasks, comments }) => {
     setOpen2(false);
   };
 
-  // update task handler
-  const updateTaskHandler = (task) => {
+  const updateTaskHandler = (task: TaskRecord) => {
     setSelectedTaskId(task.id);
     setSelectedTask(task);
     setOpen3(true);
   };
+
   const closeUpdateTaskHandler = () => {
     setSelectedTaskId(null);
     setSelectedTask(null);
     setOpen3(false);
   };
 
-  const filteredTasks = (tasks, boardId) => {
-    // Add your filtering logic here
-    return tasks?.filter((task) => task.boardId === boardId);
-  };
-  // dnd
-  const [isPending, startTransition] = React.useTransition();
+  const filteredTasks = (list: TaskRecord[], boardId: string | number) =>
+    list?.filter((task) => task.boardId === boardId);
+
+  const [, startTransition] = React.useTransition();
   const boardsId = React.useMemo(
     () => boards.map((board) => board.id),
     [boards]
   );
   const tasksIds = React.useMemo(() => tasks.map((task) => task.id), [tasks]);
-  const [activeBoard, setActiveBoard] = React.useState(null);
-  const handleDragStart = (event) => {
-    if (event.active.data.current?.type === "Column") {
-      setActiveBoard(event.active.data.current.board);
+  const [activeBoard, setActiveBoard] = React.useState<BoardRecord | null>(
+    null
+  );
 
-      return;
+  const handleDragStart = (event: DragStartEvent) => {
+    if (event.active.data.current?.type === "Column") {
+      const board = event.active.data.current.board as BoardRecord | undefined;
+      setActiveBoard(board ?? null);
     }
   };
-  const handleDragEnd = (event) => {
+
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (!over) return;
     const activeBoardId = active.id;
     const overBoardId = over.id;
     if (activeBoardId === overBoardId) return;
 
-    const oldIndex = boardsId.indexOf(activeBoardId);
-
-    const newIndex = boardsId.indexOf(overBoardId);
+    const oldIndex = boardsId.indexOf(String(activeBoardId));
+    const newIndex = boardsId.indexOf(String(overBoardId));
 
     if (oldIndex !== newIndex) {
-      let data = {
+      const data = {
         activeBoardId,
         overBoardId,
       };
-      var result;
       startTransition(async () => {
-        result = await swapBoardAction(data);
+        await swapBoardAction(data);
         toast.success("Successfully update");
       });
     }
   };
+
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -148,9 +165,11 @@ const TaskBoard = ({ boards, tasks, subTasks, comments }) => {
       },
     })
   );
-  const onDragOver = (event) => {
+
+  const onDragOver = () => {
     console.log("ami k");
   };
+
   return (
     <>
       {boards?.length > 0 ? (
@@ -170,27 +189,20 @@ const TaskBoard = ({ boards, tasks, subTasks, comments }) => {
                 onDragEnd={handleDragEnd}
                 collisionDetection={closestCorners}
                 onDragOver={onDragOver}
-                // onDragOver={handleDragOver}
-                // onDragCancel={handleDragCancel}
               >
                 <div className="overflow-x-auto">
                   <div className="flex flex-nowrap gap-6">
                     <SortableContext items={boardsId}>
-                      {boards?.map((board, i) => (
+                      {boards?.map((board) => (
                         <Board
                           key={`board-id-${board.id}`}
                           board={board}
                           onEdit={openEdit}
-                          taskHandler={handleTaskOpener}
+                          taskHandler={(id) => handleTaskOpener(id)}
                           isTaskOpen={open2}
                           showButton={
                             !open2 || selectedBoardForTask !== board.id
                           }
-                          tasks={tasks.filter(
-                            (task) => task.boardId === board.id
-                          )}
-                          onUpdateTask={updateTaskHandler}
-                          boards={boards}
                         >
                           <SortableContext items={tasksIds}>
                             {filteredTasks(tasks, board.id)?.map(
@@ -221,7 +233,7 @@ const TaskBoard = ({ boards, tasks, subTasks, comments }) => {
                     <Board board={activeBoard}>
                       {filteredTasks(tasks, activeBoard.id)?.[0] && (
                         <Task
-                          task={filteredTasks(tasks, activeBoard.id)?.[0]}
+                          task={filteredTasks(tasks, activeBoard.id)[0]}
                           boards={boards}
                         />
                       )}
@@ -232,9 +244,9 @@ const TaskBoard = ({ boards, tasks, subTasks, comments }) => {
             )}
 
             {taskView === "list" &&
-              boards.map((board, i) => (
+              boards.map((board) => (
                 <TaskList
-                  key={`list-view-key-${i}`}
+                  key={`list-view-key-${board.id}`}
                   board={board}
                   onEdit={openEdit}
                   length={filteredTasks(tasks, board.id).length}
@@ -256,21 +268,19 @@ const TaskBoard = ({ boards, tasks, subTasks, comments }) => {
           </div>
           <div className=" text-default-600 text-sm">
             There is no task create. If you create a new task then click this
-            button & create new board.
+            button & create a new board.
           </div>
           <Button onClick={openCreateBoard}>
             <Plus className="w-4 h-4 mr-1" /> Create Board
           </Button>
         </Blank>
       )}
-      {/* update task  modal/sheet */}
       <CreateBoard
         open={open}
         onClose={closeCreateBoard}
         board={selectedBoard}
         boardId={selectedBoardId}
       />
-      {/* update task  modal/sheet */}
       <TaskSheet
         open={open3}
         onClose={closeUpdateTaskHandler}

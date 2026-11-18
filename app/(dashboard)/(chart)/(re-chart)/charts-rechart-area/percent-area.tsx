@@ -62,16 +62,16 @@ const PercentReAreaChart = ({ height = 300 }) => {
     },
   ];
 
-  const toPercent = (decimal, fixed = 0) =>
+  const toPercent = (decimal: number, fixed = 0) =>
     `${(decimal * 100).toFixed(fixed)}%`;
 
-  const getPercent = (value, total) => {
+  const getPercent = (value: number, total: number) => {
     const ratio = total > 0 ? value / total : 0;
 
     return toPercent(ratio, 2);
   };
 
-  const renderTooltipContent = (o) => {
+  const renderTooltipContent = (o: { payload: ({ color: unknown; name: string; value: string })[]; label: string }) => {
     const { payload, label } = o;
     const total = payload.reduce((result, entry) => result + entry.value, 0);
 

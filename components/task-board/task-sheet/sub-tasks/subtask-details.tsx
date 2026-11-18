@@ -46,7 +46,21 @@ const members = [
     image: faker.image.avatar(),
   },
 ];
-const SubtaskDetailsSheet = ({ open, onClose }) => {
+import type { TaskRecord } from "../../types";
+
+const placeholderTask: TaskRecord = {
+  id: 0,
+  boardId: 0,
+  priority: "medium",
+};
+
+const SubtaskDetailsSheet = ({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) => {
   return (
     <Sheet open={open}>
       <SheetContent
@@ -121,7 +135,7 @@ const SubtaskDetailsSheet = ({ open, onClose }) => {
                 Priority
               </span>
             </div>
-            <Priority />
+            <Priority task={placeholderTask} taskId={0} />
           </div>
           {/* priority end */}
           {/* start date */}
@@ -143,7 +157,7 @@ const SubtaskDetailsSheet = ({ open, onClose }) => {
           {/* end date */}
         </div>
         <div className="flex-1">
-          <Comments className="h-[calc(100vh-450px)]" />
+          <Comments className="h-[calc(100vh-450px)]" taskId={0} />
         </div>
       </SheetContent>
     </Sheet>

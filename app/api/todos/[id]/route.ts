@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { demoData } from "../data";
 
-function delayResponse(responseObj, delay = 2000) {
+function delayResponse(responseObj: unknown, delay = 2000) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(responseObj);
@@ -9,7 +9,7 @@ function delayResponse(responseObj, delay = 2000) {
   });
 }
 
-export async function GET(request, response) {
+export async function GET(request: NextRequest, response: { params: Promise<{ id: string }> }) {
   const id = (await response.params).id;
   console.log(id, "ami form single");
   // Find the item with the given ID
@@ -22,7 +22,7 @@ export async function GET(request, response) {
   }
 }
 
-export async function PUT(request, response) {
+export async function PUT(request: NextRequest, response: unknown) {
   const payloadItem = await request.json();
 
   const index = demoData.findIndex(
@@ -42,7 +42,7 @@ export async function PUT(request, response) {
   }
 }
 
-export async function DELETE(request, response) {
+export async function DELETE(request: NextRequest, response: { params: Promise<{ id: string }> }) {
   const id = (await response.params).id;
 
   const index = demoData.findIndex((item) => item.id === parseInt(id));

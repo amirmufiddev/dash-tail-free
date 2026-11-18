@@ -38,7 +38,7 @@ const StrokedGauge = ({ height = 350 }) => {
                 mode === "dark" || mode === "system" ? "dark" : "light"
               ].chartLabel
             })`,
-            formatter: function (val) {
+            formatter: function (val: string) {
               return val + "%";
             },
           },

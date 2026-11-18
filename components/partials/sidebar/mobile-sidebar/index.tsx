@@ -11,6 +11,8 @@ import { usePathname } from "next/navigation";
 import SingleMenuItem from "./single-menu-item";
 import SubMenuHandler from "./sub-menu-handler";
 import NestedSubMenu from "../common/nested-menus";
+import type { SidebarMenuItem } from "../types";
+
 const MobileSidebar = ({
   collapsed,
   className,
@@ -19,11 +21,11 @@ const MobileSidebar = ({
   className?: string;
 }) => {
   const { sidebarBg, mobileMenu, setMobileMenu } = useSidebar();
-  const [activeSubmenu, setActiveSubmenu] = useState(null);
-  const [activeMultiMenu, setMultiMenu] = useState(null);
-  const menus = menusConfig?.sidebarNav?.classic || [];
+  const [activeSubmenu, setActiveSubmenu] = useState<number | null>(null);
+  const [activeMultiMenu, setMultiMenu] = useState<number | null>(null);
+  const menus = (menusConfig?.sidebarNav?.classic || []) as SidebarMenuItem[];
 
-  const toggleSubmenu = (i) => {
+  const toggleSubmenu = (i: number) => {
     if (activeSubmenu === i) {
       setActiveSubmenu(null);
     } else {
@@ -31,7 +33,7 @@ const MobileSidebar = ({
     }
   };
 
-  const toggleMultiMenu = (subIndex) => {
+  const toggleMultiMenu = (subIndex: number) => {
     if (activeMultiMenu === subIndex) {
       setMultiMenu(null);
     } else {
@@ -41,8 +43,8 @@ const MobileSidebar = ({
   const locationName = usePathname();
 
   React.useEffect(() => {
-    let subMenuIndex = null;
-    let multiMenuIndex = null;
+    let subMenuIndex: number | null = null;
+    let multiMenuIndex: number | null = null;
     menus?.map((item, i) => {
       if (item?.child) {
         item.child.map((childItem, j) => {
@@ -50,7 +52,7 @@ const MobileSidebar = ({
             subMenuIndex = i;
           }
           if (childItem?.multi_menu) {
-            childItem.multi_menu.map((multiItem, k) => {
+            childItem.multi_menu.map((multiItem) => {
               if (isLocationMatch(multiItem.href, locationName)) {
                 subMenuIndex = i;
                 multiMenuIndex = j;
@@ -84,7 +86,7 @@ const MobileSidebar = ({
             style={{ backgroundImage: `url(${sidebarBg})` }}
           ></div>
         )}
-        <SidebarLogo collapsed={collapsed} />
+        <SidebarLogo collapsed={collapsed ?? false} />
         <ScrollArea
           className={cn("sidebar-menu  h-[calc(100%-80px)] ", {
             "px-4": !collapsed,
@@ -99,8 +101,11 @@ const MobileSidebar = ({
               <li key={`menu_key_${i}`}>
                 {/* single menu  */}
 
-                {!item.child && !item.isHeader && (
-                  <SingleMenuItem item={item} collapsed={collapsed} />
+                {!item.child && !item.isHeader && item.href && (
+                  <SingleMenuItem
+                    item={{ ...item, href: item.href }}
+                    collapsed={collapsed ?? false}
+                  />
                 )}
 
                 {/* menu label */}
@@ -116,7 +121,7 @@ const MobileSidebar = ({
                       toggleSubmenu={toggleSubmenu}
                       index={i}
                       activeSubmenu={activeSubmenu}
-                      collapsed={collapsed}
+                      collapsed={collapsed ?? false}
                     />
 
                     {!collapsed && (
@@ -126,7 +131,7 @@ const MobileSidebar = ({
                         activeSubmenu={activeSubmenu}
                         item={item}
                         index={i}
-                        collapsed={collapsed}
+                        collapsed={collapsed ?? false}
                       />
                     )}
                   </>

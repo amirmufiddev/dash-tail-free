@@ -312,7 +312,7 @@ const CategoryXAxis = ({ height = 300 }) => {
     xaxis: {
       type: "category",
       labels: {
-        formatter: function (val) {
+        formatter: function (val: string | number | Date | dayjs.Dayjs | null | undefined) {
           return dayjs(val).format("MMM DD HH:mm");
         },
         style: {

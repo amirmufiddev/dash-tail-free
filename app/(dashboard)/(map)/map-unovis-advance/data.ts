@@ -42,10 +42,10 @@ export const data = [
 
 export const totalEvents = data.reduce((sum, d) => sum + d.normal, 0) / data.length
 export const generateStyle = (
-    backgroundColor,
-    countryFillColor,
-    countryBoundaryColor,
-    coastlineColor
+    backgroundColor: unknown,
+    countryFillColor: unknown,
+    countryBoundaryColor: unknown,
+    coastlineColor: unknown
 ) => ({
     name: 'MapLibre-Unovis',
     sources: {

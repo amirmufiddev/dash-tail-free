@@ -1,6 +1,7 @@
 "use client";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
+import type { SidebarMenuItem } from "../types";
 
 const SubMenuHandler = ({
   item,
@@ -9,8 +10,15 @@ const SubMenuHandler = ({
   activeSubmenu,
   collapsed,
   hovered,
+}: {
+  item: SidebarMenuItem;
+  toggleSubmenu: (menuIndex: number) => void;
+  index: number;
+  activeSubmenu: number | null;
+  collapsed: boolean;
+  hovered: boolean;
 }) => {
-  const { title } = item;
+  const { title, icon: IconComponent } = item;
 
   return (
     <>
@@ -25,9 +33,11 @@ const SubMenuHandler = ({
           )}
         >
           <div className="flex-1  gap-3 flex items-start">
-            <span className="inline-flex items-center     ">
-              <item.icon className="w-5 h-5" />
-            </span>
+            {IconComponent && (
+              <span className="inline-flex items-center     ">
+                <IconComponent className="w-5 h-5" />
+              </span>
+            )}
             <div className=" ">{title}</div>
           </div>
           <div className="flex-0">
@@ -49,7 +59,7 @@ const SubMenuHandler = ({
         </div>
       ) : (
         <div className="inline-flex cursor-pointer items-center justify-center data-[state=open]:bg-primary-100 data-[state=open]:text-primary  w-12 h-12  rounded-md">
-          <item.icon className="w-6 h-6" />
+          {IconComponent && <IconComponent className="w-6 h-6" />}
         </div>
       )}
     </>

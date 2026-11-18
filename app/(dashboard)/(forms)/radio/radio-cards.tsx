@@ -14,7 +14,7 @@ import Image from "next/image";
 
 const RadioCards = () => {
   const [selected, setSelected] = useState("rdc_1");
-  const handleValueChange = (value) => setSelected(value);
+  const handleValueChange = (value: string) => setSelected(value);
   return (
     <div className="max-w-3xl mx-auto">
       <RadioGroup

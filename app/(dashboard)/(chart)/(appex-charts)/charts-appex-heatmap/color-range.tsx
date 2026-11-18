@@ -17,7 +17,7 @@ const ColorRange = ({ height = 300 }) => {
 
   const theme = themes.find((theme) => theme.name === config);
 
-  function generateData(count, yrange) {
+  function generateData(count: number, yrange: { max: number; min: number }) {
     var i = 0;
     var series = [];
     while (i < count) {

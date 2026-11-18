@@ -21,13 +21,25 @@ import { deleteBoardAction } from "@/action/project-action";
 import DeleteConfirmationDialog from "@/components/delete-confirmation-dialog";
 import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
-const TaskList = ({ board, children, onEdit, length }) => {
+import type { BoardRecord } from "../types";
+
+const TaskList = ({
+  board,
+  children,
+  onEdit,
+  length,
+}: {
+  board: BoardRecord;
+  children: React.ReactNode;
+  onEdit: (board: BoardRecord) => void;
+  length: number;
+}) => {
   const [open, setOpen] = React.useState(false);
   const [show, setShow] = React.useState(true);
-  async function onAction(id) {
+  async function onAction(id: string | number) {
     await deleteBoardAction(id);
   }
-  const { name, status, id } = board;
+  const { name, status = "primary", id } = board;
   return (
     <>
       <DeleteConfirmationDialog

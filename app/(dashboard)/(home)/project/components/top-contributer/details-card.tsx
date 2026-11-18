@@ -5,7 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@iconify/react";
-const DetailsCard = ({ item, index }) => {
+const DetailsCard = ({ item, index }: { item: { name: React.ReactNode; color: string; score: React.ReactNode | string | number; image: { src: string }; amount: React.ReactNode }; index: number | React.ReactNode }) => {
   const { name, color, score, image, amount } = item;
 
 

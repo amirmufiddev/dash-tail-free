@@ -37,7 +37,7 @@ const pages = [
     value: "settings",
   },
 ];
-const PageLink = ({ id }) => {
+const PageLink = ({ id }: { id: string }) => {
   const locationName = usePathname();
   return pages.map((item) => (
     <Link

@@ -1,4 +1,5 @@
 "use client";
+import type { ColumnFiltersState, SortingState } from "@tanstack/react-table";
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -23,18 +24,18 @@ import { DataTableToolbar } from "./project-list/components/data-table-toolbar";
 import Blank from "@/components/blank";
 
 const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
-const ProjectsView = ({ projects }) => {
+const ProjectsView = ({ projects }: { projects: unknown[] }) => {
   const [pageView, setPageView] = React.useState("grid");
   // modal state
   const [isOpen, setIsOpen] = React.useState(false);
-  const [selectedProjectId, setSelectedProjectId] = useState(null);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProjectId, setSelectedProjectId] = useState<unknown | null>(null);
+  const [selectedProject, setSelectedProject] = useState<unknown | null>(null);
 
   // table state
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] = React.useState({});
-  const [columnFilters, setColumnFilters] = React.useState([]);
-  const [sorting, setSorting] = React.useState([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const table = useReactTable({
     data: projects,
@@ -65,7 +66,7 @@ const ProjectsView = ({ projects }) => {
     wait().then(() => (document.body.style.pointerEvents = "auto"));
   };
 
-  const editProjectModal = (project) => {
+  const editProjectModal = (project: { id: string | number | null } | unknown | null) => {
     if (project) {
       setSelectedProject(project);
       setSelectedProjectId(project.id);

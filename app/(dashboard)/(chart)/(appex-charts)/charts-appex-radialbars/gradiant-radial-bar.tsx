@@ -54,7 +54,7 @@ const GradiantRadialBar = ({ height = 350 }) => {
             fontSize: "20px",
           },
           value: {
-            formatter: function (val) {
+            formatter: function (val: string) {
               return parseInt(val);
             },
             color: `hsl(${

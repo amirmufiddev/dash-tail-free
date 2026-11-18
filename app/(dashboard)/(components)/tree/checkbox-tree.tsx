@@ -230,7 +230,7 @@ const treeData = [
     ],
   },
 ];
-const handleCheck = (checkedKeys) => {
+const handleCheck = (checkedKeys: unknown) => {
   console.log(" on check Keys:", checkedKeys);
 };
 

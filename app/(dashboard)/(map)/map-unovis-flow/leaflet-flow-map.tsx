@@ -15,15 +15,15 @@ const LeafletFlowMap = () => {
     const mapKey = "7ZOaHj6xeWeeUNIdCjfC";
     const style = `https://api.maptiler.com/maps/topo/style.json?key=${mapKey}`;
 
-    const pointLatitude = useCallback((d) => d.lat, []);
-    const pointLongitude = useCallback((d) => d.lon, []);
-    const pointBottomLabel = useCallback((d) => d.id, []);
+    const pointLatitude = useCallback((d: { lat: number }) => d.lat, []);
+    const pointLongitude = useCallback((d: { lon: number }) => d.lon, []);
+    const pointBottomLabel = useCallback((d: { id: string | number }) => String(d.id), []);
 
-    const sourceLatitude = useCallback((d) => d.sourceLat, []);
-    const sourceLongitude = useCallback((d) => d.sourceLon, []);
-    const targetLatitude = useCallback((d) => d.targetLat, []);
-    const targetLongitude = useCallback((d) => d.targetLon, []);
-    const flowParticleDensity = useCallback((d) => d.particleDensity, []);
+    const sourceLatitude = useCallback((d: { sourceLat: number }) => d.sourceLat, []);
+    const sourceLongitude = useCallback((d: { sourceLon: number }) => d.sourceLon, []);
+    const targetLatitude = useCallback((d: { targetLat: number }) => d.targetLat, []);
+    const targetLongitude = useCallback((d: { targetLon: number }) => d.targetLon, []);
+    const flowParticleDensity = useCallback((d: { particleDensity: number }) => d.particleDensity, []);
 
     const pointColor = `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].warning})`;
 

@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 
 const ControlledSwtich = () => {
   const [checked, setChecked] = useState(false);
-  const handleCheckedChange = (value) => {
+  const handleCheckedChange = (value: unknown) => {
     setChecked(value);
   };
   return (

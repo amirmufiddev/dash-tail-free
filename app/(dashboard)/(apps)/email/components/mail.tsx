@@ -24,8 +24,21 @@ import ContactList from "./contact-list";
 import { Icon } from "@iconify/react";
 import ChatBox from "./chat-box";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import type { Layout } from "react-resizable-panels";
+import type { MailContact, MailDetail, MailRecord } from "../types";
 
-function layoutPercents(layout) {
+function isPanelLayout(value: unknown): value is Layout {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) {
+    return false;
+  }
+  return Object.values(value).every((item) => typeof item === "number");
+}
+
+function isMailDetail(value: unknown): value is MailDetail {
+  return typeof value === "object" && value !== null && "data" in value;
+}
+
+function layoutPercents(layout: Array<string | number> | undefined) {
   if (!Array.isArray(layout) || layout.length === 0) return ["20%", "80%"];
   const numbers = layout.map((value) => Number(value) || 0);
   const total = numbers.reduce((sum, value) => sum + value, 0);
@@ -43,11 +56,19 @@ const Mail = ({
   defaultLayout = [265, 440, 655],
   defaultCollapsed = false,
   navCollapsedSize,
+}: {
+  accounts?: unknown;
+  mails: MailRecord[];
+  contacts?: { contacts?: MailContact[] };
+  defaultLayout?: unknown;
+  defaultCollapsed?: boolean;
+  navCollapsedSize: number;
 }) => {
-  const panelSizes = layoutPercents(defaultLayout);
-  const savedLayout =
-    defaultLayout && !Array.isArray(defaultLayout) ? defaultLayout : undefined;
-  const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
+  const panelSizes = layoutPercents(
+    Array.isArray(defaultLayout) ? defaultLayout : undefined,
+  );
+  const savedLayout = isPanelLayout(defaultLayout) ? defaultLayout : undefined;
+  const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed ?? false);
   const [isPending, startTransition] = React.useTransition();
 
   const filteredPrimaryMails = mails.filter(
@@ -61,7 +82,7 @@ const Mail = ({
   );
 
   // mail state
-  const [selectedMail, setSelectedMail] = React.useState(null);
+  const [selectedMail, setSelectedMail] = React.useState<MailDetail | null>(null);
   const [searchMail, setSearchMail] = React.useState("");
   const [openSpam, setOpenSpam] = React.useState(false);
   // state for compose mail
@@ -73,10 +94,10 @@ const Mail = ({
     setOpenChatBox(true);
   };
 
-  const handleSelectedMail = (id) => {
+  const handleSelectedMail = (id: string | number) => {
     startTransition(async () => {
       const mail = await getMailAction(id);
-      setSelectedMail(mail);
+      setSelectedMail(isMailDetail(mail) ? mail : null);
     });
   };
   const closeSelectedMail = () => setSelectedMail(null);

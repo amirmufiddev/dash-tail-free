@@ -159,6 +159,7 @@ const Step = React.forwardRef<HTMLLIElement, StepProps>(
     ref
   ) => {
     const getStepBarBg = (current: number | undefined, index: number | undefined) => {
+      if (current === undefined || index === undefined) return "";
       if (current > index) return "completed";
       if (current < index) return "disable";
       if (current === index) return "current";
@@ -172,6 +173,7 @@ const Step = React.forwardRef<HTMLLIElement, StepProps>(
       index: number | undefined,
       status: string | undefined
     ) => {
+      if (current === undefined || index === undefined) return "";
       if (status === "error" && current === index) {
         return "error";
       }

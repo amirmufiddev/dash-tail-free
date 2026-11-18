@@ -12,7 +12,7 @@ import Link from "next/link";
 export const columns = [
   {
     id: "id",
-    header: ({ table }) => (
+    header: ({ table }: { table: { getIsAllPageRowsSelected: () => boolean; getIsSomePageRowsSelected: () => boolean; toggleAllPageRowsSelected: ((arg0: boolean) => unknown) } }) => (
       <Checkbox
         checked={
           table.getIsAllPageRowsSelected() ||
@@ -23,7 +23,7 @@ export const columns = [
         className="translate-y-[2px]"
       />
     ),
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getIsSelected: () => boolean; toggleSelected: (value?: boolean) => void } }) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
@@ -36,17 +36,17 @@ export const columns = [
   },
   {
     accessorKey: "id",
-    header: ({ column }) => (
+    header: ({ column }: { column: unknown }) => (
       <DataTableColumnHeader column={column} title="INVOICE ID" />
     ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => <div className="w-[80px]">{row.getValue("id")}</div>,
     enableSorting: true,
     enableHiding: false,
   },
   {
     accessorKey: "customer",
     header: "Customer",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { original?: { customer?: { avatar?: { src?: string }; name?: React.ReactNode; email?: React.ReactNode } } } }) => (
       <div className="flex gap-2 items-center">
         <Avatar className=" rounded-full">
           <AvatarImage src={row?.original?.customer.avatar.src} />
@@ -62,21 +62,21 @@ export const columns = [
   {
     accessorKey: "date",
     header: "Date",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => (
       <span className="whitespace-nowrap">{row.getValue("date")}</span>
     ),
   },
   {
     accessorKey: "amount",
     header: "Total",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => (
       <span>${row.getValue("amount")}</span>
     ),
   },
   {
     accessorKey: "status",
     header: "Status",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => (
       <Badge
         className="rounded capitalize whitespace-nowrap"
         variant="soft"
@@ -89,7 +89,7 @@ export const columns = [
   {
     accessorKey: "paymentStatus",
     header: "Payment Status",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: { getValue: ((arg0: string) => React.ReactNode) } }) => (
       <Badge
         className="capitalize whitespace-nowrap"
         variant="soft"
@@ -102,7 +102,7 @@ export const columns = [
   {
     accessorKey: "",
     header: "Actions",
-    cell: ({ row }) => (
+    cell: ({ row }: { row: unknown }) => (
       <div className="flex gap-3 items-center justify-end">
         <Button
           asChild

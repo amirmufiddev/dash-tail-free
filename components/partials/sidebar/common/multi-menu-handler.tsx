@@ -11,7 +11,7 @@ const MultiMenuHandler = ({
   toggleMultiMenu,
   className,
 }: {
-  subItem: { title?: string };
+  subItem: { title?: React.ReactNode };
   subIndex: number;
   activeMultiMenu: number | null;
   toggleMultiMenu: (index: number) => void;

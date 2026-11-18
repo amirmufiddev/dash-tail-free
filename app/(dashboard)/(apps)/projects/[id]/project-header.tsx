@@ -46,7 +46,7 @@ import avatar8 from "@/public/images/avatar/avatar-8.jpg";
 import avatar9 from "@/public/images/avatar/avatar-9.jpg";
 import avatar10 from "@/public/images/avatar/avatar-10.jpg";
 import avatar11 from "@/public/images/avatar/avatar-11.jpg";
-const ProjectHeader = ({ project }) => {
+const ProjectHeader = ({ project }: { project: { title: React.ReactNode; assign: ({ image?: { src?: string } })[] } }) => {
   const data = [
     {
       text: "assigned date",

@@ -35,15 +35,15 @@ const FreeBrushScatter = () => {
     name: v,
     color: colorScale(v),
   }));
-  const [selection, setSelection] = useState(null);
+  const [selection, setSelection] = useState<null | ({ [key: number]: unknown }) | null>(null);
 
   const scatterProps = {
-    x: useCallback((d) => d.medianSalary, []),
-    y: useCallback((d) => d.employmentRate, []),
-    color: useCallback((d) => colorScale(d.category), []),
-    size: useCallback((d) => d.total, []),
-    label: useCallback((d) => d.major, []),
-    id: useCallback((d) => d.major, []),
+    x: useCallback((d: { medianSalary: number }) => d.medianSalary, []),
+    y: useCallback((d: { employmentRate: number }) => d.employmentRate, []),
+    color: useCallback((d: { category: string }) => colorScale(d.category), []),
+    size: useCallback((d: { total: number }) => d.total, []),
+    label: useCallback((d: { major: string }) => d.major, []),
+    id: useCallback((d: { major: string }) => d.major, []),
   };
 
   return (

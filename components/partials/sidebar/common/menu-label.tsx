@@ -5,7 +5,7 @@ const MenuLabel = ({
   item,
   className,
 }: {
-  item: { title?: string };
+  item: { title?: React.ReactNode };
   className?: string;
 }) => {
   const { title } = item;

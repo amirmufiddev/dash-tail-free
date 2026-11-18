@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const ControlledTextarea = () => {
   const [value, setValue] = useState("");
-  const handleChange = event => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> )=> {
     setValue(event.target.value)
   }
   return (

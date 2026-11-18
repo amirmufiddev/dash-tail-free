@@ -21,10 +21,10 @@ import figmai from "@/public/images/files/figma.png";
 import aii from "@/public/images/files/ai.png";
 import Image from "next/image";
 
-const ListFileCard = ({ files }) => {
-  const [selectedRows, setSelectedRows] = useState([]);
+const ListFileCard = ({ files }: { files: ({ id: string | number; email: string | number; ext?: string | React.ReactNode; background?: unknown; heading?: React.ReactNode; size?: React.ReactNode; date?: React.ReactNode })[] }) => {
+  const [selectedRows, setSelectedRows] = useState<unknown[]>([]);
 
-  const handleSelectAll = (event) => {
+  const handleSelectAll = (event: unknown) => {
     if (selectedRows?.length === files?.length) {
       setSelectedRows([]);
     } else {
@@ -32,7 +32,7 @@ const ListFileCard = ({ files }) => {
     }
   };
 
-  const handleRowSelect = (id) => {
+  const handleRowSelect = (id: never[]) => {
     const updatedSelectedRows = [...selectedRows];
     if (selectedRows.includes(id)) {
       updatedSelectedRows.splice(selectedRows.indexOf(id), 1);

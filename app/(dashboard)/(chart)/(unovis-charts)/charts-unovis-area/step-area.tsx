@@ -44,11 +44,11 @@ const StepAreaChart = () => {
       </div>
       <VisXYContainer data={stepData} height={"50vh"} yDomain={[0, 42]}>
         <VisArea
-          x={useCallback((d) => d.year, [])}
+          x={useCallback((d: { year: number }) => d.year, [])}
           y={[
-            useCallback((d) => d[curr].neutral, [curr]),
-            useCallback((d) => d[curr].negative, [curr]),
-            useCallback((d) => d[curr].positive, [curr]),
+            useCallback((d: { [key: string]: { neutral: number } }) => d[curr].neutral, [curr]),
+            useCallback((d: { [key: string]: { negative: number } }) => d[curr].negative, [curr]),
+            useCallback((d: { [key: string]: { positive: number } }) => d[curr].positive, [curr]),
           ]}
           curveType={CurveType.StepAfter}
         />

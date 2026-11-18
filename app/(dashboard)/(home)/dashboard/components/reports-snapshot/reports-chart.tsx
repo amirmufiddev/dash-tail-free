@@ -11,7 +11,7 @@ import {
   getYAxisConfig,
 } from "@/lib/appex-chart-options";
 
-const ReportsChart = ({ series, chartColor, height = 300 }) => {
+const ReportsChart = ({ series, chartColor, height = 300 }: { series: unknown; chartColor: unknown; height?: unknown }) => {
   const { theme: config, setTheme: setConfig } = useThemeStore();
   const { theme: mode } = useTheme();
 

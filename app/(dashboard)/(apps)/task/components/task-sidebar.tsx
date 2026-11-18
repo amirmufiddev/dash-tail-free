@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
-import ContactList from "./contact-list";
+import ContactList, { type TaskContact } from "./contact-list";
 
 const taskFilters = [
   {
@@ -46,7 +46,7 @@ const priorityFilters = [
     total: "03",
   },
 ];
-const TaskSidebar = ({ contacts }) => {
+const TaskSidebar = ({ contacts }: { contacts: { contacts?: TaskContact[] } }) => {
   return (
     <>
       <ul>

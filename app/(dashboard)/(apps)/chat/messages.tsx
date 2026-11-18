@@ -64,7 +64,7 @@ const Messages = ({
     (pinnedMessage) => pinnedMessage.index === index
   );
 
-  const handlePinMessageLocal = (note) => {
+  const handlePinMessageLocal = (note: unknown) => {
     const obj = {
       note,
       avatar,

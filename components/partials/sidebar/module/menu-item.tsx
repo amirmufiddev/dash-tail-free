@@ -3,9 +3,17 @@ import { cn, isLocationMatch } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import type { SidebarChildMenuItem } from "../types";
 
-function NavLink({ childItem, locationName }) {
-  const { href, icon, title, badge } = childItem;
+function NavLink({
+  childItem,
+  locationName,
+}: {
+  childItem: SidebarChildMenuItem & { href: string };
+  locationName: string;
+}) {
+  const { href, title, badge } = childItem;
+  const ItemIcon = childItem.icon;
   return (
     <Link
       href={href}
@@ -20,9 +28,9 @@ function NavLink({ childItem, locationName }) {
         }
       )}
     >
-      {icon && (
+      {ItemIcon && (
         <span className="inline-flex items-center   flex-grow-0">
-          <childItem.icon className=" h-5 w-5" />
+          <ItemIcon className=" h-5 w-5" />
         </span>
       )}
       <div className="flex-grow truncate">{title}</div>
@@ -37,8 +45,15 @@ const MenuItem = ({
   nestedIndex,
   index,
   locationName,
+}: {
+  childItem: SidebarChildMenuItem;
+  toggleNested: (subIndex: number) => void;
+  nestedIndex: number | null;
+  index: number;
+  locationName: string;
 }) => {
-  const { icon, title } = childItem;
+  const { title } = childItem;
+  const ItemIcon = childItem.icon;
   return (
     <div>
       {childItem?.nested ? (
@@ -54,9 +69,11 @@ const MenuItem = ({
             )}
             onClick={() => toggleNested(index)}
           >
-            <span className="inline-flex items-center  flex-grow-0">
-              <childItem.icon className=" h-5 w-5" />
-            </span>
+            {ItemIcon && (
+              <span className="inline-flex items-center  flex-grow-0">
+                <ItemIcon className=" h-5 w-5" />
+              </span>
+            )}
             <span className="flex-grow truncate">{title}</span>
           </div>
           {childItem.nested && (
@@ -74,9 +91,14 @@ const MenuItem = ({
           )}
         </div>
       ) : (
-        <div className=" flex-1">
-          <NavLink childItem={childItem} locationName={locationName} />
-        </div>
+        childItem.href && (
+          <div className=" flex-1">
+            <NavLink
+              childItem={{ ...childItem, href: childItem.href }}
+              locationName={locationName}
+            />
+          </div>
+        )
       )}
     </div>
   );

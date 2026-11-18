@@ -78,7 +78,7 @@ const ActiveTask = ({ height = 350 }) => {
     },
     dataLabels: {
       enabled: true,
-      formatter: function (val, opts) {
+      formatter: function (val: { [key: number]: string | number | (string | number)[] | Date | moment.Moment | moment.MomentInputObject | null | undefined }, opts: { w: { globals: { labels: { [key: string]: unknown } } }; dataPointIndex: string | number }) {
         var label = opts.w.globals.labels[opts.dataPointIndex];
         var a = moment(val[0]);
         var b = moment(val[1]);

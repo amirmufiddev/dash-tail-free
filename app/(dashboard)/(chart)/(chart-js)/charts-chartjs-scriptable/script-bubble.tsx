@@ -26,7 +26,7 @@ ChartJS.register(
   PointElement
 );
 
-function channelValue(x, y, values) {
+function channelValue(x: number, y: number, values: { [key: number]: unknown }) {
   return x < 0 && y < 0
     ? values[0]
     : x < 0
@@ -36,7 +36,7 @@ function channelValue(x, y, values) {
     : values[3];
 }
 
-function colorize(opaque, context) {
+function colorize(opaque: unknown, context: { raw: unknown }) {
   const value = context.raw;
   const x = value.x / 100;
   const y = value.y / 100;
@@ -105,7 +105,7 @@ const ScriptBubble = ({ height = 350 }) => {
     },
     elements: {
       point: {
-        backgroundColor: function (context) {
+        backgroundColor: function (context: { dataIndex: unknown; dataset: { data: { [key: string]: unknown } } }) {
           const index = context.dataIndex;
           const value = context.dataset.data[index];
           return value < 0 ? "red" : index % 2 ? "blue" : "green";

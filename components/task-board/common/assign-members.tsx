@@ -32,7 +32,7 @@ const members = [
     image: faker.image.avatar()
   },
 ]
-const AssignMembers = ({ icon = undefined }) => {
+const AssignMembers = ({ icon }: { icon?: React.ReactNode } = {}) => {
   const [open, setOpen] = useState(false);
   const togglePopover = () => setOpen(!open);
 

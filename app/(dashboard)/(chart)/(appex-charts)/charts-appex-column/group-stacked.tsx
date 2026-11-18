@@ -44,7 +44,7 @@ const GroupStacked = ({ height = 300 }) => {
       stacked: true,
     },
     dataLabels: {
-      formatter: (val) => {
+      formatter: (val: number) => {
         return val / 1000 + "K";
       },
     },
@@ -67,7 +67,7 @@ const GroupStacked = ({ height = 300 }) => {
 
     yaxis: {
       labels: {
-        formatter: (val) => {
+        formatter: (val: number) => {
           return val / 1000 + "K";
         },
         style: {

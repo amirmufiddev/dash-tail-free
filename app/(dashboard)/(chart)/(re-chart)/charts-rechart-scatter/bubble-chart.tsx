@@ -81,7 +81,7 @@ const parseDomain = () => [
   ),
 ];
 
-const renderTooltip = (props) => {
+const renderTooltip = (props: { active: unknown; payload: { length: unknown; [key: number]: { payload: unknown } } }) => {
   const { active, payload } = props;
 
   if (active && payload && payload.length) {

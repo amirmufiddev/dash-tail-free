@@ -21,8 +21,8 @@ export default function StackedArea() {
     };
     const formats = [Format.Vinyl, Format.Cassette, Format.Cd, Format.Download, Format.Streaming];
 
-    function getMaxItems(array, keys) {
-        const maxIndex = (k) => array.reduce((max, curr, i) => curr[k] > array[max][k] ? i : max, 0);
+    function getMaxItems(array: ({ [key: string]: number })[], keys: unknown[]) {
+        const maxIndex = (k: string | number) => array.reduce((max, curr, i) => curr[k] > array[max][k] ? i : max, 0);
 
         const entries = keys.map((key) => [
             key,
@@ -31,7 +31,7 @@ export default function StackedArea() {
 
         return Object.fromEntries(entries);
     }
-    function getLabels(data) {
+    function getLabels(data: ({ slice: ((arg0: number, arg1: number) => unknown); length: number })) {
         const peakItems = getMaxItems(data.slice(0, data.length - 3), formats);
         return formats.reduce((obj, format, i) => {
             const offset = Array(i).fill(0).reduce((sum, _, j) => sum + peakItems[format][formats[j]], 0);
@@ -52,14 +52,14 @@ export default function StackedArea() {
     return (
         <>
             <VisXYContainer data={stackedData} height={'50vh'}>
-                <VisArea x={useCallback((d) => d.year, [])} y={formats.map((g) => useCallback((d) => d[g], []))} />
+                <VisArea x={useCallback((d: { year: number }) => d.year, [])} y={formats.map((g) => useCallback((d: { [key: string]: unknown }) => d[g], []))} />
                 <VisAxis type='x' label='Year' numTicks={10} gridLine={false} domainLine={false} />
                 <VisAxis type='y' label='Revenue (USD, billions)' numTicks={10} />
                 <VisXYLabels
-                    x={useCallback((d) => (labels[d.year] ? d.year : undefined), [])}
-                    y={useCallback((d) => labels[d.year]?.value, [])}
-                    label={useCallback((d) => labels[d.year]?.label, [])}
-                    backgroundColor={useCallback((d) => labels[d.year]?.color ?? 'none', [])}
+                    x={useCallback((d: { year: string | number }) => (labels[d.year] ? d.year : undefined), [])}
+                    y={useCallback((d: { year: string | number }) => labels[d.year]?.value, [])}
+                    label={useCallback((d: { year: string | number }) => labels[d.year]?.label, [])}
+                    backgroundColor={useCallback((d: { year: string | number }) => labels[d.year]?.color ?? 'none', [])}
                     clusterBackgroundColor="none"
                     clusterLabel={() => ''}
                 />

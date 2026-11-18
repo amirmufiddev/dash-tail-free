@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-function generateFakeData(numItems) {
+function generateFakeData(numItems: number) {
   const data = [];
 
   for (let i = 1; i <= numItems; i++) {

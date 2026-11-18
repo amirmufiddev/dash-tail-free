@@ -21,11 +21,11 @@ const options = [
   },
 ];
 
-function Select({ value, handleId, nodeId }) {
+function Select({ value, handleId, nodeId }: { value: string | number; handleId: string; nodeId: unknown }) {
   const { setNodes } = useReactFlow();
   const store = useStoreApi();
 
-  const onChange = (evt) => {
+  const onChange = (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { nodeInternals } = store.getState();
     setNodes(
       Array.from(nodeInternals.values()).map((node) => {
@@ -59,7 +59,7 @@ function Select({ value, handleId, nodeId }) {
   );
 }
 
-function CustomNode({ id, data }) {
+function CustomNode({ id, data }: { id: string | number; data: { selects: { [key: string]: string | number } | {} } }) {
   return (
     <>
       <div className="custom-node__header">

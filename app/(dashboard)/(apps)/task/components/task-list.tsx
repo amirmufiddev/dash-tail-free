@@ -4,7 +4,7 @@ import { CardContent, CardHeader } from "@/components/ui/card";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { ChevronDown, Search } from "lucide-react";
-const TaskList = ({ children }) => {
+const TaskList = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>

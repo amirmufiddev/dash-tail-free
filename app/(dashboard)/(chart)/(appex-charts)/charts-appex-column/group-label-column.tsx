@@ -66,7 +66,7 @@ const GroupLabelColumn = ({ height = 300 }) => {
       },
     },
     dataLabels: {
-      formatter: (val) => {
+      formatter: (val: number) => {
         return val / 1000 + "K";
       },
     },
@@ -95,7 +95,7 @@ const GroupLabelColumn = ({ height = 300 }) => {
       type: "category",
 
       labels: {
-        formatter: function (val) {
+        formatter: function (val: string | number | Date | dayjs.Dayjs | null | undefined) {
           return "Q" + Math.ceil(dayjs(val).month() / 3);
         },
         style: {

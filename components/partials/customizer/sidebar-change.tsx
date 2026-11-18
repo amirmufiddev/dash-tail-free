@@ -11,7 +11,7 @@ const sidebarOptions = [
   {
     key: "module",
     label: "Module",
-    disabled: (layout) => layout === "semibox" || layout === "horizontal",
+    disabled: (layout: string) => layout === "semibox" || layout === "horizontal",
     svg: (
       <VerticalSvg className="[&>rect]:fill-default-300 [&>circle]:fill-default-400 [&>path]:fill-default-400" />
     ),
@@ -19,7 +19,7 @@ const sidebarOptions = [
   {
     key: "classic",
     label: "Classic",
-    disabled: (layout) => layout === "semibox",
+    disabled: (layout: string) => layout === "semibox",
     svg: (
       <SemiBoxSvg className="[&>rect]:fill-default-300 [&>circle]:fill-default-400 [&>path]:fill-default-400" />
     ),

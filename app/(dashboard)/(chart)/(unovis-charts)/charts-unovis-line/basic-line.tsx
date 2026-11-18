@@ -24,8 +24,8 @@ const BasicLine = ({ height = 350 }) => {
           color={`hsl(${
             theme?.cssVars[mode === "dark" ? "dark" : "light"].primary
           })`}
-          x={useCallback((d) => d.x, [])}
-          y={useCallback((d) => d.y, [])}
+          x={useCallback((d: { x: number; y: number; }) => d.x, [])}
+          y={useCallback((d: { x: number; y: number; }) => d.y, [])}
         />
         <VisAxis
           type="x"

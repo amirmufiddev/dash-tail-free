@@ -1,8 +1,7 @@
-import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { mails } from "../data";
 
-export async function GET(request, response) {
+export async function GET(request: NextRequest, response: { params: Promise<{ id: string }> }) {
   try {
     const { id } = (await response.params);
     const item = mails.find((item) => item.id === parseInt(id));
@@ -27,7 +26,7 @@ export async function GET(request, response) {
   }
 }
 
-export async function DELETE(request, response) {
+export async function DELETE(request: NextRequest, response: { params: Promise<{ id: string }> }) {
   const { id } = (await response.params);
   const index = mails.findIndex((item) => item.id === parseInt(id));
   if (index !== -1) {

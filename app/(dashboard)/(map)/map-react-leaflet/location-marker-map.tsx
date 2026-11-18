@@ -13,7 +13,7 @@ Leaflet.Icon.Default.mergeOptions({
 })
 
 function LocationMarker() {
-    const [position, setPosition] = useState(null)
+    const [position, setPosition] = useState<unknown | null>(null)
     const map = useMapEvents({
         click() {
             map.locate()

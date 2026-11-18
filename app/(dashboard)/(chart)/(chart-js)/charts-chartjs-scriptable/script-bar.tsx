@@ -25,8 +25,8 @@ ChartJS.register(
   Legend
 );
 
-const colorize = (opaque) => {
-  return (ctx) => {
+const colorize = (opaque: unknown) => {
+  return (ctx: { parsed: { y: number } }) => {
     const v = ctx.parsed.y;
     const c =
       v < -50 ? "#D60000" : v < 0 ? "#F46300" : v < 50 ? "#0358B6" : "#44DE28";

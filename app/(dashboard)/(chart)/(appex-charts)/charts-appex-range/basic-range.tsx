@@ -99,7 +99,7 @@ const BasicRange = ({ height = 300 }) => {
 
     yaxis: {
       labels: {
-        formatter: (val) => {
+        formatter: (val: string) => {
           return val + "°C";
         },
         style: {

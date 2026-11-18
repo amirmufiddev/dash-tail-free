@@ -2,7 +2,7 @@ export const metadata = {
   title: "Form Layout",
 };
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 

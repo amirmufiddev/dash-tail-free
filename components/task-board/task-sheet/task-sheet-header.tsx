@@ -25,17 +25,17 @@ const TaskSheetHeader = ({
   toggleCollapse,
   collapseSheet: _collapseSheet,
 }: {
-  toggleCollapse;
+  toggleCollapse: () => void;
   collapseSheet?: boolean;
 }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
-  const intervalRef = useRef(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // timer start
   const toggleTimer = () => {
     if (isRunning) {
-      clearInterval(intervalRef.current);
+      if (intervalRef.current) clearInterval(intervalRef.current);
       setElapsedTime(0);
       setIsRunning(false);
     } else if (!isRunning) {
@@ -46,7 +46,7 @@ const TaskSheetHeader = ({
       setIsRunning(true);
     }
   };
-  const formatTime = (milliseconds) => {
+  const formatTime = (milliseconds: number) => {
     const seconds = Math.floor(milliseconds / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);

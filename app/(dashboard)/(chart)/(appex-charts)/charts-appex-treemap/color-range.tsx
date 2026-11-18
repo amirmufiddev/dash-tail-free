@@ -82,7 +82,7 @@ const ColorRange = ({ height = 300 }) => {
             style: {
                 fontSize: '12px',
             },
-            formatter: function (text, op) {
+            formatter: function (text: unknown, op: { value: number }) {
                 return [text, op.value]
             },
             offsetY: -4

@@ -13,10 +13,30 @@ import { cn } from "@/lib/utils";
 import Attachments from "./attachments";
 import SheetActions from "./sheet-actions";
 import { X } from "lucide-react";
+import type { CommentRecord, SubTaskRecord, TaskRecord } from "../types";
 
-const TaskSheet = ({ open, onClose, taskId, task, subTasks, comments }) => {
+const TaskSheet = ({
+  open,
+  onClose,
+  taskId,
+  task,
+  subTasks,
+  comments,
+}: {
+  open: boolean;
+  onClose: () => void;
+  taskId: string | number | null;
+  task: TaskRecord | null;
+  subTasks: SubTaskRecord[];
+  comments: CommentRecord[];
+}) => {
   const [collapseSheet, setCollapseSheet] = useState(false);
   const toggleCollapse = () => setCollapseSheet(!collapseSheet);
+
+  if (!task || taskId == null) {
+    return null;
+  }
+
   return (
     <Sheet open={open}>
       <SheetContent
@@ -38,15 +58,11 @@ const TaskSheet = ({ open, onClose, taskId, task, subTasks, comments }) => {
             "xl:grid-cols-1": collapseSheet,
           })}
         >
-          {/* left side */}
           <div className="border-r border-default-200 min-h-screen">
             <div className="h-[calc(100vh-70px)]">
               <ScrollArea className="h-full">
-                {/* sheet title & desc */}
                 <SheetTitleDesc task={task} taskId={taskId} />
-                {/* sheet actions */}
                 <SheetActions task={task} taskId={taskId} />
-                {/* tabs */}
                 <Tabs defaultValue="subtasks">
                   <TabsList className="flex justify-between w-full bg-default-100 h-12 p-0 px-2 xl:px-12 rounded-none">
                     <TabsTrigger
@@ -104,7 +120,6 @@ const TaskSheet = ({ open, onClose, taskId, task, subTasks, comments }) => {
               </ScrollArea>
             </div>
           </div>
-          {/* right side */}
 
           <div
             className={cn("hidden xl:block", {

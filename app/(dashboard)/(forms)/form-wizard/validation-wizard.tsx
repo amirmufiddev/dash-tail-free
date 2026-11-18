@@ -31,7 +31,7 @@ const ValidationWizard = () => {
     },
   ];
 
-  const isStepOptional = (step) => {
+  const isStepOptional = (step: number) => {
     return step === 1;
   };
 

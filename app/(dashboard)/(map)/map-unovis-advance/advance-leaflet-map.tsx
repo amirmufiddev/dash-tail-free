@@ -16,13 +16,13 @@ const AdvancedLeafletMap = ({ height = 350 }) => {
     const theme = themes.find((theme) => theme.name === config);
 
     const mapRef = useRef(null);
-    const pointId = (d) => d.name;
-    const pointLatitude = (d) => d.latitude;
-    const pointLongitude = (d) => d.longitude;
-    const pointBottomLabel = (d) => d.name;
-    const pointRadius = (d) => 10 + 4 * Math.sqrt((d.normal + (d.blocked || 0)) / totalEvents);
-    const pointLabel = (d) => `${((d.blocked + d.normal) / 1000).toFixed(1)}K`;
-    const clusterBottomLabel = (d) => `${d.point_count} sites`;
+    const pointId = (d: { name: string }) => d.name;
+    const pointLatitude = (d: { latitude: number }) => d.latitude;
+    const pointLongitude = (d: { longitude: number }) => d.longitude;
+    const pointBottomLabel = (d: { name: string }) => d.name;
+    const pointRadius = (d: { normal: number; blocked: unknown }) => 10 + 4 * Math.sqrt((d.normal + (d.blocked || 0)) / totalEvents);
+    const pointLabel = (d: { blocked: number; normal: number }) => `${((d.blocked + d.normal) / 1000).toFixed(1)}K`;
+    const clusterBottomLabel = (d: { point_count: string }) => `${d.point_count} sites`;
 
     const colorMap = {
         normal: { color: `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].primary})` },
@@ -31,7 +31,7 @@ const AdvancedLeafletMap = ({ height = 350 }) => {
 
     const events = {
         [LeafletMap.selectors.point]: {
-            click: d => {
+            click: (d: { properties: { cluster?: unknown }; id: string | number }) => {
                 if (!d.properties?.cluster) mapRef.current?.component.zoomToPointById(d.id, true, 5)
             },
         },

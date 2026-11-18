@@ -18,7 +18,7 @@ const eventSchema = z.object({
     .optional(),
 });
 
-export function trackEvent(input) {
+export function trackEvent(input: unknown) {
   const event = eventSchema.parse(input);
   if (event) {
     va.track(event.name, event.properties);

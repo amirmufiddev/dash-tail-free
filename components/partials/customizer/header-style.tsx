@@ -16,7 +16,7 @@ const HeaderStyle = () => {
   const newTheme = themes.find((theme) => theme.name === config);
   const { sidebarType } = useSidebar();
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setNavbarType(event.target.value);
   };
 

@@ -42,11 +42,11 @@ const MultiLineChart = ({ height = 400 }) => {
       <VisBulletLegend items={items} />
       <VisXYContainer data={data} height={height} xScale={xScale}>
         <VisLine
-          x={useCallback((d) => +new Date(d.date), [])}
+          x={useCallback((d: { date: string | number | Date }) => +new Date(d.date), [])}
           y={[
-            useCallback((d) => d.austin, []),
-            useCallback((d) => d.ny, []),
-            useCallback((d) => d.sf, []),
+            useCallback((d: { austin: number }) => d.austin, []),
+            useCallback((d: { ny: number }) => d.ny, []),
+            useCallback((d: { sf: number }) => d.sf, []),
           ]}
         />
         <VisAxis

@@ -232,7 +232,7 @@ const treeData = [
   },
 ];
 
-const handleSelect = (selectedNode) => {
+const handleSelect = (selectedNode: unknown) => {
   console.log("Selected Node:", selectedNode);
 };
 

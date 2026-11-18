@@ -19,7 +19,7 @@ const iR = 90;
 const oR = 130;
 const value = 50;
 
-const needle = (value, data, cx, cy, iR, oR, color) => {
+const needle = (value: number, data: ({ value: unknown })[], cx: number, cy: number, iR: number, oR: number, color: unknown) => {
   let total = 0;
   data.forEach((v) => {
     total += v.value;

@@ -8,8 +8,16 @@ import { cn, isLocationMatch } from "@/lib/utils";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-const SingleMenuItem = ({ item, collapsed }) => {
-  const { badge, href, title } = item;
+import type { SidebarMenuItem } from "../types";
+
+const SingleMenuItem = ({
+  item,
+  collapsed,
+}: {
+  item: SidebarMenuItem & { href: string };
+  collapsed: boolean;
+}) => {
+  const { badge, href, title, icon: IconComponent } = item;
   const locationName = usePathname();
   return (
     <Link href={href}>
@@ -30,7 +38,7 @@ const SingleMenuItem = ({ item, collapsed }) => {
                       }
                     )}
                   >
-                    <item.icon className="w-6 h-6" />
+                    {IconComponent && <IconComponent className="w-6 h-6" />}
                   </span>
                 </Tooltip.Trigger>
                 <Tooltip.Portal>
@@ -58,9 +66,11 @@ const SingleMenuItem = ({ item, collapsed }) => {
               }
             )}
           >
-            <span className="flex-grow-0">
-              <item.icon className="w-5 h-5" />
-            </span>
+            {IconComponent && (
+              <span className="flex-grow-0">
+                <IconComponent className="w-5 h-5" />
+              </span>
+            )}
             <div className="text-box flex-grow ">{title}</div>
             {badge && <Badge className=" rounded">{item.badge}</Badge>}
           </div>

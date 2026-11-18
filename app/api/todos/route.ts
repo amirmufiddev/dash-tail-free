@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { demoData } from "./data";
 
 // Helper function to delay responses
-function delayResponse(responseObj, delay = 2000) {
+function delayResponse(responseObj: unknown, delay = 2000) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(responseObj);
@@ -11,12 +11,12 @@ function delayResponse(responseObj, delay = 2000) {
   });
 }
 
-export async function GET(request, response) {
+export async function GET(request: NextRequest, response: unknown) {
   //const delayedResponse = await delayResponse(demoData, 2000);
   return NextResponse.json(demoData, { status: 200 });
 }
 
-export async function POST(request, response) {
+export async function POST(request: NextRequest, response: unknown) {
   const newItem = await request.json();
 
   // Assign a new ID to the item (assuming there's no unique ID generation yet)

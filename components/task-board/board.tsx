@@ -28,6 +28,7 @@ import DeleteConfirmationDialog from "@/components/delete-confirmation-dialog";
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import Task from "./task";
+import type { BoardRecord } from "./types";
 
 const taskBoard = ({
   board,
@@ -36,26 +37,20 @@ const taskBoard = ({
   taskHandler,
   isTaskOpen,
   showButton,
-  tasks,
-  onUpdateTask,
-  boards,
 }: {
-  board;
-  children;
-  onEdit?;
-  taskHandler?;
-  isTaskOpen?;
-  showButton?;
-  tasks?;
-  onUpdateTask?;
-  boards?;
+  board: BoardRecord;
+  children: React.ReactNode;
+  onEdit?: (board: BoardRecord) => void;
+  taskHandler?: (boardId: string | number) => void;
+  isTaskOpen?: boolean;
+  showButton?: boolean;
 }) => {
   const [open, setOpen] = React.useState(false);
 
-  async function onAction(id) {
+  async function onAction(id: string | number) {
     await deleteBoardAction(id);
   }
-  const { name, status, id } = board;
+  const { name, status = "primary", id } = board;
 
   const {
     setNodeRef,
@@ -124,7 +119,7 @@ const taskBoard = ({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-[196px]" align="end">
-              <DropdownMenuItem onSelect={() => onEdit(board)}>
+              <DropdownMenuItem onSelect={() => onEdit?.(board)}>
                 <Icon
                   icon="heroicons:pencil-square"
                   className="w-3.5 h-3.5 mr-1 text-default-700"
@@ -151,7 +146,7 @@ const taskBoard = ({
           {showButton && (
             <Button
               className="flex justify-center items-center gap-1 w-full bg-transparent hover:bg-transparent"
-              onClick={() => taskHandler(id)}
+              onClick={() => taskHandler?.(id)}
             >
               <Plus className="w-5 h-5 text-primary" />
               <span className="text-xs font-semibold text-primary">
