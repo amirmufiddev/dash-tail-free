@@ -1,8 +1,10 @@
-import * as React from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
+"use client"
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import * as React from "react"
+import { Check, ChevronsUpDown } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import {
   Command,
   CommandEmpty,
@@ -10,26 +12,26 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from "@/components/ui/command"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/components/ui/popover"
 
 type AutocompleteContextValue = {
-  value: string;
-  select: (value: string, label: React.ReactNode) => void;
-};
+  value: string
+  select: (value: string) => void
+}
 
 const AutocompleteContext =
-  React.createContext<AutocompleteContextValue | null>(null);
+  React.createContext<AutocompleteContextValue | null>(null)
 
 export interface AutocompleteProps extends React.HTMLAttributes<HTMLDivElement> {
-  label: string;
-  labelClass?: string;
-  children?: React.ReactNode;
-  placeholder?: string;
+  label: string
+  labelClass?: string
+  children?: React.ReactNode
+  placeholder?: string
 }
 
 const Autocomplete = React.forwardRef<HTMLDivElement, AutocompleteProps>(
@@ -44,49 +46,51 @@ const Autocomplete = React.forwardRef<HTMLDivElement, AutocompleteProps>(
     },
     ref
   ) => {
-    const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState("");
-    const [selectedLabel, setSelectedLabel] =
-      React.useState<React.ReactNode>(placeholder);
+    const [open, setOpen] = React.useState(false)
+    const [value, setValue] = React.useState("")
 
-    const select = React.useCallback(
-      (newValue: string, newLabel: React.ReactNode) => {
-        setValue(newValue);
-        setSelectedLabel(newLabel);
-        setOpen(false);
-      },
-      []
-    );
+    const items = React.useMemo(() => {
+      const found: { value: string; label: React.ReactNode }[] = []
+      React.Children.forEach(children, (child) => {
+        if (!React.isValidElement<AutocompleteItemProps>(child)) return
+        found.push({ value: child.props.value, label: child.props.children })
+      })
+      return found
+    }, [children])
+
+    const selected = items.find((item) => item.value === value)
+
+    const select = React.useCallback((next: string) => {
+      setValue((current) => (current === next ? "" : next))
+      setOpen(false)
+    }, [])
 
     const contextValue = React.useMemo(
       () => ({ value, select }),
       [value, select]
-    );
+    )
 
     return (
       <div ref={ref} className={cn("w-full", className)} {...props}>
-        <Popover open={open} onOpenChange={setOpen} modal={false}>
+        <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button
-              type="button"
               variant="outline"
               role="combobox"
               aria-expanded={open}
               className={cn("w-full justify-between font-normal", labelClass)}
             >
-              <span className="truncate">{selectedLabel}</span>
-              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+              <span className="truncate">{selected?.label ?? placeholder}</span>
+              <ChevronsUpDown className="opacity-50" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent
-            className="w-[var(--radix-popover-trigger-width)] min-w-[12rem] p-0"
-            align="start"
-            onOpenAutoFocus={(event) => event.preventDefault()}
-            onCloseAutoFocus={(event) => event.preventDefault()}
-          >
+          <PopoverContent className="w-[var(--radix-popover-trigger-width)] min-w-[12rem] p-0">
             <AutocompleteContext.Provider value={contextValue}>
               <Command>
-                <CommandInput placeholder={`Search ${label.toLowerCase()}...`} />
+                <CommandInput
+                  placeholder={`Search ${label.toLowerCase()}...`}
+                  className="h-9"
+                />
                 <CommandList>
                   <CommandEmpty>No item found.</CommandEmpty>
                   <CommandGroup>{children}</CommandGroup>
@@ -96,52 +100,40 @@ const Autocomplete = React.forwardRef<HTMLDivElement, AutocompleteProps>(
           </PopoverContent>
         </Popover>
       </div>
-    );
+    )
   }
-);
-Autocomplete.displayName = "Autocomplete";
+)
+Autocomplete.displayName = "Autocomplete"
 
 export interface AutocompleteItemProps
-  extends Omit<React.ComponentPropsWithoutRef<typeof CommandItem>, "onSelect"> {
-  value: string;
-}
-
-function autocompleteCmdkValue(
-  value: string,
-  children: React.ReactNode
-): string {
-  if (typeof children === "string" || typeof children === "number") {
-    return String(children);
-  }
-  return value;
+  extends Omit<React.ComponentPropsWithoutRef<typeof CommandItem>, "onSelect" | "value"> {
+  value: string
 }
 
 const AutocompleteItem = React.forwardRef<
   React.ElementRef<typeof CommandItem>,
   AutocompleteItemProps
 >(({ children, value, className, ...props }, ref) => {
-  const ctx = React.useContext(AutocompleteContext);
-  const cmdkValue = autocompleteCmdkValue(value, children);
-  const isSelected = ctx?.value === value;
+  const ctx = React.useContext(AutocompleteContext)
 
   return (
     <CommandItem
       ref={ref}
-      value={cmdkValue}
-      className={cn("cursor-pointer", className)}
+      value={value}
+      className={className}
+      onSelect={() => ctx?.select(value)}
       {...props}
-      onSelect={() => ctx?.select(value, children)}
     >
+      {children}
       <Check
         className={cn(
-          "mr-2 h-4 w-4",
-          isSelected ? "opacity-100" : "opacity-0"
+          "ml-auto",
+          ctx?.value === value ? "opacity-100" : "opacity-0"
         )}
       />
-      {children}
     </CommandItem>
-  );
-});
-AutocompleteItem.displayName = "AutocompleteItem";
+  )
+})
+AutocompleteItem.displayName = "AutocompleteItem"
 
-export { Autocomplete, AutocompleteItem };
+export { Autocomplete, AutocompleteItem }
