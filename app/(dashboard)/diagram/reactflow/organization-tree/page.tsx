@@ -1,6 +1,14 @@
 "use client"
 import React, { useCallback } from 'react';
-import ReactFlow, { useNodesState, useEdgesState, addEdge, MiniMap, Controls } from 'reactflow';
+import ReactFlow, {
+  useNodesState,
+  useEdgesState,
+  addEdge,
+  MiniMap,
+  Controls,
+  type Connection,
+  type Edge,
+} from 'reactflow';
 
 import 'reactflow/dist/base.css';
 // import './tailwind-config.js';
@@ -50,7 +58,10 @@ const OrganizationTree = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initEdges);
 
-  const onConnect = useCallback((params: import("/home/amirmufid/projects/dash-tail-free/node_modules/reactflow/dist/esm/index").Edge | import("/home/amirmufid/projects/dash-tail-free/node_modules/reactflow/dist/esm/index").Connection) => setEdges((eds) => addEdge(params, eds)), []);
+  const onConnect = useCallback(
+    (params: Connection | Edge) => setEdges((eds) => addEdge(params, eds)),
+    [setEdges]
+  );
 
   return (
     <Card>

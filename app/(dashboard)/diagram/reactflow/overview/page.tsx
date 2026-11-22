@@ -7,6 +7,8 @@ import ReactFlow, {
   Background,
   useNodesState,
   useEdgesState,
+  type Connection,
+  type Edge,
   type Node,
 } from 'reactflow';
 
@@ -32,7 +34,10 @@ const OverviewFlow = () => {
     initialNodes as Node[]
   );
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const onConnect = useCallback((params: import("/home/amirmufid/projects/dash-tail-free/node_modules/reactflow/dist/esm/index").Edge | import("/home/amirmufid/projects/dash-tail-free/node_modules/reactflow/dist/esm/index").Connection) => setEdges((eds) => addEdge(params, eds)), []);
+  const onConnect = useCallback(
+    (params: Connection | Edge) => setEdges((eds) => addEdge(params, eds)),
+    [setEdges]
+  );
 
   // we are using a bit of a shortcut here to adjust the edge type
   // this could also be done with a custom edge for example

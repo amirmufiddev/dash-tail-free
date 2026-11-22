@@ -17,7 +17,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useLegacyTable as useReactTable
+  useLegacyTable as useReactTable,
 } from "@tanstack/react-table/legacy";
 import { columns } from "./project-list/components/columns";
 import type { ProjectRow } from "./types";
@@ -29,13 +29,19 @@ const ProjectsView = ({ projects }: { projects: ProjectRow[] }) => {
   const [pageView, setPageView] = React.useState("grid");
   // modal state
   const [isOpen, setIsOpen] = React.useState(false);
-  const [selectedProjectId, setSelectedProjectId] = useState<string | number | null>(null);
-  const [selectedProject, setSelectedProject] = useState<ProjectRow | null>(null);
+  const [selectedProjectId, setSelectedProjectId] = useState<
+    string | number | null
+  >(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectRow | null>(
+    null,
+  );
 
   // table state
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] = React.useState({});
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const table = useReactTable({
