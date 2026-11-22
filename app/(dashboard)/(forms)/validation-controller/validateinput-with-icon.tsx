@@ -52,16 +52,14 @@ const ValidateInputWithIcon = () => {
             <FormItem>
               <FormLabel className="mb-2 text-default-950">Username</FormLabel>
               <FormControl>
-                <>
-                  <Input
-                    placeholder="DashTail"
-                    {...field}
-                    className={cn("", {
-                      "border-destructive focus:border-destructive":
-                        form.formState.errors.username,
-                    })}
-                  />
-                </>
+                <Input
+                  placeholder="DashTail"
+                  {...field}
+                  className={cn("", {
+                    "border-destructive focus:border-destructive":
+                      form.formState.errors.username,
+                  })}
+                />
               </FormControl>
               <div className="inline-flex items-center gap-1 bg-destructive px-2 text-primary-foreground rounded-md">
                 {form.formState.errors.username && (

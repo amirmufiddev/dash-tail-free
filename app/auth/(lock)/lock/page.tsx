@@ -21,7 +21,9 @@ const LockPage = () => {
             <Image
               src={background}
               alt="image"
-              className="absolute top-0 left-0 w-full h-full "
+              fill
+              sizes="50vw"
+              className="object-cover"
             />
             <div className="relative z-10 backdrop-blur bg-primary-foreground/40 py-14 px-16 2xl:py-[84px] 2xl:pl-[50px] 2xl:pr-[136px] rounded max-w-[640px]">
               <div>

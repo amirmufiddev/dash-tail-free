@@ -125,6 +125,12 @@ const Breadcrumbs = React.forwardRef<HTMLOListElement, BreadcrumbsProps>(
       ];
     }
 
+    const {
+      isLast: _isLast,
+      isCurrent: _isCurrent,
+      ...olProps
+    } = props as typeof props & { isLast?: boolean; isCurrent?: boolean };
+
     return (
       <ol
         ref={ref}
@@ -134,7 +140,7 @@ const Breadcrumbs = React.forwardRef<HTMLOListElement, BreadcrumbsProps>(
           }),
           className
         )}
-        {...props}
+        {...olProps}
       >
         {visibleItems.map((child, index) => {
           const isLast = index === visibleItems.length - 1;

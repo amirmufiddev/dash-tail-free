@@ -158,9 +158,17 @@ const BarsWithMarkes = ({ height = 350 }) => {
     tooltip: {
       theme: mode === "dark" ? "dark" : "light",
     },
-    grid: getGridConfig(
-      `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
-    ),
+    grid: {
+      ...getGridConfig(
+        `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
+      ),
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      },
+    },
     yaxis: getYAxisConfig(
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartLabel})`
     ),
@@ -183,13 +191,6 @@ const BarsWithMarkes = ({ height = 350 }) => {
         },
       },
     },
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
-    },
-
     legend: {
       show: true,
       showForSingleSeries: true,

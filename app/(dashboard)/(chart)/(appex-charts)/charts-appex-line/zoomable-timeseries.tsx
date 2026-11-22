@@ -545,20 +545,23 @@ const ZoomableTimeSeries = ({ height = 300 }) => {
       curve: "smooth",
       width: 4,
     },
-    zoom: {
-      type: "x",
-      enabled: true,
-      autoScaleYaxis: true,
-    },
     colors: [
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].success})`,
     ],
     tooltip: {
       theme: mode === "dark" ? "dark" : "light",
     },
-    grid: getGridConfig(
-      `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
-    ),
+    grid: {
+      ...getGridConfig(
+        `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
+      ),
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      },
+    },
     fill: {
       type: "gradient",
       gradient: {
@@ -587,12 +590,6 @@ const ZoomableTimeSeries = ({ height = 300 }) => {
       axisTicks: {
         show: false,
       },
-    },
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
     },
   } as unknown as ApexOptions;
   return (

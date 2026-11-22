@@ -53,11 +53,13 @@ const ImagePie = ({ height = 350 }) => {
     tooltip: {
       theme: mode === "dark" ? "dark" : "light",
     },
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
+    grid: {
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      },
     },
     legend: {
       labels: {

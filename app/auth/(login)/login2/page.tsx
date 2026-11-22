@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { ClientOnly } from "@/components/client-only";
 
 const LoginPage = () => {
 
@@ -20,43 +21,45 @@ const LoginPage = () => {
           className="h-full w-full  bg-no-repeat bg-center bg-cover hidden lg:block rounded-xl"
           style={{ backgroundImage: `url(${bg.src})` }}
         >
-          <Swiper
-            navigation={{
-              prevEl: ".prev",
-              nextEl: ".next",
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[Navigation, Pagination, Autoplay]}
-            loop={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            className="w-full h-full rounded-2xl auth-swiper"
-            style={{
-              "--swiper-pagination-color": "#fff",
-              "--swiper-pagination-bottom": "40px",
-              "--swiper-pagination-bullet-size": "10px",
-            }}
-          >
-            <SwiperSlide>
-              <div className="w-full h-full flex justify-center items-center">
-                <Image src={slider1} alt="image" className="" />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="w-full h-full flex justify-center items-center">
-                <Image src={slider2} alt="image" className="" />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="w-full h-full flex justify-center items-center">
-                <Image src={slider3} alt="image" className="" />
-              </div>
-            </SwiperSlide>
-          </Swiper>
+          <ClientOnly>
+            <Swiper
+              navigation={{
+                prevEl: ".prev",
+                nextEl: ".next",
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[Navigation, Pagination, Autoplay]}
+              loop={true}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              className="w-full h-full rounded-2xl auth-swiper"
+              style={{
+                "--swiper-pagination-color": "#fff",
+                "--swiper-pagination-bottom": "40px",
+                "--swiper-pagination-bullet-size": "10px",
+              }}
+            >
+              <SwiperSlide>
+                <div className="w-full h-full flex justify-center items-center">
+                  <Image src={slider1} alt="image" className="" />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="w-full h-full flex justify-center items-center">
+                  <Image src={slider2} alt="image" className="" />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="w-full h-full flex justify-center items-center">
+                  <Image src={slider3} alt="image" className="" />
+                </div>
+              </SwiperSlide>
+            </Swiper>
+          </ClientOnly>
 
         </div>
         <div className=" px-4  py-5 flex justify-center items-center">

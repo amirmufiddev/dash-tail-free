@@ -34,6 +34,8 @@ import {
   ChartArea,
   Building,
   Building2,
+  Settings,
+  Users,
   Sheild,
   Error,
   Diamond,
@@ -99,6 +101,66 @@ export const menusConfig = {
           title: "project",
           icon: ClipBoard,
           href: "/projects",
+        },
+        {
+          title: "API Key",
+          icon: Sheild,
+          href: "/api-key",
+        },
+        {
+          title: "Contacts",
+          icon: Note2,
+          href: "/contacts",
+        },
+        {
+          title: "Integrations",
+          icon: Stacks2,
+          href: "/integrations",
+        },
+        {
+          title: "Notes",
+          icon: Note,
+          href: "/notes",
+        },
+        {
+          title: "Access Control",
+          icon: Sheild,
+          href: "/access-control",
+        },
+        {
+          title: "Role",
+          icon: Diamond,
+          href: "/role",
+        },
+        {
+          title: "Org Setting",
+          icon: Settings,
+          href: "/org-setting",
+        },
+        {
+          title: "Org Team Member",
+          icon: Users,
+          href: "/org-team-member",
+        },
+        {
+          title: "Detail Member",
+          icon: Pointer,
+          href: "/detail-member",
+        },
+        {
+          title: "Admin CRUD User Management",
+          icon: ListFill,
+          href: "/admin-user-management",
+        },
+        {
+          title: "Admin Org Management",
+          icon: Building2,
+          href: "/admin-org-management",
+        },
+        {
+          title: "AI Chat Bot",
+          icon: Messages,
+          href: "/ai-chat-bot",
         },
       ],
     },
@@ -523,6 +585,10 @@ export const menusConfig = {
             {
               title: "Blank Page",
               href: "/blank",
+            },
+            {
+              title: "Onboarding",
+              href: "/onboarding",
             },
             {
               title: "Comming Soon",
@@ -957,6 +1023,66 @@ export const menusConfig = {
                 href: "/projects/1/overview",
               },
             ],
+          },
+          {
+            title: "API Key",
+            icon: Sheild,
+            href: "/api-key",
+          },
+          {
+            title: "Contacts",
+            icon: Note2,
+            href: "/contacts",
+          },
+          {
+            title: "Integrations",
+            icon: Stacks2,
+            href: "/integrations",
+          },
+          {
+            title: "Notes",
+            icon: Note,
+            href: "/notes",
+          },
+          {
+            title: "Access Control",
+            icon: Sheild,
+            href: "/access-control",
+          },
+          {
+            title: "Role",
+            icon: Diamond,
+            href: "/role",
+          },
+          {
+            title: "Org Setting",
+            icon: Settings,
+            href: "/org-setting",
+          },
+          {
+            title: "Org Team Member",
+            icon: Users,
+            href: "/org-team-member",
+          },
+          {
+            title: "Detail Member",
+            icon: Pointer,
+            href: "/detail-member",
+          },
+          {
+            title: "Admin CRUD User Management",
+            icon: ListFill,
+            href: "/admin-user-management",
+          },
+          {
+            title: "Admin Org Management",
+            icon: Building2,
+            href: "/admin-org-management",
+          },
+          {
+            title: "AI Chat Bot",
+            icon: Messages,
+            href: "/ai-chat-bot",
           },
         ],
       },
@@ -1393,6 +1519,10 @@ export const menusConfig = {
               {
                 title: "Blank Page",
                 href: "/blank",
+              },
+              {
+                title: "Onboarding",
+                href: "/onboarding",
               },
               {
                 title: "Comming Soon",
@@ -1873,6 +2003,66 @@ export const menusConfig = {
         icon: ClipBoard,
         href: "/projects",
       },
+      {
+        title: "API Key",
+        icon: Sheild,
+        href: "/api-key",
+      },
+      {
+        title: "Contacts",
+        icon: Note2,
+        href: "/contacts",
+      },
+      {
+        title: "Integrations",
+        icon: Stacks2,
+        href: "/integrations",
+      },
+      {
+        title: "Notes",
+        icon: Note,
+        href: "/notes",
+      },
+      {
+        title: "Access Control",
+        icon: Sheild,
+        href: "/access-control",
+      },
+      {
+        title: "Role",
+        icon: Diamond,
+        href: "/role",
+      },
+      {
+        title: "Org Setting",
+        icon: Settings,
+        href: "/org-setting",
+      },
+      {
+        title: "Org Team Member",
+        icon: Users,
+        href: "/org-team-member",
+      },
+      {
+        title: "Detail Member",
+        icon: Pointer,
+        href: "/detail-member",
+      },
+      {
+        title: "Admin CRUD User Management",
+        icon: ListFill,
+        href: "/admin-user-management",
+      },
+      {
+        title: "Admin Org Management",
+        icon: Building2,
+        href: "/admin-org-management",
+      },
+      {
+        title: "AI Chat Bot",
+        icon: Messages,
+        href: "/ai-chat-bot",
+      },
 
       {
         isHeader: true,
@@ -2013,6 +2203,10 @@ export const menusConfig = {
           {
             title: "Blank Page",
             href: "/blank",
+          },
+          {
+            title: "Onboarding",
+            href: "/onboarding",
           },
           {
             title: "Comming Soon",

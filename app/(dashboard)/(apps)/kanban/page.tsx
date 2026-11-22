@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+import { connection } from "next/server";
 import {
   getBoards,
   getTasks,
@@ -6,12 +8,25 @@ import {
 } from "@/config/project-config";
 import KanbanBreadCrumbs from "./bread-crumbs";
 import TaskBoard from "@/components/task-board";
+import LayoutLoader from "@/components/layout-loader";
 
-const Kanban = async () => {
+async function KanbanContent() {
+  await connection();
   const boards = await getBoards();
   const tasks = await getTasks();
   const subTasks = await getSubtasks();
   const comments = await getComments();
+  return (
+    <TaskBoard
+      boards={boards}
+      tasks={tasks}
+      subTasks={subTasks}
+      comments={comments}
+    />
+  );
+}
+
+const Kanban = () => {
   return (
     <>
       <div className="flex flex-wrap mb-7">
@@ -22,12 +37,9 @@ const Kanban = async () => {
           <KanbanBreadCrumbs />
         </div>
       </div>
-      <TaskBoard
-        boards={boards}
-        tasks={tasks}
-        subTasks={subTasks}
-        comments={comments}
-      />
+      <Suspense fallback={<LayoutLoader />}>
+        <KanbanContent />
+      </Suspense>
     </>
   );
 };

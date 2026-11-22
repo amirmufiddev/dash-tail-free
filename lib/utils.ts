@@ -31,19 +31,23 @@ export const RGBToHex = (r: number, g: number, b: number) => {
 };
 
 export function hslToHex(hsl: string) {
-  // Remove "hsla(" and ")" from the HSL string
-  hsl = hsl.replace("hsla(", "").replace(")", "");
+  if (!hsl) return "#000000";
+  // Remove "hsl(" / "hsla(" and ")" from the HSL string
+  const normalized = hsl.replace(/^hsla?\(/, "").replace(")", "").trim();
 
   // Split the HSL string into an array of H, S, and L values
-  const [h, s, l] = hsl.split(" ").map((value) => {
+  const [h, s, l] = normalized.split(/[\s,]+/).map((value) => {
     if (value.endsWith("%")) {
       // Remove the "%" sign and parse as a float
       return parseFloat(value.slice(0, -1));
     } else {
-      // Parse as an integer
-      return parseInt(value);
+      return parseFloat(value);
     }
   });
+
+  if ([h, s, l].some((n) => Number.isNaN(n))) {
+    return "#000000";
+  }
 
   // Function to convert HSL to RGB
   function hslToRgb(h: number, s: number, l: number) {

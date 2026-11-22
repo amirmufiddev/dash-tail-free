@@ -41,7 +41,7 @@ const TaskItem = ({
   handlerSubSheet: () => void;
 }) => {
   const { completed, assignDate, id } = subtask;
-  const [isDone, setIsDone] = React.useState(completed);
+  const [isDone, setIsDone] = React.useState(Boolean(completed));
   // update isComplete
   const [open, setOpen] = useState(false);
 

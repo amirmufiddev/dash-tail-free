@@ -34,7 +34,12 @@ const AddBlock = ({
         </div>
         <div className={cn(" text-sm text-primary-foreground")}>{desc}</div>
         <div className="mt-4 relative">
-          <Image src={image} alt="footer-thumbnail" className="w-full h-full" />
+          <Image
+            src={image}
+            alt="footer-thumbnail"
+            loading="eager"
+            className="w-full h-full"
+          />
           <Button
             size="icon"
             type="button"

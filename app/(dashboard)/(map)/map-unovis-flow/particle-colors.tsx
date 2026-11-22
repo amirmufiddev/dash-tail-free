@@ -26,13 +26,14 @@ const ParticleColorMap = () => {
     const targetLongitude = useCallback((d: { targetLon: number }) => d.targetLon, []);
     const flowParticleDensity = useCallback((d: { particleDensity: number }) => d.particleDensity, []);
 
-    const pointColor = `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].warning})`;
+    const pointColor = hslToHex(theme?.cssVars[mode === "dark" ? "dark" : "light"].warning ?? "");
     // flow particle color
-    const flowParticleColor = hslToHex(`hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].primary})`)
+    const flowParticleColor = hslToHex(theme?.cssVars[mode === "dark" ? "dark" : "light"].primary ?? "");
     return (
         <div className='w-full h-[350px] overflow-hidden relative'>
             <VisLeafletFlowMap
                 data={data}
+                height="100%"
                 style={style}
                 fitViewPadding={[20, 20]}
                 pointLatitude={pointLatitude}

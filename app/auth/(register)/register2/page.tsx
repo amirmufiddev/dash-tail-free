@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { ClientOnly } from "@/components/client-only";
 const RegisterPage = () => {
 
   return (
@@ -19,6 +20,7 @@ const RegisterPage = () => {
         <div className="col-span-1 h-full w-full  bg-no-repeat bg-center bg-cover hidden lg:block rounded-xl"
           style={{ backgroundImage: `url(${bg.src})` }}
         >
+          <ClientOnly>
           <Swiper
             navigation={{
               prevEl: ".prev",
@@ -56,6 +58,7 @@ const RegisterPage = () => {
               </div>
             </SwiperSlide>
           </Swiper>
+          </ClientOnly>
         </div>
         <div className="px-4 py-4 flex justify-center items-center  col-span-2 lg:col-span-1">
           <div className="sm:w-[480px] w-full">

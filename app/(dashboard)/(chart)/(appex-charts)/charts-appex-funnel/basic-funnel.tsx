@@ -47,9 +47,17 @@ const BasicFunnel = ({ height = 350 }) => {
     tooltip: {
       theme: mode === "dark" ? "dark" : "light",
     },
-    grid: getGridConfig(
-      `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
-    ),
+    grid: {
+      ...getGridConfig(
+        `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
+      ),
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      },
+    },
 
     fill: {
       type: "gradient",
@@ -74,12 +82,6 @@ const BasicFunnel = ({ height = 350 }) => {
     },
     legend: {
       show: false,
-    },
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
     },
   } as unknown as ApexOptions;
   return (

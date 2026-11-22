@@ -33,8 +33,8 @@ type CalendarEventSelection = {
 };
 
 const CalendarView = ({ events, categories }: { events: { extendedProps: { calendar: string } }[]; categories: CalendarCategory[] }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string[] | null>(
-    null
+  const [selectedCategory, setSelectedCategory] = useState<string[]>(
+    () => categories?.map((c) => c.value) ?? []
   );
   const [selectedEventDate, setSelectedEventDate] = useState<{ date: Date } | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<CalendarEventSelection | null>(null);
@@ -210,7 +210,7 @@ const CalendarView = ({ events, categories }: { events: { extendedProps: { calen
                   <Checkbox
                     className={category.className}
                     id={category.label}
-                    checked={selectedCategory?.includes(category.value)}
+                    checked={selectedCategory.includes(category.value)}
                     onClick={() => handleCategorySelection(category.value)}
                   />
                   <Label htmlFor={category.label}>{category.label}</Label>

@@ -8,6 +8,7 @@ const BasicMap = () => {
   return (
     <div className=" w-full h-[350px] overflow-hidden relative">
       <VisLeafletMap
+        height="100%"
         style={style}
         attribution={[
           '<a href="https://www.maptiler.com/copyright/" target="_blank">MapTiler</a>',

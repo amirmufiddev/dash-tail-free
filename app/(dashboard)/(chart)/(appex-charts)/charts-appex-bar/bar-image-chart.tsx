@@ -51,6 +51,12 @@ const BarImageChart = ({ height = 350 }) => {
     },
     grid: {
       position: "back",
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      },
     },
     stroke: {
       width: 0,
@@ -107,12 +113,6 @@ const BarImageChart = ({ height = 350 }) => {
       hover: {
         filter: "none",
       },
-    },
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
     },
     legend: {
       position: "right",

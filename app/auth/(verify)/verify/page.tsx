@@ -20,7 +20,9 @@ const VerifyPage = () => {
             <Image
               src={background}
               alt="image"
-              className="absolute top-0 left-0 w-full h-full"
+              fill
+              sizes="50vw"
+              className="object-cover"
             />
             <div className="relative z-10 backdrop-blur bg-primary-foreground/40 py-[84px] pl-[50px] pr-[136px] rounded">
               <div>

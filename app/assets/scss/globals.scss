@@ -1,3 +1,4 @@
+@use "sass:meta";
 @reference "../tailwind.css";
 
 // root css
@@ -285,16 +286,16 @@
 }
 
 @layer components {
-  @import "partials/calendar.scss";
-  @import "partials/react-slect";
-  @import "partials/map";
-  @import "partials/shepherd";
+  @include meta.load-css("partials/calendar");
+  @include meta.load-css("partials/react-slect");
+  @include meta.load-css("partials/map");
+  @include meta.load-css("partials/shepherd");
 
   // extra css ! it will be delete in future
-  @import "partials/extra/pagination";
-  @import "partials/extra/timeline";
-  @import "partials/extra/steps";
+  @include meta.load-css("partials/extra/pagination");
+  @include meta.load-css("partials/extra/timeline");
+  @include meta.load-css("partials/extra/steps");
   // scrollbar css
-  @import "partials/extra/scrollbar";
-  @import "partials/extra/slider";
+  @include meta.load-css("partials/extra/scrollbar");
+  @include meta.load-css("partials/extra/slider");
 }

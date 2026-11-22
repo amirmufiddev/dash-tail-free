@@ -71,6 +71,12 @@ const MissingDataLineChart = ({ height = 300 }) => {
       toolbar: {
         show: false,
       },
+      zoom: {
+        enabled: false,
+      },
+      animations: {
+        enabled: false,
+      },
     },
     dataLabels: {
       enabled: false,
@@ -78,12 +84,6 @@ const MissingDataLineChart = ({ height = 300 }) => {
     stroke: {
       width: [5, 5, 4],
       curve: "straight",
-    },
-    zoom: {
-      enabled: false,
-    },
-    animations: {
-      enabled: false,
     },
     colors: [
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].primary})`,
@@ -93,9 +93,17 @@ const MissingDataLineChart = ({ height = 300 }) => {
     tooltip: {
       theme: mode === "dark" ? "dark" : "light",
     },
-    grid: getGridConfig(
-      `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
-    ),
+    grid: {
+      ...getGridConfig(
+        `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
+      ),
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      },
+    },
 
     yaxis: getYAxisConfig(
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartLabel})`
@@ -117,12 +125,6 @@ const MissingDataLineChart = ({ height = 300 }) => {
       ),
     },
 
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
-    },
     legend: {
       labels: {
         colors: `hsl(${

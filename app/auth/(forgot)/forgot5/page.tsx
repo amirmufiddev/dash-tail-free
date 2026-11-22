@@ -10,6 +10,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
+import { ClientOnly } from "@/components/client-only";
 
 const LoginPage = () => {
   const { theme: config, setTheme: setConfig } = useThemeStore();
@@ -36,14 +37,14 @@ const LoginPage = () => {
                   <circle cx="604" cy="565" r="404" fill="url(#paint0_radial_4801_13605)" />
                 </g>
                 <defs>
-                  <filter id="filter0_f_4801_13605" x="0" y="-39" width="1208" height="1208" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <filter id="filter0_f_4801_13605" x="0" y="-39" width="1208" height="1208" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
                     <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                     <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_4801_13605" />
                   </filter>
                   <radialGradient id="paint0_radial_4801_13605" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(805.322 373.168) rotate(134.675) scale(1098.13)">
-                    <stop stop-color="#826AF9" stop-opacity="0.6" />
-                    <stop offset="1" stop-color="#826AF9" stop-opacity="0" />
+                    <stop stopColor="#826AF9" stopOpacity="0.6" />
+                    <stop offset="1" stopColor="#826AF9" stopOpacity="0" />
                   </radialGradient>
                 </defs>
               </svg>
@@ -101,6 +102,7 @@ const LoginPage = () => {
                     />
                   </svg>
                   <div className="w-[90%]">
+                    <ClientOnly>
                     <Swiper
                       pagination={{
                         clickable: true,
@@ -164,6 +166,7 @@ const LoginPage = () => {
                         </div>
                       </SwiperSlide>
                     </Swiper>
+                    </ClientOnly>
                   </div>
                 </div>
               </div>

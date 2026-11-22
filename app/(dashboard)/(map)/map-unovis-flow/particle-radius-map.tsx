@@ -4,6 +4,7 @@ import { VisLeafletFlowMap } from '@unovis/react'
 import { useThemeStore } from "@/store";
 import { useTheme } from "next-themes";
 import { themes } from "@/config/thems";
+import { hslToHex } from "@/lib/utils";
 import { data } from './data'
 
 const ParticleRadiusMap = () => {
@@ -25,12 +26,13 @@ const ParticleRadiusMap = () => {
     const targetLongitude = useCallback((d: { targetLon: number }) => d.targetLon, []);
     const flowParticleDensity = useCallback((d: { particleDensity: number }) => d.particleDensity, []);
 
-    const pointColor = `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].success})`;
+    const pointColor = hslToHex(theme?.cssVars[mode === "dark" ? "dark" : "light"].success ?? "");
 
     return (
         <div className='w-full h-[350px] overflow-hidden relative'>
             <VisLeafletFlowMap
                 data={data}
+                height="100%"
                 style={style}
                 fitViewPadding={[20, 20]}
                 pointLatitude={pointLatitude}

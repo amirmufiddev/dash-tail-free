@@ -81,9 +81,17 @@ const PatternedBar = ({ height = 350 }) => {
         },
       },
     },
-    grid: getGridConfig(
-      `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
-    ),
+    grid: {
+      ...getGridConfig(
+        `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
+      ),
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      },
+    },
     fill: {
       type: "pattern",
       opacity: 1,
@@ -123,12 +131,6 @@ const PatternedBar = ({ height = 350 }) => {
       hover: {
         filter: "none",
       },
-    },
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
     },
     legend: {
       position: "right",

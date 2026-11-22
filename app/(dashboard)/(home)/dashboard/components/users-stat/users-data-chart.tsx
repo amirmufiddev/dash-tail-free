@@ -37,15 +37,19 @@ const UsersDataChart = ({ height = 160 }) => {
     tooltip: {
       theme: mode === "dark" ? "dark" : "light",
     },
-    grid: getGridConfig(
-      `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
-    ),
+    grid: {
+      ...getGridConfig(
+        `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].chartGird})`
+      ),
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      },
+    },
     yaxis: {
       show: false,
-    },
-    bar: {
-      columnWidth: "100%",
-      barHeight: "100%",
     },
 
     xaxis: {
@@ -62,13 +66,9 @@ const UsersDataChart = ({ height = 160 }) => {
     plotOptions: {
       bar: {
         horizontal: false,
+        columnWidth: "100%",
+        barHeight: "100%",
       },
-    },
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
     },
   } as unknown as ApexOptions;
   return (

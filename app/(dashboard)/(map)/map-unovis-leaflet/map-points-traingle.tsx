@@ -20,6 +20,7 @@ const MapPointTraingleShape = () => {
     return (
         <div className=" w-full h-[350px] overflow-hidden relative">
             <VisLeafletMap
+                height="100%"
                 style={style}
                 data={mapData}
                 pointColor={pointColor}

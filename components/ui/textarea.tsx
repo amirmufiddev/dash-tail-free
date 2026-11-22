@@ -115,7 +115,15 @@ export interface TextareaProps
 }
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, color, radius, variant, shadow, children, type, size, ...props }, ref) => {
+  ({ className, color, radius, variant, shadow, children, type, size, defaultValue, ...props }, ref) => {
+    const resolvedDefaultValue =
+      props.value !== undefined
+        ? undefined
+        : defaultValue ??
+          (typeof children === "string" || typeof children === "number"
+            ? children
+            : undefined);
+
     return (
       <div className="flex-1 w-full">
         <textarea
@@ -124,10 +132,9 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             className
           )}
           ref={ref}
+          defaultValue={resolvedDefaultValue}
           {...props}
-        >
-          {children}
-        </textarea>
+        />
       </div>
     );
   }

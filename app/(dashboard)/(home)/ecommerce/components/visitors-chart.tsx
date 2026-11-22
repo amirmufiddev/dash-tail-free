@@ -541,11 +541,6 @@ const VisitorsReportChart = ({ height = 300 }) => {
       curve: "smooth",
       width: 3,
     },
-    zoom: {
-      type: "x",
-      enabled: true,
-      autoScaleYaxis: true,
-    },
     colors: [
       `hsl(${theme?.cssVars[mode === "dark" ? "dark" : "light"].success})`,
     ],
@@ -554,6 +549,12 @@ const VisitorsReportChart = ({ height = 300 }) => {
     },
     grid: {
       show: false,
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      },
     },
     fill: {
       type: "gradient",
@@ -584,12 +585,6 @@ const VisitorsReportChart = ({ height = 300 }) => {
       axisTicks: {
         show: false,
       },
-    },
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
     },
   } as unknown as ApexOptions;
   return (

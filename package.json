@@ -9,7 +9,14 @@
     "lint": "eslint .",
     "test:routes": "node --test scripts/routes.test.mjs",
     "smoke": "node scripts/smoke-routes.ts",
-    "gates": "node scripts/run-gates.mjs"
+    "gates": "node scripts/run-gates.mjs",
+    "figcraft:build": "node scripts/figcraft-sync.mjs build",
+    "figcraft:sync-tokens": "node scripts/figcraft-sync.mjs sync-tokens",
+    "figcraft:tokens": "node scripts/figcraft-sync.mjs tokens",
+    "figcraft:connect": "figcraft-cli connect publish design/dash-tail.figcraft --mappings figcraft.connect.json",
+    "figcraft:connect:dry": "figcraft-cli connect publish design/dash-tail.figcraft --mappings figcraft.connect.json --dry-run",
+    "figcraft:info": "figcraft-cli info design/dash-tail.figcraft",
+    "figcraft:export": "node scripts/figcraft-sync.mjs export"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^12.0.0",
@@ -136,6 +143,9 @@
     "typescript": "5.9.3"
   },
   "packageManager": "bun@1.3.14",
+  "overrides": {
+    "maplibre-gl": "6.7.0"
+  },
   "ignoreScripts": [
     "sharp",
     "unrs-resolver"

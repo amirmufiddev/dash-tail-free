@@ -58,9 +58,10 @@ const AdvancedLeafletMap = ({ height = 350 }) => {
     ]
 
     return (
-        <div className={`w-full  overflow-hidden relative h-[${height}px]`}>
+        <div className="w-full overflow-hidden relative" style={{ height: `${height}px` }}>
             <VisLeafletMap
                 ref={mapRef}
+                height="100%"
                 data={data}
                 style={mapStyleLight as StyleSpecification}
                 styleDarkTheme={mapStyleDark as StyleSpecification}

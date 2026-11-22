@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "links": [
+    {
+      "component": "Alert",
+      "language": "react",
+      "importPath": "@/components/ui/alert",
+      "name": "Alert",
+      "template": "<Alert color={color} variant={variant}>\n  <AlertTitle>{title}</AlertTitle>\n  <AlertDescription>{description}</AlertDescription>\n</Alert>"
+    },
+    {
+      "component": "Avatar",
+      "language": "react",
+      "importPath": "@/components/ui/avatar",
+      "name": "Avatar",
+      "template": "<Avatar>\n  <AvatarFallback>{initials}</AvatarFallback>\n</Avatar>"
+    },
+    {
+      "component": "Badge",
+      "language": "react",
+      "importPath": "@/components/ui/badge",
+      "name": "Badge",
+      "template": "<Badge color={color} variant={variant}>{label}</Badge>"
+    },
+    {
+      "component": "Button",
+      "language": "react",
+      "importPath": "@/components/ui/button",
+      "name": "Button",
+      "template": "<Button color={color} variant={variant} size={size}>{label}</Button>"
+    },
+    {
+      "component": "Card",
+      "language": "react",
+      "importPath": "@/components/ui/card",
+      "name": "Card",
+      "template": "<Card>\n  <CardHeader>\n    <CardTitle>{title}</CardTitle>\n    <CardDescription>{description}</CardDescription>\n  </CardHeader>\n  <CardContent>{body}</CardContent>\n  <CardFooter>{footerAction}</CardFooter>\n</Card>"
+    },
+    {
+      "component": "Checkbox",
+      "language": "react",
+      "importPath": "@/components/ui/checkbox",
+      "name": "Checkbox",
+      "template": "<Checkbox color={color} defaultChecked={checked}>{label}</Checkbox>"
+    },
+    {
+      "component": "Input",
+      "language": "react",
+      "importPath": "@/components/ui/input",
+      "name": "Input",
+      "template": "<Input variant={variant} color={color} size={size} placeholder={placeholder} />"
+    },
+    {
+      "component": "Progress",
+      "language": "react",
+      "importPath": "@/components/ui/progress",
+      "name": "Progress",
+      "template": "<Progress color={color} size={size} value={64} />"
+    },
+    {
+      "component": "Select",
+      "language": "react",
+      "importPath": "@/components/ui/select",
+      "name": "Select",
+      "template": "<Select>\n  <SelectTrigger>\n    <SelectValue placeholder={placeholder} />\n  </SelectTrigger>\n</Select>"
+    },
+    {
+      "component": "Switch",
+      "language": "react",
+      "importPath": "@/components/ui/switch",
+      "name": "Switch",
+      "template": "<Switch color={color} defaultChecked={checked} />"
+    },
+    {
+      "component": "Tabs",
+      "language": "react",
+      "importPath": "@/components/ui/tabs",
+      "name": "Tabs",
+      "template": "<Tabs defaultValue=\"overview\">\n  <TabsList>\n    <TabsTrigger value=\"overview\">{tab1}</TabsTrigger>\n    <TabsTrigger value=\"analytics\">{tab2}</TabsTrigger>\n  </TabsList>\n</Tabs>"
+    },
+    {
+      "component": "Textarea",
+      "language": "react",
+      "importPath": "@/components/ui/textarea",
+      "name": "Textarea",
+      "template": "<Textarea variant={variant} color={color} placeholder={placeholder} />"
+    }
+  ]
+}

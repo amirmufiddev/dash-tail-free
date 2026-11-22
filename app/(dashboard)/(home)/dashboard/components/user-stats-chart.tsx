@@ -81,11 +81,13 @@ const UserStats = ({ height = 250 }) => {
           })`,
       },
     },
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
+    grid: {
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+      },
     },
   } as unknown as ApexOptions;
   return (

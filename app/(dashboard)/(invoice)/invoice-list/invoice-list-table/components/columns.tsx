@@ -21,7 +21,7 @@ type InvoiceRow = {
 
 export const columns = [
   {
-    id: "id",
+    id: "select",
     header: ({ table }: { table: { getIsAllPageRowsSelected: () => boolean; getIsSomePageRowsSelected: () => boolean; toggleAllPageRowsSelected: ((arg0: boolean) => unknown) } }) => (
       <Checkbox
         checked={
@@ -110,7 +110,7 @@ export const columns = [
     ),
   },
   {
-    accessorKey: "",
+    id: "actions",
     header: "Actions",
     cell: ({ row }: { row: unknown }) => (
       <div className="flex gap-3 items-center justify-end">

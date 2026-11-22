@@ -139,7 +139,7 @@ const TreeNode = ({
         <div style={{ marginLeft: "20px" }} className=" relative">
           {expandedKeys.includes(id) &&
             children.map((child) => (
-              <>
+              <React.Fragment key={child.id}>
                 {showLine && (
                   <span className="absolute  -left-[12px]  mt-1.5  ">
                     <svg
@@ -156,7 +156,6 @@ const TreeNode = ({
                   </span>
                 )}
                 <TreeNode
-                  key={child.id}
                   node={child}
                   onCheck={onCheck}
                   onExpand={onExpand}
@@ -167,7 +166,7 @@ const TreeNode = ({
                   className={className}
                   showLine={showLine}
                 />
-              </>
+              </React.Fragment>
             ))}
         </div>
       )}
